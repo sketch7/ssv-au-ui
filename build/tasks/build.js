@@ -51,10 +51,11 @@ function compileTs(target) {
 		continueOnError: args.continueOnError
 	});
 }
-registerMultiTargetBuilds({
+ssvTools.registerGulpMultiTargetBuilds({
 	taskName: "ts",
-	action: compileTs
-})
+	action: compileTs,
+	config: config
+});
 
 gulp.task("bundle:ts", () => ssvTools.rollup({ continueOnError: args.continueOnError }));
 
@@ -63,34 +64,24 @@ function compileHtml(target) {
 	return gulp.src(config.src.html)
 		.pipe(gulp.dest(`${config.output.dist}/${target}`))
 }
-registerMultiTargetBuilds({
+ssvTools.registerGulpMultiTargetBuilds({
 	taskName: "html",
-	action: compileHtml
-})
+	action: compileHtml,
+	config: config
+});
 
 // styles - compile:styles | compile:styles:dev | compile:styles:TARGET
 function compileStyle(target) {
 	return gulp.src(config.src.styles)
 		.pipe(gulp.dest(`${config.output.dist}/${target}`));
 }
-registerMultiTargetBuilds({
+ssvTools.registerGulpMultiTargetBuilds({
 	taskName: "styles",
-	action: compileStyle
-})
+	action: compileStyle,
+	config: config
+});
 
 gulp.task("copy-dist", () => {
 	return gulp.src(`${config.output.artifact}/**/*`)
 		.pipe(gulp.dest(`${config.output.dist}`));
 });
-
-// todo: refactor to @ssv/tools
-function registerMultiTargetBuilds({
-	taskName,
-	action
-}) {
-	gulp.task(`compile:${taskName}:dev`, [`compile:html:${config.devTarget}`]);
-	gulp.task(`compile:${taskName}`, config.buildTargets.map(x => `compile:${taskName}:${x}`));
-	for (let target of config.buildTargets) {
-		gulp.task(`compile:${taskName}:${target}`, () => action(target));
-	}
-}
