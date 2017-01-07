@@ -24,10 +24,9 @@ module.exports = {
 	},
 	buildTargets: [
 		"es2015",
-		"amd",
 		"umd"
 	],
-	devTarget: "amd",
+	devTarget: "umd",
 	doc: "./doc",
 	packageName: pkg.name
 };
