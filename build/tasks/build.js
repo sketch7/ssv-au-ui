@@ -12,13 +12,13 @@ const config = require("../config");
 gulp.task("build", (cb) => {
 	if (args.isRelease) {
 		return runSeq(
-			["lint", "compile:ts:all"],
+			["lint", "compile:ts", "compile:html", "compile:styles"],
 			"copy-dist",
 			"bundle:ts",
 			cb);
 	}
 	return runSeq(
-		["lint", "compile:ts"],
+		["lint", "compile:ts:dev", "compile:html:dev", "compile:styles:dev"],
 		cb);
 });
 
@@ -43,41 +43,54 @@ gulp.task("ci", (cb) => {
 		cb);
 });
 
-// scripts
-gulp.task("compile:ts", ["compile:ts:es2015"]);
-gulp.task("compile:ts:all", ["compile:ts:es2015", "compile:ts:umd"]);
-gulp.task("compile:ts:es2015", () => compileTs({ module: "es2015" }));
-gulp.task("compile:ts:umd", () => compileTs({ module: "amd" }));
-
-gulp.task("bundle:ts", () => ssvTools.rollup({ continueOnError: args.continueOnError }));
-
-function compileTs({ module }) {
+// scripts - compile:ts | compile:ts:dev | compile:ts:TARGET
+function compileTs(target) {
 	return ssvTools.compileTsc({
-		module,
+		module: target,
 		configPath: "./tsconfig.build.json",
 		continueOnError: args.continueOnError
 	});
-	// const tsProject = tsc.createProject("tsconfig.json", {
-	// 	typescript: require("typescript"),
-	// 	module
-	// 	// outFile: `${config.packageName}.js`
-	// });
-	// const tsResult = gulp.src([config.src.ts, `!${config.src.testTs}`])
-	// 	.pipe(plumber())
-	// 	//.pipe(changed(paths.output.dist, { extension: ".js" }))
-	// 	.pipe(sourcemaps.init())
-	// 	.pipe(tsProject());
-
-	// return merge([
-	// 	tsResult.js
-	// 		.pipe(sourcemaps.write("."))
-	// 		.pipe(gulp.dest(`${config.output.artifact}/${module}`)),
-	// 	tsResult.dts
-	// 		.pipe(gulp.dest(`${config.output.artifact}/typings`))
-	// ]);
 }
+registerMultiTargetBuilds({
+	taskName: "ts",
+	action: compileTs
+})
+
+gulp.task("bundle:ts", () => ssvTools.rollup({ continueOnError: args.continueOnError }));
+
+// html - compile:html | compile:html:dev | compile:html:TARGET
+function compileHtml(target) {
+	return gulp.src(config.src.html)
+		.pipe(gulp.dest(`${config.output.dist}/${target}`))
+}
+registerMultiTargetBuilds({
+	taskName: "html",
+	action: compileHtml
+})
+
+// styles - compile:styles | compile:styles:dev | compile:styles:TARGET
+function compileStyle(target) {
+	return gulp.src(config.src.styles)
+		.pipe(gulp.dest(`${config.output.dist}/${target}`));
+}
+registerMultiTargetBuilds({
+	taskName: "styles",
+	action: compileStyle
+})
 
 gulp.task("copy-dist", () => {
 	return gulp.src(`${config.output.artifact}/**/*`)
 		.pipe(gulp.dest(`${config.output.dist}`));
 });
+
+// todo: refactor to @ssv/tools
+function registerMultiTargetBuilds({
+	taskName,
+	action
+}) {
+	gulp.task(`compile:${taskName}:dev`, [`compile:html:${config.devTarget}`]);
+	gulp.task(`compile:${taskName}`, config.buildTargets.map(x => `compile:${taskName}:${x}`));
+	for (let target of config.buildTargets) {
+		gulp.task(`compile:${taskName}:${target}`, () => action(target));
+	}
+}

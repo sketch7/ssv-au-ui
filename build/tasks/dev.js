@@ -11,12 +11,42 @@ gulp.task("watch", () => {
 	gulp.watch([config.src.ts, `!${config.src.testTs}`], () => {
 		if (args.isRelease) {
 			return runSeq(
-				"compile:ts",
+				"compile:ts:dev",
 				"copy-dist"
 			);
 		} else {
 			return runSeq(
-				"compile:ts"
+				"compile:ts:dev"
+			);
+		}
+	}).on("change", reportChange)
+		.on("error", swallowError);
+
+	// html
+	gulp.watch([config.src.html], () => {
+		if (args.isRelease) {
+			return runSeq(
+				"compile:html:dev",
+				"copy-dist"
+			);
+		} else {
+			return runSeq(
+				"compile:html:dev"
+			);
+		}
+	}).on("change", reportChange)
+		.on("error", swallowError);
+
+	// styles
+	gulp.watch([config.src.styles], () => {
+		if (args.isRelease) {
+			return runSeq(
+				"compile:styles:dev",
+				"copy-dist"
+			);
+		} else {
+			return runSeq(
+				"compile:styles:dev"
 			);
 		}
 	}).on("change", reportChange)
