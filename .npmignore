@@ -1,0 +1,22 @@
+# general
+jspm_packages
+node_modules
+.idea
+npm-debug.log
+
+_artifact
+build
+/typings
+.bithoundrc
+.editorconfig
+.gitignore
+.npmignore
+appveyor.yml
+gulpfile.js
+jsconfig.json
+karma.conf.js
+system.config.js
+tsconfig.json
+tslint.json
+typings.json
+wallaby.js

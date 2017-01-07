@@ -1,0 +1,10 @@
+<template role="textbox" bindable="placeholder, disabled, label, id">
+	<!--<require from="./ux-input-theme"></require>-->
+	<input styles.input
+		placeholder="${placeholder}"
+		id.bind="id"
+		type="text"
+		class="${disabled ? 'disabled' : ''}">
+	<label styles.label
+		for.bind="id">${label}</label>
+</template>
