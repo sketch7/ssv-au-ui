@@ -28,10 +28,24 @@ Get library via [npm]
 npm install @ssv/au-ui --save
 ```
 
+```ts
+// register plugin with aurelia.
+aurelia.use.plugin("@ssv/au-ui");
+```
+
 # Usage
 
-*todo*
+| Feature          | Status                              | Docs              | Issue          |
+|------------------|-------------------------------------|-------------------|----------------|
+| input            |                         Development | [README][input]   |              - |
+| datepicker       |                         Not Started |                   |              - |
+| select           |                         Not Started |                   |              - |
+| checkbox         |                         Not Started |                   |              - |
+| radio            |                         Not Started |                   |              - |
+| toast            |                         Not Started |                   |              - |
+| modal            |                         Not Started |                   |              - |
 
+[input]: ./src/input/README.md
 
 # Getting Started
 
