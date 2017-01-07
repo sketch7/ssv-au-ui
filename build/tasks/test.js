@@ -2,8 +2,7 @@ const gulp = require("gulp");
 const gutil = require("gulp-util");
 const Karma = require("karma").Server;
 const path = require("path");
-const tsc = require("gulp-typescript");
-const plumber = require("gulp-plumber");
+const ssvTools = require("@ssv/tools");
 
 const config = require("../config");
 var args = require("../args");
@@ -36,12 +35,9 @@ function runTests(singleRun, cb) {
 }
 
 gulp.task("compile:test", () => {
-	const tsProject = tsc.createProject("tsconfig.json", {
-		typescript: require("typescript")
+	return ssvTools.compileTsc({
+		module: "es2015",
+		configPath: "./tsconfig.test.json",
+		continueOnError: args.continueOnError
 	});
-	const tsResult = gulp.src([config.src.testTs])
-		.pipe(plumber())
-		.pipe(tsProject());
-
-	return tsResult.js;
 });
