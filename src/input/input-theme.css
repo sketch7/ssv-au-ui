@@ -1,3 +1,3 @@
 styles.label {
-	color: red;
+    color: ${foreground || $design.accent};
 }
