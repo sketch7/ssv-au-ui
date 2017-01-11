@@ -1,10 +1,12 @@
 <template role="textbox">
 	<require from="./input-theme"></require>
+
 	<input styles.input
 		placeholder="${placeholder}"
-		id.bind="id"
+		id="${controlId}"
 		type="text"
-		class="${disabled ? 'disabled' : ''}">
+		value.bind="value"
+		ref="input">
 	<label styles.label
-		for.bind="id">${label}</label>
+		for="${controlId}">${label}</label>
 </template>

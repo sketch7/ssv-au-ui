@@ -1,3 +1,34 @@
+styles.container, ssv-input {
+    position: relative;
+    margin-top: 1rem;
+}
+
 styles.label {
     color: ${foreground || $design.accent};
+    position: absolute;
+    top: 0.8rem;
+    left: 0;
+    font-size: 1rem;
+    cursor: text;
+    transition: 0.2s ease-out;
+}
+
+styles.label.active {
+    font-size: 0.8rem;
+    transform: translateY(-140%);
+}
+
+styles.input {
+    border: none;
+    background: transparent;
+    outline: none;
+    border-radius: 0;
+    border-bottom: 1px solid #9e9e9e;
+    width: 100%;
+    height: 3rem;
+    box-shadow: none;
+    box-sizing: content-box;
+    font-size: 1rem;
+    margin: 0 0 20px 0;
+    transition: all 0.3s;
 }
