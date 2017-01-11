@@ -21,6 +21,11 @@ export class Input implements Themable {
 	view: View;
 	input: HTMLInputElement;
 	controlId: string;
+	isFocused = false;
+
+	get isActive(): boolean {
+		return !!this.value || !!this.placeholder || this.isFocused;
+	}
 
 	private logger: ILog;
 
@@ -49,6 +54,13 @@ export class Input implements Themable {
 
 	attached() {
 		this.logger.debug("attached", "init", { disabled: this.disabled });
+		this.input.addEventListener("focus", this.onInputFocus.bind(this));
+		this.input.addEventListener("blur", this.onInputBlur.bind(this));
+	}
+
+	detached() {
+		this.input.removeEventListener("focus", this.onInputFocus);
+		this.input.removeEventListener("blur", this.onInputBlur);
 	}
 
 	disabledChanged(newValue: boolean) {
@@ -60,6 +72,14 @@ export class Input implements Themable {
 	themeChanged(newValue: string | null) {
 		this.logger.debug("themeChanged");
 		this.styleEngine.applyTheme(this, newValue);
+	}
+
+	private onInputFocus() {
+		this.isFocused = true;
+	}
+
+	private onInputBlur() {
+		this.isFocused = false;
 	}
 
 }
