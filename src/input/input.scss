@@ -1,8 +1,10 @@
 @import "../style/vars";
-// $ssv-primary-color: pink;
 
 $ssv-input-label-color: $ssv-primary-color !default;
-$ssv-input-placeholder-color: gray;
+$ssv-input-placeholder-color: $ssv-master-color !default;
+$ssv-input-transition: all 0.3s !default;
+$ssv-input-border-color: $ssv-master-color !default;
+$ssv-input-border: 1px solid $input-border-color !default;
 
 ssv-input {
 	position: relative;
@@ -11,40 +13,33 @@ ssv-input {
 	label {
 		color: $ssv-input-label-color;
 		position: absolute;
+		top: 0.8rem;
+		left: 0;
+		font-size: 1rem;
+		cursor: text;
+		transition: 0.2s ease-out;
+		&.active {
+			font-size: 0.8rem;
+			transform: translateY(-140%);
+		}
 	}
-	::-webkit-input-placeholder  {
+
+	input,
+	textarea {
+		border: none;
+		background: transparent;
+		outline: none;
+		border-radius: 0;
+		border-bottom: $ssv-input-border;
+		width: 100%;
+		height: 3rem;
+		box-shadow: none;
+		box-sizing: content-box;
+		font-size: 1rem;
+		margin: 0 0 20px 0;
+		transition: $ssv-input-transition;
+	}
+	::-webkit-input-placeholder {
 		color: $ssv-input-placeholder-color;
 	}
 }
-
-/*
-styles.label {
-    color: ${foreground || $design.accent};
-    position: absolute;
-    top: 0.8rem;
-    left: 0;
-    font-size: 1rem;
-    cursor: text;
-    transition: 0.2s ease-out;
-
-}
-
-styles.label.active {
-    font-size: 0.8rem;
-    transform: translateY(-140%);
-}
-
-styles.input {
-    border: none;
-    background: transparent;
-    outline: none;
-    border-radius: 0;
-    border-bottom: 1px solid #9e9e9e;
-    width: 100%;
-    height: 3rem;
-    box-shadow: none;
-    box-sizing: content-box;
-    font-size: 1rem;
-    margin: 0 0 20px 0;
-    transition: all 0.3s;
-}*/
