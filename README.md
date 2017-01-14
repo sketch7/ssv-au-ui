@@ -48,7 +48,7 @@ aurelia.use.plugin("@ssv/au-ui");
 | modal            |                         Not Started |                   |              - |
 | badge            |                         Not Started |                   |              - |
 | collection       |                         Not Started |                   |              - |
-| tab              |                         Not Started |                   |              - |
+| tabs             |                         Not Started |                   |              - |
 | progress-bar     |                         Not Started |                   |              - |
 | progress-spinner |                         Not Started |                   |              - |
 
@@ -67,7 +67,7 @@ Install/setup the following:
 
 
 ```bash
-npm install -g git gulp karma-cli
+npm install -g git gulp yarn karma-cli
 ```
 
 
