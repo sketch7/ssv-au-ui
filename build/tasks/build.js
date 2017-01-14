@@ -70,15 +70,10 @@ ssvTools.registerGulpMultiTargetBuilds({
 	config: config
 });
 
-// styles - compile:styles | compile:styles:dev | compile:styles:TARGET
-function compileStyle(target) {
+gulp.task("compile:styles:dev", ["compile:styles"]);
+gulp.task("compile:styles", () => {
 	return gulp.src(config.src.styles)
-		.pipe(gulp.dest(`${config.output.dist}/${target}`));
-}
-ssvTools.registerGulpMultiTargetBuilds({
-	taskName: "styles",
-	action: compileStyle,
-	config: config
+		.pipe(gulp.dest(config.output.sass));
 });
 
 gulp.task("copy-dist", () => {

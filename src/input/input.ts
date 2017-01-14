@@ -1,15 +1,13 @@
 import { LoggerFactory, ILog } from "@ssv/au-core";
-import { customElement, ViewResources, bindable, View, processAttributes } from "aurelia-templating";
+import { customElement, ViewResources, bindable, View } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
 import { bindingMode } from "aurelia-binding";
 
-import { Themable, StyleEngine, processDesignAttributes } from "../ux/index";
 import { inputType, InputType } from "./input.model";
 
 @autoinject()
 @customElement("ssv-input")
-@processAttributes(processDesignAttributes)
-export class Input implements Themable {
+export class Input {
 	static id = 0;
 
 	@bindable({
@@ -19,7 +17,6 @@ export class Input implements Themable {
 	@bindable placeholder: string | null = null;
 	@bindable disabled: boolean | string = false;
 	@bindable type: InputType = inputType.text;
-	@bindable theme: string | null = null;
 
 	view: View;
 	input: HTMLInputElement;
@@ -35,7 +32,6 @@ export class Input implements Themable {
 	constructor(
 		loggerFactory: LoggerFactory,
 		public resources: ViewResources,
-		private styleEngine: StyleEngine,
 	) {
 		this.logger = loggerFactory.get("input");
 		this.controlId = `ssv-input-${Input.id++}`;
@@ -48,9 +44,6 @@ export class Input implements Themable {
 
 	bind() {
 		this.logger.debug("bind");
-		if (this.theme) {
-			this.styleEngine.applyTheme(this, this.theme);
-		}
 		this.disabled = getAttributeFlagAsBoolean(this.disabled);
 		this.input.disabled = this.disabled;
 	}
@@ -70,11 +63,6 @@ export class Input implements Themable {
 		if (this.input) {
 			this.input.disabled = !!newValue;
 		}
-	}
-
-	themeChanged(newValue: string | null) {
-		this.logger.debug("themeChanged");
-		this.styleEngine.applyTheme(this, newValue);
 	}
 
 	private onInputFocus() {

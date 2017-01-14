@@ -1,8 +1,23 @@
-styles.container, ssv-input {
-    position: relative;
-    margin-top: 1rem;
+@import "../style/vars";
+// $ssv-primary-color: pink;
+
+$ssv-input-label-color: $ssv-primary-color !default;
+$ssv-input-placeholder-color: gray;
+
+ssv-input {
+	position: relative;
+	margin-top: 1rem;
+
+	label {
+		color: $ssv-input-label-color;
+		position: absolute;
+	}
+	::-webkit-input-placeholder  {
+		color: $ssv-input-placeholder-color;
+	}
 }
 
+/*
 styles.label {
     color: ${foreground || $design.accent};
     position: absolute;
@@ -11,6 +26,7 @@ styles.label {
     font-size: 1rem;
     cursor: text;
     transition: 0.2s ease-out;
+
 }
 
 styles.label.active {
@@ -31,4 +47,4 @@ styles.input {
     font-size: 1rem;
     margin: 0 0 20px 0;
     transition: all 0.3s;
-}
+}*/

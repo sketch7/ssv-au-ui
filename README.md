@@ -21,7 +21,7 @@ In order to contribute please read the [Contribution guidelines][contribWiki].
 
 [Change logs][changeLog] | [Project Repository][projectUri] | [Contribution guidelines][contribWiki]
 
-# Installation
+## Installation
 
 Get library via [npm]
 ```bash
@@ -29,11 +29,29 @@ npm install @ssv/au-ui --save
 ```
 
 ```ts
-// register plugin with aurelia.
+// register plugin with aurelia
 aurelia.use.plugin("@ssv/au-ui");
 ```
 
-# Usage
+### Styling
+
+Register sass `includePaths` with the following naming.
+
+```js
+"./node_modules/@ssv/au-ui/dist/sass"
+```
+
+Configure and import sass.
+
+```scss
+// configure/override
+$ssv-primary-color: red;
+
+// import all components
+@import "@ssv/au-ui/components";
+```
+
+## Features
 
 | Feature          | Status                              | Docs              | Issue          |
 |------------------|-------------------------------------|-------------------|----------------|
@@ -54,9 +72,9 @@ aurelia.use.plugin("@ssv/au-ui");
 
 [input]: ./src/input/README.md
 
-# Getting Started
+## Getting Started
 
-## Setup Machine for Development
+### Setup Machine for Development
 Install/setup the following:
 
 - NodeJS v6+
@@ -71,13 +89,13 @@ npm install -g git gulp yarn karma-cli
 ```
 
 
-### Cloning Repo
+#### Cloning Repo
 
 - Run `git clone https://github.com/sketch7/ssv-au-ui.git`
 - Switch to `develop` branch
 
 
-## Project Setup
+### Project Setup
 The following process need to be executed in order to get started.
 
 ```bash
@@ -85,37 +103,37 @@ npm install
 ```
 
 
-## Building the code
+### Building the code
 
 ```
 gulp build
 ```
 In order to view all other tasks invoke `gulp` or check the gulp tasks directly.
 
-## Running the tests
+### Running the tests
 
 ```
 gulp test
 ```
 
 
-## Development utils
+### Development utils
 
-### Trigger gulp watch
+#### Trigger gulp watch
 Handles compiling of changes.
 ```
 gulp watch
 ```
 
 
-### Running Continuous Tests
+#### Running Continuous Tests
 Spawns test runner and keep watching for changes.
 ```
 gulp tdd
 ```
 
 
-## Preparation for Release
+### Preparation for Release
 
 ```
 gulp prepare-release --bump major|minor|patch|prerelease (default: patch)
