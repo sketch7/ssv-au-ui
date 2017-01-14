@@ -6,4 +6,4 @@ Inputs are the basic input component.
 *todo*
 
 # todo
-- Type binding e.g. text/password etc...
+- states e.g. validation success, error, warn, info
