@@ -24,7 +24,7 @@ export class Input implements Themable {
 	view: View;
 	input: HTMLInputElement;
 	controlId: string;
-	isFocused = false;
+	private isFocused = false;
 
 	get isActive(): boolean {
 		return !!this.value || !!this.placeholder || this.isFocused;
