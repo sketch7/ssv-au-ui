@@ -38,12 +38,19 @@ aurelia.use.plugin("@ssv/au-ui");
 | Feature          | Status                              | Docs              | Issue          |
 |------------------|-------------------------------------|-------------------|----------------|
 | input            |                         Development | [README][input]   |              - |
-| datepicker       |                         Not Started |                   |              - |
 | select           |                         Not Started |                   |              - |
+| icon             |                         Not Started |                   |              - |
+| datepicker       |                         Not Started |                   |              - |
 | checkbox         |                         Not Started |                   |              - |
 | radio            |                         Not Started |                   |              - |
+| alert            |                         Not Started |                   |              - |
 | toast            |                         Not Started |                   |              - |
 | modal            |                         Not Started |                   |              - |
+| badge            |                         Not Started |                   |              - |
+| collection       |                         Not Started |                   |              - |
+| tab              |                         Not Started |                   |              - |
+| progress-bar     |                         Not Started |                   |              - |
+| progress-spinner |                         Not Started |                   |              - |
 
 [input]: ./src/input/README.md
 
