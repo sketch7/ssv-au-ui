@@ -2,7 +2,9 @@ import { LoggerFactory, ILog } from "@ssv/au-core";
 import { customElement, ViewResources, bindable, View, processAttributes } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
 import { bindingMode } from "aurelia-binding";
+
 import { Themable, StyleEngine, processDesignAttributes } from "../ux/index";
+import { inputType, InputType } from "./input.model";
 
 @autoinject()
 @customElement("ssv-input")
@@ -16,6 +18,7 @@ export class Input implements Themable {
 	@bindable label: string;
 	@bindable placeholder: string | null = null;
 	@bindable disabled: boolean | string = false;
+	@bindable type: InputType = inputType.text;
 	@bindable theme: string | null = null;
 
 	view: View;
