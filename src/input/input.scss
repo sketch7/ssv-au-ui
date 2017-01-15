@@ -9,6 +9,7 @@ $ssv-input-border: 1px solid $ssv-input-border-color !default;
 $ssv-input-disabled-border: 1px dotted $ssv-input-disabled-color !default;
 
 ssv-input {
+	display: block;
 	position: relative;
 	margin-top: 1rem;
 
