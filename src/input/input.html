@@ -1,11 +1,14 @@
 <template role="textbox">
-	<input styles.input
-		placeholder="${placeholder}"
+	<input placeholder="${placeholder}"
 		id="${controlId}"
 		type.bind="type"
 		value.bind="value"
 		ref="input">
-	<label styles.label
-		class="${isActive ? 'active' : ''}"
-		for="${controlId}">${label}</label>
+	<label class="${isActive ? 'active' : ''}"
+		for="${controlId}">${label}
+	</label>
+	<label if.bind="help"
+		for="${controlId}"
+		class="help">${help}
+	</label>
 </template>

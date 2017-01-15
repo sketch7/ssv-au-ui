@@ -71,6 +71,12 @@ ssv-input {
 		}
 	}
 
+	.help {
+		top: 54px;
+		font-size: .75rem;
+	}
+
+	// states
 	&.success {
 		@include ssv-input-variant($ssv-input-success-color);
 	}

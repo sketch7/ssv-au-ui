@@ -15,6 +15,7 @@ export class Input {
 	}) value: string;
 	@bindable label: string;
 	@bindable placeholder: string | null = null;
+	@bindable help: string | null = null;
 	@bindable disabled: boolean | string = false;
 	@bindable type: InputType = inputType.text;
 
