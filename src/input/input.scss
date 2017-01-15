@@ -1,10 +1,10 @@
 @import "../style/vars";
 
-$ssv-input-placeholder-color: $ssv-master-color !default;
 $ssv-input-focus-color: $ssv-secondary-color !default;
 $ssv-input-disabled-color: rgba(0,0,0, .26) !default;
 $ssv-input-transition: all .3s !default;
 $ssv-input-border-color: $ssv-master-color !default;
+$ssv-input-placeholder-color: lighten($ssv-input-border-color, 20%) !default;
 $ssv-input-border: 1px solid $ssv-input-border-color !default;
 $ssv-input-disabled-border: 1px dotted $ssv-input-disabled-color !default;
 
