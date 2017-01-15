@@ -1,5 +1,5 @@
 import { LoggerFactory, ILog } from "@ssv/au-core";
-import { customElement, ViewResources, bindable, View } from "aurelia-templating";
+import { customElement, bindable } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
 import { bindingMode } from "aurelia-binding";
 
@@ -18,34 +18,29 @@ export class Input {
 	@bindable disabled: boolean | string = false;
 	@bindable type: InputType = inputType.text;
 
-	view: View;
 	input: HTMLInputElement;
 	controlId: string;
-	private isFocused = false;
 
 	get isActive(): boolean {
 		return !!this.value || !!this.placeholder || this.isFocused;
 	}
 
+	private isFocused = false;
 	private logger: ILog;
 
 	constructor(
 		loggerFactory: LoggerFactory,
-		public resources: ViewResources,
+		private element: Element,
 	) {
 		this.logger = loggerFactory.get("input");
 		this.controlId = `ssv-input-${Input.id++}`;
-	}
-
-	created(_: any, myView: View) {
-		this.view = myView;
-		this.logger.debug("created");
 	}
 
 	bind() {
 		this.logger.debug("bind");
 		this.disabled = getAttributeFlagAsBoolean(this.disabled);
 		this.input.disabled = this.disabled;
+		setAttributeFlag(this.element, "disabled", this.disabled);
 	}
 
 	attached() {
@@ -63,6 +58,7 @@ export class Input {
 		if (this.input) {
 			this.input.disabled = !!newValue;
 		}
+		setAttributeFlag(this.element, "disabled", newValue);
 	}
 
 	private onInputFocus() {
@@ -78,4 +74,12 @@ export class Input {
 // todo: move somewhere reusable.
 export function getAttributeFlagAsBoolean(value: string | boolean): boolean {
 	return value === true || value === "true" || value === "";
+}
+
+export function setAttributeFlag(element: Element, attributeName: string, attributeValue: string | boolean) {
+	if (getAttributeFlagAsBoolean(attributeValue)) {
+		element.setAttribute(attributeName, "");
+	} else {
+		element.removeAttribute(attributeName);
+	}
 }
