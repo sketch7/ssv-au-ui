@@ -26,6 +26,10 @@ In order to contribute please read the [Contribution guidelines][contribWiki].
 Get library via [npm]
 ```bash
 npm install @ssv/au-ui --save
+
+# install peers
+npm install normalize-scss @ssv/core @ssv/au-core aurelia-dependency-injection aurelia-logging aurelia-ux --save
+
 ```
 
 ```ts
@@ -38,7 +42,8 @@ aurelia.use.plugin("@ssv/au-ui");
 Register sass `includePaths` with the following naming.
 
 ```js
-"./node_modules/@ssv/au-ui/dist/sass"
+"./node_modules/@ssv/au-ui/dist/sass",
+"./node_modules/normalize-scss/sass",
 ```
 
 Configure and import sass.
