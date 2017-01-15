@@ -37,14 +37,12 @@ export class Input {
 	}
 
 	bind() {
-		this.logger.debug("bind");
 		this.disabled = getAttributeFlagAsBoolean(this.disabled);
 		this.input.disabled = this.disabled;
 		setAttributeFlag(this.element, "disabled", this.disabled);
 	}
 
 	attached() {
-		this.logger.debug("attached", "init", { disabled: this.disabled });
 		this.input.addEventListener("focus", this.onInputFocus.bind(this));
 		this.input.addEventListener("blur", this.onInputBlur.bind(this));
 	}

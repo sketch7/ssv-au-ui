@@ -1,6 +1,10 @@
 @import "../style/vars";
+@import "./input.mixin";
 
 $ssv-input-focus-color: $ssv-secondary-color !default;
+$ssv-input-success-color: $ssv-success-color !default;
+$ssv-input-error-color: $ssv-error-color !default;
+$ssv-input-warn-color: $ssv-warn-color !default;
 $ssv-input-disabled-color: rgba(0,0,0, .26) !default;
 $ssv-input-transition: all .3s !default;
 $ssv-input-border-color: $ssv-master-color !default;
@@ -65,6 +69,18 @@ ssv-input {
 		label {
 			color: $ssv-input-disabled-color;
 		}
+	}
+
+	&.success {
+		@include ssv-input-variant($ssv-input-success-color);
+	}
+
+	&.error {
+		@include ssv-input-variant($ssv-input-error-color);
+	}
+
+	&.warn {
+		@include ssv-input-variant($ssv-input-warn-color);
 	}
 
 	::-webkit-input-placeholder {
