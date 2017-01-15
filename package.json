@@ -70,6 +70,7 @@
     "@ssv/core": "^0.3.0",
     "aurelia-dependency-injection": "^1.0.0",
     "aurelia-logging": "^1.0.0",
-    "aurelia-ux": "^0.1.14"
+    "aurelia-ux": "^0.1.14",
+    "normalize-scss": "^6.0.0"
   }
 }
