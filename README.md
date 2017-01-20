@@ -52,7 +52,16 @@ Configure and import sass.
 // configure/override
 $ssv-primary-color: red;
 
-// import all components
+// import all (vendors, core and components)
+@import "@ssv/au-ui/all";
+
+// import only vendors
+@import "@ssv/au-ui/vendors";
+
+// import only core
+@import "@ssv/au-ui/core";
+
+// import only components
 @import "@ssv/au-ui/components";
 ```
 
