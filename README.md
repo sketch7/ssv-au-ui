@@ -60,7 +60,8 @@ $ssv-primary-color: red;
 
 | Feature          | Status                              | Docs              | Issue          |
 |------------------|-------------------------------------|-------------------|----------------|
-| input            |                         Development | [README][input]   |              - |
+| input            |                             Preview | [README][input]   |              - |
+| button           |                         Not Started |                   |              - |
 | select           |                         Not Started |                   |              - |
 | icon             |                         Not Started |                   |              - |
 | datepicker       |                         Not Started |                   |              - |
