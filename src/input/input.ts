@@ -3,6 +3,7 @@ import { customElement, bindable } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
 import { bindingMode } from "aurelia-binding";
 
+import { attributeUtil } from "../core/index";
 import { inputType, InputType } from "./input.model";
 
 @autoinject()
@@ -38,9 +39,9 @@ export class Input {
 	}
 
 	bind() {
-		this.disabled = getAttributeFlagAsBoolean(this.disabled);
+		this.disabled = attributeUtil.getFlagAsBoolean(this.disabled);
 		this.input.disabled = this.disabled;
-		setAttributeFlag(this.element, "disabled", this.disabled);
+		attributeUtil.setAsFlag(this.element, "disabled", this.disabled);
 	}
 
 	attached() {
@@ -57,7 +58,7 @@ export class Input {
 		if (this.input) {
 			this.input.disabled = !!newValue;
 		}
-		setAttributeFlag(this.element, "disabled", newValue);
+		attributeUtil.setAsFlag(this.element, "disabled", newValue);
 	}
 
 	private onInputFocus() {
@@ -68,17 +69,4 @@ export class Input {
 		this.isFocused = false;
 	}
 
-}
-
-// todo: move somewhere reusable.
-export function getAttributeFlagAsBoolean(value: string | boolean): boolean {
-	return value === true || value === "true" || value === "";
-}
-
-export function setAttributeFlag(element: Element, attributeName: string, attributeValue: string | boolean) {
-	if (getAttributeFlagAsBoolean(attributeValue)) {
-		element.setAttribute(attributeName, "");
-	} else {
-		element.removeAttribute(attributeName);
-	}
 }
