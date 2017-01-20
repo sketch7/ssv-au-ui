@@ -1,15 +1,20 @@
+@import "../style/mixins";
 // @mixin ssv-input-variant($params: ()) {
 // 	$color: map-get($params, color);
 @mixin ssv-input-variant($color) {
-	label {
-		color: $color;
-	}
-	input,
-	textarea {
-		&,
-		&:focus {
-			border-bottom: 1px solid $color;
-			box-shadow: 0 1px 0 0 $color;
+	.ssv-input {
+		@include element("label") {
+			color: $color;
+		}
+		@include element("help") {
+			color: $color;
+		}
+		@include element("input") {
+			&,
+			&:focus {
+				border-bottom: 1px solid $color;
+				box-shadow: 0 1px 0 0 $color;
+			}
 		}
 	}
 }

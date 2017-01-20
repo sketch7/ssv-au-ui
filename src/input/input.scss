@@ -1,4 +1,5 @@
 @import "../style/vars";
+@import "../style/mixins";
 @import "./input.mixin";
 
 $ssv-input-focus-color: $ssv-secondary-color !default;
@@ -12,28 +13,33 @@ $ssv-input-placeholder-color: lighten($ssv-input-border-color, 20%) !default;
 $ssv-input-border: 1px solid $ssv-input-border-color !default;
 $ssv-input-disabled-border: 1px dotted $ssv-input-disabled-color !default;
 
-ssv-input {
+.ssv-input {
 	display: block;
 	position: relative;
 	margin-top: 1rem;
 
-	label {
+	&[disabled] {
+		label {
+			color: $ssv-input-disabled-color;
+		}
+	}
+
+	::-webkit-input-placeholder {
+		color: $ssv-input-placeholder-color;
+	}
+	@include element("label") {
 		color: $ssv-input-border-color;
 		position: absolute;
 		top: .8rem;
 		left: 0;
 		font-size: 1rem;
-		cursor: text;
 		transition: .2s ease-out;
-
-		&.active {
+		@include modifier("active") {
 			font-size: .8rem;
 			transform: translateY(-140%);
 		}
 	}
-
-	input,
-	textarea {
+	@include element("input") {
 		border: none;
 		background: transparent;
 		outline: none;
@@ -64,32 +70,21 @@ ssv-input {
 			color: $ssv-input-focus-color;
 		}
 	}
-
-	&[disabled] {
-		label {
-			color: $ssv-input-disabled-color;
-		}
-	}
-
-	.help {
+	@include element("help") {
+		position: absolute;
 		top: 54px;
 		font-size: .75rem;
 	}
-
-	// states
-	&.success {
-		@include ssv-input-variant($ssv-input-success-color);
+	@include modifier("success") {
+		 @include ssv-input-variant($ssv-input-success-color);
 	}
 
-	&.error {
+	@include modifier("error") {
 		@include ssv-input-variant($ssv-input-error-color);
 	}
 
-	&.warn {
+	@include modifier("warn") {
 		@include ssv-input-variant($ssv-input-warn-color);
 	}
 
-	::-webkit-input-placeholder {
-		color: $ssv-input-placeholder-color;
-	}
 }

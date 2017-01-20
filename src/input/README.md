@@ -10,7 +10,7 @@ Inputs are the basic input component.
     disabled.bind="isDisabled"
     type="text"
     help="press submit to read value (see console)"
-    class="success">
+    modifier="success another">
 </ssv-input>
 ```
 
@@ -23,4 +23,5 @@ Inputs are the basic input component.
 | disabled      | boolean     | false   |                                  |
 | type          | `InputType` | `text`  |                                  |
 | help          | string      |         |                                  |
+| modifier      | string      |         | CssClass modifiers which will be generated in BEM style e.g. `success another` => `ssv-input--success ssv-input--another` e.g. success, error, warn                                  |
 

@@ -1,16 +1,17 @@
-<template role="textbox">
+<template role="textbox" class="ssv-input ${modifiers}">
 	<input placeholder="${placeholder}"
 		id="${controlId}"
 		type.bind="type"
 		value.bind="value"
+		class="ssv-input__input"
 		ref="input">
-	<label class="${isActive ? 'active' : ''}"
+	<label class="ssv-input__label ${isActive ? 'ssv-input__label--active' : ''}"
 		for="${controlId}">
 		${label}
 	</label>
 	<label if.bind="help"
 		for="${controlId}"
-		class="help">
+		class="ssv-input__help">
 		${help}
 	</label>
 </template>
