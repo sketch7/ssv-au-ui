@@ -5,10 +5,12 @@
 		value.bind="value"
 		ref="input">
 	<label class="${isActive ? 'active' : ''}"
-		for="${controlId}">${label}
+		for="${controlId}">
+		${label}
 	</label>
 	<label if.bind="help"
 		for="${controlId}"
-		class="help">${help}
+		class="help">
+		${help}
 	</label>
 </template>
