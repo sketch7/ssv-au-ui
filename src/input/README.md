@@ -23,5 +23,5 @@ Inputs are the basic input component.
 | disabled      | boolean     | false   |                                  |
 | type          | `InputType` | `text`  | Html input type                  |
 | help          | string      |         | Help label which can be used as a hint |
-| modifier      | string      |         | CssClass modifiers which will be generated in BEM style e.g. `success another` => `ssv-input--success ssv-input--another`. These are provided `success`, `error`, `warn` |
+| modifier      | string      |         | CssClass modifiers which will be generated in BEM style e.g. `success another` => `ssv-input--success ssv-input--another`. Styles for these modifiers are provided: `success`, `error`, `warn` |
 
