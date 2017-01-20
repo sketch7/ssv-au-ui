@@ -26,10 +26,9 @@ export function setAsFlag(element: Element, attributeName: string, attributeValu
 	}
 }
 
-
 /**
  * Build BEM style modifiers by splitting and combing the modifier with the prefix.
- * e.g. given value is "error focus" and prefix is "ssv-x" => "ssv-x--error ssv-x--focus"
+ * e.g. given value is `"error focus"` and prefix is `"ssv-x"` => `"ssv-x--error ssv-x--focus"`
  *
  * @export
  * @param {(string | undefined)} value modifier value to build, which can be separated by space.
