@@ -6,10 +6,10 @@ import { bindingMode } from "aurelia-binding";
 import { attributeUtil } from "../core/index";
 import { inputType, InputType } from "./input.model";
 
-const prefix = "ssv-input";
+const PREFIX = "ssv-input";
 
 @autoinject()
-@customElement(prefix)
+@customElement(PREFIX)
 export class Input {
 	static id = 0;
 
@@ -17,15 +17,15 @@ export class Input {
 		defaultBindingMode: bindingMode.twoWay
 	}) value: string;
 	@bindable label: string;
-	@bindable placeholder: string | null = null;
-	@bindable help: string | null = null;
 	@bindable disabled: boolean | string = false;
 	@bindable type: InputType = inputType.text;
+	@bindable placeholder: string | undefined;
+	@bindable help: string | undefined;
 	@bindable modifier: string | undefined;
 
-	input: HTMLInputElement;
 	controlId: string;
 	modifiers: string | undefined;
+	private input: HTMLInputElement;
 
 	get isActive(): boolean {
 		return !!this.value || !!this.placeholder || this.isFocused;
@@ -39,12 +39,12 @@ export class Input {
 		private element: Element,
 	) {
 		this.logger = loggerFactory.get("input");
-		this.controlId = `${prefix}-${Input.id++}`;
+		this.controlId = `${PREFIX}-${Input.id++}`;
 	}
 
 	bind() {
 		this.disabled = attributeUtil.getFlagAsBoolean(this.disabled);
-		this.modifiers = attributeUtil.generateBemStyleModifiers(this.modifier, prefix);
+		this.modifiers = attributeUtil.generateBemStyleModifiers(this.modifier, PREFIX);
 		this.input.disabled = this.disabled;
 		attributeUtil.setAsFlag(this.element, "disabled", this.disabled);
 	}
@@ -67,7 +67,7 @@ export class Input {
 	}
 
 	modifierChanged(newValue: string | undefined) {
-		this.modifiers = attributeUtil.generateBemStyleModifiers(newValue, prefix);
+		this.modifiers = attributeUtil.generateBemStyleModifiers(newValue, PREFIX);
 	}
 
 	private onInputFocus() {
