@@ -78,13 +78,11 @@ $ssv-input-disabled-border: 1px dotted $ssv-input-disabled-color !default;
 	@include modifier("success") {
 		 @include ssv-input-variant($ssv-input-success-color);
 	}
-
 	@include modifier("error") {
-		@include ssv-input-variant($ssv-input-error-color);
+		 @include ssv-input-variant($ssv-input-error-color);
 	}
-
 	@include modifier("warn") {
-		@include ssv-input-variant($ssv-input-warn-color);
+		 @include ssv-input-variant($ssv-input-warn-color);
 	}
 
 }
