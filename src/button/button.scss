@@ -16,7 +16,8 @@ $ssv-button-focus-color: $ssv-button-hover-color !default;
 $ssv-button-success-color: $ssv-success-color !default;
 $ssv-button-error-color: $ssv-error-color !default;
 $ssv-button-warn-color: $ssv-warn-color !default;
-$ssv-button-disabled-color: rgba(0, 0, 0, .26) !default;
+$ssv-button-disabled-primary-color: rgba(0, 0, 0, .12) !default;
+$ssv-button-disabled-secondary-color: rgba(0, 0, 0, .26) !default;
 
 .ssv-button {
 	background: transparent;
@@ -41,7 +42,7 @@ $ssv-button-disabled-color: rgba(0, 0, 0, .26) !default;
 	transition: box-shadow .2s ease-in, background-color .2s ease-in-out, color .2s ease-in-out;
 
 	&[disabled][disabled] {
-		color: $ssv-button-disabled-color;
+		color: $ssv-button-disabled-secondary-color;
 		background-color: transparent;
 		cursor: default;
 	}
@@ -76,8 +77,8 @@ $ssv-button-disabled-color: rgba(0, 0, 0, .26) !default;
 		}
 
 		&[disabled][disabled] {
-			background-color: $ssv-button-disabled-color;
-			color: $ssv-button-disabled-color;
+			background-color: $ssv-button-disabled-primary-color;
+			color: $ssv-button-disabled-secondary-color;
 			box-shadow: none;
 		}
 	}
