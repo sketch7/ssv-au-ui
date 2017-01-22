@@ -65,6 +65,12 @@ $ssv-primary-color: red;
 @import "@ssv/au-ui/components";
 ```
 
+Import fonts
+
+```html
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
+```
+
 ## Features
 
 | Feature          | Status                              | Docs              | Issue          |
