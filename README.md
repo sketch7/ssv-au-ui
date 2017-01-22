@@ -76,7 +76,7 @@ Import fonts
 | Feature          | Status                              | Docs              | Issue          |
 |------------------|-------------------------------------|-------------------|----------------|
 | input            |                             Preview | [README][input]   |              - |
-| button           |                         Not Started |                   |              - |
+| button           |                         Development | [README][button]  |              - |
 | select           |                         Not Started |                   |              - |
 | icon             |                         Not Started |                   |              - |
 | datepicker       |                         Not Started |                   |              - |
@@ -92,6 +92,7 @@ Import fonts
 | progress-spinner |                         Not Started |                   |              - |
 
 [input]: ./src/input/README.md
+[button]: ./src/button/README.md
 
 ## Getting Started
 

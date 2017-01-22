@@ -1,0 +1,85 @@
+@import "../style/vars";
+@import "../style/mixins";
+@import "./button.mixin";
+
+$ssv-button-min-width: 64px !default;
+$ssv-button-height: 36px !default;
+$ssv-button-padding: 16px !default;
+$ssv-button-margin: 4px !default;
+$ssv-button-border-radius: 2px !default;
+
+$ssv-button-primary-color: rgba(158, 158, 158, .2) !default;
+$ssv-button-secondary-color: black !default;
+$ssv-button-hover-color: rgba(0, 0, 0, .1) !default;
+$ssv-button-active-color: rgba(158, 158, 158, .4) !default;
+$ssv-button-focus-color: $ssv-button-hover-color !default;
+$ssv-button-success-color: $ssv-success-color !default;
+$ssv-button-error-color: $ssv-error-color !default;
+$ssv-button-warn-color: $ssv-warn-color !default;
+$ssv-button-disabled-color: rgba(0, 0, 0, .26) !default;
+
+.ssv-button {
+	background: transparent;
+	border: none;
+	border-radius: $ssv-button-border-radius;
+	color: $ssv-button-secondary-color;
+	position: relative;
+	height: $ssv-button-height;
+	line-height: $ssv-button-height;
+	min-width: $ssv-button-min-width;
+	margin: 0;
+	padding: 0 $ssv-button-padding;
+	display: inline-block;
+	outline: 0;
+	text-decoration: none;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: 500;
+	vertical-align: middle;
+	-webkit-tap-highlight-color: transparent;
+	cursor: pointer;
+	transition: box-shadow .2s ease-in, background-color .2s ease-in-out, color .2s ease-in-out;
+
+	&[disabled][disabled] {
+		color: $ssv-button-disabled-color;
+		background-color: transparent;
+		cursor: default;
+	}
+
+	&:hover {
+		background-color: $ssv-button-hover-color;
+	}
+
+	&:focus:not(:active) {
+		background-color: $ssv-button-focus-color;
+	}
+
+	&:active {
+		background-color: $ssv-button-active-color;
+	}
+
+	&::-moz-focus-inner {
+		border: 0;
+	}
+	@include modifier("raised") {
+		background: $ssv-button-primary-color;
+		@include shadow-2dp();
+
+		&:active {
+			@include shadow-4dp();
+			background-color: $ssv-button-active-color;
+		}
+
+		&:focus:not(:active) {
+			@include focus-shadow();
+			background-color: $ssv-button-active-color;
+		}
+
+		&[disabled][disabled] {
+			background-color: $ssv-button-disabled-color;
+			color: $ssv-button-disabled-color;
+			box-shadow: none;
+		}
+	}
+
+}
