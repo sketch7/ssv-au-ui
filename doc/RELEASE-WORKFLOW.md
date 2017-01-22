@@ -17,6 +17,10 @@ git push origin develop
 ```
  - Auth to github by providing username and password/token
 
+### Auth to npm
+Before attempting to publish make sure you are logged in using the sketch7 account for npm.
+Verify by running `npm publish`
+
 
 # Create new Release
 
