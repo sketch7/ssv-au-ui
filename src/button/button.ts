@@ -16,7 +16,7 @@ const SUPPORTED_TYPES: string[] = [
 @customAttribute(PREFIX)
 export class Button {
 
-	@bindable type: ButtonType = buttonType.flat; // todo: configureble
+	@bindable type: ButtonType = buttonType.flat; // todo: global configureble default
 	@bindable modifier: string | undefined;
 
 	modifiers: string | undefined;
@@ -33,7 +33,7 @@ export class Button {
 
 	bind() {
 		this.modifiers = attributeUtil.generateBemStyleModifiers(this.modifier, PREFIX);
-		const typeClass = `${PREFIX}--${this.type}`;
+		const typeClass = `${PREFIX}--${this.type.toLowerCase()}`;
 		this.element.classList.add(typeClass);
 	}
 
@@ -42,11 +42,12 @@ export class Button {
 	}
 
 	typeChanged(newValue: ButtonType, previousValue: ButtonType) {
-		this.validateType(newValue);
-		attributeUtil.changeBemModifier(PREFIX, newValue, previousValue, this.element);
+		const newValueLower = newValue.toLowerCase();
+		this.validateType(newValueLower);
+		attributeUtil.changeBemModifier(PREFIX, newValueLower, previousValue, this.element);
 	}
 
-	private validateType(type: ButtonType) {
+	private validateType(type: string | ButtonType) {
 		if (SUPPORTED_TYPES.indexOf(type) === -1) {
 			this.logger.error("validateType", "button type unsupported!", { type });
 		}
