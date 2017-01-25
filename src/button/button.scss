@@ -72,6 +72,8 @@ $ssv-button-disabled-secondary-color: rgba($ssv-color-black, .26) !default;
 			background-color: $ssv-button-active-color;
 		}
 
+		// todo: use when having a solution for @include modifier("focused") => ssv-button--raised--focused
+		// should be ssv-button--raised.ssv-button--focused
 		&.ssv-button--focused {
 			&:not(:active) {
 				@include focus-shadow();
