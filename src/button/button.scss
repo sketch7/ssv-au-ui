@@ -51,16 +51,17 @@ $ssv-button-disabled-secondary-color: rgba(0, 0, 0, .26) !default;
 		background-color: $ssv-button-hover-color;
 	}
 
-	&:focus:not(:active) {
-		background-color: $ssv-button-focus-color;
-	}
-
 	&:active {
 		background-color: $ssv-button-active-color;
 	}
 
 	&::-moz-focus-inner {
 		border: 0;
+	}
+	@include modifier("focused") {
+		&:not(:active) {
+			background-color: $ssv-button-focus-color;
+		}
 	}
 	@include modifier("raised") {
 		background: $ssv-button-primary-color;
@@ -71,9 +72,11 @@ $ssv-button-disabled-secondary-color: rgba(0, 0, 0, .26) !default;
 			background-color: $ssv-button-active-color;
 		}
 
-		&:focus:not(:active) {
-			@include focus-shadow();
-			background-color: $ssv-button-active-color;
+		&.ssv-button--focused {
+			&:not(:active) {
+				@include focus-shadow();
+				background-color: $ssv-button-active-color;
+			}
 		}
 
 		&[disabled][disabled] {
