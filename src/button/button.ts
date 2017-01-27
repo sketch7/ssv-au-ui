@@ -1,6 +1,7 @@
 import { LoggerFactory, ILog } from "@ssv/au-core";
 import { customAttribute, bindable } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
+import { init, attach } from "node-waves";
 
 import { attributeUtil } from "../core/index";
 import { buttonType, ButtonType } from "./button.model";
@@ -43,6 +44,8 @@ export class Button {
 		this.element.addEventListener("mousedown", this.onMouseDown.bind(this));
 		this.element.addEventListener("focus", this.onFocus.bind(this));
 		this.element.addEventListener("blur", this.onBlur.bind(this));
+		init();
+		attach(this.element, "waves-button");
 	}
 
 	detached() {

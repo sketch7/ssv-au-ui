@@ -28,7 +28,7 @@ Get library via [npm]
 npm install @ssv/au-ui --save
 
 # install peers
-npm install normalize-scss @ssv/core @ssv/au-core aurelia-dependency-injection aurelia-logging aurelia-ux --save
+npm install normalize-scss node-waves @ssv/core @ssv/au-core aurelia-dependency-injection aurelia-logging aurelia-ux --save
 
 ```
 
@@ -44,6 +44,7 @@ Register sass `includePaths` with the following naming.
 ```js
 "./node_modules/@ssv/au-ui/dist/sass",
 "./node_modules/normalize-scss/sass",
+"./node_modules/node-waves/src/scss",
 ```
 
 Configure and import sass.
