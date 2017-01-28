@@ -19,6 +19,8 @@ const SUPPORTED_TYPES: string[] = [
 export class Button {
 
 	@bindable type: ButtonType = buttonType.flat; // todo: global configureble default
+	@bindable disableRipple = false; // todo: global configureble default
+	@bindable rippleType = "waves-button"; // todo: global configureble default
 	@bindable modifier: string | undefined;
 
 	modifiers: string | undefined;
@@ -44,7 +46,9 @@ export class Button {
 		this.element.addEventListener("mousedown", this.onMouseDown.bind(this));
 		this.element.addEventListener("focus", this.onFocus.bind(this));
 		this.element.addEventListener("blur", this.onBlur.bind(this));
-		attach(this.element, "waves-button");
+		if (!this.disableRipple) {
+			attach(this.element, this.rippleType);
+		}
 	}
 
 	detached() {
