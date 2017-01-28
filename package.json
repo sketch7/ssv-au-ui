@@ -28,7 +28,7 @@
     "url": "https://github.com/sketch7/ssv-au-ui"
   },
   "devDependencies": {
-    "@ssv/au-core": "^0.1.1",
+    "@ssv/au-core": "^0.3.0",
     "@ssv/core": "^0.3.0",
     "@ssv/tools": "^0.4.0",
     "@types/jasmine": "^2.5.37",
@@ -67,7 +67,7 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "@ssv/au-core": "^0.1.1",
+    "@ssv/au-core": "^0.3.0",
     "@ssv/core": "^0.3.0",
     "aurelia-dependency-injection": "^1.0.0",
     "aurelia-logging": "^1.0.0",
