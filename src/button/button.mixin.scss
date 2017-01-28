@@ -1,6 +1,24 @@
 @import "../style/mixins";
-// @mixin ssv-input-variant($params: ()) {
+@import "../waves/waves.mixin";
+
 // 	$color: map-get($params, color);
-@mixin ssv-button-variant($color) {
-	.ssv-button {}
+@mixin ssv-button-variant($color, $text-color) {
+
+	// raised
+	&.ssv-button--raised {
+		color: $text-color;
+		background: $color;
+
+		&:hover {
+			background-color: rgba($color, .8);
+		}
+
+		&.ssv-button--focused {
+			&:not(:active) {
+				background-color: rgba($color, .75);
+			}
+		}
+
+		@include ssv-waves-ripple-color(rgba($text-color, .2));
+	}
 }

@@ -21,6 +21,7 @@ export class Button {
 	@bindable type: ButtonType = buttonType.flat; // todo: global configureble default
 	@bindable disableRipple = false; // todo: global configureble default
 	@bindable rippleType = "waves-button"; // todo: global configureble default
+	@bindable color: string; // todo: global configureble default
 	@bindable modifier: string | undefined;
 
 	modifiers: string | undefined;
@@ -38,8 +39,10 @@ export class Button {
 
 	bind() {
 		this.modifiers = attributeUtil.generateBemStyleModifiers(this.modifier, PREFIX);
-		const typeClass = `${PREFIX}--${this.type.toLowerCase()}`;
-		this.element.classList.add(typeClass);
+		this.element.classList.add(`${PREFIX}--${this.type.toLowerCase()}`);
+		if (this.color) {
+			this.element.classList.add(`${PREFIX}--${this.color.toLowerCase()}`);
+		}
 	}
 
 	attached() {
@@ -65,6 +68,10 @@ export class Button {
 		const newValueLower = newValue.toLowerCase();
 		this.validateType(newValueLower);
 		attributeUtil.changeBemModifier(PREFIX, newValueLower, previousValue, this.element);
+	}
+
+	colorChanged(newValue: string, previousValue: string) {
+		attributeUtil.changeBemModifier(PREFIX, newValue.toLowerCase(), previousValue, this.element);
 	}
 
 	private validateType(type: string | ButtonType) {
