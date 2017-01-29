@@ -1,12 +1,29 @@
 @import "../style/mixins";
 @import "../waves/waves.mixin";
 
-// 	$color: map-get($params, color);
-@mixin ssv-button-variant($color, $text-color) {
+@mixin ssv-button-variant($options: ()) {
+	$color: map-get($options, color);
+	$color-contrast: map-get($options, color-contrast);
+	$defaults: (
+		ripple-color: rgba($color-contrast, .2),
+		flat-hover-color: $color
+	);
+	$options: map-merge($defaults, $options);
+
+	$color: map-get($options, color);
+	$flat-hover-color: map-get($options, flat-hover-color);
+	$ripple-color: map-get($options, ripple-color);
+
+	// flat
+	color: $color;
+
+	&:hover {
+		color: $flat-hover-color;
+	}
 
 	// raised
 	&.ssv-button--raised {
-		color: $text-color;
+		color: $color-contrast;
 		background: $color;
 
 		&:hover {
@@ -19,6 +36,6 @@
 			}
 		}
 
-		@include ssv-waves-ripple-color(rgba($text-color, .2));
+		@include ssv-waves-ripple-color($ripple-color);
 	}
 }

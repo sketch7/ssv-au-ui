@@ -1,0 +1,35 @@
+@import "../style/vars";
+
+// primary
+$ssv-button-primary-variant: () !default;
+$ssv-button-primary-variant-defaults: (
+	color: $ssv-primary-color,
+	color-contrast: $ssv-primary-color-contrast
+);
+$ssv-button-primary-variant: map-merge($ssv-button-primary-variant-defaults, $ssv-button-primary-variant);
+
+// accent
+$ssv-button-accent-variant: () !default;
+$ssv-button-accent-variant-defaults: (
+	color: $ssv-accent-color,
+	color-contrast: $ssv-accent-color-contrast,
+	ripple-color: rgba($ssv-color-black, .4)
+);
+$ssv-button-accent-variant: map-merge($ssv-button-accent-variant-defaults, $ssv-button-accent-variant);
+
+// danger
+$ssv-button-danger-variant: () !default;
+$ssv-button-danger-variant-defaults: (
+	color: $ssv-danger-color,
+	color-contrast: $ssv-danger-color-contrast
+);
+$ssv-button-danger-variant: map-merge($ssv-button-danger-variant-defaults, $ssv-button-danger-variant);
+
+// warn
+$ssv-button-warn-variant: () !default;
+$ssv-button-warn-variant-defaults: (
+	color: $ssv-warn-color,
+	color-contrast: $ssv-warn-color-contrast,
+	flat-hover-color: $ssv-warn-color-highlight
+);
+$ssv-button-warn-variant: map-merge($ssv-button-warn-variant-defaults, $ssv-button-warn-variant);

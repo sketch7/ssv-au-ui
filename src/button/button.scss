@@ -1,5 +1,6 @@
 @import "../style/vars";
 @import "../style/mixins";
+@import "./button.variant";
 @import "./button.mixin";
 
 $ssv-button-min-width: 64px !default;
@@ -13,21 +14,6 @@ $ssv-button-secondary-color: black !default;
 $ssv-button-hover-color: rgba($ssv-color-black, .1) !default;
 $ssv-button-active-color: rgba($ssv-color-grey-500, .4) !default;
 $ssv-button-focus-color: $ssv-button-hover-color !default;
-
-$ssv-button-primary-color: $ssv-primary-color !default;
-$ssv-button-primary-color-contrast: $ssv-primary-color-contrast !default;
-// $ssv-button-primary-ripple-color: rgba($ssv-primary-color-contrast, .2) !default;
-// $ssv-button-primary-hover-color: rgba($ssv-primary-color, .8) !default;
-// $ssv-button-primary-active-color: rgba($ssv-primary-color, .75) !default;
-
-$ssv-button-accent-color: $ssv-accent-color !default;
-$ssv-button-accent-color-contrast: $ssv-accent-color-contrast !default;
-
-$ssv-button-danger-color: $ssv-danger-color !default;
-$ssv-button-danger-color-contrast: $ssv-danger-color-contrast !default;
-
-$ssv-button-warn-color: $ssv-warn-color !default;
-$ssv-button-warn-color-contrast: $ssv-warn-color-contrast !default;
 
 $ssv-button-success-color: $ssv-success-color !default;
 $ssv-button-disabled-primary-color: rgba($ssv-color-black, .12) !default;
@@ -102,16 +88,16 @@ $ssv-button-disabled-secondary-color: rgba($ssv-color-black, .26) !default;
 		}
 	}
 	@include modifier("primary") {
-		 @include ssv-button-variant($ssv-button-primary-color, $ssv-button-primary-color-contrast);
+		 @include ssv-button-variant($ssv-button-primary-variant);
 	}
 	@include modifier("accent") {
-		 @include ssv-button-variant($ssv-button-accent-color, $ssv-button-accent-color-contrast);
+		 @include ssv-button-variant($ssv-button-accent-variant);
 	}
 	@include modifier("danger") {
-		 @include ssv-button-variant($ssv-button-danger-color, $ssv-button-danger-color-contrast);
+		 @include ssv-button-variant($ssv-button-danger-variant);
 	}
 	@include modifier("warn") {
-		 @include ssv-button-variant($ssv-button-warn-color, $ssv-button-warn-color-contrast);
+		 @include ssv-button-variant($ssv-button-warn-variant);
 	}
 
 	&.waves-button {
