@@ -87,6 +87,18 @@ $ssv-button-disabled-secondary-color: rgba($ssv-color-black, .26) !default;
 			box-shadow: none;
 		}
 	}
+	@include modifier("outline") {
+		&,
+		&:hover {
+			border: solid 1px;
+		}
+
+		&:hover {
+			line-height: $ssv-button-height;
+		}
+	}
+
+	// variants
 	@include modifier("primary") {
 		 @include ssv-button-variant($ssv-button-primary-variant);
 	}

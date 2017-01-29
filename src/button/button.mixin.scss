@@ -35,7 +35,19 @@
 				background-color: rgba($color, .9);
 			}
 		}
+		@include ssv-waves-ripple-color($ripple-color);
+	}
 
+	&.ssv-button--outline {
+		&,
+		&:hover {
+			border-color: $color;
+		}
+
+		&:hover {
+			color: $color-contrast;
+			background: $color;
+		}
 		@include ssv-waves-ripple-color($ripple-color);
 	}
 }
