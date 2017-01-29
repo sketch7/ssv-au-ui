@@ -54,7 +54,6 @@ $ssv-button-disabled-secondary-color: rgba($ssv-color-black, .26) !default;
 	&:active {
 		background-color: $ssv-button-active-color;
 	}
-
 	@include ssv-waves-ripple-color(rgba($ssv-button-default-color, .4));
 
 	&::-moz-focus-inner {
@@ -65,6 +64,8 @@ $ssv-button-disabled-secondary-color: rgba($ssv-color-black, .26) !default;
 			background-color: $ssv-button-focus-color;
 		}
 	}
+
+	// types
 	@include modifier("raised") {
 		background: $ssv-button-default-color;
 		@include shadow-2dp();
@@ -74,8 +75,6 @@ $ssv-button-disabled-secondary-color: rgba($ssv-color-black, .26) !default;
 			background-color: $ssv-button-active-color;
 		}
 
-		// todo: use when having a solution for @include modifier("focused") => ssv-button--raised--focused
-		// should be ssv-button--raised.ssv-button--focused
 		&.ssv-button--focused {
 			&:not(:active) {
 				@include focus-shadow();
@@ -101,6 +100,20 @@ $ssv-button-disabled-secondary-color: rgba($ssv-color-black, .26) !default;
 			line-height: $ssv-button-height;
 		}
 		@include ssv-waves-ripple-color(rgba($ssv-button-default-color-contrast-inverse, .2));
+	}
+
+	// sizes
+	@include modifier("small") {
+		padding: 0 ($ssv-button-padding * 0.8);
+		font-size: .9em;
+		line-height: $ssv-button-height * 0.9;
+		height: $ssv-button-height * 0.9;
+	}
+	@include modifier("large") {
+		padding: 0 ($ssv-button-padding * 1.2);
+		font-size: 1.2em;
+		line-height: $ssv-button-height * 1.1;
+		height: $ssv-button-height * 1.1;
 	}
 
 	// variants

@@ -4,22 +4,20 @@ import { customAttribute, bindable } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
 import { attach } from "node-waves";
 
-import { attributeUtil } from "../core/index";
-import { buttonType, ButtonType } from "./button.model";
+import { attributeUtil, ElementSizeType } from "../core/index";
+import { supportedButtonTypes, ButtonType } from "./button.model";
 import { buttonConfig, ButtonConfig } from "./button.config";
 
 const PREFIX = "ssv-button";
 const FOCUSED_CLASS = `${PREFIX}--focused`;
-const SUPPORTED_TYPES: string[] = [
-	buttonType.flat,
-	buttonType.raised,
-];
+
 
 @autoinject()
 @customAttribute(PREFIX)
 export class Button {
 
 	@bindable type: ButtonType;
+	@bindable size: ElementSizeType;
 	@bindable disableRipple: boolean;
 	@bindable rippleType: string;
 	@bindable color: string;
@@ -41,9 +39,15 @@ export class Button {
 
 	bind() {
 		this.setDefaults();
-
 		this.modifiers = attributeUtil.generateBemStyleModifiers(this.modifier, PREFIX);
-		this.element.classList.add(`${PREFIX}--${this.config.type.toLowerCase()}`);
+
+		const type = this.config.type.toLowerCase();
+		this.validateType(type);
+		this.element.classList.add(`${PREFIX}--${type}`);
+
+		if (this.config.size) {
+			this.element.classList.add(`${PREFIX}--${this.config.size}`);
+		}
 		if (this.config.color) {
 			this.element.classList.add(`${PREFIX}--${this.config.color.toLowerCase()}`);
 		}
@@ -68,18 +72,12 @@ export class Button {
 		this.modifiers = attributeUtil.generateBemStyleModifiers(newValue, PREFIX);
 	}
 
-	typeChanged(newValue: ButtonType, previousValue: ButtonType) {
-		const newValueLower = newValue.toLowerCase();
-		this.validateType(newValueLower);
-		attributeUtil.changeBemModifier(PREFIX, newValueLower, previousValue, this.element);
-	}
-
 	colorChanged(newValue: string, previousValue: string) {
 		attributeUtil.changeBemModifier(PREFIX, newValue.toLowerCase(), previousValue, this.element);
 	}
 
 	private validateType(type: string | ButtonType) {
-		if (SUPPORTED_TYPES.indexOf(type) === -1) {
+		if (supportedButtonTypes.indexOf(type) === -1) {
 			this.logger.error("validateType", "button type unsupported!", { type });
 		}
 	}
@@ -105,7 +103,8 @@ export class Button {
 			type: this.type,
 			disableRipple: this.disableRipple,
 			rippleType: this.rippleType,
-			color: this.color
+			color: this.color,
+			size: this.size,
 		}, buttonConfig);
 	}
 

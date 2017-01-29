@@ -1,3 +1,4 @@
+import * as _ from "lodash";
 export type ButtonType = "flat" | "raised" | "outline";
 
 export const buttonType = {
@@ -5,3 +6,5 @@ export const buttonType = {
 	raised: "raised" as ButtonType,
 	outline: "outline" as ButtonType,
 };
+
+export const supportedButtonTypes: string[] = _.values<string>(buttonType);
