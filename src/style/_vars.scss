@@ -1,6 +1,5 @@
 // http://chir.ag/projects/name-that-color
 // http://www.color-hex.com/color
-@import "./palette";
 
 $prefix: ssv;
 
@@ -9,6 +8,10 @@ $ssv-body-font-size-base: 14px !default;
 $ssv-font-family: Roboto, 'Helvetica Neue', sans-serif !default;
 
 // colors
+$ssv-color-grey-500: rgb(158, 158, 158);
+$ssv-color-black: rgb(0, 0, 0);
+$ssv-color-white: rgb(255, 255, 255);
+
 $ssv-master-color: #626262 !default;
 // $ssv-primary-color: rgb(90, 2, 43) !default;
 $ssv-primary-color: rgb(90, 2, 43) !default;

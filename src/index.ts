@@ -3,4 +3,4 @@ export * from "./button/index";
 export * from "./waves/index";
 
 export * from "./config";
-export * from "./ui-core.config";
+export * from "./config.model";
