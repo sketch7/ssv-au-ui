@@ -11,7 +11,6 @@ import { buttonConfig, ButtonConfig } from "./button.config";
 const PREFIX = "ssv-button";
 const FOCUSED_CLASS = `${PREFIX}--focused`;
 const SUPPORTED_TYPES: string[] = [
-	buttonType.fab,
 	buttonType.flat,
 	buttonType.raised,
 ];
