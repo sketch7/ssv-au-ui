@@ -10,7 +10,7 @@ export interface ButtonConfig {
 }
 
 export const buttonConfig: ButtonConfig = {
-	type: buttonType.flat,
+	type: buttonType.raised,
 	size: elementSizeType.medium,
 	disableRipple: false,
 };
