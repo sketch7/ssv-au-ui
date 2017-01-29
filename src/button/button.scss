@@ -55,6 +55,8 @@ $ssv-button-disabled-secondary-color: rgba($ssv-color-black, .26) !default;
 		background-color: $ssv-button-active-color;
 	}
 
+	@include ssv-waves-ripple-color(rgba($ssv-button-default-color, .4));
+
 	&::-moz-focus-inner {
 		border: 0;
 	}
