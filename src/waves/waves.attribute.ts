@@ -10,7 +10,7 @@ export class WavesAttribute {
 
 	@bindable({
 		primaryProperty: true,
-	}) type = "waves-button";
+	}) type: string | undefined;
 
 	constructor(
 		private element: Element,
