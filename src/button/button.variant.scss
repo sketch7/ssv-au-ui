@@ -33,3 +33,11 @@ $ssv-button-warn-variant-defaults: (
 	flat-hover-color: $ssv-warn-color-highlight
 );
 $ssv-button-warn-variant: map-merge($ssv-button-warn-variant-defaults, $ssv-button-warn-variant);
+
+// success
+$ssv-button-success-variant: () !default;
+$ssv-button-success-variant-defaults: (
+	color: $ssv-success-color,
+	color-contrast: $ssv-success-color-contrast
+);
+$ssv-button-success-variant: map-merge($ssv-button-success-variant-defaults, $ssv-button-success-variant);

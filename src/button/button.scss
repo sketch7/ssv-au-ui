@@ -99,6 +99,9 @@ $ssv-button-disabled-secondary-color: rgba($ssv-color-black, .26) !default;
 	@include modifier("warn") {
 		 @include ssv-button-variant($ssv-button-warn-variant);
 	}
+	@include modifier("success") {
+		 @include ssv-button-variant($ssv-button-success-variant);
+	}
 
 	&.waves-button {
 		// node-waves: removed otherwise it won't be raised.
