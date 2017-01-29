@@ -34,6 +34,10 @@
 			background-color: rgba($color, .9);
 		}
 
+		&[disabled] {
+			background: rgba($color, .4);
+		}
+
 		&.ssv-button--focused {
 			&:not(:active) {
 				background-color: rgba($color, .9);
@@ -49,10 +53,15 @@
 			border-color: $color;
 		}
 
-		&:hover {
+		&:hover(:not([disabled])) {
 			color: $color-contrast;
 			background: $color;
 		}
+
+		&[disabled] {
+			border-color: rgba($color, .4);
+		}
+
 		@include ssv-waves-ripple-color($ripple-color);
 	}
 
