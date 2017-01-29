@@ -30,6 +30,10 @@
 			background-color: rgba($color, .8);
 		}
 
+		&:active {
+			background-color: rgba($color, .9);
+		}
+
 		&.ssv-button--focused {
 			&:not(:active) {
 				background-color: rgba($color, .9);
@@ -38,6 +42,7 @@
 		@include ssv-waves-ripple-color($ripple-color);
 	}
 
+	// outline
 	&.ssv-button--outline {
 		&,
 		&:hover {
@@ -49,5 +54,12 @@
 			background: $color;
 		}
 		@include ssv-waves-ripple-color($ripple-color);
+	}
+
+	// focused
+	@include modifier("focused") {
+		&:not(:active) {
+			background-color: rgba($color, .9);
+		}
 	}
 }

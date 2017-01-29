@@ -10,12 +10,12 @@ $ssv-button-margin: 4px !default;
 $ssv-button-border-radius: 2px !default;
 
 $ssv-button-default-color: rgba($ssv-color-grey-500, .2) !default;
-$ssv-button-secondary-color: black !default;
+$ssv-button-default-color-contrast: $ssv-color-black !default;
+$ssv-button-default-color-contrast-inverse: $ssv-color-white !default;
 $ssv-button-hover-color: rgba($ssv-color-black, .1) !default;
 $ssv-button-active-color: rgba($ssv-color-grey-500, .4) !default;
 $ssv-button-focus-color: $ssv-button-hover-color !default;
 
-$ssv-button-success-color: $ssv-success-color !default;
 $ssv-button-disabled-primary-color: rgba($ssv-color-black, .12) !default;
 $ssv-button-disabled-secondary-color: rgba($ssv-color-black, .26) !default;
 
@@ -23,7 +23,7 @@ $ssv-button-disabled-secondary-color: rgba($ssv-color-black, .26) !default;
 	background: transparent;
 	border: none;
 	border-radius: $ssv-button-border-radius;
-	color: $ssv-button-secondary-color;
+	color: $ssv-button-default-color-contrast;
 	position: relative;
 	height: $ssv-button-height;
 	line-height: $ssv-button-height;
@@ -94,8 +94,11 @@ $ssv-button-disabled-secondary-color: rgba($ssv-color-black, .26) !default;
 		}
 
 		&:hover {
+			color: rgba($ssv-color-white, .9);
+			background: rgba($ssv-button-default-color-contrast, .8);
 			line-height: $ssv-button-height;
 		}
+		@include ssv-waves-ripple-color(rgba($ssv-button-default-color-contrast-inverse, .2));
 	}
 
 	// variants
@@ -113,11 +116,6 @@ $ssv-button-disabled-secondary-color: rgba($ssv-color-black, .26) !default;
 	}
 	@include modifier("success") {
 		 @include ssv-button-variant($ssv-button-success-variant);
-	}
-
-	&.waves-button {
-		// node-waves: removed otherwise it won't be raised.
-		-webkit-mask-image: none;
 	}
 
 }
