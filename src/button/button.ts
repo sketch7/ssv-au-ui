@@ -1,3 +1,4 @@
+import * as _ from "lodash";
 import { LoggerFactory, ILog } from "@ssv/au-core";
 import { customAttribute, bindable } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
@@ -5,6 +6,7 @@ import { attach } from "node-waves";
 
 import { attributeUtil } from "../core/index";
 import { buttonType, ButtonType } from "./button.model";
+import { buttonConfig, ButtonConfig } from "./button.config";
 
 const PREFIX = "ssv-button";
 const FOCUSED_CLASS = `${PREFIX}--focused`;
@@ -18,16 +20,17 @@ const SUPPORTED_TYPES: string[] = [
 @customAttribute(PREFIX)
 export class Button {
 
-	@bindable type: ButtonType = buttonType.flat; // todo: global configureble default
-	@bindable disableRipple = false; // todo: global configureble default
-	@bindable rippleType = "waves-button"; // todo: global configureble default
-	@bindable color: string; // todo: global configureble default
+	@bindable type: ButtonType;
+	@bindable disableRipple: boolean;
+	@bindable rippleType: string;
+	@bindable color: string;
 	@bindable modifier: string | undefined;
 
 	modifiers: string | undefined;
 
 	private logger: ILog;
 	private isMouseDown = false;
+	private config: ButtonConfig;
 
 	constructor(
 		loggerFactory: LoggerFactory,
@@ -38,10 +41,12 @@ export class Button {
 	}
 
 	bind() {
+		this.setDefaults();
+
 		this.modifiers = attributeUtil.generateBemStyleModifiers(this.modifier, PREFIX);
-		this.element.classList.add(`${PREFIX}--${this.type.toLowerCase()}`);
-		if (this.color) {
-			this.element.classList.add(`${PREFIX}--${this.color.toLowerCase()}`);
+		this.element.classList.add(`${PREFIX}--${this.config.type.toLowerCase()}`);
+		if (this.config.color) {
+			this.element.classList.add(`${PREFIX}--${this.config.color.toLowerCase()}`);
 		}
 	}
 
@@ -49,8 +54,8 @@ export class Button {
 		this.element.addEventListener("mousedown", this.onMouseDown.bind(this));
 		this.element.addEventListener("focus", this.onFocus.bind(this));
 		this.element.addEventListener("blur", this.onBlur.bind(this));
-		if (!this.disableRipple) {
-			attach(this.element, this.rippleType);
+		if (!this.config.disableRipple) {
+			attach(this.element, this.config.rippleType);
 		}
 	}
 
@@ -94,6 +99,15 @@ export class Button {
 
 	private onBlur() {
 		this.element.classList.remove(FOCUSED_CLASS);
+	}
+
+	private setDefaults(): void {
+		this.config = _.defaults<ButtonConfig>({
+			type: this.type,
+			disableRipple: this.disableRipple,
+			rippleType: this.rippleType,
+			color: this.color
+		}, buttonConfig);
 	}
 
 }
