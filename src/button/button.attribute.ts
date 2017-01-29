@@ -16,12 +16,14 @@ const FOCUSED_CLASS = `${PREFIX}--focused`;
 @customAttribute(PREFIX)
 export class Button {
 
+	@bindable({
+		primaryProperty: true
+	}) color: string;
 	@bindable type: ButtonType;
 	@bindable size: ElementSizeType;
+	@bindable modifier: string | undefined;
 	@bindable disableRipple: boolean;
 	@bindable rippleType: string;
-	@bindable color: string;
-	@bindable modifier: string | undefined;
 
 	modifiers: string | undefined;
 
