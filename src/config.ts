@@ -3,6 +3,7 @@ import { init as initWaves } from "node-waves";
 
 import { UiConfig } from "./config.model";
 import { buttonConfig } from "./button/button.config";
+import { wavesConfig } from "./waves/waves.config";
 
 export function configure(aurelia: FrameworkConfiguration, config: UiConfig): Promise<void> {
 	aurelia.globalResources([
@@ -12,8 +13,9 @@ export function configure(aurelia: FrameworkConfiguration, config: UiConfig): Pr
 	]);
 
 	Object.assign(buttonConfig, config.button);
+	Object.assign(wavesConfig, config.waves);
 
 	// const service = aurelia.container.get(SampleClass) as SampleClass;
-	initWaves(); // todo: pass config
+	initWaves(config.waves);
 	return Promise.resolve();
 }
