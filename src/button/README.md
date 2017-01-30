@@ -7,8 +7,8 @@ Enhance's the native HTML `<button>` or `<a>` tag with styling and animations.
 <!-- simple -->
 <button ssv-button>Usage</button>
 
-<!-- primary binding (color) -->
-<button ssv-button="primary">Primary</button>
+<!-- primary binding (color) + used on 'a' tag -->
+<a ssv-button="primary">Primary</a>
 
 <!-- additional options -->
 <button ssv-button="color: primary; type: outline">Additiona options</button>
