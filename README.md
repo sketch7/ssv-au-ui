@@ -86,6 +86,7 @@ Import fonts
 |------------------|-------------------------------------|-------------------|----------------|
 | input            |                             Preview | [README][input]   |              - |
 | button           |                             Preview | [README][button]  |              - |
+| waves            |                             Preview | [README][waves]   |              - |
 | select           |                         Not Started |                   |              - |
 | icon             |                         Not Started |                   |              - |
 | datepicker       |                         Not Started |                   |              - |
@@ -102,6 +103,7 @@ Import fonts
 
 [input]: ./src/input/README.md
 [button]: ./src/button/README.md
+[waves]: ./src/waves/README.md
 
 ## Getting Started
 
