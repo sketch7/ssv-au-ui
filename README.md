@@ -85,7 +85,7 @@ Import fonts
 | Feature          | Status                              | Docs              | Issue          |
 |------------------|-------------------------------------|-------------------|----------------|
 | input            |                             Preview | [README][input]   |              - |
-| button           |                         Development | [README][button]  |              - |
+| button           |                             Preview | [README][button]  |              - |
 | select           |                         Not Started |                   |              - |
 | icon             |                         Not Started |                   |              - |
 | datepicker       |                         Not Started |                   |              - |
