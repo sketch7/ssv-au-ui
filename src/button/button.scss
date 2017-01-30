@@ -40,6 +40,7 @@ $ssv-button-disabled-secondary-color: rgba($ssv-color-black, .26) !default;
 	-webkit-tap-highlight-color: transparent;
 	cursor: pointer;
 	transition: box-shadow .2s ease-in, background-color .2s ease-in-out, color .2s ease-in-out;
+	user-select: none;
 
 	&[disabled][disabled] {
 		color: $ssv-button-disabled-secondary-color;
@@ -48,6 +49,7 @@ $ssv-button-disabled-secondary-color: rgba($ssv-color-black, .26) !default;
 	}
 
 	&:hover {
+		color: $ssv-button-default-color-contrast;
 		background-color: $ssv-button-hover-color;
 	}
 
