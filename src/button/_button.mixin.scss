@@ -1,0 +1,74 @@
+@import "../style/mixins";
+@import "../waves/waves.mixin";
+
+@mixin ssv-button-variant($options: ()) {
+	$color: map-get($options, color);
+	$color-contrast: map-get($options, color-contrast);
+	$defaults: (
+		ripple-color: rgba($color-contrast, .2),
+		flat-hover-color: $color
+	);
+	$options: map-merge($defaults, $options);
+
+	$color: map-get($options, color);
+	$flat-hover-color: map-get($options, flat-hover-color);
+	$ripple-color: map-get($options, ripple-color);
+
+	// flat
+	color: $color;
+
+	&:hover {
+		color: $flat-hover-color;
+	}
+
+	// raised
+	&.ssv-button--raised {
+		color: $color-contrast;
+		background: $color;
+
+		&:hover {
+			background-color: rgba($color, .8);
+		}
+
+		&:active {
+			background-color: rgba($color, .9);
+		}
+
+		&[disabled] {
+			background: rgba($color, .4);
+		}
+
+		&.ssv-button--focused {
+			&:not(:active) {
+				background-color: rgba($color, .9);
+			}
+		}
+		@include ssv-waves-ripple-color($ripple-color);
+	}
+
+	// outline
+	&.ssv-button--outline {
+		&,
+		&:hover {
+			border-color: $color;
+		}
+
+		&:hover(:not([disabled])) {
+			color: $color-contrast;
+			background: $color;
+		}
+
+		&[disabled] {
+			border-color: rgba($color, .4);
+		}
+
+		@include ssv-waves-ripple-color($ripple-color);
+	}
+
+	// focused
+	@include modifier("focused") {
+		&:not(:active) {
+			background-color: rgba($color, .9);
+		}
+	}
+}

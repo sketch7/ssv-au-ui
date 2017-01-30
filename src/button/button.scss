@@ -1,0 +1,138 @@
+@import "../style/vars";
+@import "../style/mixins";
+@import "./button.variant";
+@import "./button.mixin";
+
+$ssv-button-min-width: 64px !default;
+$ssv-button-height: 36px !default;
+$ssv-button-padding: 16px !default;
+$ssv-button-margin: 4px !default;
+$ssv-button-border-radius: 2px !default;
+
+$ssv-button-default-color: rgba($ssv-color-grey-500, .2) !default;
+$ssv-button-default-color-contrast: $ssv-color-black !default;
+$ssv-button-default-color-contrast-inverse: $ssv-color-white !default;
+$ssv-button-hover-color: rgba($ssv-color-black, .1) !default;
+$ssv-button-active-color: rgba($ssv-color-grey-500, .4) !default;
+$ssv-button-focus-color: $ssv-button-hover-color !default;
+
+$ssv-button-disabled-primary-color: rgba($ssv-color-black, .12) !default;
+$ssv-button-disabled-secondary-color: rgba($ssv-color-black, .26) !default;
+
+.ssv-button {
+	background: transparent;
+	border: none;
+	border-radius: $ssv-button-border-radius;
+	color: $ssv-button-default-color-contrast;
+	position: relative;
+	height: $ssv-button-height;
+	line-height: $ssv-button-height;
+	min-width: $ssv-button-min-width;
+	margin: 0;
+	padding: 0 $ssv-button-padding;
+	display: inline-block;
+	outline: 0;
+	text-decoration: none;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: 500;
+	vertical-align: middle;
+	-webkit-tap-highlight-color: transparent;
+	cursor: pointer;
+	transition: box-shadow .2s ease-in, background-color .2s ease-in-out, color .2s ease-in-out;
+	user-select: none;
+
+	&[disabled][disabled] {
+		color: $ssv-button-disabled-secondary-color;
+		background-color: transparent;
+		cursor: default;
+	}
+
+	&:hover {
+		color: $ssv-button-default-color-contrast;
+		background-color: $ssv-button-hover-color;
+	}
+
+	&:active {
+		background-color: $ssv-button-active-color;
+	}
+	@include ssv-waves-ripple-color(rgba($ssv-button-default-color, .4));
+
+	&::-moz-focus-inner {
+		border: 0;
+	}
+	@include modifier("focused") {
+		&:not(:active) {
+			background-color: $ssv-button-focus-color;
+		}
+	}
+
+	// types
+	@include modifier("raised") {
+		background: $ssv-button-default-color;
+		@include shadow-2dp();
+
+		&:active {
+			@include shadow-4dp();
+			background-color: $ssv-button-active-color;
+		}
+
+		&.ssv-button--focused {
+			&:not(:active) {
+				@include focus-shadow();
+				background-color: $ssv-button-active-color;
+			}
+		}
+
+		&[disabled][disabled] {
+			background-color: $ssv-button-disabled-primary-color;
+			color: $ssv-button-disabled-secondary-color;
+			box-shadow: none;
+		}
+	}
+	@include modifier("outline") {
+		&,
+		&:hover {
+			border: solid 1px;
+		}
+
+		&:hover {
+			color: rgba($ssv-color-white, .9);
+			background: rgba($ssv-button-default-color-contrast, .8);
+			line-height: $ssv-button-height;
+		}
+		@include ssv-waves-ripple-color(rgba($ssv-button-default-color-contrast-inverse, .2));
+	}
+
+	// sizes
+	@include modifier("small") {
+		padding: 0 ($ssv-button-padding * 0.8);
+		font-size: .9em;
+		line-height: $ssv-button-height * 0.9;
+		height: $ssv-button-height * 0.9;
+	}
+	@include modifier("large") {
+		padding: 0 ($ssv-button-padding * 1.2);
+		font-size: 1.2em;
+		line-height: $ssv-button-height * 1.1;
+		height: $ssv-button-height * 1.1;
+	}
+
+	// variants
+	@include modifier("primary") {
+		 @include ssv-button-variant($ssv-button-primary-variant);
+	}
+	@include modifier("accent") {
+		 @include ssv-button-variant($ssv-button-accent-variant);
+	}
+	@include modifier("danger") {
+		 @include ssv-button-variant($ssv-button-danger-variant);
+	}
+	@include modifier("warn") {
+		 @include ssv-button-variant($ssv-button-warn-variant);
+	}
+	@include modifier("success") {
+		 @include ssv-button-variant($ssv-button-success-variant);
+	}
+
+}

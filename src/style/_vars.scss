@@ -1,3 +1,6 @@
+// http://chir.ag/projects/name-that-color
+// http://www.color-hex.com/color
+
 $prefix: ssv;
 
 // typography
@@ -5,16 +8,35 @@ $ssv-body-font-size-base: 14px !default;
 $ssv-font-family: Roboto, 'Helvetica Neue', sans-serif !default;
 
 // colors
+$ssv-color-grey-500: rgb(158, 158, 158);
+$ssv-color-black: rgb(0, 0, 0);
+$ssv-color-white: rgb(255, 255, 255);
+
 $ssv-master-color: #626262 !default;
-$ssv-primary-color: #5A022B !default;
+// $ssv-primary-color: rgb(90, 2, 43) !default;
+$ssv-primary-color: rgb(90, 2, 43) !default;
+$ssv-primary-color-contrast: $ssv-color-white !default;
 $ssv-primary-dark-color: darken($ssv-primary-color, 0.1) !default;
 $ssv-secondary-color: #26a1a6 !default;
 
 $ssv-accent-color: #10cfbd !default;
+$ssv-accent-color-contrast: $ssv-color-white !default;
 
-$ssv-error-color: #D24255 !default;
+$ssv-danger-color: #d0253b !default;
+$ssv-danger-color-contrast: $ssv-color-white !default;
+
 $ssv-success-color: #339333 !default;
+$ssv-success-color-contrast: $ssv-color-white !default;
+
 // $ssv-warn-color: #fff67a !default;
 $ssv-warn-color: #f8d053 !default;
+$ssv-warn-color-contrast: $ssv-color-black !default;
+$ssv-warn-color-highlight: #e49705 !default;
+
 $ssv-info-color: #1A9BFC !default;
+$ssv-info-color-contrast: $ssv-color-white !default;
 $ssv-disabled-color: #BDBDBD !default;
+
+$shadow-key-umbra-opacity: .2 !default;
+$shadow-key-penumbra-opacity: .14 !default;
+$shadow-ambient-shadow-opacity: .12 !default;

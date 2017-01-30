@@ -43,3 +43,20 @@ export function generateBemStyleModifiers(value: string | undefined, prefix: str
 		.map(modifier => `${prefix}--${modifier}`)
 		.join(" ");
 }
+
+
+/**
+ * Change from BEM modified to class to another.
+ *
+ * @export
+ * @param {string} prefix prefix to use for each modifier.
+ * @param {string} newValue new class name to add.
+ * @param {string} previousValue previous class to remove.
+ * @param {Element} element element to add/remove class to.
+ */
+export function changeBemModifier(prefix: string, newValue: string, previousValue: string, element: Element) {
+	const newClass = `${prefix}--${newValue}`;
+	const previousClass = `${prefix}--${previousValue}`;
+	element.classList.add(newClass);
+	element.classList.remove(previousClass);
+}

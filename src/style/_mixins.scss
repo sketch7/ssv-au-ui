@@ -1,3 +1,5 @@
+@import "./shadow.mixin";
+
 // BEM mixins
 // --------------
 
@@ -11,6 +13,9 @@
 		@content;
 	}
 }
+
+// todo: fix for sub modifier - its adding to the previous modifier e.g. @include modifier("focused") => ssv-button--raised--focused
+// should be `ssv-button--raised.ssv-button--focused` instead.
 
 /// Block Modifier
 /// @access public

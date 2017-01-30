@@ -28,13 +28,21 @@ Get library via [npm]
 npm install @ssv/au-ui --save
 
 # install peers
-npm install normalize-scss @ssv/core @ssv/au-core aurelia-dependency-injection aurelia-logging aurelia-ux --save
+npm install normalize-scss node-waves @ssv/core @ssv/au-core aurelia-dependency-injection aurelia-logging aurelia-ux --save
 
 ```
 
+### Setup Plugin
+Register `au-ui` plugin with optional global configuration.
+
 ```ts
-// register plugin with aurelia
-aurelia.use.plugin("@ssv/au-ui");
+import { UiConfig, buttonType } from "@ssv/au-ui";
+
+const uiConfig: UiConfig = {
+    button: { type: buttonType.raised }
+};
+// register plugin with aurelia + configure
+aurelia.use.plugin("@ssv/au-ui", uiConfig);
 ```
 
 ### Styling
@@ -44,6 +52,7 @@ Register sass `includePaths` with the following naming.
 ```js
 "./node_modules/@ssv/au-ui/dist/sass",
 "./node_modules/normalize-scss/sass",
+"./node_modules/node-waves/src/scss",
 ```
 
 Configure and import sass.
@@ -65,12 +74,19 @@ $ssv-primary-color: red;
 @import "@ssv/au-ui/components";
 ```
 
+Import fonts
+
+```html
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
+```
+
 ## Features
 
 | Feature          | Status                              | Docs              | Issue          |
 |------------------|-------------------------------------|-------------------|----------------|
 | input            |                             Preview | [README][input]   |              - |
-| button           |                         Not Started |                   |              - |
+| button           |                             Preview | [README][button]  |              - |
+| waves            |                             Preview | [README][waves]   |              - |
 | select           |                         Not Started |                   |              - |
 | icon             |                         Not Started |                   |              - |
 | datepicker       |                         Not Started |                   |              - |
@@ -86,6 +102,8 @@ $ssv-primary-color: red;
 | progress-spinner |                         Not Started |                   |              - |
 
 [input]: ./src/input/README.md
+[button]: ./src/button/README.md
+[waves]: ./src/waves/README.md
 
 ## Getting Started
 
