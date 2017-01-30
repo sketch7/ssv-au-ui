@@ -1,0 +1,20 @@
+<a name="0.1.0"></a>
+# 0.1.0 (2017-01-30)
+
+
+### Bug Fixes
+
+* **package:** updated au-core version and peerDependencies accordingly. ([9c241f1](https://github.com/sketch7/ssv-au-ui/commit/9c241f1))
+
+
+### Features
+
+* **global.config:** added global configuration ([eb8555e](https://github.com/sketch7/ssv-au-ui/commit/eb8555e))
+* **input:** implemented `help` ([899ebea](https://github.com/sketch7/ssv-au-ui/commit/899ebea))
+* **input:** implemented `ssv-input-variant` ([c1887ba](https://github.com/sketch7/ssv-au-ui/commit/c1887ba))
+* **package:** updated `[@ssv](https://github.com/ssv)/au-core` to `^0.3.0` ([68eb21e](https://github.com/sketch7/ssv-au-ui/commit/68eb21e))
+* **scss:** split vendors, core and components and all so they can be imported separetely if desired ([fedffaa](https://github.com/sketch7/ssv-au-ui/commit/fedffaa))
+* **waves:** initial `ssv-waves` attribute implementation ([a497cb2](https://github.com/sketch7/ssv-au-ui/commit/a497cb2))
+
+
+
