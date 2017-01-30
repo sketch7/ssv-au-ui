@@ -20,6 +20,7 @@ export class WavesAttribute {
 	constructor(
 		private element: Element,
 	) {
+		this.element.classList.add(PREFIX);
 	}
 
 	attached() {
