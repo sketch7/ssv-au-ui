@@ -87,15 +87,16 @@ Import fonts
 | input            |                             Preview | [README][input]   |              - |
 | button           |                             Preview | [README][button]  |              - |
 | waves            |                             Preview | [README][waves]   |              - |
+| badge            |                         Development |                   |              - |
+| checkbox         |                         Development |                   |              - |
+| switch           |                         Not Started |                   |              - |
+| radio            |                         Not Started |                   |              - |
 | select           |                         Not Started |                   |              - |
 | icon             |                         Not Started |                   |              - |
 | datepicker       |                         Not Started |                   |              - |
-| checkbox         |                         Not Started |                   |              - |
-| radio            |                         Not Started |                   |              - |
 | alert            |                         Not Started |                   |              - |
 | toast            |                         Not Started |                   |              - |
 | modal            |                         Not Started |                   |              - |
-| badge            |                         Not Started |                   |              - |
 | collection       |                         Not Started |                   |              - |
 | tabs             |                         Not Started |                   |              - |
 | progress-bar     |                         Not Started |                   |              - |
