@@ -1,0 +1,53 @@
+@import "../style/vars";
+@import "../style/mixins";
+@import "./badge.variant";
+@import "./badge.mixin";
+
+$ssv-badge-font-size: 11px !default;
+$ssv-badge-padding-topbottom: 3px !default;
+$ssv-badge-padding-rightleft: 9px !default;
+$ssv-badge-border-radius: 3px !default;
+$ssv-badge-margin-right: 3px !default;
+$ssv-badge-text-transform: uppercase !default;
+$ssv-badge-text-font-weight: 500 !default;
+
+$ssv-badge-default-color: rgba($ssv-color-grey-500, .2) !default;
+$ssv-badge-default-color-contrast: $ssv-color-black !default;
+
+$ssv-badge-rounded-radius: 25px !default;
+
+.ssv-badge {
+	color: $ssv-badge-default-color-contrast;
+	background-color: $ssv-badge-default-color;
+	padding: $ssv-badge-padding-topbottom $ssv-badge-padding-rightleft;
+	font-size: $ssv-badge-font-size;
+	border-radius: $ssv-badge-border-radius;
+	margin-right: $ssv-badge-margin-right;
+	text-transform: $ssv-badge-text-transform;
+	font-weight: $ssv-badge-text-font-weight;
+
+	// types
+	@include modifier("rounded") {
+		border-radius: $ssv-badge-rounded-radius;
+	}
+
+	// variants
+	@include modifier("primary") {
+		@include ssv-badge-variant($ssv-badge-primary-variant);
+	}
+	@include modifier("accent") {
+		@include ssv-badge-variant($ssv-badge-accent-variant);
+	}
+	@include modifier("success") {
+		@include ssv-badge-variant($ssv-badge-success-variant);
+	}
+	@include modifier("danger") {
+		@include ssv-badge-variant($ssv-badge-danger-variant);
+	}
+	@include modifier("warn") {
+		@include ssv-badge-variant($ssv-badge-warn-variant);
+	}
+	@include modifier("info") {
+		@include ssv-badge-variant($ssv-badge-info-variant);
+	}
+}

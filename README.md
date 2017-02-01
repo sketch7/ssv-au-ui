@@ -87,7 +87,7 @@ Import fonts
 | input            |                             Preview | [README][input]   |              - |
 | button           |                             Preview | [README][button]  |              - |
 | waves            |                             Preview | [README][waves]   |              - |
-| badge            |                         Development |                   |              - |
+| badge            |                             Preview | [README][badge]   |              - |
 | checkbox         |                         Development |                   |              - |
 | switch           |                         Not Started |                   |              - |
 | radio            |                         Not Started |                   |              - |
@@ -105,6 +105,7 @@ Import fonts
 [input]: ./src/input/README.md
 [button]: ./src/button/README.md
 [waves]: ./src/waves/README.md
+[badge]: ./src/badge/README.md
 
 ## Getting Started
 
