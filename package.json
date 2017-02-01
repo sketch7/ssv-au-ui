@@ -18,7 +18,7 @@
     "bundle": "node_modules/.bin/rollup -c rollup.config.js",
     "magic-publish": "git checkout master && git pull && git merge develop && git push && gulp publish --rel --bump minor && git checkout develop && git merge master && git push"
   },
-  "author": "Stephen Lautier <stephen.lautier@outlook.com>",
+  "author": "Stephen Lautier <stephen.lautier@outlook.com>, Clayton Lautier <clayton.lautier@outlook.com>",
   "license": "MIT",
   "main": "dist/bundles/ssv-au-ui.umd.js",
   "module": "dist/es2015/index.js",

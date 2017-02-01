@@ -11,7 +11,7 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/2e0an5hvxtfs08mf?svg=true)](https://ci.appveyor.com/project/chiko/ssv-au-ui)
 [![Build status](https://ci.appveyor.com/api/projects/status/2e0an5hvxtfs08mf/branch/master?svg=true)](https://ci.appveyor.com/project/chiko/ssv-au-ui/branch/master)
 [![bitHound Overall Score](https://www.bithound.io/github/sketch7/ssv-au-ui/badges/score.svg)](https://www.bithound.io/github/sketch7/ssv-au-ui)
-[![npm version](https://badge.fury.io/js/ssv-au-ui.svg)](https://badge.fury.io/js/ssv-au-ui)
+[![npm version](https://badge.fury.io/js/%40ssv%2Fau-ui.svg)](https://badge.fury.io/js/%40ssv%2Fau-ui)
 
 Aurelia web UI components
 
