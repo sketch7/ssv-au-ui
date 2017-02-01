@@ -8,6 +8,7 @@ $ssv-badge-padding-topbottom: 3px !default;
 $ssv-badge-padding-rightleft: 9px !default;
 $ssv-badge-border-radius: 3px !default;
 $ssv-badge-margin-right: 3px !default;
+$ssv-badge-text-transform: uppercase !default;
 
 $ssv-badge-default-color: rgba($ssv-color-grey-500, .2) !default;
 $ssv-badge-default-color-contrast: $ssv-color-black !default;
@@ -21,12 +22,15 @@ $ssv-badge-rounded-radius: 25px !default;
 	font-size: $ssv-badge-font-size;
 	border-radius: $ssv-badge-border-radius;
 	margin-right: $ssv-badge-margin-right;
+	text-transform: $ssv-badge-text-transform;
+	font-weight: 500;
 
-
+	// types
 	@include modifier("rounded") {
 		border-radius: $ssv-badge-rounded-radius;
 	}
 
+	// variants
 	@include modifier("primary") {
 		@include ssv-badge-variant($ssv-badge-primary-variant);
 	}
@@ -42,4 +46,5 @@ $ssv-badge-rounded-radius: 25px !default;
 	@include modifier("warn") {
 		@include ssv-badge-variant($ssv-badge-warn-variant);
 	}
+
 }
