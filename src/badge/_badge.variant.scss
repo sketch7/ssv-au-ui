@@ -39,3 +39,11 @@ $ssv-badge-success-variant-defaults: (
 	color-contrast: $ssv-success-color-contrast
 );
 $ssv-badge-success-variant: map-merge($ssv-badge-success-variant-defaults, $ssv-badge-success-variant);
+
+// info
+$ssv-badge-info-variant: () !default;
+$ssv-badge-info-variant-defaults: (
+	color: $ssv-info-color,
+	color-contrast: $ssv-info-color-contrast
+);
+$ssv-badge-info-variant: map-merge($ssv-badge-info-variant-defaults, $ssv-badge-info-variant);
