@@ -9,6 +9,7 @@ $ssv-badge-padding-rightleft: 9px !default;
 $ssv-badge-border-radius: 3px !default;
 $ssv-badge-margin-right: 3px !default;
 $ssv-badge-text-transform: uppercase !default;
+$ssv-badge-text-font-weight: 500 !default;
 
 $ssv-badge-default-color: rgba($ssv-color-grey-500, .2) !default;
 $ssv-badge-default-color-contrast: $ssv-color-black !default;
@@ -23,7 +24,7 @@ $ssv-badge-rounded-radius: 25px !default;
 	border-radius: $ssv-badge-border-radius;
 	margin-right: $ssv-badge-margin-right;
 	text-transform: $ssv-badge-text-transform;
-	font-weight: 500;
+	font-weight: $ssv-badge-text-font-weight;
 
 	// types
 	@include modifier("rounded") {
