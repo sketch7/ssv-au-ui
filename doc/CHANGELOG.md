@@ -1,5 +1,15 @@
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/sketch7/ssv-au-ui/compare/0.2.0...v0.3.0) (2017-02-01)
+
+
+### Features
+
+* **badge:** added badge component ([31f63bd](https://github.com/sketch7/ssv-au-ui/commit/31f63bd))
+
+
+
 <a name="0.2.0"></a>
-# [0.2.0](https://github.com/sketch7/ssv-au-ui/compare/0.1.0...v0.2.0) (2017-01-30)
+# [0.2.0](https://github.com/sketch7/ssv-au-ui/compare/0.1.0...0.2.0) (2017-01-30)
 
 
 
