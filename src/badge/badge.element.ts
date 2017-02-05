@@ -26,7 +26,7 @@ export class Badge {
 		private element: Element,
 		loggerFactory: LoggerFactory,
 	) {
-		this.logger = loggerFactory.get("input");
+		this.logger = loggerFactory.get("badge");
 	}
 
 	bind() {
@@ -48,7 +48,7 @@ export class Badge {
 
 	private validateType(type: string | BadgeType) {
 		if (supportedBadgeTypes.indexOf(type) === -1) {
-			this.logger.error("validateType", "button type unsupported!", { type });
+			this.logger.error("validateType", "badge type unsupported!", { type });
 		}
 	}
 
