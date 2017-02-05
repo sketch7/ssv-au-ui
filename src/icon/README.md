@@ -25,7 +25,7 @@ Default implementation is using [Font Awesome][fontawesome] icons.
 | size              | `ElementSize`      | xsmall  | no       | Icon size. It can be `xsmall`, `small`, `medium`, `large`, `xlarge`, `xxlarge` or any other custom.                        |
 | prefix            | string             | fa-     | no       | Append prefix  with the name. e.g.: prefix="`fa-`" and  name="`addressbook`"  => `fa-addressbook`.                         |
 | defaultClass      | defaultClass       | fa      | no       | Append additional class with element.                                                                                      |
-| modifier          | string             | -       | no       | CssClass modifiers which will be generated in BEM style e.g. `awesome super` => `ssv-icon__i--awesome ssv-icon__i--super`. |
+| modifier          | string             | -       | no       | CssClass modifiers which will be generated in BEM style e.g. `awesome super` => `ssv-icon--awesome ssv-icon--super`.       |
 
 ## Global Configuration
 Options which can be configured globally.
@@ -37,4 +37,4 @@ Options which can be configured globally.
 | strictElementSize | boolean              | true    | Restrict size to be: `xsmall`, `small`, `medium`, `large`, `xlarge` or `xxlarge`. |
 | prefix            | string               | fa-     |                                                                                   |
 | defaultClass      | string               | fa      |                                                                                   |
-| aliases           | `Dictionary<string>` | -       | Create an alias for icons e.g: `save`: `floppy-o`.                                |
+| aliases           | `Dictionary<string>` | -       | Create an alias for icons e.g: `save`: `floppy-o`. Then use `save` as icon `name`.|
