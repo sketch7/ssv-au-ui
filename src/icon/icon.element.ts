@@ -7,10 +7,10 @@ import { attributeUtil } from "../core/index";
 import { ElementSize, validateElementSize } from "../core/index";
 import { iconConfig, IconConfig } from "./icon.config";
 
-const ELEMENT_PREFIX = "ssv-icon__i";
+const ELEMENT_PREFIX = "ssv-icon";
 
 @autoinject()
-@customElement("ssv-icon")
+@customElement(ELEMENT_PREFIX)
 export class IconElement {
 
 	@bindable prefix: string;
@@ -24,9 +24,9 @@ export class IconElement {
 
 	private logger: ILog;
 	private config: IconConfig;
-	private iconElement: HTMLElement;
 
 	constructor(
+		private element: Element,
 		loggerFactory: LoggerFactory
 	) {
 		this.logger = loggerFactory.get("iconElement");
@@ -38,19 +38,19 @@ export class IconElement {
 
 	const size = this.config.size.toLowerCase();
 		this.validateType(size);
-		this.iconElement.classList.add(`${ELEMENT_PREFIX}--${size}`);
+		this.element.classList.add(`${ELEMENT_PREFIX}--${size}`);
 
 		let iconName = this.config.aliases ? this.config.aliases[this.name] : null;
 		iconName = iconName ? iconName : this.name;
 
-		this.iconElement.classList.add(`${this.config.prefix}${iconName}`);
+		this.element.classList.add(`${this.config.prefix}${iconName}`);
 
 		if (this.config.color) {
-			this.iconElement.classList.add(`${ELEMENT_PREFIX}--${this.config.color.toLowerCase()}`);
+			this.element.classList.add(`${ELEMENT_PREFIX}--${this.config.color.toLowerCase()}`);
 		}
 
 		if (this.config.defaultClass) {
-			this.iconElement.classList.add(this.config.defaultClass);
+			this.element.classList.add(this.config.defaultClass);
 		}
 	}
 

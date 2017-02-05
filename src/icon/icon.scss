@@ -14,46 +14,45 @@ $ssv-icon-default-size-xxlarge: 20em !default;
 
 .ssv-icon {
 	color: $ssv-icon-default-color;
-	@include element("i") {
 
-		// variants
-		@include modifier("primary") {
-			 @include ssv-icon-variant($ssv-icon-primary-variant);
-		}
-		@include modifier("accent") {
-			 @include ssv-icon-variant($ssv-icon-accent-variant);
-		}
-		@include modifier("success") {
-			 @include ssv-icon-variant($ssv-icon-success-variant);
-		}
-		@include modifier("danger") {
-			 @include ssv-icon-variant($ssv-icon-danger-variant);
-		}
-		@include modifier("warn") {
-			 @include ssv-icon-variant($ssv-icon-warn-variant);
-		}
-		@include modifier("info") {
-			 @include ssv-icon-variant($ssv-icon-info-variant);
-		}
-
-		// variants
-		@include modifier("xsmall") {
-			 font-size: $ssv-icon-default-size-xsmall;
-		}
-		@include modifier("small") {
-			 font-size: $ssv-icon-default-size-small;
-		}
-		@include modifier("medium") {
-			 font-size: $ssv-icon-default-size-medium;
-		}
-		@include modifier("large") {
-			 font-size: $ssv-icon-default-size-large;
-		}
-		@include modifier("xlarge") {
-			 font-size: $ssv-icon-default-size-xlarge;
-		}
-		@include modifier("xxlarge") {
-			 font-size: $ssv-icon-default-size-xxlarge;
-		}
+	// variants
+	@include modifier("primary") {
+		 @include ssv-icon-variant($ssv-icon-primary-variant);
 	}
+	@include modifier("accent") {
+		 @include ssv-icon-variant($ssv-icon-accent-variant);
+	}
+	@include modifier("success") {
+		 @include ssv-icon-variant($ssv-icon-success-variant);
+	}
+	@include modifier("danger") {
+		 @include ssv-icon-variant($ssv-icon-danger-variant);
+	}
+	@include modifier("warn") {
+		 @include ssv-icon-variant($ssv-icon-warn-variant);
+	}
+	@include modifier("info") {
+		 @include ssv-icon-variant($ssv-icon-info-variant);
+	}
+
+	// variants
+	@include modifier("xsmall") {
+		font-size: $ssv-icon-default-size-xsmall;
+	}
+	@include modifier("small") {
+		font-size: $ssv-icon-default-size-small;
+	}
+	@include modifier("medium") {
+		font-size: $ssv-icon-default-size-medium;
+	}
+	@include modifier("large") {
+		font-size: $ssv-icon-default-size-large;
+	}
+	@include modifier("xlarge") {
+		font-size: $ssv-icon-default-size-xlarge;
+	}
+	@include modifier("xxlarge") {
+		font-size: $ssv-icon-default-size-xxlarge;
+	}
+
 }
