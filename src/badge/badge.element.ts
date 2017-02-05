@@ -11,7 +11,7 @@ const PREFIX = "ssv-badge";
 
 @autoinject()
 @customElement(PREFIX)
-export class Badge {
+export class BadgeElement {
 
 	@bindable color: string;
 	@bindable type: BadgeType = badgeType.label;
@@ -26,7 +26,7 @@ export class Badge {
 		private element: Element,
 		loggerFactory: LoggerFactory,
 	) {
-		this.logger = loggerFactory.get("badge");
+		this.logger = loggerFactory.get("badgeElement");
 	}
 
 	bind() {

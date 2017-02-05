@@ -10,7 +10,7 @@ const PREFIX = "ssv-input";
 
 @autoinject()
 @customElement(PREFIX)
-export class Input {
+export class InputElement {
 	static id = 0;
 
 	@bindable({
@@ -38,8 +38,8 @@ export class Input {
 		loggerFactory: LoggerFactory,
 		private element: Element,
 	) {
-		this.logger = loggerFactory.get("input");
-		this.controlId = `${PREFIX}-${Input.id++}`;
+		this.logger = loggerFactory.get("inputElement");
+		this.controlId = `${PREFIX}-${InputElement.id++}`;
 	}
 
 	bind() {

@@ -14,7 +14,7 @@ const FOCUSED_CLASS = `${PREFIX}--focused`;
 
 @autoinject()
 @customAttribute(PREFIX)
-export class Button {
+export class ButtonAttribute {
 
 	@bindable({
 		primaryProperty: true
@@ -35,7 +35,7 @@ export class Button {
 		loggerFactory: LoggerFactory,
 		private element: Element,
 	) {
-		this.logger = loggerFactory.get("button");
+		this.logger = loggerFactory.get("buttonAttribute");
 		this.element.classList.add(PREFIX);
 	}
 

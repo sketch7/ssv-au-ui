@@ -11,7 +11,7 @@ const ELEMENT_PREFIX = "ssv-icon__i";
 
 @autoinject()
 @customElement("ssv-icon")
-export class Icon {
+export class IconElement {
 
 	@bindable prefix: string;
 	@bindable name: string;
@@ -29,7 +29,7 @@ export class Icon {
 	constructor(
 		loggerFactory: LoggerFactory
 	) {
-		this.logger = loggerFactory.get("icon");
+		this.logger = loggerFactory.get("iconElement");
 	}
 
 	bind() {
