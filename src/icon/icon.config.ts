@@ -1,4 +1,4 @@
-import { collection } from "@ssv/core";
+import { Dictionary } from "@ssv/core";
 
 import { elementSize, ElementSize } from "../core/index";
 
@@ -8,7 +8,7 @@ export interface IconConfig {
 	color?: string;
 	size: ElementSize;
 	strictElementSize: boolean;
-	aliases?: collection.Dictionary<string>;
+	aliases?: Dictionary<string>;
 }
 
 export const iconConfig: IconConfig = {
