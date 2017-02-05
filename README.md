@@ -88,11 +88,11 @@ Import fonts
 | button           |                             Preview | [README][button]  |              - |
 | waves            |                             Preview | [README][waves]   |              - |
 | badge            |                             Preview | [README][badge]   |              - |
+| icon             |                             Preview | [README][icon]    |              - |
 | checkbox         |                         Development |                   |              - |
 | switch           |                         Not Started |                   |              - |
 | radio            |                         Not Started |                   |              - |
 | select           |                         Not Started |                   |              - |
-| icon             |                         Not Started |                   |              - |
 | datepicker       |                         Not Started |                   |              - |
 | alert            |                         Not Started |                   |              - |
 | toast            |                         Not Started |                   |              - |
@@ -106,6 +106,7 @@ Import fonts
 [button]: ./src/button/README.md
 [waves]: ./src/waves/README.md
 [badge]: ./src/badge/README.md
+[icon]: ./src/icon/README.md
 
 ## Getting Started
 

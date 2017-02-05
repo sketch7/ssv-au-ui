@@ -1,9 +1,9 @@
-import { elementSizeType, ElementSizeType } from "../core/index";
+import { elementSize, ElementSize } from "../core/index";
 import { buttonType, ButtonType } from "./button.model";
 
 export interface ButtonConfig {
 	type: ButtonType;
-	size?: ElementSizeType;
+	size?: ElementSize;
 	color?: string;
 	disableRipple: boolean;
 	rippleType?: string;
@@ -11,6 +11,6 @@ export interface ButtonConfig {
 
 export const buttonConfig: ButtonConfig = {
 	type: buttonType.raised,
-	size: elementSizeType.medium,
+	size: elementSize.medium,
 	disableRipple: false,
 };

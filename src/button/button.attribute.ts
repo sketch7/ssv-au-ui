@@ -4,7 +4,7 @@ import { customAttribute, bindable } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
 import { attach } from "node-waves";
 
-import { attributeUtil, ElementSizeType } from "../core/index";
+import { attributeUtil, ElementSize } from "../core/index";
 import { supportedButtonTypes, ButtonType } from "./button.model";
 import { buttonConfig, ButtonConfig } from "./button.config";
 
@@ -20,7 +20,7 @@ export class Button {
 		primaryProperty: true
 	}) color: string;
 	@bindable type: ButtonType;
-	@bindable size: ElementSizeType;
+	@bindable size: ElementSize;
 	@bindable modifier: string | undefined;
 	@bindable disableRipple: boolean;
 	@bindable rippleType: string;

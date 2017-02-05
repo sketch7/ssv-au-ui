@@ -1,0 +1,5 @@
+@import "../style/mixins";
+
+@mixin ssv-icon-variant($options: ()) {
+	color: map-get($options, color);
+}
