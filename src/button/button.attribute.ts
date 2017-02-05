@@ -4,7 +4,7 @@ import { customAttribute, bindable } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
 import { attach } from "node-waves";
 
-import { attributeUtil, ElementSizeType } from "../core/index";
+import { attributeUtil, ElementSize } from "../core/index";
 import { supportedButtonTypes, ButtonType } from "./button.model";
 import { buttonConfig, ButtonConfig } from "./button.config";
 
@@ -14,13 +14,13 @@ const FOCUSED_CLASS = `${PREFIX}--focused`;
 
 @autoinject()
 @customAttribute(PREFIX)
-export class Button {
+export class ButtonAttribute {
 
 	@bindable({
 		primaryProperty: true
 	}) color: string;
 	@bindable type: ButtonType;
-	@bindable size: ElementSizeType;
+	@bindable size: ElementSize;
 	@bindable modifier: string | undefined;
 	@bindable disableRipple: boolean;
 	@bindable rippleType: string;
@@ -35,7 +35,7 @@ export class Button {
 		loggerFactory: LoggerFactory,
 		private element: Element,
 	) {
-		this.logger = loggerFactory.get("button");
+		this.logger = loggerFactory.get("buttonAttribute");
 		this.element.classList.add(PREFIX);
 	}
 

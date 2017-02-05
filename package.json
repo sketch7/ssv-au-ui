@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@ssv/au-core": "^0.3.3",
-    "@ssv/core": "^0.3.0",
+    "@ssv/core": "^0.3.4",
     "@ssv/tools": "^0.4.0",
     "@types/jasmine": "^2.5.37",
     "@types/lodash": "^4.14.38",
@@ -72,7 +72,7 @@
   "dependencies": {},
   "peerDependencies": {
     "@ssv/au-core": "^0.3.3",
-    "@ssv/core": "^0.3.0",
+    "@ssv/core": "^0.3.4",
     "aurelia-dependency-injection": "^1.0.0",
     "aurelia-framework": "^1.0.8",
     "aurelia-logging": "^1.0.0",

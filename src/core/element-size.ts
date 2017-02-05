@@ -1,14 +1,17 @@
 import * as _ from "lodash";
-export type ElementSizeType = "small" | "medium" | "large";
+export type ElementSize = "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 
-export const elementSizeType = {
-	small: "small" as ElementSizeType,
-	medium: "medium" as ElementSizeType,
-	large: "large" as ElementSizeType,
+export const elementSize = {
+	xsmall: "xsmall" as ElementSize,
+	small: "small" as ElementSize,
+	medium: "medium" as ElementSize,
+	large: "large" as ElementSize,
+	xlarge: "xlarge" as ElementSize,
+	xxlarge: "xxlarge" as ElementSize
 };
 
-export const supportedElementSizeTypes: string[] = _.values<string>(elementSizeType);
+export const supportedElementSizes: string[] = _.values<string>(elementSize);
 
-export function validateElementSize(size: string | ElementSizeType) {
-	return supportedElementSizeTypes.indexOf(size) > -1;
+export function validateElementSize(size: string | ElementSize) {
+	return supportedElementSizes.indexOf(size) > -1;
 }
