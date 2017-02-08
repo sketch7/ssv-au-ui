@@ -1,0 +1,32 @@
+@import "../style/vars";
+@import "../style/mixins";
+@import "./select.variant";
+@import "./select.mixin";
+
+$ssv-select-default-color: rgba($ssv-color-grey-500, .2) !default;
+$ssv-select-default-color-contrast: $ssv-color-black !default;
+
+.ssv-select {
+	color: $ssv-select-default-color-contrast;
+	background-color: $ssv-select-default-color;
+
+	// variants
+	@include modifier("primary") {
+		@include ssv-select-variant($ssv-select-primary-variant);
+	}
+	@include modifier("accent") {
+		@include ssv-select-variant($ssv-select-accent-variant);
+	}
+	@include modifier("success") {
+		@include ssv-select-variant($ssv-select-success-variant);
+	}
+	@include modifier("danger") {
+		@include ssv-select-variant($ssv-select-danger-variant);
+	}
+	@include modifier("warn") {
+		@include ssv-select-variant($ssv-select-warn-variant);
+	}
+	@include modifier("info") {
+		@include ssv-select-variant($ssv-select-info-variant);
+	}
+}

@@ -4,6 +4,7 @@ export * from "./badge/index";
 export * from "./button/index";
 export * from "./waves/index";
 export * from "./icon/index";
+export * from "./select/index";
 
 export * from "./config";
 export * from "./config.model";

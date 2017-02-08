@@ -1,0 +1,6 @@
+@import "../style/mixins";
+
+@mixin ssv-select-variant($options: ()) {
+	background-color: map-get($options, color);
+	color: map-get($options, color-contrast);
+}
