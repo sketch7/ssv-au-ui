@@ -13,7 +13,9 @@
 [![bitHound Overall Score](https://www.bithound.io/github/sketch7/ssv-au-ui/badges/score.svg)](https://www.bithound.io/github/sketch7/ssv-au-ui)
 [![npm version](https://badge.fury.io/js/%40ssv%2Fau-ui.svg)](https://badge.fury.io/js/%40ssv%2Fau-ui)
 
-Aurelia web UI components
+UI components library for Aurelia by Sketch7.
+
+*NOTE: This project is under development and is not intended for general production use yet.*
 
 In order to contribute please read the [Contribution guidelines][contribWiki].
 
@@ -28,7 +30,7 @@ Get library via [npm]
 npm install @ssv/au-ui --save
 
 # install peers
-npm install normalize-scss node-waves @ssv/core @ssv/au-core aurelia-dependency-injection aurelia-logging aurelia-ux --save
+npm install normalize-scss node-waves @ssv/core @ssv/au-core aurelia-dependency-injection aurelia-logging --save
 
 ```
 
@@ -89,7 +91,7 @@ Import fonts
 | waves            |                             Preview | [README][waves]   |              - |
 | badge            |                             Preview | [README][badge]   |              - |
 | icon             |                             Preview | [README][icon]    |              - |
-| checkbox         |                         Development |                   |              - |
+| checkbox         |                             Preview | [README][checkbox]|              - |
 | switch           |                         Not Started |                   |              - |
 | radio            |                         Not Started |                   |              - |
 | select           |                         Not Started |                   |              - |
@@ -107,6 +109,7 @@ Import fonts
 [waves]: ./src/waves/README.md
 [badge]: ./src/badge/README.md
 [icon]: ./src/icon/README.md
+[checkbox]: ./src/checkbox/README.md
 
 ## Getting Started
 

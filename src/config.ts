@@ -4,25 +4,29 @@ import { init as initWaves } from "node-waves";
 import { UiConfig } from "./config.model";
 import { badgeConfig } from "./badge/badge.config";
 import { buttonConfig } from "./button/button.config";
-import { wavesConfig } from "./waves/waves.config";
+import { checkboxConfig } from "./checkbox/checkbox.config";
 import { iconConfig } from "./icon/icon.config";
 import { selectConfig } from "./select/select.config";
+import { wavesConfig } from "./waves/waves.config";
+
 
 export function configure(aurelia: FrameworkConfiguration, config: UiConfig): Promise<void> {
 	aurelia.globalResources([
 		"./badge/badge.element",
-		"./input/input.element",
-		"./icon/icon.element",
-		"./select/select.element",
 		"./button/button.attribute",
+		"./checkbox/checkbox.element",
+		"./icon/icon.element",
+		"./input/input.element",
+		"./select/select.element",
 		"./waves/waves.attribute",
 	]);
 
 	Object.assign(badgeConfig, config.badge);
 	Object.assign(buttonConfig, config.button);
-	Object.assign(wavesConfig, config.waves);
+	Object.assign(checkboxConfig, config.checkbox);
 	Object.assign(iconConfig, config.icon);
 	Object.assign(selectConfig, config.select);
+	Object.assign(wavesConfig, config.waves);
 
 	// const service = aurelia.container.get(SampleClass) as SampleClass;
 	initWaves(config.waves);
