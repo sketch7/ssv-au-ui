@@ -1,3 +1,4 @@
+import * as _ from "lodash";
 import { LoggerFactory, ILog } from "@ssv/au-core";
 import { customElement, bindable } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
@@ -5,6 +6,7 @@ import { bindingMode } from "aurelia-binding";
 
 import { attributeUtil } from "../core/index";
 import { inputType, InputType } from "./input.model";
+import { inputConfig, InputConfig } from "./input.config";
 
 const PREFIX = "ssv-input";
 
@@ -18,6 +20,7 @@ export class InputElement {
 	}) value: string;
 	@bindable label: string;
 	@bindable disabled: boolean | string = false;
+	@bindable color: string;
 	@bindable type: InputType = inputType.text;
 	@bindable placeholder: string | undefined;
 	@bindable help: string | undefined;
@@ -26,6 +29,7 @@ export class InputElement {
 	controlId: string;
 	modifiers: string | undefined;
 	private input: HTMLInputElement;
+	private config: InputConfig;
 
 	get isActive(): boolean {
 		return !!this.value || !!this.placeholder || this.isFocused;
@@ -43,9 +47,14 @@ export class InputElement {
 	}
 
 	bind() {
+		this.setDefaults();
 		this.disabled = attributeUtil.getFlagAsBoolean(this.disabled);
 		this.modifiers = attributeUtil.generateBemStyleModifiers(this.modifier, PREFIX);
 		attributeUtil.setAsFlag(this.element, "disabled", this.disabled);
+
+		if (this.config.color) {
+			this.element.classList.add(`${PREFIX}--${this.config.color.toLowerCase()}`);
+		}
 	}
 
 	attached() {
@@ -66,12 +75,22 @@ export class InputElement {
 		this.modifiers = attributeUtil.generateBemStyleModifiers(newValue, PREFIX);
 	}
 
+	colorChanged(newValue: string, previousValue: string) {
+		attributeUtil.changeBemModifier(PREFIX, newValue.toLowerCase(), previousValue, this.element);
+	}
+
 	private onInputFocus() {
 		this.isFocused = true;
 	}
 
 	private onInputBlur() {
 		this.isFocused = false;
+	}
+
+	private setDefaults(): void {
+		this.config = _.defaults<InputConfig>({
+			color: this.color,
+		}, inputConfig);
 	}
 
 }
