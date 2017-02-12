@@ -17,7 +17,7 @@ $ssv-input-disabled-border: 1px dotted $ssv-input-disabled-color !default;
 	margin-top: 1rem;
 
 	&[disabled] {
-		label {
+		.ssv-input__label {
 			color: $ssv-input-disabled-color;
 		}
 	}
@@ -56,22 +56,21 @@ $ssv-input-disabled-border: 1px dotted $ssv-input-disabled-color !default;
 			color: $ssv-input-disabled-color;
 			border-bottom: $ssv-input-disabled-border;
 		}
-
-		// focused input
-		&:focus:not([readonly]) {
-			border-bottom: 1px solid $ssv-input-focus-color;
-			box-shadow: 0 1px 0 0 $ssv-input-focus-color;
-		}
-
-		// focused label
-		&:focus:not([readonly])+label {
-			color: $ssv-input-focus-color;
-		}
 	}
 	@include element("help") {
 		position: absolute;
 		top: 54px;
 		font-size: .75rem;
+	}
+	@include modifier("focused") {
+		.ssv-input__label {
+			color: $ssv-input-focus-color;
+		}
+
+		.ssv-input__input {
+			border-bottom: 1px solid $ssv-input-focus-color;
+			box-shadow: 0 1px 0 0 $ssv-input-focus-color;
+		}
 	}
 
 	// variants

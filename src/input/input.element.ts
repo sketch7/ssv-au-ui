@@ -28,14 +28,14 @@ export class InputElement {
 
 	controlId: string;
 	modifiers: string | undefined;
-	private input: HTMLInputElement;
-	private config: InputConfig;
+	isFocused = false;
 
 	get isActive(): boolean {
 		return !!this.value || !!this.placeholder || this.isFocused;
 	}
 
-	private isFocused = false;
+	private input: HTMLInputElement;
+	private config: InputConfig;
 	private logger: ILog;
 
 	constructor(
