@@ -45,7 +45,6 @@ export class InputElement {
 	bind() {
 		this.disabled = attributeUtil.getFlagAsBoolean(this.disabled);
 		this.modifiers = attributeUtil.generateBemStyleModifiers(this.modifier, PREFIX);
-		this.input.disabled = this.disabled;
 		attributeUtil.setAsFlag(this.element, "disabled", this.disabled);
 	}
 
@@ -60,9 +59,6 @@ export class InputElement {
 	}
 
 	disabledChanged(newValue: boolean) {
-		if (this.input) {
-			this.input.disabled = !!newValue;
-		}
 		attributeUtil.setAsFlag(this.element, "disabled", newValue);
 	}
 
