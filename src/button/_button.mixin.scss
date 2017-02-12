@@ -53,7 +53,7 @@
 			border-color: $color;
 		}
 
-		&:hover(:not([disabled])) {
+		&:hover:not([disabled]) {
 			color: $color-contrast;
 			background: $color;
 		}
