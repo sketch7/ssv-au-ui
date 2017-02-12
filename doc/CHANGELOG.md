@@ -1,5 +1,20 @@
+<a name="0.5.1"></a>
+## [0.5.1](https://github.com/sketch7/ssv-au-ui/compare/0.5.0...v0.5.1) (2017-02-12)
+
+
+### Bug Fixes
+
+* **button:** fixed outline style to be displayed correctly for variants ([cc027ad](https://github.com/sketch7/ssv-au-ui/commit/cc027ad))
+
+
+### Features
+
+* **checkbox:** added checkbox global config ([4f0efc0](https://github.com/sketch7/ssv-au-ui/commit/4f0efc0))
+
+
+
 <a name="0.5.0"></a>
-# [0.5.0](https://github.com/sketch7/ssv-au-ui/compare/0.4.0...v0.5.0) (2017-02-12)
+# [0.5.0](https://github.com/sketch7/ssv-au-ui/compare/0.4.0...0.5.0) (2017-02-12)
 
 
 ### Features
