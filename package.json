@@ -28,18 +28,11 @@
     "url": "https://github.com/sketch7/ssv-au-ui"
   },
   "devDependencies": {
-    "@ssv/au-core": "^0.3.3",
-    "@ssv/core": "^0.3.4",
     "@ssv/tools": "^0.4.0",
     "@types/jasmine": "^2.5.37",
     "@types/lodash": "^4.14.38",
     "@types/node-waves": "^0.7.0",
-    "aurelia-dependency-injection": "^1.2.0",
-    "aurelia-event-aggregator": "^1.0.1",
-    "aurelia-framework": "^1.0.8",
-    "aurelia-logging": "^1.2.0",
     "aurelia-polyfills": "^1.1.1",
-    "aurelia-route-recognizer": "^1.1.0",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-bump": "^2.1.0",
@@ -58,9 +51,7 @@
     "karma-jasmine": "^1.0.2",
     "karma-mocha-reporter": "^2.2.0",
     "karma-typescript-preprocessor": "^0.3.0",
-    "lodash": "^4.17.2",
     "merge2": "^1.0.2",
-    "node-waves": "^0.7.5",
     "require-dir": "^0.3.1",
     "run-sequence": "^1.2.2",
     "systemjs": "^0.19.41",
@@ -68,13 +59,13 @@
     "typescript": "^2.0.9",
     "yargs": "^6.3.0"
   },
-  "dependencies": {},
-  "peerDependencies": {
+  "dependencies": {
     "@ssv/au-core": "^0.3.3",
     "@ssv/core": "^0.3.4",
+    "aurelia-binding": "^1.1.0",
     "aurelia-dependency-injection": "^1.0.0",
     "aurelia-framework": "^1.0.8",
-    "aurelia-logging": "^1.0.0",
+    "aurelia-templating": "^1.2.0",
     "node-waves": "^0.7.5",
     "normalize-scss": "^6.0.0"
   }
