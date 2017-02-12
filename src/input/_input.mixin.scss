@@ -1,7 +1,10 @@
 @import "../style/mixins";
+@mixin ssv-input-variant($options: ()) {
+	$color: map-get($options, color);
+	$defaults: ( focused-color: $color );
+	$options: map-merge($defaults, $options);
 
-@mixin ssv-input-variant($params: ()) {
-	$color: map-get($params, color);
+	$focused-color: map-get($options, focused-color);
 
 	.ssv-input {
 		@include element("label") {
@@ -15,6 +18,11 @@
 			&:focus {
 				border-bottom: 1px solid $color;
 				box-shadow: 0 1px 0 0 $color;
+			}
+		}
+		@include modifier("focused") {
+			.ssv-input__label {
+				color: $focused-color;
 			}
 		}
 	}
