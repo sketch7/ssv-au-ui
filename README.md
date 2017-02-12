@@ -89,7 +89,7 @@ Import fonts
 | waves            |                             Preview | [README][waves]   |              - |
 | badge            |                             Preview | [README][badge]   |              - |
 | icon             |                             Preview | [README][icon]    |              - |
-| checkbox         |                         Development |                   |              - |
+| checkbox         |                             Preview | [README][checkbox]|              - |
 | switch           |                         Not Started |                   |              - |
 | radio            |                         Not Started |                   |              - |
 | select           |                         Not Started |                   |              - |
@@ -107,6 +107,7 @@ Import fonts
 [waves]: ./src/waves/README.md
 [badge]: ./src/badge/README.md
 [icon]: ./src/icon/README.md
+[checkbox]: ./src/checkbox/README.md
 
 ## Getting Started
 

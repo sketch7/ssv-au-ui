@@ -11,6 +11,7 @@ export function configure(aurelia: FrameworkConfiguration, config: UiConfig): Pr
 	aurelia.globalResources([
 		"./badge/badge.element",
 		"./input/input.element",
+		"./checkbox/checkbox.element",
 		"./icon/icon.element",
 		"./button/button.attribute",
 		"./waves/waves.attribute",

@@ -5,7 +5,7 @@
  * @param {(string | boolean)} value
  * @returns {boolean} returns a boolean value from attribute value as flag.
  */
-export function getFlagAsBoolean(value: string | boolean): boolean {
+export function getFlagAsBoolean(value: string | boolean | null | undefined): boolean {
 	return value === true || value === "true" || value === "";
 }
 
