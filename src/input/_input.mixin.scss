@@ -1,7 +1,9 @@
 @import "../style/mixins";
 @mixin ssv-input-variant($options: ()) {
 	$color: map-get($options, color);
-	$defaults: ( focused-color: $color );
+	$defaults: (
+		focused-color: $color
+	);
 	$options: map-merge($defaults, $options);
 
 	$focused-color: map-get($options, focused-color);
