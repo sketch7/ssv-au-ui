@@ -13,7 +13,9 @@
 [![bitHound Overall Score](https://www.bithound.io/github/sketch7/ssv-au-ui/badges/score.svg)](https://www.bithound.io/github/sketch7/ssv-au-ui)
 [![npm version](https://badge.fury.io/js/%40ssv%2Fau-ui.svg)](https://badge.fury.io/js/%40ssv%2Fau-ui)
 
-Aurelia web UI components
+UI components library for Aurelia by Sketch7.
+
+*NOTE: This project is under development and is not intended for general production use yet.*
 
 In order to contribute please read the [Contribution guidelines][contribWiki].
 
