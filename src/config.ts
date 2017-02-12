@@ -6,6 +6,7 @@ import { badgeConfig } from "./badge/badge.config";
 import { buttonConfig } from "./button/button.config";
 import { checkboxConfig } from "./checkbox/checkbox.config";
 import { iconConfig } from "./icon/icon.config";
+import { inputConfig } from "./input/input.config";
 import { wavesConfig } from "./waves/waves.config";
 
 export function configure(aurelia: FrameworkConfiguration, config: UiConfig): Promise<void> {
@@ -22,6 +23,7 @@ export function configure(aurelia: FrameworkConfiguration, config: UiConfig): Pr
 	Object.assign(buttonConfig, config.button);
 	Object.assign(checkboxConfig, config.checkbox);
 	Object.assign(iconConfig, config.icon);
+	Object.assign(inputConfig, config.input);
 	Object.assign(wavesConfig, config.waves);
 
 	// const service = aurelia.container.get(SampleClass) as SampleClass;

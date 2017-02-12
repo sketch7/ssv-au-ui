@@ -1,11 +1,9 @@
 @import "../style/vars";
 @import "../style/mixins";
 @import "./input.mixin";
+@import "./input.variant";
 
 $ssv-input-focus-color: $ssv-secondary-color !default;
-$ssv-input-success-color: $ssv-success-color !default;
-$ssv-input-danger-color: $ssv-danger-color !default;
-$ssv-input-warn-color: $ssv-warn-color !default;
 $ssv-input-disabled-color: rgba(0,0,0, .26) !default;
 $ssv-input-transition: all .3s !default;
 $ssv-input-border-color: $ssv-master-color !default;
@@ -19,7 +17,7 @@ $ssv-input-disabled-border: 1px dotted $ssv-input-disabled-color !default;
 	margin-top: 1rem;
 
 	&[disabled] {
-		label {
+		.ssv-input__label {
 			color: $ssv-input-disabled-color;
 		}
 	}
@@ -58,31 +56,38 @@ $ssv-input-disabled-border: 1px dotted $ssv-input-disabled-color !default;
 			color: $ssv-input-disabled-color;
 			border-bottom: $ssv-input-disabled-border;
 		}
-
-		// focused input
-		&:focus:not([readonly]) {
-			border-bottom: 1px solid $ssv-input-focus-color;
-			box-shadow: 0 1px 0 0 $ssv-input-focus-color;
-		}
-
-		// focused label
-		&:focus:not([readonly])+label {
-			color: $ssv-input-focus-color;
-		}
 	}
 	@include element("help") {
 		position: absolute;
 		top: 54px;
 		font-size: .75rem;
 	}
-	@include modifier("success") {
-		 @include ssv-input-variant($ssv-input-success-color);
+	@include modifier("focused") {
+		.ssv-input__label {
+			color: $ssv-input-focus-color;
+		}
+
+		.ssv-input__input {
+			border-bottom: 1px solid $ssv-input-focus-color;
+			box-shadow: 0 1px 0 0 $ssv-input-focus-color;
+		}
 	}
-	@include modifier("error") {
-		 @include ssv-input-variant($ssv-input-danger-color);
+
+	// variants
+	@include modifier("primary") {
+		 @include ssv-input-variant($ssv-input-primary-variant);
+	}
+	@include modifier("accent") {
+		 @include ssv-input-variant($ssv-input-accent-variant);
+	}
+	@include modifier("danger") {
+		 @include ssv-input-variant($ssv-input-danger-variant);
 	}
 	@include modifier("warn") {
-		 @include ssv-input-variant($ssv-input-warn-color);
+		 @include ssv-input-variant($ssv-input-warn-variant);
+	}
+	@include modifier("success") {
+		 @include ssv-input-variant($ssv-input-success-variant);
 	}
 
 }

@@ -1,9 +1,10 @@
-<template role="textbox" class="ssv-input ${modifiers}">
+<template role="textbox" class="ssv-input ${modifiers} ${isFocused ? 'ssv-input--focused' : ''}">
 	<input placeholder="${placeholder}"
 		id="${controlId}"
 		type.bind="type"
 		value.bind="value"
 		class="ssv-input__input"
+		disabled.bind="disabled"
 		ref="input">
 	<label class="ssv-input__label ${isActive ? 'ssv-input__label--active' : ''}"
 		for="${controlId}">
