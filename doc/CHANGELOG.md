@@ -1,5 +1,15 @@
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/sketch7/ssv-au-ui/compare/0.4.0...v0.5.0) (2017-02-12)
+
+
+### Features
+
+* **checkbox:** initial checkbox implementation ([ba48fea](https://github.com/sketch7/ssv-au-ui/commit/ba48fea))
+
+
+
 <a name="0.4.0"></a>
-# [0.4.0](https://github.com/sketch7/ssv-au-ui/compare/0.3.1...v0.4.0) (2017-02-05)
+# [0.4.0](https://github.com/sketch7/ssv-au-ui/compare/0.3.1...0.4.0) (2017-02-05)
 
 
 ### Features
