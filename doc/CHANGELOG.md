@@ -1,5 +1,32 @@
+<a name="0.5.3"></a>
+## [0.5.3](https://github.com/sketch7/ssv-au-ui/compare/0.5.2...v0.5.3) (2017-02-12)
+
+
+### Bug Fixes
+
+* **input:** fixed small unintended visual with variant border had always shadows, not only when focused ([0401f2a](https://github.com/sketch7/ssv-au-ui/commit/0401f2a))
+
+
+### Code Refactoring
+
+* **input:** changed input sass variants to use sass maps + added primary, accent colors ([cf31d4b](https://github.com/sketch7/ssv-au-ui/commit/cf31d4b))
+
+
+### Features
+
+* **input:** added color as a new field to be consistent with other components ([fafc3bf](https://github.com/sketch7/ssv-au-ui/commit/fafc3bf))
+* **input:** added global config for input ([92f4935](https://github.com/sketch7/ssv-au-ui/commit/92f4935))
+* **input:** variant focused-color is now configurable and takes initial value from color ([e6bb65a](https://github.com/sketch7/ssv-au-ui/commit/e6bb65a))
+
+
+### BREAKING CHANGES
+
+* input: input modifier `ssv-input--error` has been changed to `ssv-input--danger` for consistency
+
+
+
 <a name="0.5.2"></a>
-## [0.5.2](https://github.com/sketch7/ssv-au-ui/compare/0.5.1...v0.5.2) (2017-02-12)
+## [0.5.2](https://github.com/sketch7/ssv-au-ui/compare/0.5.1...0.5.2) (2017-02-12)
 
 
 ### Features
