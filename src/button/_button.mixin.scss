@@ -24,7 +24,7 @@
 	// raised
 	&.ssv-button--raised {
 		color: $color-contrast;
-		background: $color;
+		background-color: $color;
 
 		&:hover {
 			background-color: rgba($color, .8);
@@ -35,7 +35,7 @@
 		}
 
 		&[disabled] {
-			background: rgba($color, .4);
+			background-color: rgba($color, .4);
 		}
 
 		&.ssv-button--focused {
@@ -55,7 +55,7 @@
 
 		&:hover:not([disabled]) {
 			color: $color-contrast;
-			background: $color;
+			background-color: $color;
 		}
 
 		&[disabled] {
