@@ -2,6 +2,7 @@ import { BadgeConfig } from "./badge/badge.config";
 import { ButtonConfig } from "./button/button.config";
 import { CheckboxConfig } from "./checkbox/checkbox.config";
 import { IconConfig } from "./icon/icon.config";
+import { InputConfig } from "./input/input.config";
 import { WavesConfig } from "./waves/waves.config";
 
 export interface UiConfig {
@@ -9,5 +10,6 @@ export interface UiConfig {
 	button?: Partial<ButtonConfig>;
 	checkbox?: Partial<CheckboxConfig>;
 	icon?: Partial<IconConfig>;
+	input?: Partial<InputConfig>;
 	waves?: Partial<WavesConfig>;
 }
