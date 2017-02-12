@@ -14,9 +14,11 @@
 			color: $color;
 		}
 		@include element("input") {
-			&,
+			& {
+				border-bottom-color: $color;
+			}
+
 			&:focus {
-				border-bottom: 1px solid $color;
 				box-shadow: 0 1px 0 0 $color;
 			}
 		}
