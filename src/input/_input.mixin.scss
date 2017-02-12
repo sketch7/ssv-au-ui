@@ -1,7 +1,8 @@
 @import "../style/mixins";
-// @mixin ssv-input-variant($params: ()) {
-// 	$color: map-get($params, color);
-@mixin ssv-input-variant($color) {
+
+@mixin ssv-input-variant($params: ()) {
+	$color: map-get($params, color);
+
 	.ssv-input {
 		@include element("label") {
 			color: $color;
