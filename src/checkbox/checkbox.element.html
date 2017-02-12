@@ -1,0 +1,16 @@
+<template role="checkbox"
+	class="ssv-checkbox ${checked ? 'ssv-checkbox--checked' : 'ssv-checkbox--unchecked'} ${isIndeterminate ? 'ssv-checkbox--indeterminate' : ''}  ${modifiers}"
+	tabindex="${disabled ? -1 : 0}">
+	<input type="checkbox"
+		class="ssv-checkbox__input"
+		checked.bind="checked"
+		disabled.bind="disabled"
+		id="${controlId}"
+		tabindex="-1" />
+	<span class="ssv-checkbox__visual-cue-outer">
+		<span class="ssv-checkbox__visual-cue"></span>
+	</span>
+	<label class="ssv-checkbox__label">
+		${label}
+	</label>
+</template>

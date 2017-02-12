@@ -1,0 +1,115 @@
+@import "../style/vars";
+@import "../style/mixins";
+@import "./checkbox.variant";
+@import "./checkbox.mixin";
+
+.ssv-checkbox {
+	position: relative;
+	display: inline-flex;
+	height: 25px;
+	line-height: 25px;
+	padding-bottom: 5px;
+	cursor: pointer;
+	user-select: none;
+	vertical-align: middle;
+	outline: 0;
+	@include element("input") {
+		position: absolute;
+		width: 0;
+		height: 0;
+		margin: 0;
+		padding: 0;
+		opacity: 0;
+		appearance: none;
+		border: none;
+	}
+	@include element("label") {
+		padding-left: 10px;
+		height: 25px;
+		line-height: 25px;
+		font-size: 1rem;
+		cursor: pointer;
+		vertical-align: top;
+	}
+	@include element("visual-cue") {
+		position: absolute;
+		box-sizing: border-box;
+		cursor: pointer;
+		transition: .2s;
+	}
+	@include element("visual-cue-outer") {
+		position: relative;
+		box-sizing: border-box;
+	}
+	@include modifier("unchecked") {
+		&[disabled] {
+			.ssv-checkbox__visual-cue {
+				border: none;
+				left: 2px;
+			}
+		}
+	}
+	@include modifier("before") {
+		.ssv-checkbox__label {
+			padding-right: 10px;
+			padding-left: 0;
+		}
+
+		.ssv-checkbox__visual-cue-outer {
+			order: 1;
+		}
+	}
+	@include modifier("focused") {
+		outline: 0;
+
+		.ssv-checkbox__visual-cue-outer {
+			transform: scale(1);
+			box-shadow: 0 0 0 10px rgba(0,0,0,.1);
+			background-color: rgba(0,0,0,.1);
+			border-color: $ssv-checkbox-unchecked-color;
+		}
+	}
+
+	&[disabled] {
+		cursor: default;
+
+		.ssv-checkbox__label {
+			cursor: default;
+			color: $ssv-checkbox-disabled-color;
+		}
+
+		.ssv-checkbox__visual-cue {
+			cursor: default;
+		}
+
+	}
+
+	// skin type
+	@include modifier("minimal") {
+		 @include ssv-checkbox-minimal-skin();
+	}
+	@include modifier("filled") {
+		 @include ssv-checkbox-filled-skin();
+	}
+
+	// default
+	@include ssv-checkbox-variant(( color: $ssv-checkbox-default-color ));
+
+	// variants
+	@include modifier("primary") {
+		 @include ssv-checkbox-variant($ssv-checkbox-primary-variant);
+	}
+	@include modifier("accent") {
+		 @include ssv-checkbox-variant($ssv-checkbox-accent-variant);
+	}
+	@include modifier("danger") {
+		 @include ssv-checkbox-variant($ssv-checkbox-danger-variant);
+	}
+	@include modifier("warn") {
+		 @include ssv-checkbox-variant($ssv-checkbox-warn-variant);
+	}
+	@include modifier("success") {
+		 @include ssv-checkbox-variant($ssv-checkbox-success-variant);
+	}
+
+}
