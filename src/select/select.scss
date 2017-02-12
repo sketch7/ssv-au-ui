@@ -6,27 +6,46 @@
 $ssv-select-default-color: rgba($ssv-color-grey-500, .2) !default;
 $ssv-select-default-color-contrast: $ssv-color-black !default;
 
+$ssv-select-active-underline-fill: green !default;
+$ssv-select-inactive-underline-fill: blue !default;
+
 .ssv-select {
 	color: $ssv-select-default-color-contrast;
-	background-color: $ssv-select-default-color;
+	min-width: 300px;
+	@include element("input-box") {
+		background-color: red;
+	}
+
+	@include element("input-underline") {
+		width: 100%;
+		height: 1px;
+		background-color: $ssv-select-inactive-underline-fill;
+		@include modifier("active") {
+			background-color: $ssv-select-active-underline-fill;
+			transition: width 250ms ease-out;
+			width: 100%;
+			height: 2px;
+			margin: 0 auto;
+		}
+	}
 
 	// variants
 	@include modifier("primary") {
-		@include ssv-select-variant($ssv-select-primary-variant);
+		 @include ssv-select-variant($ssv-select-primary-variant);
 	}
 	@include modifier("accent") {
-		@include ssv-select-variant($ssv-select-accent-variant);
+		 @include ssv-select-variant($ssv-select-accent-variant);
 	}
 	@include modifier("success") {
-		@include ssv-select-variant($ssv-select-success-variant);
+		 @include ssv-select-variant($ssv-select-success-variant);
 	}
 	@include modifier("danger") {
-		@include ssv-select-variant($ssv-select-danger-variant);
+		 @include ssv-select-variant($ssv-select-danger-variant);
 	}
 	@include modifier("warn") {
-		@include ssv-select-variant($ssv-select-warn-variant);
+		 @include ssv-select-variant($ssv-select-warn-variant);
 	}
 	@include modifier("info") {
-		@include ssv-select-variant($ssv-select-info-variant);
+		 @include ssv-select-variant($ssv-select-info-variant);
 	}
 }

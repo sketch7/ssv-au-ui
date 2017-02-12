@@ -8,3 +8,9 @@ export const selectType = {
 };
 
 export const supportedSelectTypes: string[] = _.values<string>(selectType);
+
+export interface SelectItem {
+	value: string;
+	text: string;
+	isSelected?: boolean;
+}

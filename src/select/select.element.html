@@ -1,4 +1,13 @@
 <template role="select" class="ssv-select ${modifiers}">
-	hello!
-	<slot></slot>
+	<div class="ssv-select__input-box" ref="div">
+		<span class="ssv-select__label">${placeholder}</span>
+	</div>
+	<div class="ssv-select__input-underline">
+		<div class="underline-fill"></div>
+	</div>
+
+	<ul>
+		<li repeat.for="option of options"
+			value.bind="option.value">${option.text}</li>
+	</ul>
 </template>
