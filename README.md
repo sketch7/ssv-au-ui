@@ -30,7 +30,7 @@ Get library via [npm]
 npm install @ssv/au-ui --save
 
 # install peers
-npm install normalize-scss node-waves @ssv/core @ssv/au-core aurelia-dependency-injection aurelia-logging aurelia-ux --save
+npm install normalize-scss node-waves @ssv/core @ssv/au-core aurelia-dependency-injection aurelia-logging --save
 
 ```
 

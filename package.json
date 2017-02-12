@@ -40,7 +40,6 @@
     "aurelia-logging": "^1.2.0",
     "aurelia-polyfills": "^1.1.1",
     "aurelia-route-recognizer": "^1.1.0",
-    "aurelia-ux": "^0.1.14",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-bump": "^2.1.0",
@@ -76,7 +75,6 @@
     "aurelia-dependency-injection": "^1.0.0",
     "aurelia-framework": "^1.0.8",
     "aurelia-logging": "^1.0.0",
-    "aurelia-ux": "^0.1.14",
     "node-waves": "^0.7.5",
     "normalize-scss": "^6.0.0"
   }
