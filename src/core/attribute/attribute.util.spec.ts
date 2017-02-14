@@ -15,7 +15,7 @@ describe("AttributeUtil", () => {
 				}
 			});
 		});
-		describe("given possible falsey values", () => {
+		describe("given possible falsy values", () => {
 			const truthyValues = [
 				null,
 				"false",
