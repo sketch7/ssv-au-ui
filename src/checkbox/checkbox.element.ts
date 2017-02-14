@@ -5,7 +5,7 @@ import { customElement, bindable } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
 import { bindingMode } from "aurelia-binding";
 
-import { attributeUtil } from "../core/index";
+import { attributeUtil, ElementFocusedController } from "../core/index";
 import { checkboxConfig, CheckboxConfig } from "./checkbox.config";
 import {
 	LabelPositionType,
@@ -15,7 +15,6 @@ import {
 } from "./checkbox.model";
 
 const PREFIX = "ssv-checkbox";
-const FOCUSED_CLASS = `${PREFIX}--focused`;
 
 @autoinject()
 @customElement(PREFIX)
@@ -42,7 +41,7 @@ export class CheckboxElement {
 
 	private logger: ILog;
 	private config: CheckboxConfig;
-	private isMouseDown = false;
+	private focusedController: ElementFocusedController;
 
 	constructor(
 		loggerFactory: LoggerFactory,
@@ -50,6 +49,7 @@ export class CheckboxElement {
 	) {
 		this.logger = loggerFactory.get("input");
 		this.controlId = `${PREFIX}-${CheckboxElement.id++}`;
+		this.focusedController = new ElementFocusedController(PREFIX, element);
 	}
 
 	bind() {
@@ -74,19 +74,15 @@ export class CheckboxElement {
 	}
 
 	attached() {
+		this.focusedController.init();
 		this.element.addEventListener("click", this.onClick.bind(this));
 		this.element.addEventListener("keypress", this.onFocusedKeyPress.bind(this));
-		this.element.addEventListener("mousedown", this.onMouseDown.bind(this));
-		this.element.addEventListener("focus", this.onFocus.bind(this));
-		this.element.addEventListener("blur", this.onBlur.bind(this));
 	}
 
 	detached() {
+		this.focusedController.destroy();
 		this.element.removeEventListener("click", this.onClick);
 		this.element.removeEventListener("keypress", this.onFocusedKeyPress);
-		this.element.removeEventListener("mousedown", this.onMouseDown);
-		this.element.removeEventListener("focus", this.onFocus);
-		this.element.removeEventListener("blur", this.onBlur);
 	}
 
 	disabledChanged(newValue: boolean) {
@@ -137,22 +133,6 @@ export class CheckboxElement {
 		this.logger.debug("onFocusedKeyPress", "keypressed! toggle", { e });
 		this.checked = !this.checked;
 		e.preventDefault();
-	}
-
-	private onMouseDown() {
-		this.isMouseDown = true;
-		// this fixes focus bug - https://marcysutton.com/button-focus-hell/
-		setTimeout(() => this.isMouseDown = false, 100);
-	}
-
-	private onFocus() {
-		if (!this.isMouseDown) {
-			this.element.classList.add(FOCUSED_CLASS);
-		}
-	}
-
-	private onBlur() {
-		this.element.classList.remove(FOCUSED_CLASS);
 	}
 
 	private setDefaults(): void {
