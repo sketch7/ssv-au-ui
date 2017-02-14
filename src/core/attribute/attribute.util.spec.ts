@@ -6,7 +6,8 @@ describe("AttributeUtil", () => {
 		describe("given possible truthy values", () => {
 			const truthyValues = [
 				true,
-				"true"
+				"true",
+				""
 			];
 			it("should return true", () => {
 				for (let value of truthyValues) {
