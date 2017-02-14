@@ -1,4 +1,4 @@
-import { getFlagAsBoolean } from "./attribute.util";
+import { getFlagAsBoolean, generateBemStyleModifiers } from "./attribute.util";
 
 describe("AttributeUtil", () => {
 
@@ -28,6 +28,15 @@ describe("AttributeUtil", () => {
 					let result = getFlagAsBoolean(value);
 					expect(result).toBe(false);
 				}
+			});
+		});
+	});
+
+	describe(generateBemStyleModifiers.name, () => {
+		describe("given values are passed", () => {
+			it("should return prefixed modifiers", () => {
+				const result = generateBemStyleModifiers("awesome big", "ssv-au");
+				expect(result).toBe("ssv-au--awesome ssv-au--big");
 			});
 		});
 	});
