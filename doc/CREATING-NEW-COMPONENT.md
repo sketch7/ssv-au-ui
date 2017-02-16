@@ -12,4 +12,3 @@
 Create a sample usages of component.
  - Add it within `component.service`
  - Copy component structure e.g. `badge`
- 

@@ -1,0 +1,17 @@
+@import "../style/vars";
+@import "../style/mixins";
+@import "./snackbar.variant";
+@import "./snackbar.mixin";
+
+.ssv-snackbar {
+
+
+	// skin type
+	@include modifier("minimal") {
+		 @include ssv-snackbar-minimal-skin();
+	}
+
+	// default
+	@include ssv-snackbar-variant(( color: $ssv-snackbar-default-color ));
+
+}
