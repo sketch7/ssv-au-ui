@@ -1,4 +1,5 @@
 import * as _ from "lodash";
+import { DOM } from "aurelia-pal";
 import { customElement, bindable } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
 import { LoggerFactory, ILog } from "@ssv/au-core";
@@ -12,35 +13,40 @@ const PREFIX = "ssv-select";
 @autoinject()
 @customElement(PREFIX)
 export class SelectElement {
+	static id = 0;
 
 	@bindable color: string;
 	@bindable placeholder: string;
 	@bindable selected: SelectItem;
 	@bindable selectedValue = "";
-	@bindable selectedClass = "selected"; // todo move to config
+	@bindable selectedClass: string;
+	@bindable autoClose: boolean;
 	@bindable options: SelectItem[] = [];
 
 
 	@bindable type: SelectType = selectType.single;
 	@bindable modifier: string | undefined;
 
+	controlId: string;
 	modifiers: string | undefined;
+	isOpen = false;
 
-	private isFocused = false;
 	private logger: ILog;
 	private config: SelectConfig;
-	private div: HTMLDivElement;
+	private inputBox: HTMLDivElement;
 
 	constructor(
 		private element: Element,
 		loggerFactory: LoggerFactory,
 	) {
 		this.logger = loggerFactory.get("selectElement");
+		this.controlId = `${PREFIX}-${SelectElement.id++}`;
 	}
 
 	bind() {
 		this.setDefaults();
 		this.modifiers = attributeUtil.generateBemStyleModifiers(this.modifier, PREFIX);
+		this.selectedClass = attributeUtil.generateBemStyleModifiers(this.config.selectedClass, PREFIX) as string;
 
 		const type = this.config.type.toLowerCase();
 		this.validateType(type);
@@ -52,28 +58,36 @@ export class SelectElement {
 	}
 
 	attached() {
-		this.logger.debug("attached", "init", this.div);
-		this.div.addEventListener("focus", this.onInputFocus.bind(this));
-		this.div.addEventListener("blur", this.onInputBlur.bind(this));
+		this.inputBox.addEventListener("click", this.onClick.bind(this));
 	}
 
 	detached() {
-		this.div.removeEventListener("focus", this.onInputFocus);
-		this.div.removeEventListener("blur", this.onInputBlur);
+		this.inputBox.removeEventListener("click", this.onClick);
 	}
 
 	modifierChanged(newValue: string | undefined) {
 		this.modifiers = attributeUtil.generateBemStyleModifiers(newValue, PREFIX);
 	}
 
-	private onInputFocus() {
-		this.logger.debug("onInputFocus", "init");
-		this.isFocused = true;
+	onChange(value: SelectItem) {
+		const event = DOM.createCustomEvent("change", { bubbles: true, detail: { previous: this.selected, value } });
+
+		for (let option of this.options) {
+			option.isSelected = false;
+		}
+
+		this.selected = value;
+		this.selected.isSelected = true;
+
+		if (this.config.autoClose) {
+			this.isOpen = false;
+		}
+
+		this.element.dispatchEvent(event);
 	}
 
-	private onInputBlur() {
-		this.logger.debug("onInputBlur", "init");
-		this.isFocused = false;
+	private onClick() {
+		this.isOpen = !this.isOpen;
 	}
 
 	private validateType(type: string | SelectType) {
@@ -85,7 +99,9 @@ export class SelectElement {
 	private setDefaults(): void {
 		this.config = _.defaults<SelectConfig>({
 			type: this.type,
-			color: this.color
+			color: this.color,
+			autoClose: this.autoClose,
+			selectedClass: this.selectedClass,
 		}, selectConfig);
 	}
 

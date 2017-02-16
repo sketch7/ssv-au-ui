@@ -1,13 +1,13 @@
 <template role="select" class="ssv-select ${modifiers}">
-	<div class="ssv-select__input-box" ref="div">
+	<div class="ssv-select__input-box" ref="inputBox">
 		<span class="ssv-select__label">${placeholder}</span>
 	</div>
-	<div class="ssv-select__input-underline">
-		<div class="underline-fill"></div>
+	<div class="ssv-select__input-underline ${isOpen ? 'ssv-select__input-underline--active' : ''}">
 	</div>
 
-	<ul>
+	<ul if.bind="isOpen">
 		<li repeat.for="option of options"
-			value.bind="option.value">${option.text}</li>
+			class="ssv-select ${option.isSelected ? selectedClass : ''}"
+			click.delegate="onChange(option)">${option.text}</li>
 	</ul>
 </template>
