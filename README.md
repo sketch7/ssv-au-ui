@@ -92,12 +92,12 @@ Import fonts
 | badge            |                             Preview | [README][badge]   |              - |
 | icon             |                             Preview | [README][icon]    |              - |
 | checkbox         |                             Preview | [README][checkbox]|              - |
+| select           |                         Development |                   |              - |
+| toast            |                         Development |                   |              - |
 | switch           |                         Not Started |                   |              - |
 | radio            |                         Not Started |                   |              - |
-| select           |                         Not Started |                   |              - |
 | datepicker       |                         Not Started |                   |              - |
 | alert            |                         Not Started |                   |              - |
-| toast            |                         Not Started |                   |              - |
 | modal            |                         Not Started |                   |              - |
 | collection       |                         Not Started |                   |              - |
 | tabs             |                         Not Started |                   |              - |
