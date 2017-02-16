@@ -8,7 +8,7 @@ export interface SnackbarOptions {
  */
 export class SnackbarService {
 
-	open(_message: string, _action?: () => void, _options?: SnackbarOptions) {
+	open(_message: string, _action?: string, _options?: SnackbarOptions) {
 		/*stub*/
 	}
 
