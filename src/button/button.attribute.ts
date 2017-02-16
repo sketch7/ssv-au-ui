@@ -19,11 +19,8 @@ export class ButtonAttribute {
 	}) color: string;
 	@bindable type: ButtonType;
 	@bindable size: ElementSize;
-	@bindable modifier: string | undefined;
 	@bindable disableRipple: boolean;
 	@bindable rippleType: string;
-
-	modifiers: string | undefined;
 
 	private logger: ILog;
 	private config: ButtonConfig;
@@ -40,7 +37,6 @@ export class ButtonAttribute {
 
 	bind() {
 		this.setDefaults();
-		this.modifiers = attributeUtil.generateBemStyleModifiers(this.modifier, PREFIX);
 
 		const type = this.config.type.toLowerCase();
 		this.validateType(type);
@@ -63,10 +59,6 @@ export class ButtonAttribute {
 
 	detached() {
 		this.focusedController.destroy();
-	}
-
-	modifierChanged(newValue: string | undefined) {
-		this.modifiers = attributeUtil.generateBemStyleModifiers(newValue, PREFIX);
 	}
 
 	colorChanged(newValue: string, previousValue: string) {
