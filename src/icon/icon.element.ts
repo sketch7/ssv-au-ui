@@ -54,6 +54,11 @@ export class IconElement {
 		}
 	}
 
+	nameChanged(newValue: string | undefined, previous: string | undefined) {
+		this.element.classList.remove(`${this.config.prefix}${previous}`);
+		this.element.classList.add(`${this.config.prefix}${newValue}`);
+	}
+
 	modifierChanged(newValue: string | undefined) {
 		this.modifiers = attributeUtil.generateBemStyleModifiers(newValue, ELEMENT_PREFIX);
 	}
