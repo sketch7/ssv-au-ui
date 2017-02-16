@@ -1,3 +1,4 @@
+import * as _ from "lodash";
 import { LoggerFactory, ILog } from "@ssv/au-core";
 import { customElement, bindable } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
@@ -5,6 +6,7 @@ import { bindingMode } from "aurelia-binding";
 
 import { attributeUtil } from "../core/index";
 import { inputType, InputType } from "./input.model";
+import { inputConfig, InputConfig } from "./input.config";
 
 const PREFIX = "ssv-input";
 
@@ -18,6 +20,7 @@ export class InputElement {
 	}) value: string;
 	@bindable label: string;
 	@bindable disabled: boolean | string = false;
+	@bindable color: string;
 	@bindable type: InputType = inputType.text;
 	@bindable placeholder: string | undefined;
 	@bindable help: string | undefined;
@@ -25,13 +28,14 @@ export class InputElement {
 
 	controlId: string;
 	modifiers: string | undefined;
-	private input: HTMLInputElement;
+	isFocused = false;
 
 	get isActive(): boolean {
 		return !!this.value || !!this.placeholder || this.isFocused;
 	}
 
-	private isFocused = false;
+	private input: HTMLInputElement;
+	private config: InputConfig;
 	private logger: ILog;
 
 	constructor(
@@ -43,10 +47,14 @@ export class InputElement {
 	}
 
 	bind() {
+		this.setDefaults();
 		this.disabled = attributeUtil.getFlagAsBoolean(this.disabled);
 		this.modifiers = attributeUtil.generateBemStyleModifiers(this.modifier, PREFIX);
-		this.input.disabled = this.disabled;
 		attributeUtil.setAsFlag(this.element, "disabled", this.disabled);
+
+		if (this.config.color) {
+			this.element.classList.add(`${PREFIX}--${this.config.color.toLowerCase()}`);
+		}
 	}
 
 	attached() {
@@ -60,14 +68,15 @@ export class InputElement {
 	}
 
 	disabledChanged(newValue: boolean) {
-		if (this.input) {
-			this.input.disabled = !!newValue;
-		}
 		attributeUtil.setAsFlag(this.element, "disabled", newValue);
 	}
 
 	modifierChanged(newValue: string | undefined) {
 		this.modifiers = attributeUtil.generateBemStyleModifiers(newValue, PREFIX);
+	}
+
+	colorChanged(newValue: string, previousValue: string) {
+		attributeUtil.changeBemModifier(PREFIX, newValue.toLowerCase(), previousValue, this.element);
 	}
 
 	private onInputFocus() {
@@ -76,6 +85,12 @@ export class InputElement {
 
 	private onInputBlur() {
 		this.isFocused = false;
+	}
+
+	private setDefaults(): void {
+		this.config = _.defaults<InputConfig>({
+			color: this.color,
+		}, inputConfig);
 	}
 
 }

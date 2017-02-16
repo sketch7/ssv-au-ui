@@ -2,8 +2,10 @@
 	"extends": "./node_modules/@ssv/tools/tsconfig.base.json",
 	"compilerOptions": {
 		"types": [
-			"jasmine"
-		]
+			"jasmine",
+			"jasmine-jquery"
+		],
+		"skipLibCheck": true
 	},
 	"include": [
 		"src/**/*",
