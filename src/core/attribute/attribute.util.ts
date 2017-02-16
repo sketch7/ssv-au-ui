@@ -18,7 +18,7 @@ export function getFlagAsBoolean(value: string | boolean | null | undefined): bo
  * @param {string} attributeName attribute name to add e.g. disabled
  * @param {(string | boolean)} attributeValue attribute value to be set either true/false.
  */
-export function setAsFlag(element: Element, attributeName: string, attributeValue: string | boolean) {
+export function setAsFlag(element: Element, attributeName: string, attributeValue: string | boolean | null | undefined) {
 	if (getFlagAsBoolean(attributeValue)) {
 		element.setAttribute(attributeName, "");
 	} else {

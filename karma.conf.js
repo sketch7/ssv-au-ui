@@ -6,6 +6,8 @@ module.exports = function (config) {
 		frameworks: ["jasmine"],
 
 		files: [
+			"node_modules/jquery/dist/jquery.slim.min.js",
+			"node_modules/jasmine-jquery/lib/jasmine-jquery.js",
 			"node_modules/systemjs/dist/system.src.js",
 			{ pattern: "node_modules/systemjs/dist/system-polyfills.js", included: false, watched: false, served: true }, // PhantomJS2 (and possibly others) might require it
 
