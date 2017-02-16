@@ -22,7 +22,7 @@
   "license": "MIT",
   "main": "dist/bundles/ssv-au-ui.umd.js",
   "module": "dist/es2015/index.js",
-  "typings": "dist/es2015/index.d.ts",
+  "typings": "dist/umd/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/sketch7/ssv-au-ui"
