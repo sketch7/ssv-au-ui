@@ -21,6 +21,7 @@ describe("AttributeUtil", () => {
 				}
 			});
 		});
+
 		describe("given possible falsy values", () => {
 			const falsyValues = [
 				null,
@@ -45,7 +46,6 @@ describe("AttributeUtil", () => {
 			});
 		});
 	});
-
 
 	describe(setAsFlag.name, () => {
 		let element: Element;
