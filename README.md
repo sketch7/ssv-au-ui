@@ -93,7 +93,7 @@ Import fonts
 | icon             |                             Preview | [README][icon]    |              - |
 | checkbox         |                             Preview | [README][checkbox]|              - |
 | select           |                         Development |                   |              - |
-| toast            |                         Development |                   |              - |
+| snackbar         |                         Development |                   |              - |
 | switch           |                         Not Started |                   |              - |
 | radio            |                         Not Started |                   |              - |
 | datepicker       |                         Not Started |                   |              - |
