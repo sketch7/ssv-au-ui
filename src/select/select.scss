@@ -14,8 +14,8 @@ $ssv-select-inactive-underline-fill: blue !default;
 	min-width: 300px;
 	@include element("input-box") {
 		background-color: red;
+		cursor: pointer;
 	}
-
 	@include element("input-underline") {
 		width: 100%;
 		height: 1px;
@@ -28,7 +28,26 @@ $ssv-select-inactive-underline-fill: blue !default;
 			margin: 0 auto;
 		}
 	}
+	@include element("clear") {
+		&:hover {
+			color: white;
+		}
+	}
+	@include element("list") {
+		cursor: pointer;
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+	@include element("item") {
+		&:hover {
+			background-color: $ssv-select-default-color;
+		}
 
+		@include modifier("selected") {
+			background-color: green;
+		}
+	}
 	// variants
 	@include modifier("primary") {
 		 @include ssv-select-variant($ssv-select-primary-variant);

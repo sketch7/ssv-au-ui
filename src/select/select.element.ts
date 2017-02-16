@@ -20,9 +20,10 @@ export class SelectElement {
 	@bindable selected: SelectItem;
 	@bindable selectedValue = "";
 	@bindable selectedClass: string;
-	@bindable autoClose: boolean;
 	@bindable options: SelectItem[] = [];
 
+	@bindable autoClose: boolean;
+	@bindable allowClear: boolean;
 
 	@bindable type: SelectType = selectType.single;
 	@bindable modifier: string | undefined;
@@ -30,6 +31,9 @@ export class SelectElement {
 	controlId: string;
 	modifiers: string | undefined;
 	isOpen = false;
+	arrowUpIcon: string;
+	arrowDownIcon: string;
+	clearIcon: string;
 
 	private logger: ILog;
 	private config: SelectConfig;
@@ -46,7 +50,7 @@ export class SelectElement {
 	bind() {
 		this.setDefaults();
 		this.modifiers = attributeUtil.generateBemStyleModifiers(this.modifier, PREFIX);
-		this.selectedClass = attributeUtil.generateBemStyleModifiers(this.config.selectedClass, PREFIX) as string;
+		this.selectedClass = attributeUtil.generateBemStyleModifiers(this.config.selectedClass, `${PREFIX}__item`) as string;
 
 		const type = this.config.type.toLowerCase();
 		this.validateType(type);
@@ -101,8 +105,14 @@ export class SelectElement {
 			type: this.type,
 			color: this.color,
 			autoClose: this.autoClose,
+			allowClear: this.allowClear,
 			selectedClass: this.selectedClass,
 		}, selectConfig);
+
+		this.arrowUpIcon = this.config.arrowUpIcon;
+		this.arrowDownIcon = this.config.arrowDownIcon;
+		this.clearIcon = this.config.clearIcon;
+		this.allowClear = this.config.allowClear;
 	}
 
 }
