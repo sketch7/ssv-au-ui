@@ -17,12 +17,13 @@ $ssv-snackbar-layer-index: $ssv-overlay-index !default;
 }
 
 .ssv-simple-snackbar {
-	transition: transform .25s ease-in-out;
-	will-change: transform;
 	display: inline-flex;
 	align-items: center;
-	pointer-events: none;
+	text-align: left;
 	background-color: $ssv-snackbar-background-color;
+	transition: transform .25s ease-in-out;
+	will-change: transform;
+	pointer-events: none;
 	@include element("label") {
 		flex-grow: 1;
 		color: $ssv-snackbar-color;
