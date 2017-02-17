@@ -24,6 +24,7 @@ export class SelectElement {
 
 	@bindable autoClose: boolean;
 	@bindable allowClear: boolean;
+	@bindable allowFiltering: boolean;
 
 	@bindable type: SelectType = selectType.single;
 	@bindable modifier: string | undefined;
@@ -107,6 +108,7 @@ export class SelectElement {
 			color: this.color,
 			autoClose: this.autoClose,
 			allowClear: this.allowClear,
+			allowFiltering: this.allowFiltering,
 			selectedClass: this.selectedClass,
 		}, selectConfig);
 

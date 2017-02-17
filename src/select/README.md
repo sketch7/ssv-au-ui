@@ -27,3 +27,6 @@ Options which can be configured globally.
 
 - Event:
     - onChanged - done
+    - key events: up, down, escape
+    - onBlur: Close
+
