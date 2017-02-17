@@ -15,15 +15,15 @@ Options which can be configured globally.
 
 ## TODO Features
 - Placeholder
-- No Options Available 
-- Allow Clear
+- No Options Available
+- Allow Clear - done
 - Filter
-- Auto Close
+- Auto Close - done
 
 - Types:
-    - Single select
+    - Single select - done
     - Multi
     - Group
 
 - Event:
-    - onChanged
+    - onChanged - done

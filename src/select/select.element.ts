@@ -17,7 +17,7 @@ export class SelectElement {
 
 	@bindable color: string;
 	@bindable placeholder: string;
-	@bindable selected: SelectItem;
+	@bindable selected: SelectItem | null;
 	@bindable selectedValue = "";
 	@bindable selectedClass: string;
 	@bindable options: SelectItem[] = [];
@@ -37,7 +37,6 @@ export class SelectElement {
 
 	private logger: ILog;
 	private config: SelectConfig;
-	private inputBox: HTMLDivElement;
 
 	constructor(
 		private element: Element,
@@ -61,14 +60,6 @@ export class SelectElement {
 		}
 	}
 
-	attached() {
-		this.inputBox.addEventListener("click", this.onClick.bind(this));
-	}
-
-	detached() {
-		this.inputBox.removeEventListener("click", this.onClick);
-	}
-
 	modifierChanged(newValue: string | undefined) {
 		this.modifiers = attributeUtil.generateBemStyleModifiers(newValue, PREFIX);
 	}
@@ -90,7 +81,17 @@ export class SelectElement {
 		this.element.dispatchEvent(event);
 	}
 
-	private onClick() {
+	onClear(event: MouseEvent) {
+		this.selected = null;
+		for (let option of this.options) {
+			option.isSelected = false;
+		}
+
+		this.isOpen = false;
+		event.stopPropagation();
+	}
+
+	toggle() {
 		this.isOpen = !this.isOpen;
 	}
 
