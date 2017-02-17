@@ -21,6 +21,9 @@ components
  - snackbar-container
  - simple-snackbar
  - snackbar-service
+    - implement timeout
+    - handle next
+ - implement snackbarRef
 
  - simple snackbar - message/action
  - custom snackbar

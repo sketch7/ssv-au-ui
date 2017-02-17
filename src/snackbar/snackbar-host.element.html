@@ -1,4 +1,6 @@
 <template class="ssv-snackbar-host">
-	<ssv-simple-snackbar label="I are la message" action="Undo" action.trigger="onAction($event)">
+	<ssv-simple-snackbar label.bind="activeItem.message"
+		action.bind="activeItem.action"
+		action.trigger="onAction($event)">
 	</ssv-simple-snackbar>
 </template>
