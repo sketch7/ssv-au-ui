@@ -2,39 +2,36 @@ import * as _ from "lodash";
 import { LoggerFactory, ILog } from "@ssv/au-core";
 import { customElement, bindable } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
+// import { observable } from "aurelia-binding";
 
+// import { SnackbarService } from "./snackbar.service";
 import { snackbarConfig, SnackbarConfig } from "./snackbar.config";
 
-const PREFIX = "ssv-snackbar";
+const PREFIX = "ssv-snackbar-host";
 
 @autoinject()
 @customElement(PREFIX)
-export class SnackbarElement {
+export class SnackbarHostElement {
 
-	@bindable label: string;
-	@bindable color: string;
+	@bindable targetHost: string;
 
 	private logger: ILog;
 	private config: SnackbarConfig;
 
 	constructor(
 		loggerFactory: LoggerFactory,
-		private element: Element,
+		// snackbar: SnackbarService,
+		// private element: Element,
 	) {
-		this.logger = loggerFactory.get("snackbarElement");
+		this.logger = loggerFactory.get("snackbarHostElement");
 	}
 
 	bind() {
 		this.setDefaults();
-
-		if (this.config.color) {
-			this.element.classList.add(`${PREFIX}--${this.config.color.toLowerCase()}`);
-		}
 	}
 
 	private setDefaults(): void {
 		this.config = _.defaults<SnackbarConfig>({
-			color: this.color,
 		}, snackbarConfig);
 	}
 

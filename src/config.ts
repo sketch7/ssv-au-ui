@@ -17,6 +17,8 @@ export function configure(aurelia: FrameworkConfiguration, config: UiConfig): Pr
 		"./checkbox/checkbox.element",
 		"./icon/icon.element",
 		"./input/input.element",
+		"./snackbar/snackbar-host.element",
+		"./snackbar/simple-snackbar.element",
 		"./waves/waves.attribute",
 	]);
 
