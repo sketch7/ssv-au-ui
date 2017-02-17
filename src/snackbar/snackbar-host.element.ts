@@ -30,6 +30,10 @@ export class SnackbarHostElement {
 		this.setDefaults();
 	}
 
+	onAction($event: Event) {
+		this.logger.debug("onAction", "", $event);
+	}
+
 	private setDefaults(): void {
 		this.config = _.defaults<SnackbarConfig>({
 		}, snackbarConfig);

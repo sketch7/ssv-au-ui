@@ -1,7 +1,8 @@
 import * as _ from "lodash";
-import { LoggerFactory, ILog } from "@ssv/au-core";
+import { DOM } from "aurelia-pal";
 import { customElement, bindable } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
+import { LoggerFactory, ILog } from "@ssv/au-core";
 
 import { snackbarConfig, SnackbarConfig } from "./snackbar.config";
 
@@ -31,6 +32,12 @@ export class SimpleSnackbarElement {
 		if (this.config.color) {
 			this.element.classList.add(`${PREFIX}--${this.config.color.toLowerCase()}`);
 		}
+	}
+
+	onAction() {
+		this.logger.debug("onAction");
+		const event = DOM.createCustomEvent("action", {});
+		this.element.dispatchEvent(event);
 	}
 
 	private setDefaults(): void {

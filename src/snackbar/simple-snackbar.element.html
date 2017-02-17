@@ -3,5 +3,10 @@
 	<label class="ssv-simple-snackbar__label">
 		${label}
 	</label>
-	<button ssv-button="type: flat; color: accent" if.bind="action" class="ssv-simple-snackbar__action">${action}</button>
+	<button ssv-button="type: flat; color: accent"
+		if.bind="action" 
+		click.delegate="onAction()"
+		class="ssv-simple-snackbar__action">
+		${action}
+	</button>
 </template>
