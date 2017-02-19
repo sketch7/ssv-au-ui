@@ -4,7 +4,8 @@
 		"types": [
 			"jasmine",
 			"jasmine-jquery"
-		]
+		],
+		"skipLibCheck": true
 	},
 	"include": [
 		"src/**/*",
