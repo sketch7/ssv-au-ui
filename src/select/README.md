@@ -14,11 +14,12 @@
 Options which can be configured globally.
 
 ## TODO Features
-- Placeholder
+- Placeholder - done
 - No Options Available
 - Allow Clear - done
 - Filter - done
 - Auto Close - done
+- grouping
 
 - Types:
     - Single select - done

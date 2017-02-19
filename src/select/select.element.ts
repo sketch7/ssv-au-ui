@@ -37,6 +37,7 @@ export class SelectElement {
 	arrowDownIcon: string;
 	clearIcon: string;
 	filterBy: string;
+	filteredOptions: SelectItem[] = [];
 
 	private logger: ILog;
 	private config: SelectConfig;
@@ -84,6 +85,19 @@ export class SelectElement {
 		this.element.dispatchEvent(event);
 	}
 
+	filterOptions(searchTerm: string) {
+		this.logger.error("filterByChange", "triggered", { searchTerm });
+
+		if (!searchTerm) {
+			this.filteredOptions = this.options;
+			return;
+		}
+
+		this.filteredOptions = _.filter(this.options, item => {
+			return _.includes(item.text.toLowerCase(), searchTerm.toLowerCase());
+		});
+	}
+
 	onClear(event: MouseEvent) {
 		this.selected = null;
 		this.filterBy = "";
@@ -122,6 +136,8 @@ export class SelectElement {
 		this.allowClear = this.config.allowClear;
 		this.allowFiltering = this.config.allowFiltering;
 		this.filterPlaceholder = this.config.filterPlaceholder;
+
+		this.filteredOptions = this.options;
 	}
 
 }
