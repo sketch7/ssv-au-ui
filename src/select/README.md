@@ -15,7 +15,7 @@ Options which can be configured globally.
 
 ## TODO Features
 - Placeholder - done
-- No Options Available
+- No Options Available - done
 - Allow Clear - done
 - Filter - done
 - Auto Close - done

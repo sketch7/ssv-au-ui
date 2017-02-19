@@ -51,6 +51,9 @@ $ssv-select-inactive-underline-fill: blue !default;
 			background-color: green;
 		}
 	}
+	@include element("no-options-available") {
+		cursor: default;
+	}
 	// variants
 	@include modifier("primary") {
 		 @include ssv-select-variant($ssv-select-primary-variant);

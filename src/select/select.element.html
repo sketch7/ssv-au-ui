@@ -20,6 +20,8 @@
 			<li repeat.for="option of filteredOptions"
 				class="ssv-select__item ${option.isSelected ? selectedClass : ''}"
 				click.delegate="onChange(option)">${option.text}</li>
+			<li class="ssv-select__no-options-available"
+			 if.bind="!filteredOptions || filteredOptions.length === 0">${noOptionsAvilableText}</li>
 		</ul>
 	</div>
 </template>

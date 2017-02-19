@@ -11,6 +11,7 @@ export interface SelectConfig {
 	filterPlaceholder: string;
 	allowClear: boolean;
 	clearIcon: string;
+	noOptionsAvilableText: string;
 }
 
 export const selectConfig: SelectConfig = {
@@ -22,5 +23,6 @@ export const selectConfig: SelectConfig = {
 	allowFiltering: true,
 	filterPlaceholder: "filter options...",
 	allowClear: true,
-	clearIcon: "times"
+	clearIcon: "times",
+	noOptionsAvilableText: "no options available"
 };

@@ -38,6 +38,7 @@ export class SelectElement {
 	clearIcon: string;
 	filterBy: string;
 	filteredOptions: SelectItem[] = [];
+	noOptionsAvilableText: string;
 
 	private logger: ILog;
 	private config: SelectConfig;
@@ -136,6 +137,7 @@ export class SelectElement {
 		this.allowClear = this.config.allowClear;
 		this.allowFiltering = this.config.allowFiltering;
 		this.filterPlaceholder = this.config.filterPlaceholder;
+		this.noOptionsAvilableText = this.config.noOptionsAvilableText;
 
 		this.filteredOptions = this.options;
 	}
