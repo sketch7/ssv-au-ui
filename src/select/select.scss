@@ -12,6 +12,23 @@ $ssv-select-inactive-underline-fill: blue !default;
 .ssv-select {
 	color: $ssv-select-default-color-contrast;
 	min-width: 300px;
+	display: block;
+	position: relative;
+	margin-top: 1rem;
+	@include element("placeholder") {
+		position: absolute;
+		top: 0;
+		left: 0;
+		font-size: 1rem;
+		transition: .2s ease-out;
+		@include modifier("active") {
+			font-size: .8rem;
+			transform: translateY(-140%);
+		}
+	}
+	@include element("label") {
+		transition: all .3s;
+	}
 	@include element("input-box") {
 		background-color: red;
 		cursor: pointer;

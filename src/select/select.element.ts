@@ -1,5 +1,6 @@
 import * as _ from "lodash";
 import { DOM } from "aurelia-pal";
+import { computedFrom } from "aurelia-binding";
 import { customElement, bindable } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
 import { LoggerFactory, ILog } from "@ssv/au-core";
@@ -18,15 +19,12 @@ export class SelectElement {
 	@bindable color: string;
 	@bindable placeholder: string;
 	@bindable selected: SelectItem | null;
-	@bindable selectedValue = "";
 	@bindable selectedClass: string;
 	@bindable options: SelectItem[] = [];
-
 	@bindable autoClose: boolean;
 	@bindable allowClear: boolean;
 	@bindable allowFiltering: boolean;
 	@bindable filterPlaceholder: string;
-
 	@bindable type: SelectType = selectType.single;
 	@bindable modifier: string | undefined;
 
@@ -39,6 +37,12 @@ export class SelectElement {
 	filterBy: string;
 	filteredOptions: SelectItem[] = [];
 	noOptionsAvilableText: string;
+	selectedLabel: string;
+
+	@computedFrom("isOpen", "selectedLabel")
+	get isActive(): boolean {
+		return this.isOpen || !!this.selectedLabel;
+	}
 
 	private logger: ILog;
 	private config: SelectConfig;
@@ -78,7 +82,7 @@ export class SelectElement {
 
 		this.selected = value;
 		this.selected.isSelected = true;
-
+		this.selectedLabel = this.selected.text;
 		if (this.config.autoClose) {
 			this.isOpen = false;
 		}
@@ -100,6 +104,7 @@ export class SelectElement {
 	onClear(event: MouseEvent) {
 		this.selected = null;
 		this.filterBy = "";
+		this.selectedLabel = "";
 		this.filteredOptions = this.options;
 		for (let option of this.options) {
 			option.isSelected = false;
