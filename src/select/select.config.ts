@@ -8,6 +8,7 @@ export interface SelectConfig {
 	arrowUpIcon: string;
 	arrowDownIcon: string;
 	allowFiltering: boolean;
+	filterPlaceholder: string;
 	allowClear: boolean;
 	clearIcon: string;
 }
@@ -18,7 +19,8 @@ export const selectConfig: SelectConfig = {
 	selectedClass: "selected",
 	arrowUpIcon: "chevron-circle-up",
 	arrowDownIcon: "chevron-circle-down",
-	allowFiltering: false,
+	allowFiltering: true,
+	filterPlaceholder: "filter options...",
 	allowClear: true,
 	clearIcon: "times"
 };

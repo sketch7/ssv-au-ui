@@ -25,6 +25,7 @@ export class SelectElement {
 	@bindable autoClose: boolean;
 	@bindable allowClear: boolean;
 	@bindable allowFiltering: boolean;
+	@bindable filterPlaceholder: string;
 
 	@bindable type: SelectType = selectType.single;
 	@bindable modifier: string | undefined;
@@ -35,6 +36,7 @@ export class SelectElement {
 	arrowUpIcon: string;
 	arrowDownIcon: string;
 	clearIcon: string;
+	filterBy: string;
 
 	private logger: ILog;
 	private config: SelectConfig;
@@ -84,6 +86,7 @@ export class SelectElement {
 
 	onClear(event: MouseEvent) {
 		this.selected = null;
+		this.filterBy = "";
 		for (let option of this.options) {
 			option.isSelected = false;
 		}
@@ -109,6 +112,7 @@ export class SelectElement {
 			autoClose: this.autoClose,
 			allowClear: this.allowClear,
 			allowFiltering: this.allowFiltering,
+			filterPlaceholder: this.filterPlaceholder,
 			selectedClass: this.selectedClass,
 		}, selectConfig);
 
@@ -116,6 +120,8 @@ export class SelectElement {
 		this.arrowDownIcon = this.config.arrowDownIcon;
 		this.clearIcon = this.config.clearIcon;
 		this.allowClear = this.config.allowClear;
+		this.allowFiltering = this.config.allowFiltering;
+		this.filterPlaceholder = this.config.filterPlaceholder;
 	}
 
 }

@@ -33,6 +33,10 @@ $ssv-select-inactive-underline-fill: blue !default;
 			color: white;
 		}
 	}
+	@include element("input-filter") {
+		width: 100%;
+		border: 0;
+	}
 	@include element("list") {
 		cursor: pointer;
 		list-style-type: none;
@@ -43,7 +47,6 @@ $ssv-select-inactive-underline-fill: blue !default;
 		&:hover {
 			background-color: $ssv-select-default-color;
 		}
-
 		@include modifier("selected") {
 			background-color: green;
 		}

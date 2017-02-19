@@ -17,7 +17,7 @@ Options which can be configured globally.
 - Placeholder
 - No Options Available
 - Allow Clear - done
-- Filter
+- Filter - done
 - Auto Close - done
 
 - Types:

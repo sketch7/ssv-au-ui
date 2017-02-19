@@ -9,10 +9,16 @@
 	</div>
 	<div class="ssv-select__input-underline ${isOpen ? 'ssv-select__input-underline--active' : ''}">
 	</div>
-
-	<ul class="ssv-select__list" if.bind="isOpen">
-		<li repeat.for="option of options"
-			class="ssv-select__item ${option.isSelected ? selectedClass : ''}"
-			click.delegate="onChange(option)">${option.text}</li>
-	</ul>
+	<div if.bind="isOpen">
+		<input type="text" if.bind="allowFiltering"
+		 class="ssv-select__input-filter"
+		 placeholder.bind="filterPlaceholder"
+		 value.bind="filterBy & debounce:400"
+		/>
+		<ul class="ssv-select__list">
+			<li repeat.for="option of options | filter:'text':filterBy"
+				class="ssv-select__item ${option.isSelected ? selectedClass : ''}"
+				click.delegate="onChange(option)">${option.text}</li>
+		</ul>
+	</div>
 </template>
