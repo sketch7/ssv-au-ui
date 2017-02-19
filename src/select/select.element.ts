@@ -87,8 +87,6 @@ export class SelectElement {
 	}
 
 	filterOptions(searchTerm: string) {
-		this.logger.error("filterByChange", "triggered", { searchTerm });
-
 		if (!searchTerm) {
 			this.filteredOptions = this.options;
 			return;
@@ -102,6 +100,7 @@ export class SelectElement {
 	onClear(event: MouseEvent) {
 		this.selected = null;
 		this.filterBy = "";
+		this.filteredOptions = this.options;
 		for (let option of this.options) {
 			option.isSelected = false;
 		}

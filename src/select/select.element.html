@@ -1,7 +1,7 @@
 <template role="select" class="ssv-select ${modifiers}">
 	<div click.delegate="toggle()" class="ssv-select__input-box">
 		<span class="ssv-select__label">${placeholder}</span>
-		<ssv-icon if.bind="allowClear && selected"
+		<ssv-icon if.bind="allowClear && filterBy || selected"
 			name.bind="clearIcon" 
 			class="ssv-select__clear"
 			click.delegate="onClear($event)"></ssv-icon>
