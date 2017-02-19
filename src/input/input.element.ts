@@ -2,7 +2,7 @@ import * as _ from "lodash";
 import { LoggerFactory, ILog } from "@ssv/au-core";
 import { customElement, bindable } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
-import { bindingMode } from "aurelia-binding";
+import { bindingMode, computedFrom } from "aurelia-binding";
 
 import { attributeUtil } from "../core/index";
 import { inputType, InputType } from "./input.model";
@@ -30,6 +30,7 @@ export class InputElement {
 	modifiers: string | undefined;
 	isFocused = false;
 
+	@computedFrom("value", "placeholder", "isFocused")
 	get isActive(): boolean {
 		return !!this.value || !!this.placeholder || this.isFocused;
 	}
