@@ -1,6 +1,48 @@
 @import "../style/mixins";
-
 @mixin ssv-select-variant($options: ()) {
-	background-color: map-get($options, color);
-	color: map-get($options, color-contrast);
+	$color: map-get($options, color);
+	$color-contrast: map-get($options, color-contrast);
+	$color-contrast-hover: rgba($color, .6) !default;
+	$background-color: rgba($color, .2) !default;
+	$clear-color-hover: rgba($color, .6) !default;
+
+	.ssv-select {
+		color: $color-contrast;
+		@include element("placeholder") {
+			color: $color;
+		}
+		@include element("input-underline") {
+			background-color: $color;
+			@include modifier("active") {
+				background-color: $color;
+			}
+		}
+		@include element("clear") {
+			color: $color;
+
+			&:hover {
+				color: $clear-color-hover;
+			}
+		}
+		@include element("arrow") {
+			color: $color;
+		}
+		@include element("list") {
+			background-color: $background-color;
+		}
+		@include element("item") {
+			&:hover {
+				background-color: $color;
+				color: $color-contrast;
+			}
+			@include modifier("selected") {
+				background-color: $color;
+				color: $color-contrast;
+
+				&:hover {
+					background-color: $color-contrast-hover;
+				}
+			}
+		}
+	}
 }
