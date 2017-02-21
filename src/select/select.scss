@@ -86,6 +86,8 @@ $ssv-select-input-box-padding: 10px 5px !default;
 		background-color: $ssv-select-default-background;
 	}
 	@include element("item") {
+		padding: $ssv-select-input-box-padding;
+
 		&:hover {
 			background-color: $ssv-select-default-color;
 			color: $ssv-select-default-color-contrast;
@@ -101,6 +103,7 @@ $ssv-select-input-box-padding: 10px 5px !default;
 	}
 	@include element("no-options-available") {
 		cursor: default;
+		padding: $ssv-select-input-box-padding;
 	}
 	// variants
 	@include modifier("primary") {
