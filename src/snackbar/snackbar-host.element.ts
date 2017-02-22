@@ -4,7 +4,8 @@ import { customElement, bindable } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
 import { Disposable } from "aurelia-binding";
 
-import { SnackbarService, SnackbarItem } from "./snackbar.service";
+import { SnackbarRef } from "./snackbar-ref";
+import { SnackbarService } from "./snackbar.service";
 import { snackbarConfig, SnackbarConfig } from "./snackbar.config";
 
 const PREFIX = "ssv-snackbar-host";
@@ -15,7 +16,7 @@ export class SnackbarHostElement {
 
 	@bindable targetHost: string;
 
-	activeItem: SnackbarItem;
+	activeItem: SnackbarRef;
 
 	private logger: ILog;
 	private config: SnackbarConfig;
@@ -31,7 +32,7 @@ export class SnackbarHostElement {
 
 	bind() {
 		this.setDefaults();
-		this.activeItem$$ = this.snackbar.activeItem$.subscribe(x => {
+		this.activeItem$$ = this.snackbar.activeItem$.subscribe((x: SnackbarRef) => {
 			this.logger.debug("activeItem$", "item changed", x);
 			this.activeItem = x;
 		});
@@ -39,7 +40,7 @@ export class SnackbarHostElement {
 
 	onAction($event: Event) {
 		this.logger.debug("onAction", "", $event);
-		// todo: trigger onAction
+		this.activeItem._triggerAction();
 	}
 
 	private setDefaults(): void {

@@ -19,10 +19,9 @@ Options which can be configured globally.
 components
  - snackbar-host
  - snackbar-container
- - simple-snackbar
  - snackbar-service
     - implement timeout
-    - handle next
+    - handle next queued
  - implement snackbarRef
 
  - simple snackbar - message/action

@@ -1,15 +1,7 @@
 import { autoinject } from "aurelia-dependency-injection";
 import { BindingEngine, PropertyObserver } from "aurelia-binding";
 
-export interface SnackbarOptions {
-
-}
-
-export interface SnackbarItem {
-	message: string;
-	action?: string;
-	options?: SnackbarOptions;
-}
+import { SnackbarRef, SnackbarOptions } from "./snackbar-ref";
 
 /**
  * Service to dispatch snackbar messages.
@@ -17,10 +9,10 @@ export interface SnackbarItem {
 @autoinject()
 export class SnackbarService {
 
-	activeItem: SnackbarItem;
+	activeItem: SnackbarRef;
 	activeItem$: PropertyObserver;
 
-	private items: SnackbarItem[];
+	private items: SnackbarRef[];
 
 	constructor(
 		private bindingEngine: BindingEngine,
@@ -29,17 +21,16 @@ export class SnackbarService {
 		this.activeItem$ = this.bindingEngine.propertyObserver(this, "activeItem");
 	}
 
-	open(message: string, action?: string, options?: SnackbarOptions): void {
-		const item = {
-			message,
-			action,
-			options
-		};
+	open(message: string, action?: string, options?: SnackbarOptions): SnackbarRef {
+		const item = new SnackbarRef(message, action, options);
 		this.add(item);
+
+		// todo: handle active better
 		this.activeItem = item;
+		return item;
 	}
 
-	private add(item: SnackbarItem) {
+	private add(item: SnackbarRef) {
 		this.items.push(item);
 	}
 
