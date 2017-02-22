@@ -16,7 +16,7 @@
 	</div>
 	<div class="ssv-select__input-underline ${isOpen ? 'ssv-select__input-underline--active' : ''}">
 	</div>
-	<div if.bind="isOpen">
+	<div class="ssv-select__list-container" if.bind="isOpen">
 		<input type="text" if.bind="allowFiltering"
 		 class="ssv-select__input-filter"
 		 placeholder.bind="filterPlaceholder"

@@ -6,7 +6,7 @@ import { autoinject } from "aurelia-dependency-injection";
 import { LoggerFactory, ILog } from "@ssv/au-core";
 
 import { attributeUtil } from "../core/index";
-import { selectType, SelectType, supportedSelectTypes, SelectItem } from "./select.model";
+import { SelectType, supportedSelectTypes, SelectItem } from "./select.model";
 import { selectConfig, SelectConfig } from "./select.config";
 
 const PREFIX = "ssv-select";
@@ -19,13 +19,13 @@ export class SelectElement {
 	@bindable color: string;
 	@bindable placeholder: string;
 	@bindable selected: SelectItem | null;
-	@bindable selectedClass: string;
+	@bindable selectedClass: string | undefined;
 	@bindable options: SelectItem[] = [];
 	@bindable autoClose: boolean;
 	@bindable allowClear: boolean;
 	@bindable allowFiltering: boolean;
 	@bindable filterPlaceholder: string;
-	@bindable type: SelectType = selectType.single;
+	@bindable type: SelectType;
 	@bindable modifier: string | undefined;
 
 	controlId: string;
@@ -58,7 +58,7 @@ export class SelectElement {
 	bind() {
 		this.setDefaults();
 		this.modifiers = attributeUtil.generateBemStyleModifiers(this.modifier, PREFIX);
-		this.selectedClass = attributeUtil.generateBemStyleModifiers(this.config.selectedClass, `${PREFIX}__item`) as string;
+		this.selectedClass = attributeUtil.generateBemStyleModifiers(this.config.selectedClass, `${PREFIX}__item`);
 
 		const type = this.config.type.toLowerCase();
 		this.validateType(type);
@@ -144,6 +144,7 @@ export class SelectElement {
 		this.noOptionsAvilableText = this.config.noOptionsAvilableText;
 
 		this.filteredOptions = this.options;
+			this.selectedLabel = this.selected ? this.selected.text : "";
 	}
 
 }

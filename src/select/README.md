@@ -20,6 +20,9 @@ Options which can be configured globally.
 - Filter - done
 - Auto Close - done
 - grouping
+- disabled
+
+rework text, name to be passed instead SelectedItem
 
 - Types:
     - Single select - done
@@ -28,6 +31,6 @@ Options which can be configured globally.
 
 - Event:
     - onChanged - done
-    - key events: up, down, escape
+    - key events: up, down, escape, enter & space
     - onBlur: Close
 

@@ -3,10 +3,11 @@
 @import "./select.variant";
 @import "./select.mixin";
 
-$ssv-select-default-color: $ssv-master-color !default;
+$ssv-select-default-color: $ssv-secondary-color !default;
 $ssv-select-default-color-contrast: $ssv-color-black !default;
-$ssv-select-default-color-contrast-hover: rgba($ssv-color-black, .6) !default;
-$ssv-select-default-background: rgba($ssv-color-black, .2) !default;
+$ssv-select-default-item-selected-color-contrast: $ssv-color-white !default;
+$ssv-select-default-item-color-hover: rgba($ssv-color-black, .1) !default;
+$ssv-select-default-list-background-color: $ssv-color-white !default;
 $ssv-select-default-clear-color-hover: rgba($ssv-color-black, .6) !default;
 
 $ssv-select-input-box-padding: 10px 5px !default;
@@ -24,6 +25,7 @@ $ssv-select-input-box-padding: 10px 5px !default;
 		font-size: 1rem;
 		transition: .2s ease-out;
 		@include modifier("active") {
+			color: $ssv-select-default-color;
 			font-size: .8rem;
 			transform: translateY(-140%);
 		}
@@ -70,6 +72,9 @@ $ssv-select-input-box-padding: 10px 5px !default;
 	@include element("arrow") {
 		color: $ssv-select-default-color-contrast;
 	}
+	@include element("list-container") {
+		@include shadow-4dp();
+	}
 	@include element("input-filter") {
 		width: calc(100% - (#{$ssv-select-input-box-padding}));
 		border: 0;
@@ -82,22 +87,22 @@ $ssv-select-input-box-padding: 10px 5px !default;
 		list-style-type: none;
 		margin: 0;
 		padding: 0;
-		border-radius: 3px;
-		background-color: $ssv-select-default-background;
+		background-color: $ssv-select-default-list-background-color;
 	}
 	@include element("item") {
 		padding: $ssv-select-input-box-padding;
 
 		&:hover {
-			background-color: $ssv-select-default-color;
+			background-color: $ssv-select-default-item-color-hover;
 			color: $ssv-select-default-color-contrast;
 		}
 		@include modifier("selected") {
 			background-color: $ssv-select-default-color;
-			color: $ssv-select-default-color-contrast;
+			color: $ssv-select-default-item-selected-color-contrast;
 
 			&:hover {
-				background-color: $ssv-select-default-color-contrast-hover;
+				background-color: $ssv-select-default-color;
+				color: $ssv-select-default-item-selected-color-contrast;
 			}
 		}
 	}
