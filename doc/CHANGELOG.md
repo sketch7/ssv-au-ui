@@ -1,5 +1,15 @@
+<a name="0.5.4"></a>
+## [0.5.4](https://github.com/sketch7/ssv-au-ui/compare/0.5.3...v0.5.4) (2017-02-19)
+
+
+### Bug Fixes
+
+* **input:** fixed getter from re-evaluating the property (dirty checking) every 120ms. ([0b18157](https://github.com/sketch7/ssv-au-ui/commit/0b18157))
+
+
+
 <a name="0.5.3"></a>
-## [0.5.3](https://github.com/sketch7/ssv-au-ui/compare/0.5.2...v0.5.3) (2017-02-12)
+## [0.5.3](https://github.com/sketch7/ssv-au-ui/compare/0.5.2...0.5.3) (2017-02-12)
 
 
 ### Bug Fixes
