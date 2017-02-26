@@ -21,6 +21,7 @@ $ssv-snackbar-layer-index: $ssv-overlay-index !default;
 	align-items: center;
 	text-align: left;
 	background-color: $ssv-snackbar-background-color;
+	transform: translate(0, 80px);
 	transition: transform .25s ease-in-out;
 	will-change: transform;
 	pointer-events: none;
@@ -31,6 +32,7 @@ $ssv-snackbar-layer-index: $ssv-overlay-index !default;
 		padding: 1.2em 1em;
 	}
 	@include modifier("active") {
+		transform: translate(0, 0);
 		pointer-events: auto;
 	}
 	@include element("action") {
