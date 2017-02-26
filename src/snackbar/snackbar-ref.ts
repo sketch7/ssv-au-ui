@@ -12,7 +12,6 @@ export class SnackbarRef {
 	private eventAggregator = new EventAggregator();
 
 	constructor(
-		// private Snackbar
 		public readonly message: string,
 		public readonly action?: string,
 		public readonly options?: SnackbarOptions,
