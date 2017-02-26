@@ -23,17 +23,17 @@ export class SnackbarService {
 		this.logger = loggerFactory.get("snackbarService");
 		this.items = [];
 		this.activeItem$ = this.bindingEngine.propertyObserver(this, "activeItem");
-		this.activeItem$.subscribe((x: SnackbarRef | null) => {
-			if (!x && this.items.length) {
-				this.handleNext();
-			}
-		});
+		// this.activeItem$.subscribe((x: SnackbarRef | null) => {
+		// 	if (!x && this.items.length) {
+		// 		this.handleNext();
+		// 	}
+		// });
 	}
 
 	open(message: string, action?: string, options?: SnackbarOptions): SnackbarRef {
 		const item = new SnackbarRef(message, action, options);
 		item.onDismiss(() => {
-			this.activeItem = null;
+			this.handleNext();
 		});
 		this.add(item);
 		if (this.activeItem) {
@@ -47,6 +47,7 @@ export class SnackbarService {
 		this.logger.debug("handleNext");
 		const next = this.items.shift();
 		if (!next) {
+			this.activeItem = null;
 			return;
 		}
 
