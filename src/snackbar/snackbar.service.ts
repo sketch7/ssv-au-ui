@@ -23,7 +23,7 @@ export class SnackbarService {
 		this.logger = loggerFactory.get("snackbarService");
 		this.items = [];
 		this.activeItem$ = this.bindingEngine.propertyObserver(this, "activeItem");
-		this.activeItem$.subscribe(x => {
+		this.activeItem$.subscribe((x: SnackbarRef | null) => {
 			if (!x && this.items.length) {
 				this.handleNext();
 			}

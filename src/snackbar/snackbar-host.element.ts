@@ -16,7 +16,7 @@ export class SnackbarHostElement {
 
 	// @bindable targetHost: string;
 
-	activeItem: SnackbarRef;
+	activeItem: SnackbarRef | null;
 
 	private logger: ILog;
 	// private config: SnackbarConfig;
@@ -32,7 +32,7 @@ export class SnackbarHostElement {
 
 	bind() {
 		// this.setDefaults();
-		this.activeItem$$ = this.snackbar.activeItem$.subscribe((x: SnackbarRef) => {
+		this.activeItem$$ = this.snackbar.activeItem$.subscribe((x: SnackbarRef | null) => {
 			this.logger.debug("activeItem$", "item changed", x);
 			this.activeItem = x;
 		});
@@ -44,7 +44,7 @@ export class SnackbarHostElement {
 
 	onAction($event: Event) {
 		this.logger.debug("onAction", "", $event);
-		this.activeItem._triggerAction();
+		this.activeItem!._triggerAction();
 	}
 
 	// private setDefaults(): void {
