@@ -1,12 +1,12 @@
-import * as _ from "lodash";
+// import * as _ from "lodash";
 import { LoggerFactory, ILog } from "@ssv/au-core";
-import { customElement, bindable } from "aurelia-templating";
+import { customElement } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
 import { Disposable } from "aurelia-binding";
 
 import { SnackbarRef } from "./snackbar-ref";
 import { SnackbarService } from "./snackbar.service";
-import { snackbarConfig, SnackbarConfig } from "./snackbar.config";
+// import { snackbarConfig, SnackbarConfig } from "./snackbar.config";
 
 const PREFIX = "ssv-snackbar-host";
 
@@ -14,12 +14,12 @@ const PREFIX = "ssv-snackbar-host";
 @customElement(PREFIX)
 export class SnackbarHostElement {
 
-	@bindable targetHost: string;
+	// @bindable targetHost: string;
 
 	activeItem: SnackbarRef;
 
 	private logger: ILog;
-	private config: SnackbarConfig;
+	// private config: SnackbarConfig;
 	private activeItem$$: Disposable;
 
 	constructor(
@@ -31,11 +31,15 @@ export class SnackbarHostElement {
 	}
 
 	bind() {
-		this.setDefaults();
+		// this.setDefaults();
 		this.activeItem$$ = this.snackbar.activeItem$.subscribe((x: SnackbarRef) => {
 			this.logger.debug("activeItem$", "item changed", x);
 			this.activeItem = x;
 		});
+	}
+
+	detached() {
+		this.activeItem$$.dispose();
 	}
 
 	onAction($event: Event) {
@@ -43,9 +47,9 @@ export class SnackbarHostElement {
 		this.activeItem._triggerAction();
 	}
 
-	private setDefaults(): void {
-		this.config = _.defaults<SnackbarConfig>({
-		}, snackbarConfig);
-	}
+	// private setDefaults(): void {
+	// 	this.config = _.defaults<SnackbarConfig>({
+	// 	}, snackbarConfig);
+	// }
 
 }
