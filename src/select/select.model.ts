@@ -13,4 +13,5 @@ export interface SelectItem {
 	value: string;
 	text: string;
 	isSelected?: boolean;
+	groupBy?: string | undefined;
 }

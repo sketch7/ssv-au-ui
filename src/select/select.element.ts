@@ -20,13 +20,17 @@ export class SelectElement {
 	@bindable placeholder: string;
 	@bindable selected: SelectItem | null;
 	@bindable selectedClass: string | undefined;
-	@bindable options: SelectItem[] = [];
 	@bindable autoClose: boolean;
 	@bindable allowClear: boolean;
 	@bindable allowFiltering: boolean;
 	@bindable filterPlaceholder: string;
 	@bindable type: SelectType;
 	@bindable modifier: string | undefined;
+
+	@bindable options: any[] = [];
+	@bindable text: string;
+	@bindable value: string;
+	@bindable groupby: string | undefined;
 
 	controlId: string;
 	modifiers: string | undefined;
@@ -36,7 +40,7 @@ export class SelectElement {
 	clearIcon: string;
 	filterBy: string;
 	filteredOptions: SelectItem[] = [];
-	noOptionsAvilableText: string;
+	noOptionsAvailableText: string;
 	selectedLabel: string;
 
 	@computedFrom("isOpen", "selectedLabel")
@@ -46,6 +50,7 @@ export class SelectElement {
 
 	private logger: ILog;
 	private config: SelectConfig;
+	private optionsList: SelectItem[];
 
 	constructor(
 		private element: Element,
@@ -76,7 +81,7 @@ export class SelectElement {
 	onChange(value: SelectItem) {
 		const event = DOM.createCustomEvent("change", { bubbles: true, detail: { previous: this.selected, value } });
 
-		for (let option of this.options) {
+		for (let option of this.optionsList) {
 			option.isSelected = false;
 		}
 
@@ -92,11 +97,11 @@ export class SelectElement {
 
 	filterOptions(searchTerm: string) {
 		if (!searchTerm) {
-			this.filteredOptions = this.options;
+			this.filteredOptions = this.optionsList;
 			return;
 		}
 
-		this.filteredOptions = _.filter(this.options, item => {
+		this.filteredOptions = _.filter(this.optionsList, item => {
 			return _.includes(item.text.toLowerCase(), searchTerm.toLowerCase());
 		});
 	}
@@ -105,8 +110,8 @@ export class SelectElement {
 		this.selected = null;
 		this.filterBy = "";
 		this.selectedLabel = "";
-		this.filteredOptions = this.options;
-		for (let option of this.options) {
+		this.filteredOptions = this.optionsList;
+		for (let option of this.optionsList) {
 			option.isSelected = false;
 		}
 
@@ -133,6 +138,9 @@ export class SelectElement {
 			allowFiltering: this.allowFiltering,
 			filterPlaceholder: this.filterPlaceholder,
 			selectedClass: this.selectedClass,
+			dataTextField: this.text,
+			dataValueField: this.value,
+			dataGroupByField: this.groupby,
 		}, selectConfig);
 
 		this.arrowUpIcon = this.config.arrowUpIcon;
@@ -141,10 +149,17 @@ export class SelectElement {
 		this.allowClear = this.config.allowClear;
 		this.allowFiltering = this.config.allowFiltering;
 		this.filterPlaceholder = this.config.filterPlaceholder;
-		this.noOptionsAvilableText = this.config.noOptionsAvilableText;
+		this.noOptionsAvailableText = this.config.noOptionsAvailableText;
 
-		this.filteredOptions = this.options;
-			this.selectedLabel = this.selected ? this.selected.text : "";
+		this.optionsList = _.map(this.options, item => {
+			return {
+				value: item[this.config.dataValueField],
+				text: item[this.config.dataTextField],
+				groupBy: item[this.config.dataGroupByField as string]
+			} as SelectItem;
+		});
+		this.filteredOptions = this.optionsList;
+		this.selectedLabel = this.selected ? this.selected.text : "";
 	}
 
 }

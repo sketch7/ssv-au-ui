@@ -59,7 +59,7 @@
     "run-sequence": "^1.2.2",
     "systemjs": "^0.19.41",
     "tslint": "^4.0.0",
-    "typescript": "^2.0.9",
+    "typescript": "^2.2.1",
     "yargs": "^6.3.0"
   },
   "dependencies": {
