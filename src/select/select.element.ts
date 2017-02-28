@@ -6,7 +6,7 @@ import { autoinject } from "aurelia-dependency-injection";
 import { LoggerFactory, ILog } from "@ssv/au-core";
 
 import { attributeUtil } from "../core/index";
-import { SelectType, supportedSelectTypes, SelectItem } from "./select.model";
+import { SelectType, selectType, supportedSelectTypes, SelectItem } from "./select.model";
 import { selectConfig, SelectConfig } from "./select.config";
 
 const PREFIX = "ssv-select";
@@ -18,7 +18,7 @@ export class SelectElement {
 
 	@bindable color: string;
 	@bindable placeholder: string;
-	@bindable selected: SelectItem | null;
+	@bindable selected: any | any[] | null;
 	@bindable selectedClass: string | undefined;
 	@bindable autoClose: boolean;
 	@bindable allowClear: boolean;
@@ -45,12 +45,13 @@ export class SelectElement {
 
 	@computedFrom("isOpen", "selectedLabel")
 	get isActive(): boolean {
-		return this.isOpen || !!this.selectedLabel;
+		return this.isOpen || this.selectedItems.length > 0;
 	}
 
 	private logger: ILog;
 	private config: SelectConfig;
 	private optionsList: SelectItem[];
+	private selectedItems: SelectItem[] = [];
 
 	constructor(
 		private element: Element,
@@ -67,6 +68,7 @@ export class SelectElement {
 
 		const type = this.config.type.toLowerCase();
 		this.validateType(type);
+		this.validateSelectedType();
 		this.element.classList.add(`${PREFIX}--${type}`);
 
 		if (this.config.color) {
@@ -78,20 +80,37 @@ export class SelectElement {
 		this.modifiers = attributeUtil.generateBemStyleModifiers(newValue, PREFIX);
 	}
 
-	onChange(value: SelectItem) {
-		const event = DOM.createCustomEvent("change", { bubbles: true, detail: { previous: this.selected, value } });
+	onChange(option: SelectItem) {
+		option.isSelected = true;
+		let previous: SelectItem[] | SelectItem | null = null;
+		let newValues: SelectItem[] | SelectItem | null = null;
 
-		for (let option of this.optionsList) {
-			option.isSelected = false;
+		if (this.config.type === selectType.single) {
+			for (let optionItem of this.optionsList) {
+				optionItem.isSelected = optionItem.value === option.value ? true : false;
+			}
+			previous = this.selectedItems[0];
+			this.selectedItems = [option];
+			newValues = option;
+		} else if (this.config.type === selectType.multi) {
+			previous = _.cloneDeep(this.selectedItems);
+
+			if (!_.find(this.selectedItems, x => x.value === option.value)) {
+				this.selectedItems.push(option);
+			} else {
+				option.isSelected = false;
+				_.remove(this.selectedItems, x => x.value === option.value);
+			}
+			newValues = this.selectedItems;
 		}
 
-		this.selected = value;
-		this.selected.isSelected = true;
-		this.selectedLabel = this.selected.text;
 		if (this.config.autoClose) {
 			this.isOpen = false;
 		}
 
+		// todo: set selected item from the actual array.
+
+		const event = DOM.createCustomEvent("change", { bubbles: true, detail: { previous, value: newValues } });
 		this.element.dispatchEvent(event);
 	}
 
@@ -129,6 +148,50 @@ export class SelectElement {
 		}
 	}
 
+	private validateSelectedType() {
+		if (!this.selected) {
+			return;
+		}
+
+		switch (this.config.type) {
+			case selectType.single:
+				if (_.isArray(this.selected)) {
+					this.logger.error("validateSelectedType", "selected value should be an object!");
+					return;
+				}
+				this.selectedItems = this.convertToSelectItems([this.selected], true);
+				break;
+			case selectType.multi:
+				if (!_.isArray(this.selected)) {
+					this.logger.error("validateSelectedType", "selected value should be an array!");
+					return;
+				}
+				this.selectedItems = this.convertToSelectItems(this.selected, true);
+				break;
+		}
+
+		// for (let selectedItem of this.selectedItems) {
+		// 	let result = _.find(this.optionsList, x => x.value = selectedItem.value);
+		// 	if (result) {
+		// 		result.isSelected = true;
+		// 	} else {
+		// 		// todo remove
+		// 	}
+		// }
+
+	}
+
+	private convertToSelectItems(options: any[], isSelected = false): SelectItem[] {
+		return _.map(options, item => {
+			return {
+				value: item[this.config.dataValueField],
+				text: item[this.config.dataTextField],
+				groupBy: item[this.config.dataGroupByField as string],
+				isSelected: isSelected
+			} as SelectItem;
+		});
+	}
+
 	private setDefaults(): void {
 		this.config = _.defaults<SelectConfig>({
 			type: this.type,
@@ -151,13 +214,7 @@ export class SelectElement {
 		this.filterPlaceholder = this.config.filterPlaceholder;
 		this.noOptionsAvailableText = this.config.noOptionsAvailableText;
 
-		this.optionsList = _.map(this.options, item => {
-			return {
-				value: item[this.config.dataValueField],
-				text: item[this.config.dataTextField],
-				groupBy: item[this.config.dataGroupByField as string]
-			} as SelectItem;
-		});
+		this.optionsList = this.convertToSelectItems(this.options);
 		this.filteredOptions = this.optionsList;
 		this.selectedLabel = this.selected ? this.selected.text : "";
 	}

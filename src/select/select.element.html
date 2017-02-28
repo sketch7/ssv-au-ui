@@ -3,7 +3,7 @@
 		<div class="ssv-select_text-container">
 			<div class="ssv-select__placeholder 
 			${isActive ? 'ssv-select__placeholder--active' : ''}">${placeholder}</div>
-			<span class="ssv-select__label">${selectedLabel}</span>
+			<span class="ssv-select__label" repeat.for="item of selectedItems">${item.text}</span>
 		</div>
 		<div class="ssv-select__icon-container">
 			<ssv-icon if.bind="allowClear && filterBy || selected"
