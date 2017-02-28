@@ -49,4 +49,22 @@ $ssv-snackbar-layer-index: $ssv-overlay-index !default;
 		max-width: 568px;
 		margin: auto;
 	}
+
+	&.au-enter-active {
+		animation: snackbarEnter 2s;
+		animation-timing-function: ease-out;
+	}
+
+	&.au-leave-active {
+		animation: snackbarLeave 2s;
+		animation-timing-function: ease-in;
+	}
+}
+
+@keyframes snackbarEnter {
+	100% { transform: translate(0, 0); }
+}
+
+@keyframes snackbarLeave {
+	100% { transform: translate(0, 80px); }
 }

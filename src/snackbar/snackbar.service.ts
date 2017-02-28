@@ -34,6 +34,7 @@ export class SnackbarService {
 		const item = new SnackbarRef(message, action, options);
 		item.onDismiss(() => {
 			this.handleNext();
+			// todo: remove even from array when it wasnt shown yet, when dismiss is called.
 		});
 		this.add(item);
 		if (this.activeItem) {
@@ -52,12 +53,12 @@ export class SnackbarService {
 		}
 
 		this.activeItem = next;
-		setTimeout(() => {
-			if (!this.activeItem) {
-				return;
-			}
-			this.activeItem.dismiss();
-		}, 3000); // todo: make timer configurable
+		// setTimeout(() => {
+			// if (!this.activeItem) {
+			// 	return;
+			// }
+			// this.activeItem.dismiss();
+		// }, 3000); // todo: make timer configurable
 	}
 
 	private add(item: SnackbarRef) {
