@@ -3,6 +3,7 @@ import { DOM } from "aurelia-pal";
 import { computedFrom } from "aurelia-binding";
 import { customElement, bindable } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
+import { Dictionary, collection } from "@ssv/core";
 import { LoggerFactory, ILog } from "@ssv/au-core";
 
 import { attributeUtil } from "../core/index";
@@ -18,7 +19,7 @@ export class SelectElement {
 
 	@bindable color: string;
 	@bindable placeholder: string;
-	@bindable selected: any | any[] | null;
+	@bindable selected: any | null;
 	@bindable selectedClass: string | undefined;
 	@bindable autoClose: boolean;
 	@bindable allowClear: boolean;
@@ -41,9 +42,8 @@ export class SelectElement {
 	filterBy: string;
 	filteredOptions: SelectItem[] = [];
 	noOptionsAvailableText: string;
-	selectedLabel: string;
 
-	@computedFrom("isOpen", "selectedLabel")
+	@computedFrom("isOpen", "selectedItems")
 	get isActive(): boolean {
 		return this.isOpen || this.selectedItems.length > 0;
 	}
@@ -51,6 +51,7 @@ export class SelectElement {
 	private logger: ILog;
 	private config: SelectConfig;
 	private optionsList: SelectItem[];
+	private optionsItems: Dictionary<object> = {};
 	private selectedItems: SelectItem[] = [];
 
 	constructor(
@@ -81,36 +82,36 @@ export class SelectElement {
 	}
 
 	onChange(option: SelectItem) {
-		option.isSelected = true;
-		let previous: SelectItem[] | SelectItem | null = null;
-		let newValues: SelectItem[] | SelectItem | null = null;
+		let previous: any | null;
 
 		if (this.config.type === selectType.single) {
-			for (let optionItem of this.optionsList) {
-				optionItem.isSelected = optionItem.value === option.value ? true : false;
-			}
-			previous = this.selectedItems[0];
+			collection.mutualExclusiveSelect(this.optionsList, option);
+			previous = this.selectedItems.length > 0 ? this.optionsItems[this.selectedItems[0].value] : null;
 			this.selectedItems = [option];
-			newValues = option;
+			this.selected = this.optionsItems[option.value];
 		} else if (this.config.type === selectType.multi) {
-			previous = _.cloneDeep(this.selectedItems);
+			previous = [];
+			this.selected = this.selected ? this.selected : [];
+			for (let item of this.selectedItems) {
+				previous.push(this.optionsItems[item.value]);
+			}
 
 			if (!_.find(this.selectedItems, x => x.value === option.value)) {
+				option.isSelected = true;
 				this.selectedItems.push(option);
+				this.selected.push(this.optionsItems[option.value]);
 			} else {
 				option.isSelected = false;
 				_.remove(this.selectedItems, x => x.value === option.value);
+				_.remove(this.selected, x => x === this.optionsItems[option.value]);
 			}
-			newValues = this.selectedItems;
 		}
 
 		if (this.config.autoClose) {
 			this.isOpen = false;
 		}
 
-		// todo: set selected item from the actual array.
-
-		const event = DOM.createCustomEvent("change", { bubbles: true, detail: { previous, value: newValues } });
+		const event = DOM.createCustomEvent("change", { bubbles: true, detail: { previous, value: this.selected } });
 		this.element.dispatchEvent(event);
 	}
 
@@ -126,15 +127,15 @@ export class SelectElement {
 	}
 
 	onClear(event: MouseEvent) {
-		this.selected = null;
 		this.filterBy = "";
-		this.selectedLabel = "";
+		this.isOpen = false;
+		this.selected = null;
+		this.selectedItems = [];
 		this.filteredOptions = this.optionsList;
+
 		for (let option of this.optionsList) {
 			option.isSelected = false;
 		}
-
-		this.isOpen = false;
 		event.stopPropagation();
 	}
 
@@ -216,7 +217,10 @@ export class SelectElement {
 
 		this.optionsList = this.convertToSelectItems(this.options);
 		this.filteredOptions = this.optionsList;
-		this.selectedLabel = this.selected ? this.selected.text : "";
+
+		for (let item of this.options) {
+			this.optionsItems[item[this.config.dataValueField]] = item;
+		}
 	}
 
 }

@@ -12,6 +12,6 @@ export const supportedSelectTypes: string[] = _.values<string>(selectType);
 export interface SelectItem {
 	value: string;
 	text: string;
-	isSelected?: boolean;
+	isSelected: boolean;
 	groupBy?: string | undefined;
 }
