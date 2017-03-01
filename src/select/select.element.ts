@@ -35,6 +35,7 @@ export class SelectElement {
 
 	controlId: string;
 	modifiers: string | undefined;
+	labelModifierClass: string | undefined;
 	isOpen = false;
 	arrowUpIcon: string;
 	arrowDownIcon: string;
@@ -43,9 +44,9 @@ export class SelectElement {
 	filteredOptions: SelectItem[] = [];
 	noOptionsAvailableText: string;
 
-	@computedFrom("isOpen", "selectedItems")
+	@computedFrom("isOpen", "selectedItems", "selected")
 	get isActive(): boolean {
-		return this.isOpen || this.selectedItems.length > 0;
+		return this.isOpen || this.selectedItems.length > 0 || this.selected && this.selected.length > 0;
 	}
 
 	private logger: ILog;
@@ -71,11 +72,16 @@ export class SelectElement {
 		this.validateType(type);
 		this.validateSelectedType();
 		this.element.classList.add(`${PREFIX}--${type}`);
+		this.labelModifierClass = attributeUtil.generateBemStyleModifiers(type, `${PREFIX}__label`);
 
 		if (this.config.color) {
 			this.element.classList.add(`${PREFIX}--${this.config.color.toLowerCase()}`);
 		}
 	}
+
+	// selectedChanged(value: any | undefined) {
+	// 	this.logger.warn("selectedChanged", "init", value);
+	// }
 
 	modifierChanged(newValue: string | undefined) {
 		this.modifiers = attributeUtil.generateBemStyleModifiers(newValue, PREFIX);
@@ -101,9 +107,7 @@ export class SelectElement {
 				this.selectedItems.push(option);
 				this.selected.push(this.optionsItems[option.value]);
 			} else {
-				option.isSelected = false;
-				_.remove(this.selectedItems, x => x.value === option.value);
-				_.remove(this.selected, x => x === this.optionsItems[option.value]);
+				this.clearMultiSelectionItem(option);
 			}
 		}
 
@@ -139,8 +143,19 @@ export class SelectElement {
 		event.stopPropagation();
 	}
 
+	onDeselect(event: MouseEvent, option: SelectItem) {
+		this.clearMultiSelectionItem(option);
+		event.stopPropagation();
+	}
+
 	toggle() {
 		this.isOpen = !this.isOpen;
+	}
+
+	private clearMultiSelectionItem(option: SelectItem) {
+		option.isSelected = false;
+		_.remove(this.selectedItems, x => x.value === option.value);
+		_.remove(this.selected, x => x === this.optionsItems[option.value]);
 	}
 
 	private validateType(type: string | SelectType) {
@@ -154,32 +169,37 @@ export class SelectElement {
 			return;
 		}
 
+		let tempList: SelectItem[] = [];
 		switch (this.config.type) {
 			case selectType.single:
 				if (_.isArray(this.selected)) {
 					this.logger.error("validateSelectedType", "selected value should be an object!");
 					return;
 				}
-				this.selectedItems = this.convertToSelectItems([this.selected], true);
+				tempList = this.convertToSelectItems([this.selected], true);
 				break;
 			case selectType.multi:
 				if (!_.isArray(this.selected)) {
 					this.logger.error("validateSelectedType", "selected value should be an array!");
 					return;
 				}
-				this.selectedItems = this.convertToSelectItems(this.selected, true);
+				tempList = this.convertToSelectItems(this.selected, true);
 				break;
 		}
 
-		// for (let selectedItem of this.selectedItems) {
-		// 	let result = _.find(this.optionsList, x => x.value = selectedItem.value);
-		// 	if (result) {
-		// 		result.isSelected = true;
-		// 	} else {
-		// 		// todo remove
-		// 	}
-		// }
-
+		const tempSelected: any = [];
+		for (let option of tempList) {
+			let item = _.find(this.optionsList, x => x.value === option.value);
+			if (item) {
+				item.isSelected = true;
+				this.selectedItems.push(option);
+				tempSelected.push(this.optionsItems[option.value]);
+			}
+		}
+		this.selected = tempSelected.length === 0 ? null
+			: this.config.type === selectType.single
+				? tempSelected[0]
+				: tempSelected;
 	}
 
 	private convertToSelectItems(options: any[], isSelected = false): SelectItem[] {

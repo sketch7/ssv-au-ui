@@ -11,6 +11,18 @@
 		@include element("placeholder") {
 			color: $color;
 		}
+		@include element("label") {
+			@include modifier("multi") {
+				background-color: $color;
+				color: $color-contrast;
+				.ssv-select__clear {
+					color: $color-contrast;
+					&:hover {
+						color: greenyellow;
+					}
+				}
+			}
+		}
 		@include element("input-underline") {
 			background-color: $color;
 			@include modifier("active") {

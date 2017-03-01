@@ -32,6 +32,19 @@ $ssv-select-input-box-padding: 10px 5px !default;
 	}
 	@include element("label") {
 		transition: all .3s;
+
+		@include modifier("multi") {
+			padding: 3px;
+			margin-right: 3px;
+			font-size: 11px;
+			background-color: $ssv-select-default-color;
+			border-radius: 3px;
+
+			.ssv-select__clear {
+				padding-right: 0;
+				padding-left: 2px;
+			}
+		}
 	}
 	@include element("input-box") {
 		cursor: pointer;
