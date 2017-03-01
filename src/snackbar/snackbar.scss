@@ -51,12 +51,12 @@ $ssv-snackbar-layer-index: $ssv-overlay-index !default;
 	}
 
 	&.au-enter-active {
-		animation: snackbarEnter 2s;
+		animation: snackbarEnter 0.25s;
 		animation-timing-function: ease-out;
 	}
 
 	&.au-leave-active {
-		animation: snackbarLeave 2s;
+		animation: snackbarLeave 0.25s;
 		animation-timing-function: ease-in;
 	}
 }

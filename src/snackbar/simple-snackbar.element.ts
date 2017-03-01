@@ -63,7 +63,7 @@ export class SimpleSnackbarElement implements ComponentAttached, ComponentDetach
 
 		this.timeoutToken = setTimeout(() => {
 			this.snackbarRef.dismiss();
-		}, this.snackbarRef.options);
+		}, this.snackbarRef.options.duration);
 	}
 
 	private async hide() {
