@@ -16,10 +16,8 @@ Options which can be configured globally.
 
 
 # todo
- - configurable duration
-components
- 
- - custom snackbar
+ - configurable action `buttonType` and `buttonColor`
+ - custom snackbar component
  
 
 ```ts

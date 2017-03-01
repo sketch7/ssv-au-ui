@@ -1,8 +1,21 @@
 import { autoinject } from "aurelia-dependency-injection";
-import { BindingEngine, PropertyObserver } from "aurelia-binding";
+import { BindingEngine, Disposable } from "aurelia-binding";
+import { Subscription } from "aurelia-event-aggregator";
 import { ILog, LoggerFactory } from "@ssv/au-core";
 
 import { SnackbarRef, SnackbarOptions } from "./snackbar-ref";
+
+// todo: remove when merged https://github.com/aurelia/binding/pull/580
+/**
+ * Observes property changes.
+ */
+export interface PropertyObserver<T> {
+	/**
+ 	* Subscribe to property change events.
+ 	*/
+	subscribe(callback: (newValue: T, oldValue: T) => void): Disposable;
+}
+
 
 /**
  * Service to dispatch snackbar messages.
@@ -11,7 +24,7 @@ import { SnackbarRef, SnackbarOptions } from "./snackbar-ref";
 export class SnackbarService {
 
 	activeItem: SnackbarRef | null;
-	activeItem$: PropertyObserver;
+	activeItem$: PropertyObserver<SnackbarRef | null>;
 
 	private items: SnackbarRef[];
 	private logger: ILog;
@@ -23,20 +36,21 @@ export class SnackbarService {
 		this.logger = loggerFactory.get("snackbarService");
 		this.items = [];
 		this.activeItem$ = this.bindingEngine.propertyObserver(this, "activeItem");
-		// this.activeItem$.subscribe((x: SnackbarRef | null) => {
-		// 	if (!x && this.items.length) {
-		// 		this.handleNext();
-		// 	}
-		// });
 	}
 
+	/**
+	 * Opens a snackbar with a message and an optional action.
+	 *
+	 * @param {string} message message to show.
+	 * @param {string} [action] label for the action button.
+	 * @param {SnackbarOptions} [options] Additional configuration options for the snackbar.
+	 */
 	open(message: string, action?: string, options?: SnackbarOptions): SnackbarRef {
 		const item = new SnackbarRef(message, action, options);
-		item.onDismiss(() => {
-			this.handleNext();
-			// todo: remove even from array when it wasnt shown yet, when dismiss is called.
-		});
-		this.add(item);
+		const dismiss$$ = item.onDismiss(() => this.handleNext());
+		item._onPreDismiss(() => this.handleDismissWhenQueued(item, dismiss$$));
+
+		this.items.push(item);
 		if (this.activeItem) {
 			return item;
 		}
@@ -51,18 +65,17 @@ export class SnackbarService {
 			this.activeItem = null;
 			return;
 		}
-
 		this.activeItem = next;
-		// setTimeout(() => {
-		// if (!this.activeItem) {
-		// 	return;
-		// }
-		// this.activeItem.dismiss();
-		// }, 3000); // todo: make timer configurable
 	}
 
-	private add(item: SnackbarRef) {
-		this.items.push(item);
+	private handleDismissWhenQueued(item: SnackbarRef, dismiss$$: Subscription) {
+		const index = this.items.indexOf(item);
+		if (index < 0) {
+			return;
+		}
+		dismiss$$.dispose(); // skip handleNext in this case.
+		this.items.splice(index, 1);
+		item._triggerDismiss();
 	}
 
 }

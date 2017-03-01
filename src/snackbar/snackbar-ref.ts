@@ -37,20 +37,37 @@ export class SnackbarRef {
 		this.options = { duration: snackbarConfig.duration, ...opts };
 	}
 
+	/**
+	 * Subscribe on action callback.
+	 *
+	 * @param {() => void} callback function to invoke when action is triggered.
+	 * @returns {Subscription} subscription to be able to dispose the listener.
+	 *
+	 * @memberOf SnackbarRef
+	 */
 	onAction(callback: () => void): Subscription {
 		return this.eventAggregator.subscribe(ACTION_EVENT, callback);
 	}
 
-	onDismiss(callback: () => void) {
+	/**
+	 * Subscribe on dismiss callback.
+	 *
+	 * @param callback function to invoke when dismissed.
+	 * @returns {Subscription} subscription to be able to dispose the listener.
+	 *
+	 * @memberOf SnackbarRef
+	 */
+	onDismiss(callback: () => void): Subscription {
 		return this.eventAggregator.subscribe(DISMISS_EVENT, callback);
 	}
 
+	/** Dismisses the snackbar. */
 	dismiss() {
 		this.eventAggregator.publish(PRE_DISMISS_EVENT, this);
 	}
 
 	/* @internal */
-	_onPreDismiss(callback: () => void) {
+	_onPreDismiss(callback: () => void): Subscription {
 		return this.eventAggregator.subscribe(PRE_DISMISS_EVENT, callback);
 	}
 
