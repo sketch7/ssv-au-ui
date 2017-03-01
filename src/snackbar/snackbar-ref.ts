@@ -9,6 +9,7 @@ export interface SnackbarOptions {
 	duration: number;
 }
 
+// todo: remove state?
 export type SnackbarState = "initial" | "visible" | "complete";
 export const snackbarState = {
 	initial: "initial" as SnackbarState,
