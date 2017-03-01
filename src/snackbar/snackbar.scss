@@ -4,6 +4,7 @@
 $ssv-snackbar-color: $ssv-color-white !default;
 $ssv-snackbar-background-color: rgba($ssv-color-black, 0.8) !default;
 $ssv-snackbar-layer-index: $ssv-overlay-index !default;
+$ssv-snackbar-viewport-offset: 80px !default;
 
 .ssv-snackbar-host {
 	position: fixed;
@@ -21,7 +22,6 @@ $ssv-snackbar-layer-index: $ssv-overlay-index !default;
 	align-items: center;
 	text-align: left;
 	background-color: $ssv-snackbar-background-color;
-	transform: translate(0, 80px);
 	transition: transform .25s ease-in-out;
 	will-change: transform;
 	pointer-events: none;
@@ -32,7 +32,6 @@ $ssv-snackbar-layer-index: $ssv-overlay-index !default;
 		padding: 1.2em 1em;
 	}
 	@include modifier("active") {
-		transform: translate(0, 0);
 		pointer-events: auto;
 	}
 	@include element("action") {
@@ -62,9 +61,11 @@ $ssv-snackbar-layer-index: $ssv-overlay-index !default;
 }
 
 @keyframes snackbarEnter {
-	100% { transform: translate(0, 0); }
+	from { transform: translate(0, $ssv-snackbar-viewport-offset); }
+	to { transform: translate(0, 0); }
 }
 
 @keyframes snackbarLeave {
-	100% { transform: translate(0, 80px); }
+	from { transform: translate(0, 0); }
+	to { transform: translate(0, $ssv-snackbar-viewport-offset); }
 }
