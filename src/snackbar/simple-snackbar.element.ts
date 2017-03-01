@@ -1,19 +1,23 @@
-import { DOM } from "aurelia-pal";
-import { customElement, bindable, Animator } from "aurelia-templating";
+import { customElement, bindable, Animator, ComponentAttached, ComponentDetached } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
 import { LoggerFactory, ILog } from "@ssv/au-core";
+import { SnackbarRef } from "./snackbar-ref";
 
 const PREFIX = "ssv-simple-snackbar";
 const ACTIVE_CLASS = `${PREFIX}--active`;
 
 @autoinject()
 @customElement(PREFIX)
-export class SimpleSnackbarElement {
+export class SimpleSnackbarElement implements ComponentAttached, ComponentDetached {
 
-	@bindable label: string;
-	@bindable action: string;
+	@bindable snackbarRef: SnackbarRef;
+
+	label: string;
+	action: string | undefined;
 
 	private logger: ILog;
+	private timeoutToken: number | undefined;
+	private isAttached = false;
 
 	constructor(
 		loggerFactory: LoggerFactory,
@@ -23,35 +27,53 @@ export class SimpleSnackbarElement {
 		this.logger = loggerFactory.get("simpleSnackbarElement");
 	}
 
+	attached() {
+		this.isAttached = true;
+		this.handleChange();
+	}
+
+	detached() {
+		this.isAttached = false;
+	}
+
+	snackbarRefChanged() {
+		if (this.isAttached) {
+			this.handleChange();
+		}
+	}
+
 	onAction() {
 		this.logger.debug("onAction");
-		const event = DOM.createCustomEvent("action", {});
-		this.element.dispatchEvent(event);
+		this.snackbarRef._triggerAction();
 	}
 
-	async attached() {
-		this.logger.debug("attached", "animate...");
+	private async handleChange() {
+		this.logger.debug("handleChange", "animate...");
+		this.label = this.snackbarRef.message;
+		this.action = this.snackbarRef.action;
 
-		// update state - initial
+		this.snackbarRef._onPreDismiss(() => {
+			this.logger.debug("handleChange", "dismissed");
+			this.hide();
+		});
+
 		await this.animator.enter(this.element as HTMLElement);
 		this.element.classList.add(ACTIVE_CLASS);
-		this.logger.debug("attached", "animate enter complete!");
+		this.logger.debug("handleChange", "animate enter complete!", this.snackbarRef.options);
 
-		// todo: clear timeout on dimiss?
-		setTimeout(async () => {
-			this.logger.debug("attached", "timeout triggered! leave animation...");
-			await this.animator.leave(this.element as HTMLElement);
-			this.element.classList.remove(ACTIVE_CLASS);
-			this.logger.debug("attached", "leave animation finished!");
-		}, 3000); // todo: time configuration
-		// update state - visible
-		// wait duration
-		// leave
-		// update state - complete
-
-		// todo: handle dimiss
+		this.timeoutToken = setTimeout(() => {
+			this.snackbarRef.dismiss();
+		}, this.snackbarRef.options); // todo: time configuration
 	}
 
-
+	private async hide() {
+		await this.animator.leave(this.element as HTMLElement);
+		this.element.classList.remove(ACTIVE_CLASS);
+		this.snackbarRef._triggerDismiss();
+		if (this.timeoutToken) {
+			clearTimeout(this.timeoutToken);
+			this.timeoutToken = undefined;
+		}
+	}
 
 }

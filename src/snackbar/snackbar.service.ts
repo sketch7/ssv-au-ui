@@ -54,10 +54,10 @@ export class SnackbarService {
 
 		this.activeItem = next;
 		// setTimeout(() => {
-			// if (!this.activeItem) {
-			// 	return;
-			// }
-			// this.activeItem.dismiss();
+		// if (!this.activeItem) {
+		// 	return;
+		// }
+		// this.activeItem.dismiss();
 		// }, 3000); // todo: make timer configurable
 	}
 

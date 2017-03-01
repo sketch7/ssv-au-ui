@@ -1,6 +1,5 @@
 <template class="ssv-snackbar-host">
-	<ssv-simple-snackbar label.bind="activeItem.message"
-		action.bind="activeItem.action"
-		action.trigger="onAction($event)">
+	<ssv-simple-snackbar if.bind="activeItem"
+		snackbar-ref.bind="activeItem">
 	</ssv-simple-snackbar>
 </template>

@@ -42,11 +42,6 @@ export class SnackbarHostElement {
 		this.activeItem$$.dispose();
 	}
 
-	onAction($event: Event) {
-		this.logger.debug("onAction", "", $event);
-		this.activeItem!._triggerAction();
-	}
-
 	// private setDefaults(): void {
 	// 	this.config = _.defaults<SnackbarConfig>({
 	// 	}, snackbarConfig);

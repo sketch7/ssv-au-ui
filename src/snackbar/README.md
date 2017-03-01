@@ -16,17 +16,11 @@ Options which can be configured globally.
 
 
 # todo
+ - configurable duration
 components
- - snackbar-host
- - snackbar-container
- - snackbar-service
-    - implement timeout
-    - handle next queued
- - implement snackbarRef
-
- - simple snackbar - message/action
+ 
  - custom snackbar
- - show only one at a time
+ 
 
 ```ts
 const snackbarRef = snackbar.open("Message sent");
