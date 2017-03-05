@@ -3,6 +3,7 @@
 	$color: map-get($options, color);
 	$color-contrast: map-get($options, color-contrast);
 	$item-color-hover: rgba($color, .6) !default;
+	$multi-clear-color-hover: rgba($color-contrast, .2) !default;
 	$list-background-color: rgba($color, .2) !default;
 	$clear-color-hover: rgba($color, .6) !default;
 
@@ -18,7 +19,7 @@
 				.ssv-select__clear {
 					color: $color-contrast;
 					&:hover {
-						color: greenyellow;
+						color: $multi-clear-color-hover;
 					}
 				}
 			}
