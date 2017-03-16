@@ -11,10 +11,11 @@ import { SnackbarRef, SnackbarOptions } from "./snackbar-ref";
 @autoinject()
 export class SnackbarService {
 
+	/** Current activated `SnackbarRef`. */
 	activeItem: SnackbarRef | null;
 	activeItem$: PropertyObserver<SnackbarRef | null>;
 
-	private items: SnackbarRef[];
+	private items: SnackbarRef[] = [];
 	private logger: ILog;
 
 	constructor(
@@ -22,7 +23,6 @@ export class SnackbarService {
 		private bindingEngine: BindingEngine,
 	) {
 		this.logger = loggerFactory.get("snackbarService");
-		this.items = [];
 		this.activeItem$ = this.bindingEngine.propertyObserver(this, "activeItem");
 	}
 
@@ -44,6 +44,21 @@ export class SnackbarService {
 		}
 		this.handleNext();
 		return item;
+	}
+
+	/** Dismiss the current active item. */
+	dismiss(): void {
+		if (this.activeItem) {
+			this.activeItem.dismiss();
+		}
+	}
+
+	/** Dismisses all items which includes the queued and also the active. */
+	dismissAll(): void {
+		while (this.items.length > 0) {
+			this.items[0].dismiss();
+		}
+		this.dismiss();
 	}
 
 	private handleNext() {
