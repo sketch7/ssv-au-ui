@@ -9,21 +9,12 @@ export interface SnackbarOptions {
 	duration: number;
 }
 
-// todo: remove state?
-export type SnackbarState = "initial" | "visible" | "complete";
-export const snackbarState = {
-	initial: "initial" as SnackbarState,
-	visible: "visible" as SnackbarState,
-	complete: "complete" as SnackbarState,
-};
-
 const ACTION_EVENT = "action";
 const DISMISS_EVENT = "dismiss";
 const PRE_DISMISS_EVENT = "preDismiss";
 
 export class SnackbarRef {
 
-	state: SnackbarState = snackbarState.initial;
 	readonly options: SnackbarOptions;
 
 	private eventAggregator = new EventAggregator();
@@ -42,8 +33,6 @@ export class SnackbarRef {
 	 *
 	 * @param {() => void} callback function to invoke when action is triggered.
 	 * @returns {Subscription} subscription to be able to dispose the listener.
-	 *
-	 * @memberOf SnackbarRef
 	 */
 	onAction(callback: () => void): Subscription {
 		return this.eventAggregator.subscribe(ACTION_EVENT, callback);
@@ -54,8 +43,6 @@ export class SnackbarRef {
 	 *
 	 * @param callback function to invoke when dismissed.
 	 * @returns {Subscription} subscription to be able to dispose the listener.
-	 *
-	 * @memberOf SnackbarRef
 	 */
 	onDismiss(callback: () => void): Subscription {
 		return this.eventAggregator.subscribe(DISMISS_EVENT, callback);

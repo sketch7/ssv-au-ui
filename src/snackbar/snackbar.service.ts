@@ -1,21 +1,9 @@
 import { autoinject } from "aurelia-dependency-injection";
-import { BindingEngine, Disposable } from "aurelia-binding";
+import { BindingEngine } from "aurelia-binding";
 import { Subscription } from "aurelia-event-aggregator";
-import { ILog, LoggerFactory } from "@ssv/au-core";
+import { ILog, LoggerFactory, PropertyObserver } from "@ssv/au-core";
 
 import { SnackbarRef, SnackbarOptions } from "./snackbar-ref";
-
-// todo: remove when merged https://github.com/aurelia/binding/pull/580
-/**
- * Observes property changes.
- */
-export interface PropertyObserver<T> {
-	/**
- 	* Subscribe to property change events.
- 	*/
-	subscribe(callback: (newValue: T, oldValue: T) => void): Disposable;
-}
-
 
 /**
  * Service to dispatch snackbar messages.
