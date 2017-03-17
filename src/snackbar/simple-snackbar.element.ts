@@ -2,6 +2,7 @@ import { customElement, bindable, Animator, ComponentAttached, ComponentDetached
 import { autoinject } from "aurelia-dependency-injection";
 import { LoggerFactory, ILog } from "@ssv/au-core";
 import { SnackbarRef } from "./snackbar-ref";
+import { snackbarConfig } from "./snackbar.config";
 
 const PREFIX = "ssv-simple-snackbar";
 const ACTIVE_CLASS = `${PREFIX}--active`;
@@ -14,6 +15,8 @@ export class SimpleSnackbarElement implements ComponentAttached, ComponentDetach
 
 	label: string;
 	action: string | undefined;
+	actionColor = snackbarConfig.actionColor;
+	actionType = snackbarConfig.actionType;
 
 	private logger: ILog;
 	private timeoutToken: number | undefined;

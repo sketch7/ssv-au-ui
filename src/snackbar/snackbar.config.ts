@@ -1,8 +1,13 @@
+import { ButtonType, buttonType } from "../button/index";
+
 export interface SnackbarConfig {
-	color?: string;
+	actionColor?: string;
+	actionType?: ButtonType;
 	duration?: number;
 }
 
 export const snackbarConfig: SnackbarConfig = {
-	duration: 3000
+	actionType: buttonType.flat,
+	actionColor: "accent",
+	duration: 3000,
 };
