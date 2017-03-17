@@ -92,8 +92,8 @@ Import fonts
 | badge            |                             Preview | [README][badge]   |              - |
 | icon             |                             Preview | [README][icon]    |              - |
 | checkbox         |                             Preview | [README][checkbox]|              - |
+| snackbar         |                             Preview | [README][snackbar]|              - |
 | select           |                         Development |                   |              - |
-| snackbar         |                         Development |                   |              - |
 | switch           |                         Not Started |                   |              - |
 | radio            |                         Not Started |                   |              - |
 | datepicker       |                         Not Started |                   |              - |
@@ -110,6 +110,7 @@ Import fonts
 [badge]: ./src/badge/README.md
 [icon]: ./src/icon/README.md
 [checkbox]: ./src/checkbox/README.md
+[snackbar]: ./src/snackbar/README.md
 
 ## Getting Started
 
