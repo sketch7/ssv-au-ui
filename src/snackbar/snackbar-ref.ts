@@ -22,7 +22,7 @@ export class SnackbarRef {
 	constructor(
 		public readonly message: string,
 		public readonly action?: string,
-		readonly opts?: SnackbarOptions,
+		opts?: SnackbarOptions,
 	) {
 		this.onAction(this.dismiss.bind(this));
 		this.options = { duration: snackbarConfig.duration, ...opts };
@@ -31,7 +31,7 @@ export class SnackbarRef {
 	/**
 	 * Subscribe on action callback.
 	 *
-	 * @param {() => void} callback function to invoke when action is triggered.
+	 * @param callback function to invoke when action is triggered.
 	 * @returns {Subscription} subscription to be able to dispose the listener.
 	 */
 	onAction(callback: () => void): Subscription {
