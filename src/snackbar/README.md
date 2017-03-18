@@ -2,10 +2,16 @@
 Snackbars provide brief feedback about an operation through a message.
 
 ## Usage
-Place the host which displays the snackbars - ideally within the shell (layout) so it won't be destroyed.
 
-```html
-<ssv-snackbar-host></ssv-snackbar-host>
+During bootstrapping within `main` initialize `SnackbarHostService`.
+
+```ts
+import { SnackbarHostService } from "@ssv/au-ui";
+
+aurelia.start().then(() => {
+    const snackbarHost = aurelia.container.get(SnackbarHostService) as SnackbarHostService;
+    snackbarHost.init();
+});
 ```
 
 ### Api
@@ -64,6 +70,5 @@ Options which can be configured globally.
 
 
 # todo
- - automatically instantiate `<ssv-snackbar-host>`
- - dimiss by gesture - swipe off screen
+ - dismiss by gesture - swipe off screen
  - custom snackbar component
