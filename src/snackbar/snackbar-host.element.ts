@@ -25,6 +25,7 @@ export class SnackbarHostElement implements ComponentDetached {
 	}
 
 	bind() {
+		this.activeItem = this.snackbar.activeItem;
 		this.activeItem$$ = this.snackbar.activeItem$.subscribe(x => {
 			this.logger.debug("activeItem$", "item changed", x);
 			this.activeItem = x;
