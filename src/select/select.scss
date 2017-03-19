@@ -10,13 +10,13 @@ $ssv-select-default-item-color-hover: rgba($ssv-color-black, .1) !default;
 $ssv-select-default-list-background-color: $ssv-color-white !default;
 $ssv-select-default-clear-color-hover: rgba($ssv-color-black, .6) !default;
 
-$ssv-select-input-box-padding: 10px 5px !default;
+$ssv-select-input-box-padding: 0.5em 0.5em !default;
 
 .ssv-select {
-	color: $ssv-select-default-color-contrast;
-	min-width: 300px;
 	display: block;
 	position: relative;
+	color: $ssv-select-default-color-contrast;
+	min-width: 300px;
 	margin-top: 1rem;
 	@include element("placeholder") {
 		position: absolute;
@@ -47,8 +47,8 @@ $ssv-select-input-box-padding: 10px 5px !default;
 		}
 	}
 	@include element("input-box") {
-		cursor: pointer;
 		display: flex;
+		cursor: pointer;
 		height: 1rem;
 		padding: $ssv-select-input-box-padding;
 
@@ -89,11 +89,13 @@ $ssv-select-input-box-padding: 10px 5px !default;
 		@include shadow-4dp();
 	}
 	@include element("input-filter") {
-		width: calc(100% - (#{$ssv-select-input-box-padding}));
+		display: block;
+		box-sizing: border-box;
+		width: 100%;
 		border: 0;
 		outline: none;
 		height: 1rem;
-		padding: $ssv-select-input-box-padding;
+		padding: 1.5em 0.5em;
 	}
 	@include element("list") {
 		cursor: pointer;
@@ -104,6 +106,10 @@ $ssv-select-input-box-padding: 10px 5px !default;
 	}
 	@include element("item") {
 		padding: $ssv-select-input-box-padding;
+
+		@include modifier("group-item") {
+			padding-left: 1em;
+		}
 
 		&:hover {
 			background-color: $ssv-select-default-item-color-hover;
@@ -118,6 +124,12 @@ $ssv-select-input-box-padding: 10px 5px !default;
 				color: $ssv-select-default-item-selected-color-contrast;
 			}
 		}
+	}
+	@include element("group-header") {
+		cursor: default;
+		font-weight: 600;
+		text-transform: capitalize;
+		padding: $ssv-select-input-box-padding;
 	}
 	@include element("no-options-available") {
 		cursor: default;

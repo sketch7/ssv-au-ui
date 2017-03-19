@@ -15,3 +15,8 @@ export interface SelectItem {
 	groupBy: string;
 	isSelected: boolean;
 }
+
+export interface SelectGroup {
+	name: string | undefined;
+	options: SelectItem[];
+}

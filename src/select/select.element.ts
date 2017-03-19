@@ -7,7 +7,7 @@ import { Dictionary } from "@ssv/core";
 import { LoggerFactory, ILog } from "@ssv/au-core";
 
 import { attributeUtil } from "../core/index";
-import { SelectType, selectType, supportedSelectTypes, SelectItem } from "./select.model";
+import { SelectType, selectType, supportedSelectTypes, SelectItem, SelectGroup } from "./select.model";
 import { selectConfig, SelectConfig } from "./select.config";
 
 const PREFIX = "ssv-select";
@@ -43,7 +43,7 @@ export class SelectElement {
 	arrowDownIcon: string;
 	clearIcon: string;
 	filterBy: string;
-	filteredOptions: SelectItem[] = [];
+	filteredGroupOptions: SelectGroup[] = [];
 	noOptionsAvailableText: string;
 
 	@computedFrom("isOpen", "selectedItems", "selected")
@@ -88,14 +88,16 @@ export class SelectElement {
 	}
 
 	filterOptions(searchTerm: string) {
+		let filteredOptions = this.optionsList;
 		if (!searchTerm) {
-			this.filteredOptions = this.optionsList;
+			this.groupedOptions(filteredOptions);
 			return;
 		}
 
-		this.filteredOptions = _.filter(this.optionsList, item => {
+		filteredOptions = _.filter(this.optionsList, item => {
 			return _.includes(item.text.toLowerCase(), searchTerm.toLowerCase());
 		});
+		this.groupedOptions(filteredOptions);
 	}
 
 	onClear() {
@@ -103,8 +105,11 @@ export class SelectElement {
 		this.isOpen = false;
 		this.selected = undefined;
 		this.selectedItems = [];
-		this.filteredOptions = this.optionsList;
-		this.optionsList.map(x => x.isSelected = false);
+		this.groupedOptions(this.optionsList);
+
+		for (let item of this.optionsList) {
+			item.isSelected = false;
+		}
 	}
 
 	onDeselect(optionValue: string) {
@@ -153,7 +158,9 @@ export class SelectElement {
 			? this.convertToSelectItems([selectedItem], true)
 			: this.convertToSelectItems(selectedItem, true);
 
-		this.optionsList.map(x => x.isSelected = false);
+		for (let item of this.optionsList) {
+			item.isSelected = false;
+		}
 
 		const tempSelected: any = [];
 		for (const option of list) {
@@ -206,9 +213,14 @@ export class SelectElement {
 		}
 	}
 
-	private groupByOptions(options: SelectItem[]) {
+	private groupedOptions(options: SelectItem[]) {
 		const grouped = _.groupBy(options, x => x.groupBy);
-		this.logger.warn("groupByOptions", "data grouped!", grouped);
+		this.filteredGroupOptions = _.map(grouped, (values, key) => {
+			return {
+				name: key !== "undefined" ? key : undefined,
+				options: values
+			};
+		});
 	}
 
 	private setDefaults(): void {
@@ -242,8 +254,7 @@ export class SelectElement {
 
 		this.optionsList = this.convertToSelectItems(this.options);
 		this.onSelectedChanged(this.selected);
-		this.groupByOptions(this.optionsList);
-		this.filteredOptions = this.optionsList;
+		this.groupedOptions(this.optionsList);
 	}
 
 }

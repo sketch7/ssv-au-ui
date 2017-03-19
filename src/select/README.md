@@ -19,15 +19,14 @@ Options which can be configured globally.
 - Allow Clear - done
 - Filter - done
 - Auto Close - done
-- grouping
+- grouping - done
 - disabled
 
-rework text, name to be passed instead SelectedItem
+rework text, name to be passed instead SelectedItem - done
 
 - Types:
     - Single select - done
-    - Multi
-    - Group
+    - Multi - done
 
 - Event:
     - onChanged - done

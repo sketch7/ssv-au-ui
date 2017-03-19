@@ -29,11 +29,15 @@
 		 keyup.delegate="filterOptions(filterBy) & debounce"
 		/>
 		<ul class="ssv-select__list">
-			<li repeat.for="option of filteredOptions"
-				class="ssv-select__item ${option.isSelected ? selectedClass : ''}"
-				click.delegate="onChange(option)">${option.text}</li>
-			<li class="ssv-select__no-options-available"
-			 if.bind="!filteredOptions || filteredOptions.length === 0">${noOptionsAvilableText}</li>
+			<template repeat.for="group of filteredGroupOptions">
+				<li class="ssv-select__group-header"
+					if.bind="group.name">${group.name}</li>
+				 <li repeat.for="option of group.options"
+					class="ssv-select__item 
+					${group.name ? 'ssv-select__item--group-item' : ''}
+					${option.isSelected ? selectedClass : ''}"
+					click.delegate="onChange(option)">${option.text}</li>
+			</template>
 		</ul>
 	</div>
 </template>
