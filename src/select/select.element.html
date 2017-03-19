@@ -7,11 +7,11 @@
 				<ssv-icon if.bind="type === 'multi' && selectedItems && selectedItems.length > 0"
 				name.bind="clearIcon"
 				class="ssv-select__clear"
-				click.delegate="onDeselect($event, item)"></ssv-icon>
+				click.delegate="onDeselect($event, item.value)"></ssv-icon>
 			</span>
 		</div>
 		<div class="ssv-select__icon-container">
-			<ssv-icon if.bind="allowClear && filterBy || selected"
+			<ssv-icon if.bind="allowClear && filterBy || selectedItems && selectedItems.length > 0"
 				name.bind="clearIcon"
 				class="ssv-select__clear"
 				click.delegate="onClear($event)"></ssv-icon>

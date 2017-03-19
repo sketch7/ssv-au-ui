@@ -1,9 +1,9 @@
 import * as _ from "lodash";
 import { DOM } from "aurelia-pal";
-import { computedFrom } from "aurelia-binding";
+import { computedFrom, bindingMode } from "aurelia-binding";
 import { customElement, bindable } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
-import { Dictionary, collection } from "@ssv/core";
+import { Dictionary } from "@ssv/core";
 import { LoggerFactory, ILog } from "@ssv/au-core";
 
 import { attributeUtil } from "../core/index";
@@ -19,7 +19,9 @@ export class SelectElement {
 
 	@bindable color: string;
 	@bindable placeholder: string;
-	@bindable selected: any | null;
+	@bindable({
+		defaultBindingMode: bindingMode.twoWay
+	}) selected: any | null;
 	@bindable selectedClass: string | undefined;
 	@bindable autoClose: boolean;
 	@bindable allowClear: boolean;
@@ -69,8 +71,6 @@ export class SelectElement {
 		this.selectedClass = attributeUtil.generateBemStyleModifiers(this.config.selectedClass, `${PREFIX}__item`);
 
 		const type = this.config.type.toLowerCase();
-		this.validateType(type);
-		this.validateSelectedType();
 		this.element.classList.add(`${PREFIX}--${type}`);
 		this.labelModifierClass = attributeUtil.generateBemStyleModifiers(type, `${PREFIX}__label`);
 
@@ -79,44 +79,12 @@ export class SelectElement {
 		}
 	}
 
-	// selectedChanged(value: any | undefined) {
-	// 	this.logger.warn("selectedChanged", "init", value);
-	// }
+	selectedChanged(value: any) {
+		this.onSelectedChanged(value);
+	}
 
 	modifierChanged(newValue: string | undefined) {
 		this.modifiers = attributeUtil.generateBemStyleModifiers(newValue, PREFIX);
-	}
-
-	onChange(option: SelectItem) {
-		let previous: any | null;
-
-		if (this.config.type === selectType.single) {
-			collection.mutualExclusiveSelect(this.optionsList, option);
-			previous = this.selectedItems.length > 0 ? this.optionsItems[this.selectedItems[0].value] : null;
-			this.selectedItems = [option];
-			this.selected = this.optionsItems[option.value];
-		} else if (this.config.type === selectType.multi) {
-			previous = [];
-			this.selected = this.selected ? this.selected : [];
-			for (let item of this.selectedItems) {
-				previous.push(this.optionsItems[item.value]);
-			}
-
-			if (!_.find(this.selectedItems, x => x.value === option.value)) {
-				option.isSelected = true;
-				this.selectedItems.push(option);
-				this.selected.push(this.optionsItems[option.value]);
-			} else {
-				this.clearMultiSelectionItem(option);
-			}
-		}
-
-		if (this.config.autoClose) {
-			this.isOpen = false;
-		}
-
-		const event = DOM.createCustomEvent("change", { bubbles: true, detail: { previous, value: this.selected } });
-		this.element.dispatchEvent(event);
 	}
 
 	filterOptions(searchTerm: string) {
@@ -137,14 +105,14 @@ export class SelectElement {
 		this.selectedItems = [];
 		this.filteredOptions = this.optionsList;
 
-		for (let option of this.optionsList) {
+		for (const option of this.optionsList) {
 			option.isSelected = false;
 		}
 		event.stopPropagation();
 	}
 
-	onDeselect(event: MouseEvent, option: SelectItem) {
-		this.clearMultiSelectionItem(option);
+	onDeselect(event: MouseEvent, optionValue: string) {
+		this.clearMultiSelectionItem(optionValue);
 		event.stopPropagation();
 	}
 
@@ -152,54 +120,58 @@ export class SelectElement {
 		this.isOpen = !this.isOpen;
 	}
 
-	private clearMultiSelectionItem(option: SelectItem) {
-		option.isSelected = false;
-		_.remove(this.selectedItems, x => x.value === option.value);
-		_.remove(this.selected, x => x === this.optionsItems[option.value]);
-	}
+	onChange(option: SelectItem) {
+		let previous: any | null;
 
-	private validateType(type: string | SelectType) {
-		if (supportedSelectTypes.indexOf(type) === -1) {
-			this.logger.error("validateType", "select type unsupported!", { type });
+		if (this.config.type === selectType.single) {
+			previous = this.selectedItems.length > 0 ? this.optionsItems[this.selectedItems[0].value] : null;
+			this.selected = this.optionsItems[option.value];
+		} else if (this.config.type === selectType.multi) {
+			previous = [];
+			this.selected = this.selected ? this.selected : [];
+			for (const item of this.selectedItems) {
+				previous.push(this.optionsItems[item.value]);
+			}
+
+			if (!_.find(this.selectedItems, x => x.value === option.value)) {
+				this.selected = [...this.selected, this.optionsItems[option.value]];
+			} else {
+				this.clearMultiSelectionItem(option.value);
+			}
 		}
+
+		const event = DOM.createCustomEvent("change", { bubbles: true, detail: { previous, value: this.selected } });
+		this.element.dispatchEvent(event);
 	}
 
-	private validateSelectedType() {
-		if (!this.selected) {
+	private onSelectedChanged(selectedItem: any) {
+		if (this.config.autoClose) {
+			this.isOpen = false;
+		}
+
+		if (!selectedItem) {
+			this.selectedItems = [];
 			return;
 		}
 
-		let tempList: SelectItem[] = [];
-		switch (this.config.type) {
-			case selectType.single:
-				if (_.isArray(this.selected)) {
-					this.logger.error("validateSelectedType", "selected value should be an object!");
-					return;
-				}
-				tempList = this.convertToSelectItems([this.selected], true);
-				break;
-			case selectType.multi:
-				if (!_.isArray(this.selected)) {
-					this.logger.error("validateSelectedType", "selected value should be an array!");
-					return;
-				}
-				tempList = this.convertToSelectItems(this.selected, true);
-				break;
-		}
+		const list = this.config.type === selectType.single
+			? this.convertToSelectItems([selectedItem], true)
+			: this.convertToSelectItems(selectedItem, true);
+
+		this.optionsList.map(x => x.isSelected = false);
 
 		const tempSelected: any = [];
-		for (let option of tempList) {
-			let item = _.find(this.optionsList, x => x.value === option.value);
+		for (const option of list) {
+			const item = _.find(this.optionsList, x => x.value === option.value);
 			if (item) {
 				item.isSelected = true;
-				this.selectedItems.push(option);
 				tempSelected.push(this.optionsItems[option.value]);
+			} else {
+				this.selectedItems = _.filter(this.selectedItems, x => x.value !== option.value);
 			}
 		}
-		this.selected = tempSelected.length === 0 ? null
-			: this.config.type === selectType.single
-				? tempSelected[0]
-				: tempSelected;
+
+		this.selectedItems = [...tempSelected];
 	}
 
 	private convertToSelectItems(options: any[], isSelected = false): SelectItem[] {
@@ -211,6 +183,37 @@ export class SelectElement {
 				isSelected: isSelected
 			} as SelectItem;
 		});
+	}
+
+	private clearMultiSelectionItem(optionValue: string) {
+		const item: object & { [key: string]: any } = this.optionsItems[optionValue];
+		this.selected = _.filter(this.selected, (x: any) => x[this.config.dataValueField] !== item[this.config.dataValueField]);
+	}
+
+	private validateType(type: string | SelectType) {
+		if (supportedSelectTypes.indexOf(type) === -1) {
+			this.logger.error("validateType", "select type unsupported!", { type });
+		}
+	}
+
+	private validateSelectedType() {
+		switch (this.config.type) {
+			case selectType.single:
+				if (_.isArray(this.selected)) {
+					this.logger.error("validateSelectedType", "selected value should be an object!");
+				}
+				break;
+			case selectType.multi:
+				if (!_.isArray(this.selected)) {
+					this.logger.error("validateSelectedType", "selected value should be an array!");
+				}
+				break;
+		}
+	}
+
+	private groupByOptions(options: SelectItem[]) {
+		const grouped = _.groupBy(options, x => x.groupBy);
+		this.logger.warn("groupByOptions", "data grouped!", grouped);
 	}
 
 	private setDefaults(): void {
@@ -227,6 +230,9 @@ export class SelectElement {
 			dataGroupByField: this.groupby,
 		}, selectConfig);
 
+		this.validateType(this.config.type.toLowerCase());
+		this.validateSelectedType();
+
 		this.arrowUpIcon = this.config.arrowUpIcon;
 		this.arrowDownIcon = this.config.arrowDownIcon;
 		this.clearIcon = this.config.clearIcon;
@@ -235,12 +241,14 @@ export class SelectElement {
 		this.filterPlaceholder = this.config.filterPlaceholder;
 		this.noOptionsAvailableText = this.config.noOptionsAvailableText;
 
-		this.optionsList = this.convertToSelectItems(this.options);
-		this.filteredOptions = this.optionsList;
-
-		for (let item of this.options) {
+		for (const item of this.options) {
 			this.optionsItems[item[this.config.dataValueField]] = item;
 		}
+
+		this.optionsList = this.convertToSelectItems(this.options);
+		this.onSelectedChanged(this.selected);
+		this.groupByOptions(this.optionsList);
+		this.filteredOptions = this.optionsList;
 	}
 
 }
