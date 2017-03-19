@@ -21,7 +21,7 @@ export class SelectElement {
 	@bindable placeholder: string;
 	@bindable({
 		defaultBindingMode: bindingMode.twoWay
-	}) selected: any | null;
+	}) selected: any | undefined;
 	@bindable selectedClass: string | undefined;
 	@bindable autoClose: boolean;
 	@bindable allowClear: boolean;
@@ -98,22 +98,17 @@ export class SelectElement {
 		});
 	}
 
-	onClear(event: MouseEvent) {
+	onClear() {
 		this.filterBy = "";
 		this.isOpen = false;
-		this.selected = null;
+		this.selected = undefined;
 		this.selectedItems = [];
 		this.filteredOptions = this.optionsList;
-
-		for (const option of this.optionsList) {
-			option.isSelected = false;
-		}
-		event.stopPropagation();
+		this.optionsList.map(x => x.isSelected = false);
 	}
 
-	onDeselect(event: MouseEvent, optionValue: string) {
+	onDeselect(optionValue: string) {
 		this.clearMultiSelectionItem(optionValue);
-		event.stopPropagation();
 	}
 
 	toggle() {
@@ -121,10 +116,10 @@ export class SelectElement {
 	}
 
 	onChange(option: SelectItem) {
-		let previous: any | null;
+		let previous: any | undefined;
 
 		if (this.config.type === selectType.single) {
-			previous = this.selectedItems.length > 0 ? this.optionsItems[this.selectedItems[0].value] : null;
+			previous = this.selectedItems.length > 0 ? this.optionsItems[this.selectedItems[0].value] : undefined;
 			this.selected = this.optionsItems[option.value];
 		} else if (this.config.type === selectType.multi) {
 			previous = [];
