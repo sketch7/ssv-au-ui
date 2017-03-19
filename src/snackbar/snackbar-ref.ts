@@ -5,7 +5,7 @@ import { snackbarConfig } from "./snackbar.config";
 export interface SnackbarOptions {
 
 	/**
-	 * Duration in millis.
+	 * Duration in milliseconds.
 	 */
 	duration: number;
 }
