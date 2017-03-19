@@ -1,0 +1,12 @@
+<template role="alert"
+	class="ssv-simple-snackbar">
+	<label class="ssv-simple-snackbar__label">
+		${label}
+	</label>
+	<button ssv-button="type.bind: actionType; color.bind: actionColor"
+		if.bind="action" 
+		click.delegate="onAction()"
+		class="ssv-simple-snackbar__action">
+		${action}
+	</button>
+</template>

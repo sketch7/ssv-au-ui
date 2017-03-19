@@ -1,0 +1,71 @@
+@import "../style/vars";
+@import "../style/mixins";
+
+$ssv-snackbar-color: $ssv-color-white !default;
+$ssv-snackbar-background-color: rgba($ssv-color-black, 0.8) !default;
+$ssv-snackbar-layer-index: $ssv-overlay-index !default;
+$ssv-snackbar-viewport-offset: 80px !default;
+
+.ssv-snackbar-host {
+	display: block;
+	position: fixed;
+	width: 100%;
+	left: 0;
+	bottom: 0;
+	cursor: default;
+	text-align: center;
+	z-index: $ssv-snackbar-layer-index;
+}
+
+.ssv-simple-snackbar {
+	display: inline-flex;
+	align-items: center;
+	text-align: left;
+	background-color: $ssv-snackbar-background-color;
+	transition: transform .25s ease-in-out;
+	will-change: transform;
+	pointer-events: none;
+	@include element("label") {
+		flex-grow: 1;
+		color: $ssv-snackbar-color;
+		vertical-align: middle;
+		padding: 1.2em 1em;
+	}
+	@include modifier("active") {
+		pointer-events: auto;
+	}
+	@include element("action") {
+		margin-right: .5em;
+	}
+	@include breakpoint-xsmall-only() {
+		width: 100%;
+		min-height: 48px;
+		max-height: 80px;
+	}
+	@include breakpoint-xsmall-up() {
+		border-radius: 2px;
+		min-width: 288px;
+		max-width: 568px;
+		margin: auto;
+	}
+
+	&.au-enter-active {
+		animation: snackbarEnter 0.25s;
+		animation-timing-function: ease-out;
+	}
+
+	&.au-leave-active {
+		animation: snackbarLeave 0.25s;
+		animation-timing-function: ease-in;
+	}
+}
+
+@keyframes snackbarEnter {
+	from { transform: translate(0, $ssv-snackbar-viewport-offset); }
+	to { transform: translate(0, 0); }
+}
+
+@keyframes snackbarLeave {
+	from { transform: translate(0, 0); }
+	to { transform: translate(0, $ssv-snackbar-viewport-offset); }
+}

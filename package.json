@@ -22,7 +22,7 @@
   "license": "MIT",
   "main": "dist/bundles/ssv-au-ui.umd.js",
   "module": "dist/es2015/index.js",
-  "typings": "dist/es2015/index.d.ts",
+  "typings": "dist/umd/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/sketch7/ssv-au-ui"
@@ -67,6 +67,7 @@
     "@ssv/core": "^0.3.4",
     "aurelia-binding": "^1.1.0",
     "aurelia-dependency-injection": "^1.0.0",
+    "aurelia-event-aggregator": "^1.0.1",
     "aurelia-framework": "^1.0.8",
     "aurelia-templating": "^1.2.0",
     "node-waves": "^0.7.5",
