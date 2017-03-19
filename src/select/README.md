@@ -21,6 +21,7 @@ Options which can be configured globally.
 - Auto Close - done
 - grouping - done
 - disabled
+- simple list (primitive value only eg: visa card years)
 
 rework text, name to be passed instead SelectedItem - done
 

@@ -181,7 +181,7 @@ export class SelectElement {
 			return {
 				value: item[this.config.dataValueField],
 				text: item[this.config.dataTextField],
-				groupBy: item[this.config.dataGroupByField as string],
+				groupBy: item[this.groupby!],
 				isSelected: isSelected
 			} as SelectItem;
 		});

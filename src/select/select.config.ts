@@ -15,15 +15,14 @@ export interface SelectConfig {
 
 	dataTextField: string;
 	dataValueField: string;
-	dataGroupByField?: string;
 }
 
 export const selectConfig: SelectConfig = {
 	autoClose: true,
 	type: selectType.single,
 	selectedClass: "selected",
-	arrowUpIcon: "chevron-circle-up",
-	arrowDownIcon: "chevron-circle-down",
+	arrowUpIcon: "chevron-up",
+	arrowDownIcon: "chevron-down",
 	allowFiltering: true,
 	filterPlaceholder: "filter options...",
 	allowClear: true,
