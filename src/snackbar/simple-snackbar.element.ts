@@ -47,23 +47,20 @@ export class SimpleSnackbarElement implements ComponentAttached, ComponentDetach
 	}
 
 	onAction() {
-		this.logger.debug("onAction");
 		this.snackbarRef._triggerAction();
 	}
 
 	private async handleChange() {
-		this.logger.debug("handleChange", "animate...");
 		this.label = this.snackbarRef.message;
 		this.action = this.snackbarRef.action;
 
 		this.snackbarRef._onPreDismiss(() => {
-			this.logger.debug("handleChange", "dismissed");
+			// this.logger.debug("handleChange", "dismissed");
 			this.hide();
 		});
 
 		await this.animator.enter(this.element as HTMLElement);
 		this.element.classList.add(ACTIVE_CLASS);
-		this.logger.debug("handleChange", "animate enter complete!", this.snackbarRef.options);
 
 		this.timeoutToken = setTimeout(() => {
 			this.snackbarRef.dismiss();

@@ -62,7 +62,7 @@ export class SnackbarService {
 	}
 
 	private handleNext() {
-		this.logger.debug("handleNext");
+		// this.logger.debug("handleNext");
 		const next = this.items.shift();
 		if (!next) {
 			this.activeItem = null;
