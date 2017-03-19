@@ -51,11 +51,11 @@ snackbarRef.dismiss();
 ## Global Configuration
 Options which can be configured globally.
 
-| Name        | Type         | Default |
-|-------------|--------------|---------|
-| duration    | number       | 3000    |
-| actionType  | `ButtonType` | flat    |
-| actionColor | string       | accent  |
+| Name        | Type       | Default           | Description                                                           |
+|-------------|------------|-------------------|-----------------------------------------------------------------------|
+| duration    | number     | `3000`            | Duration in milliseconds before automatically dismisses the snackbar. |
+| actionType  | ButtonType | `buttonType.flat` | Button type for the action. Read button doc for more info.            |
+| actionColor | string     | `"accent"`        | Button color for the action. Read button doc for more info.           |
 
 
 # todo
