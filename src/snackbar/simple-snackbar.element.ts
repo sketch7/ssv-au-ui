@@ -1,6 +1,7 @@
 import { customElement, bindable, Animator, ComponentAttached, ComponentDetached } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
 import { LoggerFactory, ILog } from "@ssv/au-core";
+
 import { SnackbarRef } from "./snackbar-ref";
 import { snackbarConfig } from "./snackbar.config";
 

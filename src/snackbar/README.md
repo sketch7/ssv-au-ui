@@ -3,17 +3,6 @@ Snackbars provide brief feedback about an operation through a message.
 
 ## Usage
 
-During bootstrapping within `main` initialize `SnackbarHostService`.
-
-```ts
-import { SnackbarHostService } from "@ssv/au-ui";
-
-aurelia.start().then(() => {
-    const snackbarHost = aurelia.container.get(SnackbarHostService) as SnackbarHostService;
-    snackbarHost.init();
-});
-```
-
 ### Api
 
 #### SnackbarService

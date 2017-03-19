@@ -1,4 +1,5 @@
 import { EventAggregator, Subscription } from "aurelia-event-aggregator";
+
 import { snackbarConfig } from "./snackbar.config";
 
 export interface SnackbarOptions {
