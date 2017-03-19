@@ -45,6 +45,12 @@ const uiConfig: UiConfig = {
 };
 // register plugin with aurelia + configure
 aurelia.use.plugin("@ssv/au-ui", uiConfig);
+
+aurelia.start().then(() => {
+    // invoke bootstrapper to initialize
+    const uiBootstrapper = aurelia.container.get(UiBootstrapper) as UiBootstrapper;
+    uiBootstrapper.init();
+});
 ```
 
 ### Styling
