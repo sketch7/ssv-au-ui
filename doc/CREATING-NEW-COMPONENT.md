@@ -6,6 +6,7 @@
  - add config to `config.model.ts`
  - add globalResource within `config.ts`
  - export from `index.ts`
+ - add import for scss within `components.scss`
 
 
 ## Dojo

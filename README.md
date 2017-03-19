@@ -35,10 +35,10 @@ npm install normalize-scss node-waves @ssv/core @ssv/au-core aurelia-dependency-
 ```
 
 ### Setup Plugin
-Register `au-ui` plugin with optional global configuration.
+Register `au-ui` plugin with optional global configuration and bootstrap.
 
 ```ts
-import { UiConfig, buttonType } from "@ssv/au-ui";
+import { UiConfig, UiBootstrapper, buttonType } from "@ssv/au-ui";
 
 const uiConfig: UiConfig = {
     button: { type: buttonType.raised }
