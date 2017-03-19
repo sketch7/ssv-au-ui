@@ -7,12 +7,12 @@ $ssv-snackbar-layer-index: $ssv-overlay-index !default;
 $ssv-snackbar-viewport-offset: 80px !default;
 
 .ssv-snackbar-host {
+	display: block;
 	position: fixed;
 	width: 100%;
 	left: 0;
 	bottom: 0;
 	cursor: default;
-	display: block;
 	text-align: center;
 	z-index: $ssv-snackbar-layer-index;
 }
