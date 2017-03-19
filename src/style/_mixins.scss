@@ -1,6 +1,7 @@
 @import "./shadow.mixin";
 
-$ssv-breakpoints: (
+$ssv-breakpoints: () !default;
+$ssv-breakpoints-defaults: (
 	"xsmall": 450px,
 	"small": 767px,
 	"medium": 992px,
@@ -8,6 +9,7 @@ $ssv-breakpoints: (
 	"xlarge": 1500px,
 	"xxlarge": 1800px
 );
+$ssv-breakpoints: map-merge($ssv-breakpoints-defaults, $ssv-breakpoints);
 
 // BEM mixins
 // --------------
