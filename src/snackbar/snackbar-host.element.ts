@@ -1,7 +1,7 @@
-import { LoggerFactory, ILog } from "@ssv/au-core";
 import { customElement, ComponentDetached } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
 import { Disposable } from "aurelia-binding";
+import { LoggerFactory, ILog } from "@ssv/au-core";
 
 import { SnackbarRef } from "./snackbar-ref";
 import { SnackbarService } from "./snackbar.service";

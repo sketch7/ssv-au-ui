@@ -1,7 +1,7 @@
 import { autoinject, Container } from "aurelia-dependency-injection";
+import { TemplatingEngine, ViewResources, ViewSlot, Controller, View } from "aurelia-templating";
 import { ILog, LoggerFactory } from "@ssv/au-core";
 
-import { TemplatingEngine, ViewResources, ViewSlot, Controller, View } from "aurelia-templating";
 import { SnackbarHostElement } from "./snackbar-host.element";
 
 @autoinject()
@@ -18,7 +18,7 @@ export class SnackbarHostService {
 		this.logger = loggerFactory.get("SnackbarHostService");
 	}
 
-	/** Initialize the snackbar host in order to show snackbars. */
+	/** Initialize the snackbar host (container) in order to show snackbars. */
 	async init(): Promise<View | Controller> {
 		const viewController = await this.templatingEngine.compose({
 			host: document.body,
