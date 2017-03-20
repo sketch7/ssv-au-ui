@@ -46,9 +46,9 @@ export class SelectElement {
 	filteredGroupOptions: SelectGroup[] = [];
 	noOptionsAvailableText: string;
 
-	@computedFrom("isOpen", "selectedItems", "selected")
+	@computedFrom("isOpen", "selectedItems")
 	get isActive(): boolean {
-		return this.isOpen || this.selectedItems.length > 0 || this.selected && this.selected.length > 0;
+		return this.isOpen || this.selectedItems.length > 0;
 	}
 
 	private logger: ILog;
@@ -56,6 +56,7 @@ export class SelectElement {
 	private items: SelectItem[];
 	private selectedItems: SelectItem[] = [];
 	private optionsMap: Dictionary<object> = {};
+	private isSimpleList = false;
 
 	constructor(
 		private element: Element,
@@ -165,12 +166,11 @@ export class SelectElement {
 		this.selectedItems = [];
 		for (const option of list) {
 			const item = _.find(this.items, x => x.value === option.value);
-			if (item) {
-				item.isSelected = true;
-				this.selectedItems.push(item);
-			} else {
-				this.selectedItems = _.filter(this.selectedItems, x => x.value !== option.value);
+			if (!item) {
+				continue;
 			}
+			item.isSelected = true;
+			this.selectedItems.push(item);
 		}
 	}
 
@@ -185,6 +185,7 @@ export class SelectElement {
 	}
 
 	private convertSimpleToSelectItems(options: Array<string | boolean | number>, isSelected = false): SelectItem[] {
+		this.isSimpleList = true;
 		return _.map(options, item => {
 			return {
 				value: item,
@@ -207,8 +208,12 @@ export class SelectElement {
 	}
 
 	private clearMultiSelectionItem(optionValue: string) {
-		const item: object & { [key: string]: any } = this.optionsMap[optionValue];
-		this.selected = _.filter(this.selected, (x: any) => x[this.config.dataValueField] !== item[this.config.dataValueField]);
+		if (this.isSimpleList) {
+			this.selected = _.filter(this.selected, x => x !== optionValue);
+			return;
+		}
+
+		this.selected = _.filter(this.selected, (x: object & { [key: string]: any }) => x[this.config.dataValueField] !== optionValue);
 	}
 
 	private validateType(type: string | SelectType) {
@@ -242,6 +247,25 @@ export class SelectElement {
 		});
 	}
 
+	private cleanseSelectedItems() {
+		const list = this.config.type === selectType.single
+			? this.convertToSelectItems([this.selected], true)
+			: this.convertToSelectItems(this.selected, true);
+
+		for (const item of list) {
+			const exist = this.optionsMap[item.value];
+			if (exist) {
+				continue;
+			}
+
+			if (this.config.type === selectType.single) {
+				this.selected = undefined;
+				return;
+			}
+			this.clearMultiSelectionItem(item.value);
+		}
+	}
+
 	private setDefaults(): void {
 		this.config = _.defaults<SelectConfig>({
 			type: this.type,
@@ -252,8 +276,7 @@ export class SelectElement {
 			filterPlaceholder: this.filterPlaceholder,
 			selectedClass: this.selectedClass,
 			dataTextField: this.text,
-			dataValueField: this.value,
-			dataGroupByField: this.groupby,
+			dataValueField: this.value
 		}, selectConfig);
 
 		this.validateType(this.config.type.toLowerCase());
@@ -267,12 +290,14 @@ export class SelectElement {
 		this.filterPlaceholder = this.config.filterPlaceholder;
 		this.noOptionsAvailableText = this.config.noOptionsAvailableText;
 
+		this.options = this.options || [];
+		this.options = this.options.filter(x => !_.isNil(x));
 		this.items = this.convertToSelectItems(this.options);
 
 		_.zipWith(this.options, this.items, (original: any, internal: SelectItem) => {
 			this.optionsMap[internal.value] = original;
 		});
-
+		this.cleanseSelectedItems();
 		this.onSelectedChanged(this.selected);
 		this.groupedOptions(this.items);
 	}

@@ -38,6 +38,8 @@
 					${option.isSelected ? selectedClass : ''}"
 					click.delegate="onChange(option)">${option.text}</li>
 			</template>
+			<li class="ssv-select__no-options-available"
+				if.bind="!filteredGroupOptions || filteredGroupOptions.length === 0">${noOptionsAvailableText}</li>
 		</ul>
 	</div>
 </template>
