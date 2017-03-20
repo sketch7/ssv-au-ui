@@ -1,5 +1,20 @@
+<a name="0.6.0"></a>
+# [0.6.0](https://github.com/sketch7/ssv-au-ui/compare/0.5.4...v0.6.0) (2017-03-20)
+
+
+### Bug Fixes
+
+* **badge:** badge was being trimmed ([e3627bb](https://github.com/sketch7/ssv-au-ui/commit/e3627bb))
+
+
+### Features
+
+* **snackbar:** initial snackbar ([f703a57](https://github.com/sketch7/ssv-au-ui/commit/f703a57))
+
+
+
 <a name="0.5.4"></a>
-## [0.5.4](https://github.com/sketch7/ssv-au-ui/compare/0.5.3...v0.5.4) (2017-02-19)
+## [0.5.4](https://github.com/sketch7/ssv-au-ui/compare/0.5.3...0.5.4) (2017-02-19)
 
 
 ### Bug Fixes
@@ -31,7 +46,7 @@
 
 ### BREAKING CHANGES
 
-* input: input modifier `ssv-input--error` has been changed to `ssv-input--danger` for consistency
+* **input:** input modifier `ssv-input--error` has been changed to `ssv-input--danger` for consistency
 
 
 
