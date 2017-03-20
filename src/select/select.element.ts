@@ -84,6 +84,10 @@ export class SelectElement {
 		this.onSelectedChanged(value);
 	}
 
+	optionsChanged(options: any[]) {
+		this.onOptionsChanged(options);
+	}
+
 	modifierChanged(newValue: string | undefined) {
 		this.modifiers = attributeUtil.generateBemStyleModifiers(newValue, PREFIX);
 	}
@@ -266,6 +270,18 @@ export class SelectElement {
 		}
 	}
 
+	private onOptionsChanged(options: any[]) {
+		options = options || [];
+		options = options.filter(x => !_.isNil(x));
+		this.items = this.convertToSelectItems(options);
+
+		_.zipWith(options, this.items, (original: any, internal: SelectItem) => {
+			this.optionsMap[internal.value] = original;
+		});
+
+		this.groupedOptions(this.items);
+	}
+
 	private setDefaults(): void {
 		this.config = _.defaults<SelectConfig>({
 			type: this.type,
@@ -290,16 +306,9 @@ export class SelectElement {
 		this.filterPlaceholder = this.config.filterPlaceholder;
 		this.noOptionsAvailableText = this.config.noOptionsAvailableText;
 
-		this.options = this.options || [];
-		this.options = this.options.filter(x => !_.isNil(x));
-		this.items = this.convertToSelectItems(this.options);
-
-		_.zipWith(this.options, this.items, (original: any, internal: SelectItem) => {
-			this.optionsMap[internal.value] = original;
-		});
+		this.onOptionsChanged(this.options);
 		this.cleanseSelectedItems();
 		this.onSelectedChanged(this.selected);
-		this.groupedOptions(this.items);
 	}
 
 }
