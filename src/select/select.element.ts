@@ -19,9 +19,6 @@ export class SelectElement {
 
 	@bindable color: string;
 	@bindable placeholder: string;
-	@bindable({
-		defaultBindingMode: bindingMode.twoWay
-	}) selected: any | undefined;
 	@bindable selectedClass: string | undefined;
 	@bindable autoClose: boolean;
 	@bindable allowClear: boolean;
@@ -30,6 +27,9 @@ export class SelectElement {
 	@bindable type: SelectType;
 	@bindable modifier: string | undefined;
 
+	@bindable({
+		defaultBindingMode: bindingMode.twoWay
+	}) selected: any | undefined;
 	@bindable options: any[] = [];
 	@bindable text: string;
 	@bindable value: string;
@@ -53,9 +53,9 @@ export class SelectElement {
 
 	private logger: ILog;
 	private config: SelectConfig;
-	private optionsList: SelectItem[];
-	private optionsItems: Dictionary<object> = {};
+	private items: SelectItem[];
 	private selectedItems: SelectItem[] = [];
+	private optionsMap: Dictionary<object> = {};
 
 	constructor(
 		private element: Element,
@@ -88,13 +88,13 @@ export class SelectElement {
 	}
 
 	filterOptions(searchTerm: string) {
-		let filteredOptions = this.optionsList;
+		let filteredOptions = this.items;
 		if (!searchTerm) {
 			this.groupedOptions(filteredOptions);
 			return;
 		}
 
-		filteredOptions = _.filter(this.optionsList, item => {
+		filteredOptions = _.filter(this.items, item => {
 			return _.includes(item.text.toLowerCase(), searchTerm.toLowerCase());
 		});
 		this.groupedOptions(filteredOptions);
@@ -105,9 +105,9 @@ export class SelectElement {
 		this.isOpen = false;
 		this.selected = undefined;
 		this.selectedItems = [];
-		this.groupedOptions(this.optionsList);
+		this.groupedOptions(this.items);
 
-		for (let item of this.optionsList) {
+		for (let item of this.items) {
 			item.isSelected = false;
 		}
 	}
@@ -124,17 +124,17 @@ export class SelectElement {
 		let previous: any | undefined;
 
 		if (this.config.type === selectType.single) {
-			previous = this.selectedItems.length > 0 ? this.optionsItems[this.selectedItems[0].value] : undefined;
-			this.selected = this.optionsItems[option.value];
+			previous = this.selectedItems.length > 0 ? this.optionsMap[this.selectedItems[0].value] : undefined;
+			this.selected = this.optionsMap[option.value];
 		} else if (this.config.type === selectType.multi) {
 			previous = [];
 			this.selected = this.selected ? this.selected : [];
 			for (const item of this.selectedItems) {
-				previous.push(this.optionsItems[item.value]);
+				previous.push(this.optionsMap[item.value]);
 			}
 
 			if (!_.find(this.selectedItems, x => x.value === option.value)) {
-				this.selected = [...this.selected, this.optionsItems[option.value]];
+				this.selected = [...this.selected, this.optionsMap[option.value]];
 			} else {
 				this.clearMultiSelectionItem(option.value);
 			}
@@ -158,37 +158,56 @@ export class SelectElement {
 			? this.convertToSelectItems([selectedItem], true)
 			: this.convertToSelectItems(selectedItem, true);
 
-		for (let item of this.optionsList) {
+		for (let item of this.items) {
 			item.isSelected = false;
 		}
 
-		const tempSelected: any = [];
+		this.selectedItems = [];
 		for (const option of list) {
-			const item = _.find(this.optionsList, x => x.value === option.value);
+			const item = _.find(this.items, x => x.value === option.value);
 			if (item) {
 				item.isSelected = true;
-				tempSelected.push(this.optionsItems[option.value]);
+				this.selectedItems.push(item);
 			} else {
 				this.selectedItems = _.filter(this.selectedItems, x => x.value !== option.value);
 			}
 		}
-
-		this.selectedItems = [...tempSelected];
 	}
 
 	private convertToSelectItems(options: any[], isSelected = false): SelectItem[] {
+		if (_.isEmpty(options)) {
+			return [];
+		}
+
+		return _.isObject(options[0])
+			? this.convertObjectToSelectItems(options, isSelected)
+			: this.convertSimpleToSelectItems(options, isSelected);
+	}
+
+	private convertSimpleToSelectItems(options: Array<string | boolean | number>, isSelected = false): SelectItem[] {
+		return _.map(options, item => {
+			return {
+				value: item,
+				text: item,
+				groupBy: "",
+				isSelected
+			} as SelectItem;
+		});
+	}
+
+	private convertObjectToSelectItems(options: any[], isSelected = false): SelectItem[] {
 		return _.map(options, item => {
 			return {
 				value: item[this.config.dataValueField],
 				text: item[this.config.dataTextField],
 				groupBy: item[this.groupby!],
-				isSelected: isSelected
+				isSelected
 			} as SelectItem;
 		});
 	}
 
 	private clearMultiSelectionItem(optionValue: string) {
-		const item: object & { [key: string]: any } = this.optionsItems[optionValue];
+		const item: object & { [key: string]: any } = this.optionsMap[optionValue];
 		this.selected = _.filter(this.selected, (x: any) => x[this.config.dataValueField] !== item[this.config.dataValueField]);
 	}
 
@@ -248,13 +267,14 @@ export class SelectElement {
 		this.filterPlaceholder = this.config.filterPlaceholder;
 		this.noOptionsAvailableText = this.config.noOptionsAvailableText;
 
-		for (const item of this.options) {
-			this.optionsItems[item[this.config.dataValueField]] = item;
-		}
+		this.items = this.convertToSelectItems(this.options);
 
-		this.optionsList = this.convertToSelectItems(this.options);
+		_.zipWith(this.options, this.items, (original: any, internal: SelectItem) => {
+			this.optionsMap[internal.value] = original;
+		});
+
 		this.onSelectedChanged(this.selected);
-		this.groupedOptions(this.optionsList);
+		this.groupedOptions(this.items);
 	}
 
 }
