@@ -63,13 +63,13 @@
     "yargs": "^6.3.0"
   },
   "dependencies": {
-    "@ssv/au-core": "^0.3.3",
-    "@ssv/core": "^0.3.4",
-    "aurelia-binding": "^1.1.0",
-    "aurelia-dependency-injection": "^1.0.0",
+    "@ssv/au-core": "^0.3.7",
+    "@ssv/core": "^0.3.5",
+    "aurelia-binding": "^1.2.0",
+    "aurelia-dependency-injection": "^1.3.0",
     "aurelia-event-aggregator": "^1.0.1",
-    "aurelia-framework": "^1.0.8",
-    "aurelia-templating": "^1.2.0",
+    "aurelia-framework": "^1.1.0",
+    "aurelia-templating": "^1.3.0",
     "node-waves": "^0.7.5",
     "normalize-scss": "^6.0.0"
   }
