@@ -30,7 +30,8 @@ rework text, name to be passed instead SelectedItem - done
     - Multi - done
 
 - Event:
-    - onChanged - done
+    - onSelectChanged - done
+    - onOptionsChanged - done
     - key events: up, down, escape, enter & space
     - onBlur: Close
 

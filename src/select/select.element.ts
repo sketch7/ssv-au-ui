@@ -56,7 +56,7 @@ export class SelectElement {
 	private items: SelectItem[];
 	private selectedItems: SelectItem[] = [];
 	private optionsMap: Dictionary<object> = {};
-	private isSimpleList = false;
+	private isComplexList: boolean;
 
 	constructor(
 		private element: Element,
@@ -183,13 +183,12 @@ export class SelectElement {
 			return [];
 		}
 
-		return _.isObject(options[0])
+		return this.isComplexList
 			? this.convertObjectToSelectItems(options, isSelected)
 			: this.convertSimpleToSelectItems(options, isSelected);
 	}
 
 	private convertSimpleToSelectItems(options: Array<string | boolean | number>, isSelected = false): SelectItem[] {
-		this.isSimpleList = true;
 		return _.map(options, item => {
 			return {
 				value: item,
@@ -212,12 +211,12 @@ export class SelectElement {
 	}
 
 	private clearMultiSelectionItem(optionValue: string) {
-		if (this.isSimpleList) {
-			this.selected = _.filter(this.selected, x => x !== optionValue);
+		if (this.isComplexList) {
+			this.selected = _.filter(this.selected, (x: object & { [key: string]: any }) => x[this.config.dataValueField] !== optionValue);
 			return;
 		}
 
-		this.selected = _.filter(this.selected, (x: object & { [key: string]: any }) => x[this.config.dataValueField] !== optionValue);
+		this.selected = _.filter(this.selected, x => x !== optionValue);
 	}
 
 	private validateType(type: string | SelectType) {
@@ -252,6 +251,10 @@ export class SelectElement {
 	}
 
 	private cleanseSelectedItems() {
+		if (_.isNil(this.selected)) {
+			return;
+		}
+
 		const list = this.config.type === selectType.single
 			? this.convertToSelectItems([this.selected], true)
 			: this.convertToSelectItems(this.selected, true);
@@ -273,6 +276,7 @@ export class SelectElement {
 	private onOptionsChanged(options: any[]) {
 		options = options || [];
 		options = options.filter(x => !_.isNil(x));
+		this.isComplexList = _.isObject(options[0]);
 		this.items = this.convertToSelectItems(options);
 
 		_.zipWith(options, this.items, (original: any, internal: SelectItem) => {
