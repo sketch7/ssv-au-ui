@@ -11,7 +11,7 @@
 
 
 ## Global Configuration
-Options which can be configured globally.
+Options which can be configured globally. - done
 
 ## TODO Features
 - Placeholder - done
@@ -32,5 +32,11 @@ rework text, name to be passed instead SelectedItem - done
 - Event:
     - onSelectChanged - done
     - onOptionsChanged - done
-    - key events: up, down, escape, enter & space
-    - onBlur: Close
+    - onDisableChanged - done
+    - key events: 
+        - up : hover
+        - down: hover
+        - escape: close
+        - enter: select
+        - space: select
+    - onBlur: close
