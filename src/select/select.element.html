@@ -23,11 +23,12 @@
 	</div>
 	<div class="ssv-select__list-container" if.bind="isOpen">
 		<input type="text" if.bind="allowFiltering"
-		 class="ssv-select__input-filter"
-		 placeholder.bind="filterPlaceholder"
-		 value.bind="filterBy"
-		 keyup.delegate="filterOptions(filterBy) & debounce"
-		/>
+			autocomplete="off"
+			class="ssv-select__input-filter"
+			placeholder.bind="filterPlaceholder"
+			value.bind="filterBy"
+			keyup.delegate="filterOptions(filterBy) & debounce"
+			/>
 		<ul class="ssv-select__list">
 			<template repeat.for="group of filteredGroupOptions">
 				<li class="ssv-select__group-header"
