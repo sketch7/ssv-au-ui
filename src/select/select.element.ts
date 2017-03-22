@@ -298,6 +298,8 @@ export class SelectElement {
 		});
 
 		this.groupedOptions(this.items);
+		this.cleanseSelectedItems();
+		this.onSelectedChanged(this.selected);
 	}
 
 	private setDefaults(): void {
@@ -325,8 +327,6 @@ export class SelectElement {
 		this.noOptionsAvailableText = this.config.noOptionsAvailableText;
 
 		this.onOptionsChanged(this.options);
-		this.cleanseSelectedItems();
-		this.onSelectedChanged(this.selected);
 	}
 
 }
