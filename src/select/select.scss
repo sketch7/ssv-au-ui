@@ -10,6 +10,9 @@ $ssv-select-default-item-color-hover: rgba($ssv-color-black, .1) !default;
 $ssv-select-default-list-background-color: $ssv-color-white !default;
 $ssv-select-default-clear-color-hover: rgba($ssv-color-black, .6) !default;
 
+$ssv-select-disabled-primary-color: rgba($ssv-color-black, .12) !default;
+$ssv-select-disabled-secondary-color: rgba($ssv-color-black, .26) !default;
+
 $ssv-select-input-box-padding: 0.5em 0.5em !default;
 
 .ssv-select {
@@ -135,6 +138,24 @@ $ssv-select-input-box-padding: 0.5em 0.5em !default;
 		cursor: default;
 		padding: $ssv-select-input-box-padding;
 	}
+
+	&[disabled] {
+		cursor: default;
+
+		.ssv-select__label,
+		.ssv-select__arrow,
+		.ssv-select__input-box,
+		.ssv-select__placeholder--active {
+			cursor: default;
+			color: $ssv-select-disabled-secondary-color;
+		}
+
+		.ssv-select__input-underline,
+		.ssv-select__label--multi{
+			background-color: $ssv-select-disabled-primary-color;
+		}
+	}
+
 	// variants
 	@include modifier("primary") {
 		 @include ssv-select-variant($ssv-select-primary-variant);

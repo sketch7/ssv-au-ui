@@ -20,7 +20,7 @@ Options which can be configured globally.
 - Filter - done
 - Auto Close - done
 - grouping - done
-- disabled
+- disabled - done
 - simple list (primitive value only eg: visa card years) - done
 
 rework text, name to be passed instead SelectedItem - done
@@ -34,4 +34,3 @@ rework text, name to be passed instead SelectedItem - done
     - onOptionsChanged - done
     - key events: up, down, escape, enter & space
     - onBlur: Close
-

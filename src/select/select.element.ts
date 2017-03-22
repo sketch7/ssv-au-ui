@@ -26,6 +26,7 @@ export class SelectElement {
 	@bindable filterPlaceholder: string;
 	@bindable type: SelectType;
 	@bindable modifier: string | undefined;
+	@bindable disabled: boolean | string = false;
 
 	@bindable({
 		defaultBindingMode: bindingMode.twoWay
@@ -67,6 +68,9 @@ export class SelectElement {
 	}
 
 	bind() {
+		this.disabled = attributeUtil.getFlagAsBoolean(this.disabled);
+		attributeUtil.setAsFlag(this.element, "disabled", this.disabled);
+
 		this.setDefaults();
 		this.modifiers = attributeUtil.generateBemStyleModifiers(this.modifier, PREFIX);
 		this.selectedClass = attributeUtil.generateBemStyleModifiers(this.config.selectedClass, `${PREFIX}__item`);
@@ -86,6 +90,13 @@ export class SelectElement {
 
 	optionsChanged(options: any[]) {
 		this.onOptionsChanged(options);
+	}
+
+	disabledChanged(newValue: boolean) {
+		if (this.disabled) {
+			this.isOpen = false;
+		}
+		attributeUtil.setAsFlag(this.element, "disabled", newValue);
 	}
 
 	modifierChanged(newValue: string | undefined) {
@@ -122,6 +133,9 @@ export class SelectElement {
 	}
 
 	toggle() {
+		if (this.disabled) {
+			return;
+		}
 		this.isOpen = !this.isOpen;
 	}
 
