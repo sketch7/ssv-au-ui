@@ -172,8 +172,8 @@ export class SelectElement {
 	}
 
 	onBodyClick(event: Event): void {
-		if (!this.isOpen && (event.target === this.element
-			|| this.element.contains(event.target as Node))) {
+		if (!this.isOpen || event.target === this.element
+			|| this.element.contains(event.target as Node)) {
 			return;
 		}
 		this.isOpen = false;
