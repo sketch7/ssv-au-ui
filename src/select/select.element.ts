@@ -3,6 +3,7 @@ import { DOM } from "aurelia-pal";
 import { computedFrom, bindingMode } from "aurelia-binding";
 import { customElement, bindable } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
+import { Subscription } from "aurelia-event-aggregator";
 import { Dictionary, KeyCode } from "@ssv/core";
 import { LoggerFactory, ILog } from "@ssv/au-core";
 
@@ -60,8 +61,9 @@ export class SelectElement {
 	private flattenedFilteredGroupOptions: SelectItem[];
 	private optionsMap: Dictionary<object> = {};
 	private isComplexList: boolean;
-	private focusedController: ElementFocusedController;
 
+	private focusedController: ElementFocusedController;
+	private focus$$: Subscription;
 	// private input: HTMLInputElement;
 
 	constructor(
@@ -92,23 +94,14 @@ export class SelectElement {
 
 	attached() {
 		this.focusedController.init();
+		this.focus$$ = this.focusedController.onFocus(() => this.toggle());
 		this.element.addEventListener("keydown", this.onFocusedKeyPress.bind(this));
-		// this.element.addEventListener("click", this.toggle.bind(this));
-		this.element.addEventListener("focus", this.onFocus.bind(this), true);
-		// this.element.addEventListener("blur", this.onBlur.bind(this), true);
-
-		// this.input.addEventListener("focus", this.onFocus.bind(this));
 	}
 
 	detached() {
 		this.focusedController.destroy();
+		this.focus$$.dispose();
 		this.element.removeEventListener("keydown", this.onFocusedKeyPress);
-		// this.element.removeEventListener("click", this.toggle);
-		// this.element.removeEventListener("focus", this.onFocus);
-		// this.element.removeEventListener("blur", this.onBlur);
-
-		// this.input.removeEventListener("focus", this.onFocus);
-
 	}
 
 	selectedChanged(value: any) {
@@ -159,8 +152,8 @@ export class SelectElement {
 		this.clearMultiSelectionItem(optionValue);
 	}
 
-	toggle(e: any) {
-		this.logger.debug("toggle", "open/close select", { e });
+	toggle() {
+		this.logger.debug("toggle", "open/close select", {});
 		if (this.disabled) {
 			return;
 		}
@@ -221,20 +214,21 @@ export class SelectElement {
 				e.preventDefault();
 				break;
 			}
+			default:
+				this.logger.debug("onFocusedKeyPress", "key pressed", { keyCode: e.keyCode, e });
+				break;
 		}
-		this.logger.debug("onFocusedKeyPress", "key pressed", { keyCode: e.keyCode });
-
 	}
 
-	private onFocus(e: FocusEvent) {
-		if (this.disabled) {
-			return;
-		}
-		this.logger.debug("onFocus", "focused", { e });
-		this.isOpen = true;
-		this.setFocusValue();
-		e.preventDefault();
-	}
+	// private onFocus(e: FocusEvent) {
+	// 	if (this.disabled) {
+	// 		return;
+	// 	}
+	// 	this.logger.debug("onFocus", "focused", { e });
+	// 	this.isOpen = true;
+	// 	this.setFocusValue();
+	// 	e.preventDefault();
+	// }
 
 	// private onBlur(e: any) {
 	// 	this.logger.debug("onBlur", "blured", { e });
