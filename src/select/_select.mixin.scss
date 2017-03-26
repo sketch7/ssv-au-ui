@@ -13,11 +13,13 @@
 			color: $color;
 		}
 		@include element("label") {
-			@include modifier("multi") {
+			 @include modifier("multi"){
 				background-color: $color;
 				color: $color-contrast;
+
 				.ssv-select__clear {
 					color: $color-contrast;
+
 					&:hover {
 						color: $multi-clear-color-hover;
 					}
@@ -45,6 +47,10 @@
 		}
 		@include element("item") {
 			&:hover {
+				background-color: $item-color-hover;
+				color: $color-contrast;
+			}
+			@include modifier("focused") {
 				background-color: $item-color-hover;
 				color: $color-contrast;
 			}

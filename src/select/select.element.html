@@ -1,5 +1,5 @@
-<template role="select" class="ssv-select ${modifiers}">
-	<div click.delegate="toggle()" class="ssv-select__input-box">
+<template role="select" class="ssv-select ${modifiers}" tabindex="${disabled ? -1 : 0}">
+	<div class="ssv-select__input-box">
 		<div class="ssv-select_text-container">
 			<div class="ssv-select__placeholder 
 			${isActive ? 'ssv-select__placeholder--active' : ''}">${placeholder}</div>
@@ -28,6 +28,7 @@
 			placeholder.bind="filterPlaceholder"
 			value.bind="filterBy"
 			keyup.delegate="filterOptions(filterBy) & debounce"
+			tabindex="-1"
 			/>
 		<ul class="ssv-select__list">
 			<template repeat.for="group of filteredGroupOptions">
@@ -36,8 +37,10 @@
 				 <li repeat.for="option of group.options"
 					class="ssv-select__item 
 					${group.name ? 'ssv-select__item--group-item' : ''}
-					${option.isSelected ? selectedClass : ''}"
-					click.delegate="onChange(option)">${option.text}</li>
+					${option.isSelected ? selectedClass : ''}
+					${option.value === focusValue ? 'ssv-select__item--focused' : ''}"
+					click.delegate="onChange(option)"
+					>${option.text}</li>
 			</template>
 			<li class="ssv-select__no-options-available"
 				if.bind="!filteredGroupOptions || filteredGroupOptions.length === 0">${noOptionsAvailableText}</li>

@@ -34,9 +34,10 @@ rework text, name to be passed instead SelectedItem - done
     - onOptionsChanged - done
     - onDisableChanged - done
     - key events: 
-        - up : hover
-        - down: hover
-        - escape: close
-        - enter: select
-        - space: select
+        - up : hover - done
+        - down: hover - done
+        - escape: close - done
+        - enter: select - done
+        - space: select  - done (but not sure if it conflicts with filter textbox)
     - onBlur: close
+    - onFocus: open

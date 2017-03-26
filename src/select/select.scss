@@ -114,6 +114,11 @@ $ssv-select-input-box-padding: 0.5em 0.5em !default;
 			padding-left: 1em;
 		}
 
+		@include modifier("focused") {
+			background-color: $ssv-select-default-item-color-hover;
+			color: $ssv-select-default-color-contrast;
+		}
+
 		&:hover {
 			background-color: $ssv-select-default-item-color-hover;
 			color: $ssv-select-default-color-contrast;

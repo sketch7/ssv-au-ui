@@ -3,10 +3,10 @@ import { DOM } from "aurelia-pal";
 import { computedFrom, bindingMode } from "aurelia-binding";
 import { customElement, bindable } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
-import { Dictionary } from "@ssv/core";
+import { Dictionary, KeyCode } from "@ssv/core";
 import { LoggerFactory, ILog } from "@ssv/au-core";
 
-import { attributeUtil } from "../core/index";
+import { attributeUtil, ElementFocusedController } from "../core/index";
 import { SelectType, selectType, supportedSelectTypes, SelectItem, SelectGroup } from "./select.model";
 import { selectConfig, SelectConfig } from "./select.config";
 
@@ -46,6 +46,7 @@ export class SelectElement {
 	filterBy: string;
 	filteredGroupOptions: SelectGroup[] = [];
 	noOptionsAvailableText: string;
+	focusValue: string;
 
 	@computedFrom("isOpen", "selectedItems")
 	get isActive(): boolean {
@@ -56,8 +57,12 @@ export class SelectElement {
 	private config: SelectConfig;
 	private items: SelectItem[];
 	private selectedItems: SelectItem[] = [];
+	private flattenedFilteredGroupOptions: SelectItem[];
 	private optionsMap: Dictionary<object> = {};
 	private isComplexList: boolean;
+	private focusedController: ElementFocusedController;
+
+	// private input: HTMLInputElement;
 
 	constructor(
 		private element: Element,
@@ -65,6 +70,7 @@ export class SelectElement {
 	) {
 		this.logger = loggerFactory.get("selectElement");
 		this.controlId = `${PREFIX}-${SelectElement.id++}`;
+		this.focusedController = new ElementFocusedController(PREFIX, element);
 	}
 
 	bind() {
@@ -82,6 +88,27 @@ export class SelectElement {
 		if (this.config.color) {
 			this.element.classList.add(`${PREFIX}--${this.config.color.toLowerCase()}`);
 		}
+	}
+
+	attached() {
+		this.focusedController.init();
+		this.element.addEventListener("keydown", this.onFocusedKeyPress.bind(this));
+		// this.element.addEventListener("click", this.toggle.bind(this));
+		this.element.addEventListener("focus", this.onFocus.bind(this), true);
+		this.element.addEventListener("blur", this.onBlur.bind(this), true);
+
+		// this.input.addEventListener("focus", this.onFocus.bind(this));
+	}
+
+	detached() {
+		this.focusedController.destroy();
+		this.element.removeEventListener("keydown", this.onFocusedKeyPress);
+		// this.element.removeEventListener("click", this.toggle);
+		this.element.removeEventListener("focus", this.onFocus);
+		this.element.removeEventListener("blur", this.onBlur);
+
+		// this.input.removeEventListener("focus", this.onFocus);
+
 	}
 
 	selectedChanged(value: any) {
@@ -132,12 +159,16 @@ export class SelectElement {
 		this.clearMultiSelectionItem(optionValue);
 	}
 
-	toggle() {
-		if (this.disabled) {
-			return;
-		}
-		this.isOpen = !this.isOpen;
-	}
+	// toggle() {
+	// 	this.logger.debug("toggle", "open/close select", {});
+	// 	if (this.disabled) {
+	// 		return;
+	// 	}
+	// 	this.isOpen = !this.isOpen;
+	// 	if (this.isOpen) {
+	// 		this.setFocusValue();
+	// 	}
+	// }
 
 	onChange(option: SelectItem) {
 		let previous: any | undefined;
@@ -161,6 +192,51 @@ export class SelectElement {
 
 		const event = DOM.createCustomEvent("change", { bubbles: true, detail: { previous, value: this.selected } });
 		this.element.dispatchEvent(event);
+	}
+
+	private onFocusedKeyPress(e: KeyboardEvent) {
+		switch (e.keyCode) {
+			case KeyCode.Escape:
+				this.logger.debug("onFocusedKeyPress", "Escape pressed", { e });
+				this.isOpen = false;
+				e.preventDefault();
+				break;
+			case KeyCode.Enter:
+			case KeyCode.Space:
+				this.logger.debug("onFocusedKeyPress", "Enter/space pressed", { e });
+				let selectedItem = _.find(this.flattenedFilteredGroupOptions, x => x.value === this.focusValue) as SelectItem;
+				this.onChange(selectedItem);
+				e.preventDefault();
+				break;
+			case KeyCode.UpArrow: {
+				this.logger.debug("onFocusedKeyPress", "UpArrow pressed", { e });
+				this.setFocusValue(KeyCode.UpArrow);
+				e.preventDefault();
+				break;
+			}
+			case KeyCode.DownArrow: {
+				this.logger.debug("onFocusedKeyPress", "DownArrow pressed", { e });
+				this.setFocusValue(KeyCode.DownArrow);
+				e.preventDefault();
+				break;
+			}
+		}
+		this.logger.debug("onFocusedKeyPress", "key pressed", { keyCode: e.keyCode });
+
+	}
+
+	private onFocus(e: FocusEvent) {
+		if (this.disabled) {
+			return;
+		}
+		this.logger.debug("onFocus", "focused", { e });
+		this.isOpen = true;
+		this.setFocusValue();
+	}
+
+	private onBlur(e: any) {
+		this.logger.debug("onBlur", "blured", { e });
+		this.isOpen = false;
 	}
 
 	private onSelectedChanged(selectedItem: any) {
@@ -190,6 +266,26 @@ export class SelectElement {
 			item.isSelected = true;
 			this.selectedItems.push(item);
 		}
+	}
+
+	private setFocusValue(position: (KeyCode.UpArrow | KeyCode.DownArrow) | null = null) {
+		if (_.isEmpty(this.flattenedFilteredGroupOptions)) {
+			return;
+		}
+		if (position) {
+			let index = _.findIndex(this.flattenedFilteredGroupOptions, x => x.value === this.focusValue);
+
+			if (position === KeyCode.UpArrow && index > 0) {
+				this.focusValue = this.flattenedFilteredGroupOptions[--index].value;
+			} else if (position === KeyCode.DownArrow && index + 1 < this.items.length) {
+				this.focusValue = this.flattenedFilteredGroupOptions[++index].value;
+			}
+			return;
+		}
+
+		this.focusValue = _.isEmpty(this.selectedItems)
+			? this.flattenedFilteredGroupOptions[0].value
+			: _.last(this.selectedItems).value;
 	}
 
 	private convertToSelectItems(options: any[], isSelected = false): SelectItem[] {
@@ -262,6 +358,8 @@ export class SelectElement {
 				options: values
 			};
 		});
+
+		this.flattenedFilteredGroupOptions = _.flatMap<SelectItem>(this.filteredGroupOptions, item => item.options);
 	}
 
 	private cleanseSelectedItems() {
