@@ -162,7 +162,6 @@ export class SelectElement {
 	}
 
 	toggle() {
-		this.logger.debug("toggle", "open/close select", {});
 		if (this.disabled) {
 			return;
 		}
@@ -209,31 +208,23 @@ export class SelectElement {
 		switch (e.keyCode) {
 			case KeyCode.Tab:
 			case KeyCode.Escape:
-				this.logger.debug("onFocusedKeyPress", "Escape/tab pressed", { e });
 				this.isOpen = false;
 				break;
 			case KeyCode.Enter:
-			case KeyCode.Space:
-				this.logger.debug("onFocusedKeyPress", "Enter/space pressed", { e });
-				let selectedItem = _.find(this.flattenedFilteredGroupOptions, x => x.value === this.focusValue) as SelectItem;
+				const selectedItem = _.find(this.flattenedFilteredGroupOptions, x => x.value === this.focusValue) as SelectItem;
 				this.onChange(selectedItem);
 				e.preventDefault();
 				break;
 			case KeyCode.UpArrow: {
-				this.logger.debug("onFocusedKeyPress", "UpArrow pressed", { e });
 				this.setFocusValue(KeyCode.UpArrow);
 				e.preventDefault();
 				break;
 			}
 			case KeyCode.DownArrow: {
-				this.logger.debug("onFocusedKeyPress", "DownArrow pressed", { e });
 				this.setFocusValue(KeyCode.DownArrow);
 				e.preventDefault();
 				break;
 			}
-			default:
-				this.logger.debug("onFocusedKeyPress", "key pressed", { keyCode: e.keyCode, e });
-				break;
 		}
 	}
 
