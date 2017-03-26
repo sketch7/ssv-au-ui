@@ -95,7 +95,7 @@ export class SelectElement {
 		this.element.addEventListener("keydown", this.onFocusedKeyPress.bind(this));
 		// this.element.addEventListener("click", this.toggle.bind(this));
 		this.element.addEventListener("focus", this.onFocus.bind(this), true);
-		this.element.addEventListener("blur", this.onBlur.bind(this), true);
+		// this.element.addEventListener("blur", this.onBlur.bind(this), true);
 
 		// this.input.addEventListener("focus", this.onFocus.bind(this));
 	}
@@ -104,8 +104,8 @@ export class SelectElement {
 		this.focusedController.destroy();
 		this.element.removeEventListener("keydown", this.onFocusedKeyPress);
 		// this.element.removeEventListener("click", this.toggle);
-		this.element.removeEventListener("focus", this.onFocus);
-		this.element.removeEventListener("blur", this.onBlur);
+		// this.element.removeEventListener("focus", this.onFocus);
+		// this.element.removeEventListener("blur", this.onBlur);
 
 		// this.input.removeEventListener("focus", this.onFocus);
 
@@ -159,16 +159,16 @@ export class SelectElement {
 		this.clearMultiSelectionItem(optionValue);
 	}
 
-	// toggle() {
-	// 	this.logger.debug("toggle", "open/close select", {});
-	// 	if (this.disabled) {
-	// 		return;
-	// 	}
-	// 	this.isOpen = !this.isOpen;
-	// 	if (this.isOpen) {
-	// 		this.setFocusValue();
-	// 	}
-	// }
+	toggle(e: any) {
+		this.logger.debug("toggle", "open/close select", { e });
+		if (this.disabled) {
+			return;
+		}
+		this.isOpen = !this.isOpen;
+		if (this.isOpen) {
+			this.setFocusValue();
+		}
+	}
 
 	onChange(option: SelectItem) {
 		let previous: any | undefined;
@@ -195,11 +195,12 @@ export class SelectElement {
 	}
 
 	private onFocusedKeyPress(e: KeyboardEvent) {
+		this.isOpen = true;
 		switch (e.keyCode) {
+			case KeyCode.Tab:
 			case KeyCode.Escape:
-				this.logger.debug("onFocusedKeyPress", "Escape pressed", { e });
+				this.logger.debug("onFocusedKeyPress", "Escape/tab pressed", { e });
 				this.isOpen = false;
-				e.preventDefault();
 				break;
 			case KeyCode.Enter:
 			case KeyCode.Space:
@@ -232,12 +233,13 @@ export class SelectElement {
 		this.logger.debug("onFocus", "focused", { e });
 		this.isOpen = true;
 		this.setFocusValue();
+		e.preventDefault();
 	}
 
-	private onBlur(e: any) {
-		this.logger.debug("onBlur", "blured", { e });
-		this.isOpen = false;
-	}
+	// private onBlur(e: any) {
+	// 	this.logger.debug("onBlur", "blured", { e });
+	// 	this.isOpen = false;
+	// }
 
 	private onSelectedChanged(selectedItem: any) {
 		if (this.config.autoClose) {
@@ -277,7 +279,7 @@ export class SelectElement {
 
 			if (position === KeyCode.UpArrow && index > 0) {
 				this.focusValue = this.flattenedFilteredGroupOptions[--index].value;
-			} else if (position === KeyCode.DownArrow && index + 1 < this.items.length) {
+			} else if (position === KeyCode.DownArrow && index + 1 < this.flattenedFilteredGroupOptions.length) {
 				this.focusValue = this.flattenedFilteredGroupOptions[++index].value;
 			}
 			return;

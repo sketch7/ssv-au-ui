@@ -1,7 +1,7 @@
 <template role="select" class="ssv-select ${modifiers}" tabindex="${disabled ? -1 : 0}">
-	<div class="ssv-select__input-box">
+	<div class="ssv-select__input-box" click.delegate="toggle($event)">
 		<div class="ssv-select_text-container">
-			<div class="ssv-select__placeholder 
+			<div class="ssv-select__placeholder
 			${isActive ? 'ssv-select__placeholder--active' : ''}">${placeholder}</div>
 			<span class="ssv-select__label ${labelModifierClass}" repeat.for="item of selectedItems">${item.text}
 				<ssv-icon if.bind="!disabled && type === 'multi' && selectedItems && selectedItems.length > 0"
