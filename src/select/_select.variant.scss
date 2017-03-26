@@ -4,7 +4,8 @@
 $ssv-select-primary-variant: () !default;
 $ssv-select-primary-variant-defaults: (
 	color: $ssv-primary-color,
-	color-contrast: $ssv-primary-color-contrast
+	color-contrast: $ssv-primary-color-contrast,
+	bg-list: $ssv-color-white
 );
 $ssv-select-primary-variant: map-merge($ssv-select-primary-variant-defaults, $ssv-select-primary-variant);
 
@@ -12,7 +13,8 @@ $ssv-select-primary-variant: map-merge($ssv-select-primary-variant-defaults, $ss
 $ssv-select-accent-variant: () !default;
 $ssv-select-accent-variant-defaults: (
 	color: $ssv-accent-color,
-	color-contrast: $ssv-accent-color-contrast
+	color-contrast: $ssv-accent-color-contrast,
+	bg-list: $ssv-color-white
 );
 $ssv-select-accent-variant: map-merge($ssv-select-accent-variant-defaults, $ssv-select-accent-variant);
 
@@ -20,7 +22,8 @@ $ssv-select-accent-variant: map-merge($ssv-select-accent-variant-defaults, $ssv-
 $ssv-select-danger-variant: () !default;
 $ssv-select-danger-variant-defaults: (
 	color: $ssv-danger-color,
-	color-contrast: $ssv-danger-color-contrast
+	color-contrast: $ssv-danger-color-contrast,
+	bg-list: $ssv-color-white
 );
 $ssv-select-danger-variant: map-merge($ssv-select-danger-variant-defaults, $ssv-select-danger-variant);
 
@@ -28,7 +31,8 @@ $ssv-select-danger-variant: map-merge($ssv-select-danger-variant-defaults, $ssv-
 $ssv-select-warn-variant: () !default;
 $ssv-select-warn-variant-defaults: (
 	color: $ssv-warn-color,
-	color-contrast: $ssv-warn-color-contrast
+	color-contrast: $ssv-warn-color-contrast,
+	bg-list: $ssv-color-white
 );
 $ssv-select-warn-variant: map-merge($ssv-select-warn-variant-defaults, $ssv-select-warn-variant);
 
@@ -36,7 +40,8 @@ $ssv-select-warn-variant: map-merge($ssv-select-warn-variant-defaults, $ssv-sele
 $ssv-select-success-variant: () !default;
 $ssv-select-success-variant-defaults: (
 	color: $ssv-success-color,
-	color-contrast: $ssv-success-color-contrast
+	color-contrast: $ssv-success-color-contrast,
+	bg-list: $ssv-color-white
 );
 $ssv-select-success-variant: map-merge($ssv-select-success-variant-defaults, $ssv-select-success-variant);
 
@@ -44,6 +49,7 @@ $ssv-select-success-variant: map-merge($ssv-select-success-variant-defaults, $ss
 $ssv-select-info-variant: () !default;
 $ssv-select-info-variant-defaults: (
 	color: $ssv-info-color,
-	color-contrast: $ssv-info-color-contrast
+	color-contrast: $ssv-info-color-contrast,
+	bg-list: $ssv-color-white
 );
 $ssv-select-info-variant: map-merge($ssv-select-info-variant-defaults, $ssv-select-info-variant);
