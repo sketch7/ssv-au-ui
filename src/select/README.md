@@ -38,6 +38,6 @@ rework text, name to be passed instead SelectedItem - done
         - down: hover - done
         - escape: close - done
         - enter: select - done
-        - space: select  - done (but not sure if it conflicts with filter textbox)
-    - onBlur: close
-    - onFocus: open
+        - space: select  - not possible (but not sure if it conflicts with filter textbox)
+    - onBlur: close - done
+    - onFocus: open - done

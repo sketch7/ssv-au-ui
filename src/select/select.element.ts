@@ -1,6 +1,6 @@
 import * as _ from "lodash";
 import { DOM } from "aurelia-pal";
-import { computedFrom, bindingMode } from "aurelia-binding";
+import { computedFrom, bindingMode, BindingEngine } from "aurelia-binding";
 import { customElement, bindable } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
 import { Subscription } from "aurelia-event-aggregator";
@@ -64,21 +64,27 @@ export class SelectElement {
 
 	private focusedController: ElementFocusedController;
 	private focus$$: Subscription;
-	// private input: HTMLInputElement;
+	private input$$: Subscription;
 
 	constructor(
 		private element: Element,
+		private bindingEngine: BindingEngine,
 		loggerFactory: LoggerFactory,
 	) {
 		this.logger = loggerFactory.get("selectElement");
 		this.controlId = `${PREFIX}-${SelectElement.id++}`;
 		this.focusedController = new ElementFocusedController(PREFIX, element);
+		const input$ = this.bindingEngine.propertyObserver(this, "input");
+		this.input$$ = input$.subscribe((inputElement: HTMLInputElement) => {
+			if (!inputElement) {
+				return;
+			}
+			inputElement.focus();
+		});
 	}
 
 	bind() {
-		this.disabled = attributeUtil.getFlagAsBoolean(this.disabled);
-		attributeUtil.setAsFlag(this.element, "disabled", this.disabled);
-
+		this.presetBooleanTypes();
 		this.setDefaults();
 		this.modifiers = attributeUtil.generateBemStyleModifiers(this.modifier, PREFIX);
 		this.selectedClass = attributeUtil.generateBemStyleModifiers(this.config.selectedClass, `${PREFIX}__item`);
@@ -96,12 +102,15 @@ export class SelectElement {
 		this.focusedController.init();
 		this.focus$$ = this.focusedController.onFocus(() => this.toggle());
 		this.element.addEventListener("keydown", this.onFocusedKeyPress.bind(this));
+		DOM.addEventListener("click", this.onBodyClick.bind(this), true);
 	}
 
 	detached() {
 		this.focusedController.destroy();
 		this.focus$$.dispose();
+		this.input$$.dispose();
 		this.element.removeEventListener("keydown", this.onFocusedKeyPress);
+		DOM.removeEventListener("click", this.onBodyClick, true);
 	}
 
 	selectedChanged(value: any) {
@@ -163,6 +172,14 @@ export class SelectElement {
 		}
 	}
 
+	onBodyClick(event: Event): void {
+		if (!this.isOpen && (event.target === this.element
+			|| this.element.contains(event.target as Node))) {
+			return;
+		}
+		this.isOpen = false;
+	}
+
 	onChange(option: SelectItem) {
 		let previous: any | undefined;
 
@@ -219,21 +236,6 @@ export class SelectElement {
 				break;
 		}
 	}
-
-	// private onFocus(e: FocusEvent) {
-	// 	if (this.disabled) {
-	// 		return;
-	// 	}
-	// 	this.logger.debug("onFocus", "focused", { e });
-	// 	this.isOpen = true;
-	// 	this.setFocusValue();
-	// 	e.preventDefault();
-	// }
-
-	// private onBlur(e: any) {
-	// 	this.logger.debug("onBlur", "blured", { e });
-	// 	this.isOpen = false;
-	// }
 
 	private onSelectedChanged(selectedItem: any) {
 		if (this.config.autoClose) {
@@ -421,6 +423,20 @@ export class SelectElement {
 		this.noOptionsAvailableText = this.config.noOptionsAvailableText;
 
 		this.onOptionsChanged(this.options);
+	}
+
+	private presetBooleanTypes() {
+		this.disabled = attributeUtil.getFlagAsBoolean(this.disabled);
+		attributeUtil.setAsFlag(this.element, "disabled", this.disabled);
+		if (this.autoClose) {
+			this.autoClose = attributeUtil.getFlagAsBoolean(this.autoClose);
+		}
+		if (this.allowClear) {
+			this.allowClear = attributeUtil.getFlagAsBoolean(this.allowClear);
+		}
+		if (this.allowFiltering) {
+			this.allowFiltering = attributeUtil.getFlagAsBoolean(this.allowFiltering);
+		}
 	}
 
 }
