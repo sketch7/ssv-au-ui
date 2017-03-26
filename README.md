@@ -35,16 +35,22 @@ npm install normalize-scss node-waves @ssv/core @ssv/au-core aurelia-dependency-
 ```
 
 ### Setup Plugin
-Register `au-ui` plugin with optional global configuration.
+Register `au-ui` plugin with optional global configuration and bootstrap.
 
 ```ts
-import { UiConfig, buttonType } from "@ssv/au-ui";
+import { UiConfig, UiBootstrapper, buttonType } from "@ssv/au-ui";
 
 const uiConfig: UiConfig = {
     button: { type: buttonType.raised }
 };
 // register plugin with aurelia + configure
 aurelia.use.plugin("@ssv/au-ui", uiConfig);
+
+aurelia.start().then(() => {
+    // invoke bootstrapper to initialize
+    const uiBootstrapper = aurelia.container.get(UiBootstrapper) as UiBootstrapper;
+    uiBootstrapper.init();
+});
 ```
 
 ### Styling
@@ -92,8 +98,8 @@ Import fonts
 | badge            |                             Preview | [README][badge]   |              - |
 | icon             |                             Preview | [README][icon]    |              - |
 | checkbox         |                             Preview | [README][checkbox]|              - |
+| snackbar         |                             Preview | [README][snackbar]|              - |
 | select           |                         Development |                   |              - |
-| snackbar         |                         Development |                   |              - |
 | switch           |                         Not Started |                   |              - |
 | radio            |                         Not Started |                   |              - |
 | datepicker       |                         Not Started |                   |              - |
@@ -110,6 +116,7 @@ Import fonts
 [badge]: ./src/badge/README.md
 [icon]: ./src/icon/README.md
 [checkbox]: ./src/checkbox/README.md
+[snackbar]: ./src/snackbar/README.md
 
 ## Getting Started
 

@@ -17,6 +17,7 @@ $ssv-badge-default-color-contrast: $ssv-color-black !default;
 $ssv-badge-rounded-radius: 25px !default;
 
 .ssv-badge {
+	display: inline-block;
 	color: $ssv-badge-default-color-contrast;
 	background-color: $ssv-badge-default-color;
 	padding: $ssv-badge-padding-topbottom $ssv-badge-padding-rightleft;

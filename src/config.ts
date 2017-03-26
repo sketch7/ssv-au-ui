@@ -8,6 +8,7 @@ import { checkboxConfig } from "./checkbox/checkbox.config";
 import { iconConfig } from "./icon/icon.config";
 import { inputConfig } from "./input/input.config";
 import { selectConfig } from "./select/select.config";
+import { snackbarConfig } from "./snackbar/snackbar.config";
 import { wavesConfig } from "./waves/waves.config";
 
 
@@ -19,6 +20,8 @@ export function configure(aurelia: FrameworkConfiguration, config: UiConfig): Pr
 		"./icon/icon.element",
 		"./input/input.element",
 		"./select/select.element",
+		"./snackbar/snackbar-host.element",
+		"./snackbar/simple-snackbar.element",
 		"./waves/waves.attribute",
 	]);
 
@@ -28,6 +31,7 @@ export function configure(aurelia: FrameworkConfiguration, config: UiConfig): Pr
 	Object.assign(iconConfig, config.icon);
 	Object.assign(inputConfig, config.input);
 	Object.assign(selectConfig, config.select);
+	Object.assign(snackbarConfig, config.snackbar);
 	Object.assign(wavesConfig, config.waves);
 
 	// const service = aurelia.container.get(SampleClass) as SampleClass;

@@ -36,7 +36,7 @@ export class IconElement {
 		this.setDefaults();
 		this.modifiers = attributeUtil.generateBemStyleModifiers(this.modifier, ELEMENT_PREFIX);
 
-	const size = this.config.size.toLowerCase();
+		const size = this.config.size.toLowerCase();
 		this.validateType(size);
 		this.element.classList.add(`${ELEMENT_PREFIX}--${size}`);
 
