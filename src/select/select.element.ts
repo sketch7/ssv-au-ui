@@ -204,27 +204,45 @@ export class SelectElement {
 	}
 
 	private onFocusedKeyPress(e: KeyboardEvent) {
-		this.isOpen = true;
 		switch (e.keyCode) {
 			case KeyCode.Tab:
 			case KeyCode.Escape:
 				this.isOpen = false;
 				break;
 			case KeyCode.Enter:
-				const selectedItem = _.find(this.flattenedFilteredGroupOptions, x => x.value === this.focusValue) as SelectItem;
-				this.onChange(selectedItem);
+				if (this.isOpen) {
+					const selectedItem = _.find(this.flattenedFilteredGroupOptions, x => x.value === this.focusValue)!;
+					this.onChange(selectedItem);
+				} else {
+					this.isOpen = true;
+				}
 				e.preventDefault();
 				break;
 			case KeyCode.UpArrow: {
+				this.isOpen = true;
 				this.setFocusValue(KeyCode.UpArrow);
 				e.preventDefault();
 				break;
 			}
 			case KeyCode.DownArrow: {
+				this.isOpen = true;
 				this.setFocusValue(KeyCode.DownArrow);
 				e.preventDefault();
 				break;
 			}
+			case KeyCode.Space:
+				if (!this.isOpen) {
+					this.isOpen = true;
+					e.preventDefault();
+				}
+				break;
+			case KeyCode.Backspace:
+				if (!this.isOpen && !_.isEmpty(this.selectedItems)) {
+					const selectedItem = _.last(this.selectedItems);
+					this.onChange(selectedItem);
+					e.preventDefault();
+				}
+				break;
 		}
 	}
 

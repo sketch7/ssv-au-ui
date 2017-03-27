@@ -38,6 +38,14 @@ rework text, name to be passed instead SelectedItem - done
         - down: hover - done
         - escape: close - done
         - enter: select - done
-        - space: select  - not possible (but not sure if it conflicts with filter textbox)
+        - enter: open select if was closed - done
+        - space: select - not possible it conflicts with filter textbox - removed.
+        - space: open select if it was closed. - done
+        - backspace: delete last item - done
     - onBlur: close - done
     - onFocus: open - done
+
+
+
+phase 2: 
+- Tagging
