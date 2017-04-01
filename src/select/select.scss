@@ -25,6 +25,7 @@ $ssv-select-input-box-padding: .5em .5em !default;
 	outline: none;
 	border-radius: 0;
 	background: transparent;
+	margin-bottom: .5em;
 	@include element("placeholder") {
 		position: absolute;
 		top: 10;
@@ -150,6 +151,7 @@ $ssv-select-input-box-padding: .5em .5em !default;
 		.ssv-select__arrow,
 		.ssv-select__input-box,
 		.ssv-select__label,
+		.ssv-select__placeholder,
 		.ssv-select__placeholder--active {
 			cursor: default;
 			color: $ssv-select-disabled-secondary-color;
