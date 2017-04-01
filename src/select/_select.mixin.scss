@@ -2,7 +2,7 @@
 @mixin ssv-select-variant($options: ()) {
 	$color: map-get($options, color);
 	$color-contrast: map-get($options, color-contrast);
-	$list-background-color: map-get($options, bg-list);
+	$color-bg-list: map-get($options, color-bg-list);
 
 	$item-color-hover: rgba($color, .6) !default;
 	$multi-clear-color-hover: rgba($color-contrast, .2) !default;
@@ -44,7 +44,7 @@
 			color: $color;
 		}
 		@include element("list") {
-			background-color: $list-background-color;
+			background-color: $color-bg-list;
 		}
 		@include element("item") {
 			&:hover {
