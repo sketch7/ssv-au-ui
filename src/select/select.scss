@@ -49,7 +49,7 @@ $ssv-select-input-box-padding: .5em .5em !default;
 
 			.ssv-select__clear {
 				padding-right: 0;
-				padding-left: 2px;
+				padding-left: .2em;
 			}
 		}
 	}
@@ -71,17 +71,16 @@ $ssv-select-input-box-padding: .5em .5em !default;
 	}
 	@include element("input-underline") {
 		width: 100%;
-		height: 1px;
+		height: .1em;
 		background-color: $ssv-select-default-color;
 		@include modifier("active") {
 			background-color: $ssv-select-default-color;
 			width: 100%;
-			height: 2px;
-			margin: 0 auto;
+			height: .2em;
 		}
 	}
 	@include element("clear") {
-		padding-right: 5px;
+		padding-right: .5em;
 		color: $ssv-select-default-color-contrast;
 
 		&:hover {
