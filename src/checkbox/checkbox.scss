@@ -35,7 +35,7 @@
 		position: absolute;
 		box-sizing: border-box;
 		cursor: pointer;
-		transition: .2s;
+		transition: 0.2s;
 	}
 	@include element("visual-cue-outer") {
 		position: relative;
@@ -64,8 +64,8 @@
 
 		.ssv-checkbox__visual-cue-outer {
 			transform: scale(1);
-			box-shadow: 0 0 0 10px rgba(0,0,0,.1);
-			background-color: rgba(0,0,0,.1);
+			box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.1);
+			background-color: rgba(0, 0, 0, 0.1);
 			border-color: $ssv-checkbox-unchecked-color;
 		}
 	}
@@ -81,15 +81,14 @@
 		.ssv-checkbox__visual-cue {
 			cursor: default;
 		}
-
 	}
 
 	// skin type
 	@include modifier("minimal") {
-		 @include ssv-checkbox-minimal-skin();
+		 @include ssv-checkbox-minimal-skin;
 	}
 	@include modifier("filled") {
-		 @include ssv-checkbox-filled-skin();
+		 @include ssv-checkbox-filled-skin;
 	}
 
 	// default
@@ -111,5 +110,4 @@
 	@include modifier("success") {
 		 @include ssv-checkbox-variant($ssv-checkbox-success-variant);
 	}
-
 }

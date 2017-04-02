@@ -22,7 +22,7 @@ $ssv-snackbar-viewport-offset: 80px !default;
 	align-items: center;
 	text-align: left;
 	background-color: $ssv-snackbar-background-color;
-	transition: transform .25s ease-in-out;
+	transition: transform 0.25s ease-in-out;
 	will-change: transform;
 	pointer-events: none;
 	@include element("label") {
@@ -35,14 +35,14 @@ $ssv-snackbar-viewport-offset: 80px !default;
 		pointer-events: auto;
 	}
 	@include element("action") {
-		margin-right: .5em;
+		margin-right: 0.5em;
 	}
-	@include breakpoint-xsmall-only() {
+	@include breakpoint-xsmall-only {
 		width: 100%;
 		min-height: 48px;
 		max-height: 80px;
 	}
-	@include breakpoint-xsmall-up() {
+	@include breakpoint-xsmall-up {
 		border-radius: 2px;
 		min-width: 288px;
 		max-width: 568px;
@@ -59,13 +59,21 @@ $ssv-snackbar-viewport-offset: 80px !default;
 		animation-timing-function: ease-in;
 	}
 }
-
 @keyframes snackbarEnter {
-	from { transform: translate(0, $ssv-snackbar-viewport-offset); }
-	to { transform: translate(0, 0); }
-}
+	from {
+		transform: translate(0, $ssv-snackbar-viewport-offset);
+	}
 
+	to {
+		transform: translate(0, 0);
+	}
+}
 @keyframes snackbarLeave {
-	from { transform: translate(0, 0); }
-	to { transform: translate(0, $ssv-snackbar-viewport-offset); }
+	from {
+		transform: translate(0, 0);
+	}
+
+	to {
+		transform: translate(0, $ssv-snackbar-viewport-offset);
+	}
 }

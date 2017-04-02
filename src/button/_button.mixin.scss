@@ -1,11 +1,10 @@
 @import "../style/mixins";
 @import "../waves/waves.mixin";
-
 @mixin ssv-button-variant($options: ()) {
 	$color: map-get($options, color);
 	$color-contrast: map-get($options, color-contrast);
 	$defaults: (
-		ripple-color: rgba($color-contrast, .2),
+		ripple-color: rgba($color-contrast, 0.2),
 		flat-hover-color: $color
 	);
 	$options: map-merge($defaults, $options);
@@ -27,20 +26,20 @@
 		background-color: $color;
 
 		&:hover {
-			background-color: rgba($color, .8);
+			background-color: rgba($color, 0.8);
 		}
 
 		&:active {
-			background-color: rgba($color, .9);
+			background-color: rgba($color, 0.9);
 		}
 
 		&[disabled] {
-			background-color: rgba($color, .4);
+			background-color: rgba($color, 0.4);
 		}
 
 		&.ssv-button--focused {
 			&:not(:active) {
-				background-color: rgba($color, .9);
+				background-color: rgba($color, 0.9);
 			}
 		}
 		@include ssv-waves-ripple-color($ripple-color);
@@ -59,16 +58,15 @@
 		}
 
 		&[disabled] {
-			border-color: rgba($color, .4);
+			border-color: rgba($color, 0.4);
 		}
-
 		@include ssv-waves-ripple-color($ripple-color);
 	}
 
 	// focused
 	@include modifier("focused") {
 		&:not(:active) {
-			background-color: rgba($color, .9);
+			background-color: rgba($color, 0.9);
 		}
 	}
 }
