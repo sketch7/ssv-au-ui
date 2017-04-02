@@ -1,5 +1,4 @@
 const gulp = require("gulp");
-const runSeq = require("run-sequence");
 const ssvTools = require("@ssv/tools");
 
 const args = require("../args");
