@@ -24,7 +24,6 @@ export class SelectElement {
 	@bindable autoClose: boolean;
 	@bindable allowClear: boolean;
 	@bindable allowFiltering: boolean;
-	@bindable filterPlaceholder: string;
 	@bindable type: SelectType;
 	@bindable modifier: string | undefined;
 	@bindable disabled: boolean | string = false;
@@ -46,6 +45,7 @@ export class SelectElement {
 	clearIcon: string;
 	filterBy: string;
 	filteredGroupOptions: SelectGroup[] = [];
+	filterPlaceholder: string;
 	noOptionsAvailableText: string;
 	focusValue: string;
 
@@ -416,7 +416,6 @@ export class SelectElement {
 			autoClose: this.autoClose,
 			allowClear: this.allowClear,
 			allowFiltering: this.allowFiltering,
-			filterPlaceholder: this.filterPlaceholder,
 			selectedClass: this.selectedClass,
 			dataTextField: this.text,
 			dataValueField: this.value
