@@ -54,5 +54,4 @@ $ssv-icon-default-size-xxlarge: 20em !default;
 	@include modifier("xxlarge") {
 		font-size: $ssv-icon-default-size-xxlarge;
 	}
-
 }

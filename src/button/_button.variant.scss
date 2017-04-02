@@ -13,7 +13,7 @@ $ssv-button-accent-variant: () !default;
 $ssv-button-accent-variant-defaults: (
 	color: $ssv-accent-color,
 	color-contrast: $ssv-accent-color-contrast,
-	ripple-color: rgba($ssv-color-black, .4)
+	ripple-color: rgba($ssv-color-black, 0.4)
 );
 $ssv-button-accent-variant: map-merge($ssv-button-accent-variant-defaults, $ssv-button-accent-variant);
 

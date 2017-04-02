@@ -36,40 +36,39 @@ $ssv-breakpoints: map-merge($ssv-breakpoints-defaults, $ssv-breakpoints);
 		@content;
 	}
 }
-
 @mixin breakpoint-large-up {
 	$value: map-get($ssv-breakpoints, "large");
-	 @media (min-width: $value){
-		@content;
+	@media (min-width: $value) {
+		 @content;
 	}
 }
 @mixin breakpoint-medium-up {
 	$value: map-get($ssv-breakpoints, "medium");
-	 @media (min-width: $value){
-		@content;
+	@media (min-width: $value) {
+		 @content;
 	}
 }
 @mixin breakpoint-small-only {
 	$value: map-get($ssv-breakpoints, "small");
-	 @media (max-width: $value){
-		@content;
+	@media (max-width: $value) {
+		 @content;
 	}
 }
 @mixin breakpoint-small-up {
 	$value: map-get($ssv-breakpoints, "small");
-	 @media (min-width: $value){
-		@content;
+	@media (min-width: $value) {
+		 @content;
 	}
 }
 @mixin breakpoint-xsmall-only {
 	$value: map-get($ssv-breakpoints, "xsmall");
-	 @media (max-width: $value){
-		@content;
+	@media (max-width: $value) {
+		 @content;
 	}
 }
 @mixin breakpoint-xsmall-up {
 	$value: map-get($ssv-breakpoints, "xsmall");
-	 @media (min-width: $value){
-		@content;
+	@media (min-width: $value) {
+		 @content;
 	}
 }

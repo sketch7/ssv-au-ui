@@ -5,7 +5,6 @@
 		focused-color: $color
 	);
 	$options: map-merge($defaults, $options);
-
 	$focused-color: map-get($options, focused-color);
 
 	.ssv-input {
@@ -16,9 +15,7 @@
 			color: $color;
 		}
 		@include element("input") {
-			& {
-				border-bottom-color: $color;
-			}
+			border-bottom-color: $color;
 
 			&:focus {
 				box-shadow: 0 1px 0 0 $color;

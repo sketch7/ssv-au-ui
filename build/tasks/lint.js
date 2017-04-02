@@ -3,6 +3,12 @@ const ssvTools = require("@ssv/tools");
 
 const args = require("../args");
 
-gulp.task("lint", () => ssvTools.lintTs({
+gulp.task("lint", ["lint:ts", "lint:sass"]);
+
+gulp.task("lint:ts", () => ssvTools.lintTs({
+	fix: args.fix
+}));
+
+gulp.task("lint:sass", () => ssvTools.lintSass({
 	fix: args.fix
 }));
