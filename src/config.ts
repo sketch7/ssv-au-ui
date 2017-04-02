@@ -11,7 +11,6 @@ import { selectConfig } from "./select/select.config";
 import { snackbarConfig } from "./snackbar/snackbar.config";
 import { wavesConfig } from "./waves/waves.config";
 
-
 export function configure(aurelia: FrameworkConfiguration, config: UiConfig): Promise<void> {
 	aurelia.globalResources([
 		"./badge/badge.element",

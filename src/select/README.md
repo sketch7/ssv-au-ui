@@ -30,14 +30,13 @@ Enhances the native HTML `<select>` with styling and extra features.
 <ssv-select options.bind="options"
     placeholder="select game"
     change.delegate="onChange($event)"></ssv-select>
-```
-```ts
+
 onChange(event: CustomEvent) {
-		this.logger.debug("onChange", "triggered >>>", {
-			previous: event.detail.previous,
-			value: event.detail.value
-		});
-	}
+    this.logger.debug("onChange", "triggered", {
+        previous: event.detail.previous,
+        value: event.detail.value
+    });
+}
 ```
 
 
