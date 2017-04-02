@@ -158,7 +158,7 @@ export class SelectElement {
 	}
 
 	onDeselect(optionValue: string) {
-		this.clearMultiSelectionItem(optionValue);
+		this.clearSelectionItem(optionValue);
 	}
 
 	toggle() {
@@ -195,7 +195,7 @@ export class SelectElement {
 			if (!_.find(this.selectedItems, x => x.value === option.value)) {
 				this.selected = [...this.selected, this.optionsMap[option.value]];
 			} else {
-				this.clearMultiSelectionItem(option.value);
+				this.clearSelectionItem(option.value);
 			}
 		}
 
@@ -327,7 +327,7 @@ export class SelectElement {
 		});
 	}
 
-	private clearMultiSelectionItem(optionValue: string) {
+	private clearSelectionItem(optionValue: string) {
 		if (this.isComplexList) {
 			this.selected = _.filter(this.selected, (x: object & { [key: string]: any }) => x[this.config.dataValueField] !== optionValue);
 			return;
@@ -388,7 +388,7 @@ export class SelectElement {
 				this.selected = undefined;
 				return;
 			}
-			this.clearMultiSelectionItem(item.value);
+			this.clearSelectionItem(item.value);
 		}
 	}
 
