@@ -91,7 +91,10 @@ $ssv-select-input-box-padding: .5em .5em !default;
 		color: $ssv-select-default-color-contrast;
 	}
 	@include element("list-container") {
-		 @include shadow-4dp();
+		@include shadow-4dp();
+		position: absolute;
+		width: 100%;
+		z-index: $ssv-drop-over-index;
 	}
 	@include element("input-filter") {
 		display: block;
