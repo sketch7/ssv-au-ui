@@ -3,10 +3,9 @@
 	$color: map-get($options, color);
 	$color-contrast: map-get($options, color-contrast);
 	$color-bg-list: map-get($options, color-bg-list);
-
-	$item-color-hover: rgba($color, .6) !default;
-	$multi-clear-color-hover: rgba($color-contrast, .2) !default;
-	$clear-color-hover: rgba($color, .6) !default;
+	$item-color-hover: rgba($color, 0.6) !default;
+	$multi-clear-color-hover: rgba($color-contrast, 0.2) !default;
+	$clear-color-hover: rgba($color, 0.6) !default;
 
 	.ssv-select {
 		color: $color-contrast;
@@ -14,7 +13,7 @@
 			color: $color;
 		}
 		@include element("label") {
-			 @include modifier("multi"){
+			 @include modifier("multi") {
 				background-color: $color;
 				color: $color-contrast;
 

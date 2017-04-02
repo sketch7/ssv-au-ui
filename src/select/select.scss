@@ -2,18 +2,15 @@
 @import "../style/mixins";
 @import "./select.variant";
 @import "./select.mixin";
-
 $ssv-select-default-color: $ssv-secondary-color !default;
 $ssv-select-default-color-contrast: $ssv-color-black !default;
 $ssv-select-default-item-selected-color-contrast: $ssv-color-white !default;
-$ssv-select-default-item-color-hover: rgba($ssv-color-black, .1) !default;
+$ssv-select-default-item-color-hover: rgba($ssv-color-black, 0.1) !default;
 $ssv-select-default-list-background-color: $ssv-color-white !default;
-$ssv-select-default-clear-color-hover: rgba($ssv-color-black, .6) !default;
-
-$ssv-select-disabled-primary-color: rgba($ssv-color-black, .12) !default;
-$ssv-select-disabled-secondary-color: rgba($ssv-color-black, .26) !default;
-
-$ssv-select-input-box-padding: .5em .5em !default;
+$ssv-select-default-clear-color-hover: rgba($ssv-color-black, 0.6) !default;
+$ssv-select-disabled-primary-color: rgba($ssv-color-black, 0.12) !default;
+$ssv-select-disabled-secondary-color: rgba($ssv-color-black, 0.26) !default;
+$ssv-select-input-box-padding: 0.5em 0.5em !default;
 
 .ssv-select {
 	display: block;
@@ -25,33 +22,33 @@ $ssv-select-input-box-padding: .5em .5em !default;
 	outline: none;
 	border-radius: 0;
 	background: transparent;
-	margin-bottom: .5em;
+	margin-bottom: 0.5em;
 	@include element("placeholder") {
 		position: absolute;
 		top: 10;
 		left: 5;
 		font-size: 1rem;
-		transition: .2s ease-out;
+		transition: 0.2s ease-out;
 		user-select: none;
 		@include modifier("active") {
 			color: $ssv-select-default-color;
-			font-size: .8rem;
+			font-size: 0.8rem;
 			transform: translateY(-140%);
 		}
 	}
 	@include element("label") {
-		transition: all .3s;
+		transition: all 0.3s;
 		user-select: none;
 		@include modifier("multi") {
-			padding: .3em;
-			margin-right: .3em;
-			font-size: .7rem;
+			padding: 0.3em;
+			margin-right: 0.3em;
+			font-size: 0.7rem;
 			background-color: $ssv-select-default-color;
 			border-radius: 3px;
 
 			.ssv-select__clear {
 				padding-right: 0;
-				padding-left: .2em;
+				padding-left: 0.2em;
 			}
 		}
 	}
@@ -73,16 +70,16 @@ $ssv-select-input-box-padding: .5em .5em !default;
 	}
 	@include element("input-underline") {
 		width: 100%;
-		height: .1em;
+		height: 0.1em;
 		background-color: $ssv-select-default-color;
 		@include modifier("active") {
 			background-color: $ssv-select-default-color;
 			width: 100%;
-			height: .2em;
+			height: 0.2em;
 		}
 	}
 	@include element("clear") {
-		padding-right: .5em;
+		padding-right: 0.5em;
 		color: $ssv-select-default-color-contrast;
 
 		&:hover {
@@ -93,7 +90,7 @@ $ssv-select-input-box-padding: .5em .5em !default;
 		color: $ssv-select-default-color-contrast;
 	}
 	@include element("list-container") {
-		 @include shadow-4dp();
+		 @include shadow-4dp;
 		position: absolute;
 		width: 100%;
 		z-index: $ssv-drop-over-index;
@@ -105,7 +102,7 @@ $ssv-select-input-box-padding: .5em .5em !default;
 		border: 0;
 		outline: none;
 		height: 1rem;
-		padding: 1.5em .5em;
+		padding: 1.5em 0.5em;
 	}
 	@include element("list") {
 		cursor: pointer;
@@ -142,7 +139,7 @@ $ssv-select-input-box-padding: .5em .5em !default;
 		cursor: default;
 		font-weight: 600;
 		text-transform: capitalize;
-		padding: 0 .5em;
+		padding: 0 0.5em;
 	}
 	@include element("no-options-available") {
 		cursor: default;

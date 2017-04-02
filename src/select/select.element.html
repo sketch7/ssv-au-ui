@@ -36,7 +36,7 @@
 			<template repeat.for="group of filteredGroupOptions">
 				<li class="ssv-select__group-header"
 					if.bind="group.name">${group.name}</li>
-				 <li repeat.for="option of group.options"
+				<li repeat.for="option of group.options"
 					class="ssv-select__item 
 					${group.name ? 'ssv-select__item--group-item' : ''}
 					${option.isSelected ? selectedClass : ''}
