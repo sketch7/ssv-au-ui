@@ -4,6 +4,7 @@ const conventionalChangelog = require("gulp-conventional-changelog");
 const bump = require("gulp-bump");
 const git = require("gulp-git");
 const fs = require("fs");
+const ssvTools = require("@ssv/tools");
 
 const args = require("../args");
 const config = require("../config");
@@ -84,6 +85,12 @@ gulp.task("npm-publish", (cb) => {
 		}
 		console.log(`npm publish - ${stdout}`);
 		cb();
+	});
+});
+
+gulp.task("ssv-publish", () => {
+	return ssvTools.publisher({
+		bump: args.bump
 	});
 });
 

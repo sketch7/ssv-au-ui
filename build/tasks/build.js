@@ -1,9 +1,7 @@
 const gulp = require("gulp");
 const runSeq = require("run-sequence");
-const tsc = require("gulp-typescript");
 const sourcemaps = require("gulp-sourcemaps");
 const plumber = require("gulp-plumber");
-const merge = require("merge2");
 const ssvTools = require("@ssv/tools");
 
 const args = require("../args");
