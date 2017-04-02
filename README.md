@@ -123,9 +123,9 @@ Import fonts
 ### Setup Machine for Development
 Install/setup the following:
 
-- NodeJS v6+
+- NodeJS v7+
 - Visual Studio Code or similar code editor
-- TypeScript 2.0+
+- TypeScript 2.2+
 - Git + SourceTree, SmartGit or similar (optional)
 - Ensure to install **global NPM modules** using the following:
 
@@ -153,6 +153,8 @@ npm install
 
 ```
 gulp build
+// or
+npm run build
 ```
 In order to view all other tasks invoke `gulp` or check the gulp tasks directly.
 
@@ -160,6 +162,8 @@ In order to view all other tasks invoke `gulp` or check the gulp tasks directly.
 
 ```
 gulp test
+// or
+npm test
 ```
 
 
@@ -169,6 +173,8 @@ gulp test
 Handles compiling of changes.
 ```
 gulp watch
+// or
+npm start
 ```
 
 
@@ -176,6 +182,8 @@ gulp watch
 Spawns test runner and keep watching for changes.
 ```
 gulp tdd
+// or
+npm run tdd
 ```
 
 

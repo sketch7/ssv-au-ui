@@ -15,8 +15,8 @@ describe("AttributeUtil", () => {
 				""
 			];
 			it("should return true", () => {
-				for (let value of truthyValues) {
-					let result = getFlagAsBoolean(value);
+				for (const value of truthyValues) {
+					const result = getFlagAsBoolean(value);
 					expect(result).toBe(true);
 				}
 			});
@@ -30,8 +30,8 @@ describe("AttributeUtil", () => {
 				undefined
 			];
 			it("should return false", () => {
-				for (let value of falsyValues) {
-					let result = getFlagAsBoolean(value);
+				for (const value of falsyValues) {
+					const result = getFlagAsBoolean(value);
 					expect(result).toBe(false);
 				}
 			});
@@ -87,7 +87,7 @@ describe("AttributeUtil", () => {
 					undefined
 				];
 				it("should not have attribute", () => {
-					for (let value of falsyValues) {
+					for (const value of falsyValues) {
 						setAsFlag(element, "checked", value);
 						expect(element).not.toHaveAttr("checked");
 					}
