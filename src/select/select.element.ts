@@ -139,9 +139,8 @@ export class SelectElement {
 			return;
 		}
 
-		filteredOptions = _.filter(this.items, item => {
-			return _.includes(item.text.toLowerCase(), searchTerm.toLowerCase());
-		});
+		filteredOptions = _.filter(this.items, item =>
+			_.includes(item.text.toLowerCase(), searchTerm.toLowerCase()));
 		this.groupedOptions(filteredOptions);
 	}
 
@@ -152,7 +151,7 @@ export class SelectElement {
 		this.selectedItems = [];
 		this.groupedOptions(this.items);
 
-		for (let item of this.items) {
+		for (const item of this.items) {
 			item.isSelected = false;
 		}
 		e.stopPropagation();
@@ -262,7 +261,7 @@ export class SelectElement {
 			? this.convertToSelectItems([selectedItem], true)
 			: this.convertToSelectItems(selectedItem, true);
 
-		for (let item of this.items) {
+		for (const item of this.items) {
 			item.isSelected = false;
 		}
 
@@ -307,26 +306,22 @@ export class SelectElement {
 			: this.convertSimpleToSelectItems(options, isSelected);
 	}
 
-	private convertSimpleToSelectItems(options: Array<string | boolean | number>, isSelected = false): SelectItem[] {
-		return _.map(options, item => {
-			return {
-				value: item,
-				text: item,
-				groupBy: "",
-				isSelected
-			} as SelectItem;
-		});
+	private convertSimpleToSelectItems(options: (string | boolean | number)[], isSelected = false): SelectItem[] {
+		return _.map<string | boolean | number, SelectItem>(options, item => ({
+			value: item.toString(),
+			text: item.toString(),
+			groupBy: "",
+			isSelected
+		}));
 	}
 
 	private convertObjectToSelectItems(options: any[], isSelected = false): SelectItem[] {
-		return _.map(options, item => {
-			return {
-				value: item[this.config.dataValueField],
-				text: item[this.config.dataTextField],
-				groupBy: item[this.groupby!],
-				isSelected
-			} as SelectItem;
-		});
+		return _.map(options, item => ({
+			value: item[this.config.dataValueField],
+			text: item[this.config.dataTextField],
+			groupBy: item[this.groupby!],
+			isSelected
+		}));
 	}
 
 	private clearSelectionItem(optionValue: string) {
@@ -361,12 +356,10 @@ export class SelectElement {
 
 	private groupedOptions(options: SelectItem[]) {
 		const grouped = _.groupBy(options, x => x.groupBy);
-		this.filteredGroupOptions = _.map(grouped, (values, key) => {
-			return {
-				name: key !== "undefined" ? key : undefined,
-				options: values
-			};
-		});
+		this.filteredGroupOptions = _.map(grouped, (values, key) => ({
+			name: key !== "undefined" ? key : undefined,
+			options: values
+		}));
 
 		this.flattenedFilteredGroupOptions = _.flatMap<SelectItem>(this.filteredGroupOptions, item => item.options);
 	}
