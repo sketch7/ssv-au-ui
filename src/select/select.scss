@@ -32,6 +32,7 @@ $ssv-select-input-box-padding: .5em .5em !default;
 		left: 5;
 		font-size: 1rem;
 		transition: .2s ease-out;
+		user-select: none;
 		@include modifier("active") {
 			color: $ssv-select-default-color;
 			font-size: .8rem;
@@ -40,6 +41,7 @@ $ssv-select-input-box-padding: .5em .5em !default;
 	}
 	@include element("label") {
 		transition: all .3s;
+		user-select: none;
 		@include modifier("multi") {
 			padding: .3em;
 			margin-right: .3em;
@@ -91,7 +93,7 @@ $ssv-select-input-box-padding: .5em .5em !default;
 		color: $ssv-select-default-color-contrast;
 	}
 	@include element("list-container") {
-		@include shadow-4dp();
+		 @include shadow-4dp();
 		position: absolute;
 		width: 100%;
 		z-index: $ssv-drop-over-index;

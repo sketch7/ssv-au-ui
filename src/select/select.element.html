@@ -7,14 +7,14 @@
 				<ssv-icon if.bind="!disabled && type === 'multi' && selectedItems && selectedItems.length > 0"
 				name.bind="clearIcon"
 				class="ssv-select__clear"
-				click.delegate="onDeselect(item.value)"></ssv-icon>
+				click.delegate="onDeselect($event, item.value)"></ssv-icon>
 			</span>
 		</div>
 		<div class="ssv-select__icon-container">
 			<ssv-icon if.bind="!disabled && allowClear && filterBy || !disabled && selectedItems && selectedItems.length > 0"
 				name.bind="clearIcon"
 				class="ssv-select__clear"
-				click.delegate="onClear()"></ssv-icon>
+				click.delegate="onClear($event)"></ssv-icon>
 			<ssv-icon class="ssv-select__arrow"
 				name.bind="isOpen ? arrowUpIcon : arrowDownIcon"></ssv-icon>
 		</div>

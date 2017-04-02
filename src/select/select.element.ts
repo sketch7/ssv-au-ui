@@ -145,7 +145,7 @@ export class SelectElement {
 		this.groupedOptions(filteredOptions);
 	}
 
-	onClear() {
+	onClear(e: MouseEvent) {
 		this.filterBy = "";
 		this.isOpen = false;
 		this.selected = undefined;
@@ -155,10 +155,12 @@ export class SelectElement {
 		for (let item of this.items) {
 			item.isSelected = false;
 		}
+		e.stopPropagation();
 	}
 
-	onDeselect(optionValue: string) {
+	onDeselect(e: MouseEvent, optionValue: string) {
 		this.clearSelectionItem(optionValue);
+		e.stopPropagation();
 	}
 
 	toggle() {
