@@ -1,8 +1,8 @@
 @import "../style/mixins";
 
 $ssv-checkbox-default-color: $ssv-color-black !default;
-$ssv-checkbox-unchecked-color: rgba($ssv-color-black, .6) !default;
-$ssv-checkbox-disabled-color: rgba($ssv-color-black, .26) !default;
+$ssv-checkbox-unchecked-color: rgba($ssv-color-black, 0.6) !default;
+$ssv-checkbox-disabled-color: rgba($ssv-color-black, 0.26) !default;
 $ssv-checkbox-filled-checked-color: $ssv-color-white !default;
 @mixin ssv-checkbox-variant($options: ()) {
 	&.ssv-checkbox--minimal {
@@ -12,7 +12,6 @@ $ssv-checkbox-filled-checked-color: $ssv-color-white !default;
 	&.ssv-checkbox--filled {
 		@include ssv-checkbox-filled-skin-variant($options);
 	}
-
 }
 
 // skins
@@ -83,7 +82,6 @@ $ssv-checkbox-filled-checked-color: $ssv-color-white !default;
 			transform-origin: 100% 100%;
 		}
 	}
-
 }
 @mixin ssv-checkbox-minimal-skin-variant($options: ()) {
 	$color: map-get($options, color);
@@ -96,8 +94,8 @@ $ssv-checkbox-filled-checked-color: $ssv-color-white !default;
 
 		&[disabled] {
 			.ssv-checkbox__visual-cue {
-				border-right-color: rgba($color, .4);
-				border-bottom-color: rgba($color, .4);
+				border-right-color: rgba($color, 0.4);
+				border-bottom-color: rgba($color, 0.4);
 			}
 		}
 	}
@@ -105,7 +103,7 @@ $ssv-checkbox-filled-checked-color: $ssv-color-white !default;
 	&.ssv-checkbox--unchecked {
 		&[disabled] {
 			.ssv-checkbox__visual-cue {
-				background-color: rgba($color, .4);
+				background-color: rgba($color, 0.4);
 			}
 		}
 	}
@@ -117,7 +115,7 @@ $ssv-checkbox-filled-checked-color: $ssv-color-white !default;
 
 		&[disabled] {
 			.ssv-checkbox__visual-cue {
-				border-right-color: rgba($color, .4);
+				border-right-color: rgba($color, 0.4);
 				background: none;
 			}
 		}
@@ -134,7 +132,7 @@ $ssv-checkbox-filled-checked-color: $ssv-color-white !default;
 		border: 2px solid $ssv-checkbox-unchecked-color;
 		border-radius: 2px;
 		display: inline-block;
-		transition: border .25s, background-color .25s, width .20s .1s, height .20s .1s, top .20s .1s, left .20s .1s;
+		transition: border 0.25s, background-color 0.25s, width 0.2s 0.1s, height 0.2s 0.1s, top 0.2s 0.1s, left 0.2s 0.1s;
 	}
 
 	.ssv-checkbox__visual-cue {
@@ -146,7 +144,7 @@ $ssv-checkbox-filled-checked-color: $ssv-color-white !default;
 		border-color: transparent;
 		transform: rotateZ(37deg);
 		transform-origin: 100% 100%;
-		transition: .1s;
+		transition: 0.1s;
 	}
 
 	&.ssv-checkbox--checked {
@@ -177,7 +175,7 @@ $ssv-checkbox-filled-checked-color: $ssv-color-white !default;
 
 	&[disabled] {
 		.ssv-checkbox__visual-cue-outer {
-			background-color: rgba($color, .4);
+			background-color: rgba($color, 0.4);
 			border-color: transparent;
 		}
 	}
@@ -190,7 +188,7 @@ $ssv-checkbox-filled-checked-color: $ssv-color-white !default;
 
 		&[disabled] {
 			.ssv-checkbox__visual-cue-outer {
-				background-color: rgba($color, .4);
+				background-color: rgba($color, 0.4);
 				border-color: transparent;
 			}
 
@@ -215,7 +213,7 @@ $ssv-checkbox-filled-checked-color: $ssv-color-white !default;
 
 		&[disabled] {
 			.ssv-checkbox__visual-cue-outer {
-				background-color: rgba($color, .4);
+				background-color: rgba($color, 0.4);
 				border-color: transparent;
 			}
 
@@ -224,5 +222,4 @@ $ssv-checkbox-filled-checked-color: $ssv-color-white !default;
 			}
 		}
 	}
-
 }
