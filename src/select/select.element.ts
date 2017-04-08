@@ -147,18 +147,12 @@ export class SelectElement {
 	onClear(e: MouseEvent) {
 		this.filterBy = "";
 		this.isOpen = false;
-		this.selected = undefined;
-		this.selectedItems = [];
-		this.groupedOptions(this.items);
-
-		for (const item of this.items) {
-			item.isSelected = false;
-		}
+		this.onChange(undefined);
 		e.stopPropagation();
 	}
 
-	onDeselect(e: MouseEvent, optionValue: string) {
-		this.clearSelectionItem(optionValue);
+	onDeselect(e: MouseEvent, option: SelectItem) {
+		this.onChange(option);
 		e.stopPropagation();
 	}
 
@@ -180,28 +174,47 @@ export class SelectElement {
 		this.isOpen = false;
 	}
 
-	onChange(option: SelectItem) {
+	onChange(option: SelectItem | undefined) {
 		let previous: any | undefined;
+		switch (this.config.type) {
+			case selectType.single:
+				previous = this.setSingleSelectedOption(option);
+				break;
+			case selectType.multi:
+				previous = this.setMultiSelectedOption(option);
+				break;
+		}
+		const event = DOM.createCustomEvent("change", { bubbles: true, detail: { previous, value: this.selected } });
+		this.element.dispatchEvent(event);
+	}
 
-		if (this.config.type === selectType.single) {
-			previous = this.selectedItems.length > 0 ? this.optionsMap[this.selectedItems[0].value] : undefined;
+	private setSingleSelectedOption(option: SelectItem | undefined) {
+		const previous = this.selectedItems.length > 0 ? this.optionsMap[this.selectedItems[0].value] : undefined;
+		if (option) {
 			this.selected = this.optionsMap[option.value];
-		} else if (this.config.type === selectType.multi) {
-			previous = [];
-			this.selected = this.selected ? this.selected : [];
-			for (const item of this.selectedItems) {
-				previous.push(this.optionsMap[item.value]);
-			}
+		} else {
+			this.selected = undefined;
+		}
+		return previous;
+	}
 
+	private setMultiSelectedOption(option: SelectItem | undefined) {
+		const previous: any[] = [];
+		this.selected = this.selected ? this.selected : [];
+		for (const item of this.selectedItems) {
+			previous.push(this.optionsMap[item.value]);
+		}
+
+		if (option) {
 			if (!_.find(this.selectedItems, x => x.value === option.value)) {
 				this.selected = [...this.selected, this.optionsMap[option.value]];
 			} else {
 				this.clearSelectionItem(option.value);
 			}
+		} else {
+			this.selected = [];
 		}
-
-		const event = DOM.createCustomEvent("change", { bubbles: true, detail: { previous, value: this.selected } });
-		this.element.dispatchEvent(event);
+		return previous;
 	}
 
 	private onFocusedKeyPress(e: KeyboardEvent) {
@@ -252,6 +265,10 @@ export class SelectElement {
 			this.isOpen = false;
 		}
 
+		for (const item of this.items) {
+			item.isSelected = false;
+		}
+
 		if (!selectedItem) {
 			this.selectedItems = [];
 			return;
@@ -260,10 +277,6 @@ export class SelectElement {
 		const list = this.config.type === selectType.single
 			? this.convertToSelectItems([selectedItem], true)
 			: this.convertToSelectItems(selectedItem, true);
-
-		for (const item of this.items) {
-			item.isSelected = false;
-		}
 
 		this.selectedItems = [];
 		for (const option of list) {
