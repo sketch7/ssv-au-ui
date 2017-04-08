@@ -2,7 +2,6 @@
 @import "../style/mixins";
 @import "./input.mixin";
 @import "./input.variant";
-
 $ssv-input-focus-color: $ssv-secondary-color !default;
 $ssv-input-disabled-color: rgba(0, 0, 0, 0.26) !default;
 $ssv-input-transition: all 0.3s !default;
@@ -25,6 +24,7 @@ $ssv-input-disabled-border: 1px dotted $ssv-input-disabled-color !default;
 	::-webkit-input-placeholder {
 		color: $ssv-input-placeholder-color;
 	}
+
 	@include element("label") {
 		color: $ssv-input-border-color;
 		position: absolute;
@@ -32,11 +32,13 @@ $ssv-input-disabled-border: 1px dotted $ssv-input-disabled-color !default;
 		left: 0;
 		font-size: 1rem;
 		transition: 0.2s ease-out;
+
 		@include modifier("active") {
 			font-size: 0.8rem;
 			transform: translateY(-140%);
 		}
 	}
+
 	@include element("input") {
 		border: none;
 		background: transparent;
@@ -57,11 +59,13 @@ $ssv-input-disabled-border: 1px dotted $ssv-input-disabled-color !default;
 			border-bottom: $ssv-input-disabled-border;
 		}
 	}
+
 	@include element("help") {
 		position: absolute;
 		top: 54px;
 		font-size: 0.75rem;
 	}
+
 	@include modifier("focused") {
 		.ssv-input__label {
 			color: $ssv-input-focus-color;
@@ -75,18 +79,22 @@ $ssv-input-disabled-border: 1px dotted $ssv-input-disabled-color !default;
 
 	// variants
 	@include modifier("primary") {
-		 @include ssv-input-variant($ssv-input-primary-variant);
+		@include ssv-input-variant($ssv-input-primary-variant);
 	}
+
 	@include modifier("accent") {
-		 @include ssv-input-variant($ssv-input-accent-variant);
+		@include ssv-input-variant($ssv-input-accent-variant);
 	}
+
 	@include modifier("danger") {
-		 @include ssv-input-variant($ssv-input-danger-variant);
+		@include ssv-input-variant($ssv-input-danger-variant);
 	}
+
 	@include modifier("warn") {
-		 @include ssv-input-variant($ssv-input-warn-variant);
+		@include ssv-input-variant($ssv-input-warn-variant);
 	}
+
 	@include modifier("success") {
-		 @include ssv-input-variant($ssv-input-success-variant);
+		@include ssv-input-variant($ssv-input-success-variant);
 	}
 }

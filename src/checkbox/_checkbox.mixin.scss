@@ -1,9 +1,9 @@
 @import "../style/mixins";
-
 $ssv-checkbox-default-color: $ssv-color-black !default;
 $ssv-checkbox-unchecked-color: rgba($ssv-color-black, 0.6) !default;
 $ssv-checkbox-disabled-color: rgba($ssv-color-black, 0.26) !default;
 $ssv-checkbox-filled-checked-color: $ssv-color-white !default;
+
 @mixin ssv-checkbox-variant($options: ()) {
 	&.ssv-checkbox--minimal {
 		@include ssv-checkbox-minimal-skin-variant($options);
@@ -83,6 +83,7 @@ $ssv-checkbox-filled-checked-color: $ssv-color-white !default;
 		}
 	}
 }
+
 @mixin ssv-checkbox-minimal-skin-variant($options: ()) {
 	$color: map-get($options, color);
 
@@ -170,6 +171,7 @@ $ssv-checkbox-filled-checked-color: $ssv-color-white !default;
 		}
 	}
 }
+
 @mixin ssv-checkbox-filled-skin-variant($options: ()) {
 	$color: map-get($options, color);
 
