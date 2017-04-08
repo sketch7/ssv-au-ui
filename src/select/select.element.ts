@@ -132,7 +132,7 @@ export class SelectElement {
 		this.modifiers = attributeUtil.generateBemStyleModifiers(newValue, PREFIX);
 	}
 
-	filterOptions(searchTerm: string) {
+	filterOptions(searchTerm = "") {
 		let filteredOptions = this.items;
 		if (!searchTerm) {
 			this.groupedOptions(filteredOptions);
@@ -145,8 +145,9 @@ export class SelectElement {
 	}
 
 	onClear(e: MouseEvent) {
-		this.filterBy = "";
 		this.isOpen = false;
+		this.filterBy = "";
+		this.filterOptions();
 		this.onChange(undefined);
 		e.stopPropagation();
 	}
