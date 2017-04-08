@@ -32,8 +32,8 @@ export class SelectElement {
 		defaultBindingMode: bindingMode.twoWay
 	}) selected: any | undefined;
 	@bindable options: any[] = [];
-	@bindable text: string;
-	@bindable value: string;
+	@bindable textField: string;
+	@bindable valueField: string;
 	@bindable groupby: string | undefined;
 
 	controlId: string;
@@ -329,8 +329,8 @@ export class SelectElement {
 
 	private convertObjectToSelectItems(options: any[], isSelected = false): SelectItem[] {
 		return _.map(options, item => ({
-			value: item[this.config.dataValueField],
-			text: item[this.config.dataTextField],
+			value: item[this.config.valueField],
+			text: item[this.config.textField],
 			groupBy: item[this.groupby!],
 			isSelected
 		}));
@@ -338,7 +338,7 @@ export class SelectElement {
 
 	private clearSelectionItem(optionValue: string) {
 		if (this.isComplexList) {
-			this.selected = _.filter(this.selected, (x: object & { [key: string]: any }) => x[this.config.dataValueField] !== optionValue);
+			this.selected = _.filter(this.selected, (x: object & { [key: string]: any }) => x[this.config.valueField] !== optionValue);
 			return;
 		}
 
@@ -422,8 +422,8 @@ export class SelectElement {
 			allowClear: this.allowClear,
 			allowFiltering: this.allowFiltering,
 			selectedClass: this.selectedClass,
-			dataTextField: this.text,
-			dataValueField: this.value
+			textField: this.textField,
+			valueField: this.valueField
 		}, selectConfig);
 
 		this.validateType(this.config.type.toLowerCase());

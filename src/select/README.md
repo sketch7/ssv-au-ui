@@ -14,8 +14,8 @@ Enhances the native HTML `<select>` with styling and extra features.
 <!-- basic options -->
 <ssv-select 
     options.bind="heroes"
-    text="name"
-    value="id"
+    text-field="name"
+    value-field="id"
     selected.bind="heroSelected"
     placeholder="select hero">
 </ssv-select>
@@ -53,8 +53,8 @@ onChange(event: CustomEvent) {
 | selected        | `any` or `any[]` | -            | yes      | Currently selected options.                                                                                              |
 | type            | `SelectType`     | `single`     | no       | Can be `single` or `multi`. This will allow single or multi selection.                                                   |
 | placeholder     | `string`         | -            | no       | Placeholder text to show when input is empty.                                                                            |
-| text            | `string`         | `"text"`     | no       | Text property name, which will be used as a select display text.                                                         |
-| value           | `string`         | `"value"`    | no       | Value property name, which will be used as a select value.                                                               |
+| text-field      | `string`         | `"text"`     | no       | Text property name, which will be used as a select display text.                                                         |
+| value-field     | `string`         | `"value"`    | no       | Value property name, which will be used as a select value.                                                               |
 | groupby         | `string`         | -            | no       | Groupby property name, which will be used to group the options with.                                                     |
 | selected-class  | `string`         | `"selected"` | no       | CssClass to be used for selected items.                                                                                  |
 | auto-close      | `boolean`        | `true`       | no       | Determines whether after selecting an item it will close or not.                                                         |
@@ -73,8 +73,8 @@ Options which can be configured globally.
 | color                  | `string`     | -                        |
 | filterPlaceholder      | `string`     | `"filter options..."`    |
 | noOptionsAvailableText | `string`     | `"no options available"` |
-| dataTextField          | `string`     | `"text"`                 |
-| dataValueField         | `string`     | `"value"`                |
+| textField              | `string`     | `"text"`                 |
+| valueField             | `string`     | `"value"`                |
 | selectedClass          | `string`     | `"selected"`             |
 | autoClose              | `boolean`    | `true`                   |
 | allowFiltering         | `boolean`    | `true`                   |

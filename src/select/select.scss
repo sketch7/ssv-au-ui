@@ -60,7 +60,6 @@ $ssv-select-input-box-padding: 0.5em 0.5em !default;
 	@include element("input-box") {
 		display: flex;
 		cursor: pointer;
-		height: 1rem;
 		padding: $ssv-select-input-box-padding;
 
 		.ssv-select_text-container {
@@ -76,13 +75,13 @@ $ssv-select-input-box-padding: 0.5em 0.5em !default;
 
 	@include element("input-underline") {
 		width: 100%;
-		height: 0.1em;
+		height: 1px;
 		background-color: $ssv-select-default-color;
 
 		@include modifier("active") {
 			background-color: $ssv-select-default-color;
 			width: 100%;
-			height: 0.2em;
+			height: 2px;
 		}
 	}
 
@@ -112,8 +111,7 @@ $ssv-select-input-box-padding: 0.5em 0.5em !default;
 		width: 100%;
 		border: 0;
 		outline: none;
-		height: 1rem;
-		padding: 1.5em 0.5em;
+		padding: 0.8em 0.5em;
 	}
 
 	@include element("list") {

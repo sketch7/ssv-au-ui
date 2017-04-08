@@ -12,9 +12,8 @@ export interface SelectConfig {
 	allowClear: boolean;
 	clearIcon: string;
 	noOptionsAvailableText: string;
-
-	dataTextField: string;
-	dataValueField: string;
+	textField: string;
+	valueField: string;
 }
 
 export const selectConfig: SelectConfig = {
@@ -28,6 +27,6 @@ export const selectConfig: SelectConfig = {
 	allowClear: true,
 	clearIcon: "times",
 	noOptionsAvailableText: "no options available",
-	dataTextField: "text",
-	dataValueField: "value"
+	textField: "text",
+	valueField: "value"
 };
