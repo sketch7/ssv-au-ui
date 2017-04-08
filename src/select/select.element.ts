@@ -194,11 +194,7 @@ export class SelectElement {
 
 	private setSingleSelectedOption(option: SelectItem | undefined) {
 		const previous = this.selectedItems.length > 0 ? this.optionsMap[this.selectedItems[0].value] : undefined;
-		if (option) {
-			this.selected = this.optionsMap[option.value];
-		} else {
-			this.selected = undefined;
-		}
+		this.selected = option ? this.optionsMap[option.value] : undefined;
 		return previous;
 	}
 
