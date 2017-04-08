@@ -13,6 +13,7 @@
 	user-select: none;
 	vertical-align: middle;
 	outline: 0;
+
 	@include element("input") {
 		position: absolute;
 		width: 0;
@@ -23,6 +24,7 @@
 		appearance: none;
 		border: none;
 	}
+
 	@include element("label") {
 		padding-left: 10px;
 		height: 25px;
@@ -31,16 +33,19 @@
 		cursor: pointer;
 		vertical-align: top;
 	}
+
 	@include element("visual-cue") {
 		position: absolute;
 		box-sizing: border-box;
 		cursor: pointer;
 		transition: 0.2s;
 	}
+
 	@include element("visual-cue-outer") {
 		position: relative;
 		box-sizing: border-box;
 	}
+
 	@include modifier("unchecked") {
 		&[disabled] {
 			.ssv-checkbox__visual-cue {
@@ -49,6 +54,7 @@
 			}
 		}
 	}
+
 	@include modifier("before") {
 		.ssv-checkbox__label {
 			padding-right: 10px;
@@ -59,6 +65,7 @@
 			order: 1;
 		}
 	}
+
 	@include modifier("focused") {
 		outline: 0;
 
@@ -85,29 +92,34 @@
 
 	// skin type
 	@include modifier("minimal") {
-		 @include ssv-checkbox-minimal-skin;
+		@include ssv-checkbox-minimal-skin;
 	}
+
 	@include modifier("filled") {
-		 @include ssv-checkbox-filled-skin;
+		@include ssv-checkbox-filled-skin;
 	}
 
 	// default
-	@include ssv-checkbox-variant(( color: $ssv-checkbox-default-color ));
+	@include ssv-checkbox-variant(( color: $ssv-checkbox-default-color));
 
 	// variants
 	@include modifier("primary") {
-		 @include ssv-checkbox-variant($ssv-checkbox-primary-variant);
+		@include ssv-checkbox-variant($ssv-checkbox-primary-variant);
 	}
+
 	@include modifier("accent") {
-		 @include ssv-checkbox-variant($ssv-checkbox-accent-variant);
+		@include ssv-checkbox-variant($ssv-checkbox-accent-variant);
 	}
+
 	@include modifier("danger") {
-		 @include ssv-checkbox-variant($ssv-checkbox-danger-variant);
+		@include ssv-checkbox-variant($ssv-checkbox-danger-variant);
 	}
+
 	@include modifier("warn") {
-		 @include ssv-checkbox-variant($ssv-checkbox-warn-variant);
+		@include ssv-checkbox-variant($ssv-checkbox-warn-variant);
 	}
+
 	@include modifier("success") {
-		 @include ssv-checkbox-variant($ssv-checkbox-success-variant);
+		@include ssv-checkbox-variant($ssv-checkbox-success-variant);
 	}
 }

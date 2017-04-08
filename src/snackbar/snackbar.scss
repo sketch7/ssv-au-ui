@@ -1,6 +1,5 @@
 @import "../style/vars";
 @import "../style/mixins";
-
 $ssv-snackbar-color: $ssv-color-white !default;
 $ssv-snackbar-background-color: rgba($ssv-color-black, 0.8) !default;
 $ssv-snackbar-layer-index: $ssv-overlay-index !default;
@@ -25,23 +24,28 @@ $ssv-snackbar-viewport-offset: 80px !default;
 	transition: transform 0.25s ease-in-out;
 	will-change: transform;
 	pointer-events: none;
+
 	@include element("label") {
 		flex-grow: 1;
 		color: $ssv-snackbar-color;
 		vertical-align: middle;
 		padding: 1.2em 1em;
 	}
+
 	@include modifier("active") {
 		pointer-events: auto;
 	}
+
 	@include element("action") {
 		margin-right: 0.5em;
 	}
+
 	@include breakpoint-xsmall-only {
 		width: 100%;
 		min-height: 48px;
 		max-height: 80px;
 	}
+
 	@include breakpoint-xsmall-up {
 		border-radius: 2px;
 		min-width: 288px;
@@ -59,6 +63,7 @@ $ssv-snackbar-viewport-offset: 80px !default;
 		animation-timing-function: ease-in;
 	}
 }
+
 @keyframes snackbarEnter {
 	from {
 		transform: translate(0, $ssv-snackbar-viewport-offset);
@@ -68,6 +73,7 @@ $ssv-snackbar-viewport-offset: 80px !default;
 		transform: translate(0, 0);
 	}
 }
+
 @keyframes snackbarLeave {
 	from {
 		transform: translate(0, 0);
