@@ -176,6 +176,9 @@ export class SelectElement {
 
 	onChange(option: SelectItem | undefined) {
 		let previous: any | undefined;
+		if (this.config.autoClose) {
+			this.isOpen = false;
+		}
 		switch (this.config.type) {
 			case selectType.single:
 				previous = this.setSingleSelectedOption(option);
@@ -261,10 +264,6 @@ export class SelectElement {
 	}
 
 	private onSelectedChanged(selectedItem: any) {
-		if (this.config.autoClose) {
-			this.isOpen = false;
-		}
-
 		for (const item of this.items) {
 			item.isSelected = false;
 		}
