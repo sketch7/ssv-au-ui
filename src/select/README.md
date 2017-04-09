@@ -85,3 +85,6 @@ Options which can be configured globally.
 
 ## TODO Features
 - Tagging
+- Highlight text filtering
+- Multi Select
+    - Max selected options

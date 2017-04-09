@@ -8,6 +8,7 @@ $ssv-select-default-item-selected-color-contrast: $ssv-color-white !default;
 $ssv-select-default-item-color-hover: rgba($ssv-color-black, 0.1) !default;
 $ssv-select-default-list-background-color: $ssv-color-white !default;
 $ssv-select-default-clear-color-hover: rgba($ssv-color-black, 0.6) !default;
+$ssv-select-no-options-color: rgba($ssv-color-black, 0.2) !default;
 $ssv-select-disabled-primary-color: rgba($ssv-color-black, 0.12) !default;
 $ssv-select-disabled-secondary-color: rgba($ssv-color-black, 0.26) !default;
 $ssv-select-input-box-padding: 0.5em 0.5em !default;
@@ -160,6 +161,7 @@ $ssv-select-input-box-padding: 0.5em 0.5em !default;
 	@include element("no-options-available") {
 		cursor: default;
 		padding: $ssv-select-input-box-padding;
+		background-color: $ssv-select-no-options-color;
 	}
 
 	&[disabled] {
