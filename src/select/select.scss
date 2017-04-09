@@ -181,7 +181,7 @@ $ssv-select-input-box-padding: 0.5em 0.5em !default;
 		}
 
 		.ssv-select__input-box {
-			border-bottom-color: $ssv-select-disabled-primary-color;
+			border-bottom: 1px dotted $ssv-select-disabled-primary-color;
 		}
 	}
 
