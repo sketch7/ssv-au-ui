@@ -1,3 +1,4 @@
+import * as _ from "lodash";
 export class HighlightValueConverter {
 
 	/**
@@ -10,6 +11,7 @@ export class HighlightValueConverter {
 	 */
 	toView(value: string, phrase: string, className = "highlighted") {
 		if (value && phrase) {
+			phrase = _.escapeRegExp(phrase);
 			value = value.replace(new RegExp(`(${phrase})`, "gi"),
 				`<span class="${className}">$1</span>`);
 		}
