@@ -5,7 +5,7 @@
 	$color-contrast: map-get($options, color-contrast);
 	$color-bg-list: map-get($options, color-bg-list);
 	$item-color-hover: rgba($color, 0.6) !default;
-	$multi-clear-color-hover: rgba($color-contrast, 0.2) !default;
+	$multi-clear-color-hover: rgba($color-contrast, 0.6) !default;
 	$clear-color-hover: rgba($color, 0.6) !default;
 
 	.ssv-select {
