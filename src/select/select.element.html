@@ -34,6 +34,7 @@
 			placeholder.bind="filterPlaceholder"
 			value.bind="filterBy"
 			keyup.delegate="filterOptions(filterBy) & debounce"
+			change.delegate="onInputChange($event)"
 			tabindex="-1"
 			ref="input"
 			/>
