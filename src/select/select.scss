@@ -45,9 +45,10 @@ $ssv-select-input-box-padding: 0.5em 0.5em !default;
 		user-select: none;
 
 		@include modifier("multi") {
-			padding: 0.3em;
-			margin-right: 0.3em;
+			display: inline-block;
 			font-size: 0.7rem;
+			padding: 0.3em 0.5em;
+			margin-right: 0.3em;
 			background-color: $ssv-select-default-color;
 			border-radius: 3px;
 
