@@ -16,6 +16,7 @@ export function configure(aurelia: FrameworkConfiguration, config: UiConfig): Pr
 		"./badge/badge.element",
 		"./button/button.attribute",
 		"./checkbox/checkbox.element",
+		"./highlight/highlight.value-convetor",
 		"./icon/icon.element",
 		"./input/input.element",
 		"./select/select.element",
