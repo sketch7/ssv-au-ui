@@ -27,6 +27,8 @@ export class SelectElement {
 	@bindable type: SelectType;
 	@bindable modifier: string | undefined;
 	@bindable disabled: boolean | string = false;
+	@bindable filterPlaceholder: string;
+	@bindable noOptionsAvailableText: string;
 
 	@bindable({
 		defaultBindingMode: bindingMode.twoWay
@@ -45,8 +47,6 @@ export class SelectElement {
 	clearIcon: string;
 	filterBy: string;
 	filteredGroupOptions: SelectGroup[] = [];
-	filterPlaceholder: string;
-	noOptionsAvailableText: string;
 	focusValue: string;
 
 	@computedFrom("isOpen", "selectedItems")
@@ -433,7 +433,9 @@ export class SelectElement {
 			allowFiltering: this.allowFiltering,
 			selectedClass: this.selectedClass,
 			textField: this.textField,
-			valueField: this.valueField
+			valueField: this.valueField,
+			filterPlaceholder: this.filterPlaceholder,
+			noOptionsAvailableText: this.noOptionsAvailableText,
 		}, selectConfig);
 
 		this.validateType(this.config.type.toLowerCase());
