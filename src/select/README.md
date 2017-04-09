@@ -56,6 +56,7 @@ onChange(event: CustomEvent) {
 | text-field         | `string`         | `"text"`                 | no       | Text property name, which will be used as a select display text.                                                         |
 | value-field        | `string`         | `"value"`                | no       | Value property name, which will be used as a select value.                                                               |
 | groupby            | `string`         | -                        | no       | Groupby property name, which will be used to group the options with.                                                     |
+| max-selections     | `number`         | -                        | no       | Multi select - numbers of allowed options selected at once.                                                              |
 | selected-class     | `string`         | `"selected"`             | no       | CssClass to be used for selected items.                                                                                  |
 | auto-close         | `boolean`        | `true`                   | no       | Determines whether after selecting an item it will close or not.                                                         |
 | allow-clear        | `boolean`        | `true`                   | no       | Determines whether it allows you to clear all selections or not.                                                         |
@@ -87,5 +88,3 @@ Options which can be configured globally.
 
 ## TODO Features
 - Tagging
-- Multi Select
-    - Max selected options

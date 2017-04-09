@@ -29,6 +29,7 @@ export class SelectElement {
 	@bindable disabled: boolean | string = false;
 	@bindable filterPlaceholder: string;
 	@bindable noOptions: string;
+	@bindable maxSelections = 0;
 
 	@bindable({
 		defaultBindingMode: bindingMode.twoWay
@@ -188,6 +189,10 @@ export class SelectElement {
 				previous = this.setSingleSelectedOption(option);
 				break;
 			case selectType.multi:
+				if (this.maxSelections > 0 && this.selectedItems.length >= this.maxSelections
+					&& option && !_.find(this.selectedItems, x => x.value === option.value)) {
+					return;
+				}
 				previous = this.setMultiSelectedOption(option);
 				break;
 		}
