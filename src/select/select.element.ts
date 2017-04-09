@@ -225,8 +225,13 @@ export class SelectElement {
 				break;
 			case KeyCode.Enter:
 				if (this.isOpen) {
-					const selectedItem = _.find(this.flattenedFilteredGroupOptions, x => x.value === this.focusValue)!;
-					this.onChange(selectedItem);
+					let selectedItem = _.find(this.flattenedFilteredGroupOptions, x => x.value === this.focusValue);
+					if (!selectedItem && this.flattenedFilteredGroupOptions.length > 0) {
+						selectedItem = this.flattenedFilteredGroupOptions[0];
+					}
+					if (selectedItem) {
+						this.onChange(selectedItem);
+					}
 				} else {
 					this.isOpen = true;
 				}
