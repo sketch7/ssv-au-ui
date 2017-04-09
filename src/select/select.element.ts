@@ -28,7 +28,7 @@ export class SelectElement {
 	@bindable modifier: string | undefined;
 	@bindable disabled: boolean | string = false;
 	@bindable filterPlaceholder: string;
-	@bindable noOptionsAvailableText: string;
+	@bindable noOptions: string;
 
 	@bindable({
 		defaultBindingMode: bindingMode.twoWay
@@ -435,7 +435,7 @@ export class SelectElement {
 			textField: this.textField,
 			valueField: this.valueField,
 			filterPlaceholder: this.filterPlaceholder,
-			noOptionsAvailableText: this.noOptionsAvailableText,
+			noOptions: this.noOptions,
 		}, selectConfig);
 
 		this.validateType(this.config.type.toLowerCase());
@@ -447,7 +447,7 @@ export class SelectElement {
 		this.allowClear = this.config.allowClear;
 		this.allowFiltering = this.config.allowFiltering;
 		this.filterPlaceholder = this.config.filterPlaceholder;
-		this.noOptionsAvailableText = this.config.noOptionsAvailableText;
+		this.noOptions = this.config.noOptions;
 
 		this.onOptionsChanged(this.options);
 	}
