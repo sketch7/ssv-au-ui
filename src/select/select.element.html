@@ -1,5 +1,5 @@
 <template role="select" class="ssv-select ${modifiers}" tabindex="${disabled ? -1 : 0}">
-	<div class="ssv-select__input-box" click.delegate="toggle($event)">
+	<div class="ssv-select__input-box ${isOpen ? 'ssv-select__input-box--active' : ''}" click.delegate="toggle($event)">
 		<div class="ssv-select_text-container">
 			<div class="ssv-select__placeholder
 			${isActive ? 'ssv-select__placeholder--active' : ''}">${placeholder}</div>
@@ -18,8 +18,6 @@
 			<ssv-icon class="ssv-select__arrow"
 				name.bind="isOpen ? arrowUpIcon : arrowDownIcon"></ssv-icon>
 		</div>
-	</div>
-	<div class="ssv-select__input-underline ${isOpen ? 'ssv-select__input-underline--active' : ''}">
 	</div>
 	<div class="ssv-select__list-container" if.bind="isOpen">
 		<input type="text" 

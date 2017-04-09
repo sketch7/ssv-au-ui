@@ -30,12 +30,8 @@
 			}
 		}
 
-		@include element("input-underline") {
-			background-color: $color;
-
-			@include modifier("active") {
-				background-color: $color;
-			}
+		@include element("input-box") {
+			border-bottom-color: $color;
 		}
 
 		@include element("clear") {
