@@ -1,0 +1,74 @@
+@import "../style/mixins";
+
+@mixin ssv-select-variant($options: ()) {
+	$color: map-get($options, color);
+	$color-contrast: map-get($options, color-contrast);
+	$color-bg-list: map-get($options, color-bg-list);
+	$item-color-hover: rgba($color, 0.6) !default;
+	$multi-clear-color-hover: rgba($color-contrast, 0.6) !default;
+	$clear-color-hover: rgba($color, 0.6) !default;
+
+	.ssv-select {
+		color: $color-contrast;
+
+		@include element("placeholder") {
+			color: $color;
+		}
+
+		@include element("label") {
+			@include modifier("multi") {
+				background-color: $color;
+				color: $color-contrast;
+
+				.ssv-select__clear {
+					color: $color-contrast;
+
+					&:hover {
+						color: $multi-clear-color-hover;
+					}
+				}
+			}
+		}
+
+		@include element("input-box") {
+			border-bottom-color: $color;
+		}
+
+		@include element("clear") {
+			color: $color;
+
+			&:hover {
+				color: $clear-color-hover;
+			}
+		}
+
+		@include element("arrow") {
+			color: $color;
+		}
+
+		@include element("list") {
+			background-color: $color-bg-list;
+		}
+
+		@include element("item") {
+			&:hover {
+				background-color: $item-color-hover;
+				color: $color-contrast;
+			}
+
+			@include modifier("selected") {
+				background-color: $color;
+				color: $color-contrast;
+
+				&:hover {
+					background-color: $color;
+				}
+			}
+
+			@include modifier("focused") {
+				background-color: $item-color-hover;
+				color: $color-contrast;
+			}
+		}
+	}
+}

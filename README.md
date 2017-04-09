@@ -99,7 +99,7 @@ Import fonts
 | icon             |                             Preview | [README][icon]    |              - |
 | checkbox         |                             Preview | [README][checkbox]|              - |
 | snackbar         |                             Preview | [README][snackbar]|              - |
-| select           |                         Development |                   |              - |
+| select           |                             Preview | [README][select]  |              - |
 | switch           |                         Not Started |                   |              - |
 | radio            |                         Not Started |                   |              - |
 | datepicker       |                         Not Started |                   |              - |
@@ -117,6 +117,15 @@ Import fonts
 [icon]: ./src/icon/README.md
 [checkbox]: ./src/checkbox/README.md
 [snackbar]: ./src/snackbar/README.md
+[select]: ./src/select/README.md
+
+## Value Converters
+
+| Value Converters | Status  | Docs                | Issue |
+|------------------|---------|---------------------|-------|
+| highlight        | Preview | [README][highlight] | -     |
+
+[highlight]: ./src/highlight/README.md
 
 ## Getting Started
 

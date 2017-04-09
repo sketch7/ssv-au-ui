@@ -1,0 +1,62 @@
+<template role="select" class="ssv-select ${modifiers}" tabindex="${disabled ? -1 : 0}">
+	<div class="ssv-select__input-box ${isOpen ? 'ssv-select__input-box--active' : ''}" click.delegate="toggle($event)">
+		<div class="ssv-select_text-container">
+			<div class="ssv-select__placeholder ${isActive ? 'ssv-select__placeholder--active' : ''}">
+				${placeholder}
+			</div>
+			<span class="ssv-select__label ${labelModifierClass}" repeat.for="item of selectedItems">
+				${item.text}
+				<ssv-icon if.bind="!disabled && type === 'multi' && selectedItems && selectedItems.length > 0"
+					name.bind="clearIcon"
+					class="ssv-select__clear"
+					click.delegate="onDeselect($event, item)">
+				</ssv-icon>
+			</span>
+		</div>
+
+		<div class="ssv-select__icon-container">
+			<ssv-icon if.bind="!disabled && allowClear && filterBy || !disabled && selectedItems && selectedItems.length > 0"
+				name.bind="clearIcon"
+				class="ssv-select__clear"
+				click.delegate="onClear($event)">
+			</ssv-icon>
+			<ssv-icon class="ssv-select__arrow"
+				name.bind="isOpen ? arrowUpIcon : arrowDownIcon">
+			</ssv-icon>
+		</div>
+	</div>
+
+	<div class="ssv-select__list-container" if.bind="isOpen">
+		<input type="text"
+			if.bind="allowFiltering"
+			autocomplete="off"
+			class="ssv-select__input-filter"
+			placeholder.bind="filterPlaceholder"
+			value.bind="filterBy"
+			keyup.delegate="filterOptions(filterBy) & debounce"
+			change.delegate="onInputChange($event)"
+			tabindex="-1"
+			ref="input"
+			/>
+		<ul class="ssv-select__list">
+			<template repeat.for="group of filteredGroupOptions">
+				<li class="ssv-select__group-header"
+					if.bind="group.name">
+					${group.name}
+				</li>
+				<li repeat.for="option of group.options"
+					class="ssv-select__item 
+					${group.name ? 'ssv-select__item--group-item' : ''}
+					${option.isSelected ? selectedClass : ''}
+					${option.value === focusValue ? 'ssv-select__item--focused' : ''}"
+					click.delegate="onChange(option)"
+					innerhtml.bind="option.text | highlight: filterBy : 'ssv-select__item--highlight'">
+				</li>
+			</template>
+			<li class="ssv-select__no-options-available"
+				if.bind="!filteredGroupOptions || filteredGroupOptions.length === 0">
+				${noOptions}
+			</li>
+		</ul>
+	</div>
+</template>
