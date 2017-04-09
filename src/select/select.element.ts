@@ -138,10 +138,13 @@ export class SelectElement {
 			this.groupedOptions(filteredOptions);
 			return;
 		}
-
-		filteredOptions = _.filter(this.items, item =>
-			_.includes(item.text.toLowerCase(), searchTerm.toLowerCase()));
+		filteredOptions = _.filter(this.items, item => _.includes(item.text.toLowerCase(), searchTerm.toLowerCase()));
 		this.groupedOptions(filteredOptions);
+
+		const selectedItem = _.find(this.flattenedFilteredGroupOptions, x => x.value === this.focusValue);
+		if (!selectedItem) {
+			this.setFocusValue({ setFirst: true });
+		}
 	}
 
 	onClear(e: MouseEvent) {
@@ -199,11 +202,8 @@ export class SelectElement {
 	}
 
 	private setMultiSelectedOption(option: SelectItem | undefined) {
-		const previous: any[] = [];
 		this.selected = this.selected ? this.selected : [];
-		for (const item of this.selectedItems) {
-			previous.push(this.optionsMap[item.value]);
-		}
+		const previous = this.selectedItems.map(item => this.optionsMap[item.value]);
 
 		if (option) {
 			if (!_.find(this.selectedItems, x => x.value === option.value)) {
@@ -225,10 +225,7 @@ export class SelectElement {
 				break;
 			case KeyCode.Enter:
 				if (this.isOpen) {
-					let selectedItem = _.find(this.flattenedFilteredGroupOptions, x => x.value === this.focusValue);
-					if (!selectedItem && this.flattenedFilteredGroupOptions.length > 0) {
-						selectedItem = this.flattenedFilteredGroupOptions[0];
-					}
+					const selectedItem = _.find(this.flattenedFilteredGroupOptions, x => x.value === this.focusValue);
 					if (selectedItem) {
 						this.onChange(selectedItem);
 					}
@@ -239,13 +236,13 @@ export class SelectElement {
 				break;
 			case KeyCode.UpArrow: {
 				this.isOpen = true;
-				this.setFocusValue(KeyCode.UpArrow);
+				this.setFocusValue({ position: KeyCode.UpArrow });
 				e.preventDefault();
 				break;
 			}
 			case KeyCode.DownArrow: {
 				this.isOpen = true;
-				this.setFocusValue(KeyCode.DownArrow);
+				this.setFocusValue({ position: KeyCode.DownArrow });
 				e.preventDefault();
 				break;
 			}
@@ -290,24 +287,30 @@ export class SelectElement {
 		}
 	}
 
-	private setFocusValue(position: (KeyCode.UpArrow | KeyCode.DownArrow) | null = null) {
+	private setFocusValue(params?: { position?: (KeyCode.UpArrow | KeyCode.DownArrow), setFirst?: boolean }) {
 		if (_.isEmpty(this.flattenedFilteredGroupOptions)) {
 			return;
 		}
-		if (position) {
+		if (!params) {
+			this.focusValue = _.isEmpty(this.selectedItems)
+				? this.flattenedFilteredGroupOptions[0].value
+				: _.last(this.selectedItems).value;
+			return;
+		}
+		if (params.position) {
 			let index = _.findIndex(this.flattenedFilteredGroupOptions, x => x.value === this.focusValue);
 
-			if (position === KeyCode.UpArrow && index > 0) {
+			if (params.position === KeyCode.UpArrow && index > 0) {
 				this.focusValue = this.flattenedFilteredGroupOptions[--index].value;
-			} else if (position === KeyCode.DownArrow && index + 1 < this.flattenedFilteredGroupOptions.length) {
+			} else if (params.position === KeyCode.DownArrow && index + 1 < this.flattenedFilteredGroupOptions.length) {
 				this.focusValue = this.flattenedFilteredGroupOptions[++index].value;
 			}
 			return;
 		}
-
-		this.focusValue = _.isEmpty(this.selectedItems)
-			? this.flattenedFilteredGroupOptions[0].value
-			: _.last(this.selectedItems).value;
+		if (params.setFirst) {
+			this.focusValue = this.flattenedFilteredGroupOptions[0].value;
+			return;
+		}
 	}
 
 	private convertToSelectItems(options: any[], isSelected = false): SelectItem[] {
