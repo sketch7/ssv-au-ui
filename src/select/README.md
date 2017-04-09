@@ -47,24 +47,24 @@ onChange(event: CustomEvent) {
 
 ### Attributes
 
-| Name                      | Type             | Default                  | Required | Description                                                                                                              |
-|---------------------------|------------------|--------------------------|----------|--------------------------------------------------------------------------------------------------------------------------|
-| options                   | `any[]`          | -                        | yes      | Options available in the list. This could be a primitive array (eg: `string[]`) or complex type array (eg: `Hero[]`).    |
-| selected                  | `any` or `any[]` | -                        | yes      | Currently selected options.                                                                                              |
-| type                      | `SelectType`     | `single`                 | no       | Can be `single` or `multi`. This will allow single or multi selection.                                                   |
-| placeholder               | `string`         | -                        | no       | Placeholder text to show when input is empty.                                                                            |
-| text-field                | `string`         | `"text"`                 | no       | Text property name, which will be used as a select display text.                                                         |
-| value-field               | `string`         | `"value"`                | no       | Value property name, which will be used as a select value.                                                               |
-| groupby                   | `string`         | -                        | no       | Groupby property name, which will be used to group the options with.                                                     |
-| selected-class            | `string`         | `"selected"`             | no       | CssClass to be used for selected items.                                                                                  |
-| auto-close                | `boolean`        | `true`                   | no       | Determines whether after selecting an item it will close or not.                                                         |
-| allow-clear               | `boolean`        | `true`                   | no       | Determines whether it allows you to clear all selections or not.                                                         |
-| allow-filtering           | `boolean`        | `true`                   | no       | Determines whether it allows you to filter options or not.                                                               |
-| filter-placeholder        | `string`         | `"filter options..."`    | no       | Set filter placeholder text.                                                                                             |
-| no-options-available-text | `string`         | `"no options available"` | no       | Set no available options text.                                                                                           |
-| color                     | `string`         | -                        | no       | Color variant. Can be `primary`, `accent`, `danger`, `warn`, `success`, `info` or any other custom.                      |
-| disabled                  | `boolean`        | `false`                  | no       | Determines whether is disabled or not.                                                                                   |
-| modifier                  | `string`         | -                        | no       | CssClass modifiers which will be generated in BEM style e.g. `awesome super` => `ssv-select--awesome ssv-select--super`. |
+| Name               | Type             | Default                  | Required | Description                                                                                                              |
+|--------------------|------------------|--------------------------|----------|--------------------------------------------------------------------------------------------------------------------------|
+| options            | `any[]`          | -                        | yes      | Options available in the list. This could be a primitive array (eg: `string[]`) or complex type array (eg: `Hero[]`).    |
+| selected           | `any` or `any[]` | -                        | yes      | Currently selected options.                                                                                              |
+| type               | `SelectType`     | `single`                 | no       | Can be `single` or `multi`. This will allow single or multi selection.                                                   |
+| placeholder        | `string`         | -                        | no       | Placeholder text to show when input is empty.                                                                            |
+| text-field         | `string`         | `"text"`                 | no       | Text property name, which will be used as a select display text.                                                         |
+| value-field        | `string`         | `"value"`                | no       | Value property name, which will be used as a select value.                                                               |
+| groupby            | `string`         | -                        | no       | Groupby property name, which will be used to group the options with.                                                     |
+| selected-class     | `string`         | `"selected"`             | no       | CssClass to be used for selected items.                                                                                  |
+| auto-close         | `boolean`        | `true`                   | no       | Determines whether after selecting an item it will close or not.                                                         |
+| allow-clear        | `boolean`        | `true`                   | no       | Determines whether it allows you to clear all selections or not.                                                         |
+| allow-filtering    | `boolean`        | `true`                   | no       | Determines whether it allows you to filter options or not.                                                               |
+| filter-placeholder | `string`         | `"filter options..."`    | no       | Set filter placeholder text.                                                                                             |
+| no-options         | `string`         | `"no options available"` | no       | Set no options text.                                                                                                     |
+| color              | `string`         | -                        | no       | Color variant. Can be `primary`, `accent`, `danger`, `warn`, `success`, `info` or any other custom.                      |
+| disabled           | `boolean`        | `false`                  | no       | Determines whether is disabled or not.                                                                                   |
+| modifier           | `string`         | -                        | no       | CssClass modifiers which will be generated in BEM style e.g. `awesome super` => `ssv-select--awesome ssv-select--super`. |
 
 ## Global Configuration
 Options which can be configured globally.
@@ -74,7 +74,7 @@ Options which can be configured globally.
 | type                   | `SelectType` | `single`                 |
 | color                  | `string`     | -                        |
 | filterPlaceholder      | `string`     | `"filter options..."`    |
-| noOptionsAvailableText | `string`     | `"no options available"` |
+| noOptions              | `string`     | `"no options available"` |
 | textField              | `string`     | `"text"`                 |
 | valueField             | `string`     | `"value"`                |
 | selectedClass          | `string`     | `"selected"`             |
