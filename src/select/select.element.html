@@ -48,8 +48,9 @@
 					${group.name ? 'ssv-select__item--group-item' : ''}
 					${option.isSelected ? selectedClass : ''}
 					${option.value === focusValue ? 'ssv-select__item--focused' : ''}"
-					click.delegate="onChange(option)">
-					${option.text}
+					click.delegate="onChange(option)"
+					innerhtml.bind="option.text | highlight: filterBy: 'ssv-select__item--highlight'"
+				>
 				</li>
 			</template>
 			<li class="ssv-select__no-options-available"

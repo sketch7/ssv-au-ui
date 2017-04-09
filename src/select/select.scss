@@ -126,6 +126,10 @@ $ssv-select-input-box-padding: 0.5em 0.5em !default;
 			padding-left: 1em;
 		}
 
+		@include modifier("highlight") {
+			font-weight: 600;
+		}
+
 		&:hover {
 			background-color: $ssv-select-default-item-color-hover;
 			color: $ssv-select-default-color-contrast;
