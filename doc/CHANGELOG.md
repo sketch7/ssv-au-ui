@@ -1,5 +1,16 @@
+<a name="0.7.0"></a>
+# [0.7.0](https://github.com/sketch7/ssv-au-ui/compare/0.6.0...v0.7.0) (2017-04-09)
+
+
+### Features
+
+* **highlight:** implemented highlight value convetor ([25b1d09](https://github.com/sketch7/ssv-au-ui/commit/25b1d09))
+* **packages:** updated dependencies to latest ([934b891](https://github.com/sketch7/ssv-au-ui/commit/934b891))
+
+
+
 <a name="0.6.0"></a>
-# [0.6.0](https://github.com/sketch7/ssv-au-ui/compare/0.5.4...v0.6.0) (2017-03-20)
+# [0.6.0](https://github.com/sketch7/ssv-au-ui/compare/0.5.4...0.6.0) (2017-03-20)
 
 
 ### Bug Fixes
