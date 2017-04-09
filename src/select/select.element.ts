@@ -195,6 +195,10 @@ export class SelectElement {
 		this.element.dispatchEvent(event);
 	}
 
+	onInputChange(e: Event) {
+		e.stopPropagation();
+	}
+
 	private setSingleSelectedOption(option: SelectItem | undefined) {
 		const previous = this.selectedItems.length > 0 ? this.optionsMap[this.selectedItems[0].value] : undefined;
 		this.selected = option ? this.optionsMap[option.value] : undefined;
@@ -225,6 +229,7 @@ export class SelectElement {
 				break;
 			case KeyCode.Enter:
 				if (this.isOpen) {
+					this.filterOptions(this.filterBy);
 					const selectedItem = _.find(this.flattenedFilteredGroupOptions, x => x.value === this.focusValue);
 					if (selectedItem) {
 						this.onChange(selectedItem);
