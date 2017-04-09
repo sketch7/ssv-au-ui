@@ -119,6 +119,14 @@ Import fonts
 [snackbar]: ./src/snackbar/README.md
 [select]: ./src/select/README.md
 
+## Value Converters
+
+| Value Converters | Status  | Docs                | Issue |
+|------------------|---------|---------------------|-------|
+| highlight        | Preview | [README][highlight] | -     |
+
+[highlight]: ./src/highlight/README.md
+
 ## Getting Started
 
 ### Setup Machine for Development
