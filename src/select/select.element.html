@@ -49,7 +49,7 @@
 					${option.isSelected ? selectedClass : ''}
 					${option.value === focusValue ? 'ssv-select__item--focused' : ''}"
 					click.delegate="onChange(option)"
-					innerhtml.bind="option.text | highlight: filterBy: 'ssv-select__item--highlight'"
+					innerhtml.bind="option.text | highlight: filterBy : 'ssv-select__item--highlight'"
 				>
 				</li>
 			</template>
