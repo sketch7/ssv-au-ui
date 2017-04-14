@@ -7,7 +7,7 @@ Value convertor which enables additional styling for matched phrases.
 
 ### Parameters
 
-| Name     | Type   | Default     | Required | Description                               |
-|----------|--------|-------------|----------|-------------------------------------------|
-| phrase   | string | -           | yes      | Text phrase to compare.                   |
-| cssClass | string | highlighted | no       | Css Class to be added on matched phrases. |
+| Name     | Type     | Default         | Required | Description                               |
+|----------|----------|-----------------|----------|-------------------------------------------|
+| phrase   | `string` | -               | yes      | Text phrase to compare.                   |
+| cssClass | `string` | `"highlighted"` | no       | Css Class to be added on matched phrases. |

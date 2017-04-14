@@ -70,21 +70,21 @@ onChange(event: CustomEvent) {
 ## Global Configuration
 Options which can be configured globally.
 
-| Name                   | Type         | Default                  |
-|------------------------|--------------|--------------------------|
-| type                   | `SelectType` | `single`                 |
-| color                  | `string`     | -                        |
-| filterPlaceholder      | `string`     | `"filter options..."`    |
-| noOptions              | `string`     | `"no options available"` |
-| textField              | `string`     | `"text"`                 |
-| valueField             | `string`     | `"value"`                |
-| selectedClass          | `string`     | `"selected"`             |
-| autoClose              | `boolean`    | `true`                   |
-| allowFiltering         | `boolean`    | `true`                   |
-| allowClear             | `boolean`    | `true`                   |
-| arrowUpIcon            | `string`     | `"chevron-up"`           |
-| arrowDownIcon          | `string`     | `"chevron-down"`         |
-| clearIcon              | `string`     | `"times"`                |
+| Name              | Type         | Default                  | Description                                              |
+|-------------------|--------------|--------------------------|----------------------------------------------------------|
+| type              | `SelectType` | `single`                 | Refer to attribute description.                          |
+| textField         | `string`     | `"text"`                 | Refer to attribute description.                          |
+| valueField        | `string`     | `"value"`                | Refer to attribute description.                          |
+| selectedClass     | `string`     | `"selected"`             | Refer to attribute description.                          |
+| autoClose         | `boolean`    | `true`                   | Refer to attribute description.                          |
+| allowClear        | `boolean`    | `true`                   | Refer to attribute description.                          |
+| allowFiltering    | `boolean`    | `true`                   | Refer to attribute description.                          |
+| filterPlaceholder | `string`     | `"filter options..."`    | Refer to attribute description.                          |
+| noOptions         | `string`     | `"no options available"` | Refer to attribute description.                          |
+| color             | `string`     | -                        | Refer to attribute description.                          |
+| arrowUpIcon       | `string`     | `"chevron-up"`           | Select arrow icon when the select state is closed.       |
+| arrowDownIcon     | `string`     | `"chevron-down"`         | Select arrow icon when the select state is open.         |
+| clearIcon         | `string`     | `"times"`                | Select clear icon which is used to clear all selections. |
 
 ## TODO Features
 - Tagging

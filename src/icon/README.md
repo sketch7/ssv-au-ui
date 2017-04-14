@@ -20,21 +20,21 @@ Default implementation is using [Font Awesome][fontawesome] icons.
 
 | Name              | Type               | Default | Required | Description                                                                                                                |
 |-------------------|--------------------|---------|----------|----------------------------------------------------------------------------------------------------------------------------|
-| name              | string             | -       | yes      | Icon name to be displayed.                                                                                                 |
-| color             | string             | -       | no       | Color variant. Can be `primary`, `accent`, `danger`, `warn`, `success`, `info` or any other custom.                        |
-| size              | `ElementSize`      | xsmall  | no       | Icon size. It can be `xsmall`, `small`, `medium`, `large`, `xlarge`, `xxlarge` or any other custom.                        |
-| prefix            | string             | fa-     | no       | Append prefix  with the name. e.g.: prefix="`fa-`" and  name="`addressbook`"  => `fa-addressbook`.                         |
-| defaultClass      | defaultClass       | fa      | no       | Append additional class with element.                                                                                      |
-| modifier          | string             | -       | no       | CssClass modifiers which will be generated in BEM style e.g. `awesome super` => `ssv-icon--awesome ssv-icon--super`.       |
+| name              | `string`           | -       | yes      | Icon name to be displayed.                                                                                                 |
+| color             | `string`           | -       | no       | Color variant. Can be `primary`, `accent`, `danger`, `warn`, `success`, `info` or any other custom.                        |
+| size              | `ElementSize`      | `xsmall`| no       | Icon size. It can be `xsmall`, `small`, `medium`, `large`, `xlarge`, `xxlarge` or any other custom.                        |
+| prefix            | `string`           | `"fa-"` | no       | Append prefix  with the name. e.g.: prefix="`fa-`" and  name="`addressbook`"  => `fa-addressbook`.                         |
+| defaultClass      | `defaultClass`     | `"fa"`  | no       | Append additional class with element.                                                                                      |
+| modifier          | `string`           | -       | no       | CssClass modifiers which will be generated in BEM style e.g. `awesome super` => `ssv-icon--awesome ssv-icon--super`.       |
 
 ## Global Configuration
 Options which can be configured globally.
 
-| Name              | Type                 | Default | Description                                                                       |
-|-------------------|----------------------|---------|-----------------------------------------------------------------------------------|
-| color             | string               | -       |                                                                                   |
-| size              | `ElementSize`        | xsmall  |                                                                                   |
-| strictElementSize | boolean              | true    | Restrict size to be: `xsmall`, `small`, `medium`, `large`, `xlarge` or `xxlarge`. |
-| prefix            | string               | fa-     |                                                                                   |
-| defaultClass      | string               | fa      |                                                                                   |
-| aliases           | `Dictionary<string>` | -       | Create an alias for icons e.g: `save`: `floppy-o`. Then use `save` as icon `name`.|
+| Name              | Type                 | Default  | Description                                                                        |
+|-------------------|----------------------|----------|------------------------------------------------------------------------------------|
+| color             | `string`             | -        | Refer to attribute description.                                                    |
+| size              | `ElementSize`        | `xsmall` | Refer to attribute description.                                                    |
+| prefix            | `string`             | `"fa-"`  | Refer to attribute description.                                                    |
+| defaultClass      | `string`             | `"fa"`   | Refer to attribute description.                                                    |
+| strictElementSize | `boolean`            | `true`   | Restrict size to be: `xsmall`, `small`, `medium`, `large`, `xlarge` or `xxlarge`.  |
+| aliases           | `Dictionary<string>` | -        | Create an alias for icons e.g: `save`: `floppy-o`. Then use `save` as icon `name`. |

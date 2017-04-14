@@ -51,12 +51,13 @@ snackbarRef.dismiss();
 ## Global Configuration
 Options which can be configured globally.
 
-| Name        | Type       | Default           | Description                                                           |
-|-------------|------------|-------------------|-----------------------------------------------------------------------|
-| duration    | number     | `3000`            | Duration in milliseconds before automatically dismisses the snackbar. |
-| actionType  | ButtonType | `buttonType.flat` | Button type for the action. Read button doc for more info.            |
-| actionColor | string     | `"accent"`        | Button color for the action. Read button doc for more info.           |
+| Name        | Type        | Default           | Description                                                           |
+|-------------|-------------|-------------------|-----------------------------------------------------------------------|
+| duration    | `number`    | `3000`            | Duration in milliseconds before automatically dismisses the snackbar. |
+| actionType  | `ButtonType`| `flat`            | Button type for the action. Read [button doc][button] for more info.  |
+| actionColor | `string`    | `"accent"`        | Button color for the action. Read [button doc][button] for more info. |
 
+[button]: ../button/README.md
 
 # todo
  - dismiss by gesture - swipe off screen
