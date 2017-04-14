@@ -100,9 +100,10 @@ Import fonts
 | checkbox         |                             Preview | [README][checkbox]|              - |
 | snackbar         |                             Preview | [README][snackbar]|              - |
 | select           |                             Preview | [README][select]  |              - |
+| chips            |                         Not Started |                   |              - |
+| datepicker       |                         Not Started |                   |              - |
 | switch           |                         Not Started |                   |              - |
 | radio            |                         Not Started |                   |              - |
-| datepicker       |                         Not Started |                   |              - |
 | alert            |                         Not Started |                   |              - |
 | modal            |                         Not Started |                   |              - |
 | collection       |                         Not Started |                   |              - |
@@ -202,3 +203,6 @@ npm run tdd
 gulp prepare-release --bump major|minor|patch|prerelease (default: patch)
 ```
 Check out the [release workflow guide][releaseWorkflowWiki] in order to guide you creating a release and publishing it.
+
+### Library Size
+Will be adding library file sizes once it will be completed.
