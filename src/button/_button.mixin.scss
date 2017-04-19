@@ -4,12 +4,6 @@
 @mixin ssv-button-variant($options: ()) {
 	$color: map-get($options, color);
 	$color-contrast: map-get($options, color-contrast);
-	$defaults: (
-		ripple-color: rgba($color-contrast, 0.2),
-		flat-hover-color: $color
-	);
-	$options: map-merge($defaults, $options);
-	$color: map-get($options, color);
 	$flat-hover-color: map-get($options, flat-hover-color);
 	$ripple-color: map-get($options, ripple-color);
 
