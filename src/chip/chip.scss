@@ -1,0 +1,38 @@
+@import "../style/vars";
+@import "../style/mixins";
+@import "../style/variant";
+@import "./chip.mixin";
+
+$ssv-chip-default-color: rgba($ssv-color-grey-500, 0.2) !default;
+$ssv-chip-default-color-contrast: $ssv-color-black !default;
+
+.ssv-badge {
+	display: inline-block;
+	color: $ssv-chip-default-color-contrast;
+	background-color: $ssv-chip-default-color;
+
+	// types
+	@include modifier("rounded") {
+		border-radius: 25px;
+	}
+
+	// variants
+	@include modifier("primary") {
+		@include ssv-chip-variant($ssv-primary-variant);
+	}
+	@include modifier("accent") {
+		@include ssv-chip-variant($ssv-accent-variant);
+	}
+	@include modifier("success") {
+		@include ssv-chip-variant($ssv-success-variant);
+	}
+	@include modifier("danger") {
+		@include ssv-chip-variant($ssv-danger-variant);
+	}
+	@include modifier("warn") {
+		@include ssv-chip-variant($ssv-warn-variant);
+	}
+	@include modifier("info") {
+		@include ssv-chip-variant($ssv-info-variant);
+	}
+}

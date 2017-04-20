@@ -4,29 +4,32 @@ import { autoinject } from "aurelia-dependency-injection";
 import { LoggerFactory, ILog } from "@ssv/au-core";
 
 import { attributeUtil } from "../core/index";
-import { BadgeType, supportedBadgeTypes } from "./badge.model";
-import { badgeConfig, BadgeConfig } from "./badge.config";
+import { ChipType, supportedChipTypes } from "./chip.model";
+import { chipConfig, ChipConfig } from "./chip.config";
 
-const PREFIX = "ssv-badge";
+const PREFIX = "ssv-chip";
 
 @autoinject()
 @customElement(PREFIX)
-export class BadgeElement {
+export class ChipElement {
 
 	@bindable color: string;
-	@bindable type: BadgeType;
+	@bindable type: ChipType;
+	@bindable src: string;
+	@bindable iconName: string;
+	@bindable allowRemove: boolean;
 	@bindable modifier: string | undefined;
 
 	modifiers: string | undefined;
 
 	private logger: ILog;
-	private config: BadgeConfig;
+	private config: ChipConfig;
 
 	constructor(
 		private element: Element,
 		loggerFactory: LoggerFactory,
 	) {
-		this.logger = loggerFactory.get("badgeElement");
+		this.logger = loggerFactory.get("chipElement");
 	}
 
 	bind() {
@@ -46,17 +49,18 @@ export class BadgeElement {
 		this.modifiers = attributeUtil.generateBemStyleModifiers(newValue, PREFIX);
 	}
 
-	private validateType(type: string | BadgeType) {
-		if (supportedBadgeTypes.indexOf(type) === -1) {
-			this.logger.error("validateType", "badge type unsupported!", { type });
+	private validateType(type: string | ChipType) {
+		if (supportedChipTypes.indexOf(type) === -1) {
+			this.logger.error("validateType", "chip type unsupported!", { type });
 		}
 	}
 
 	private setDefaults(): void {
-		this.config = _.defaults<BadgeConfig>({
+		this.config = _.defaults<ChipConfig>({
 			type: this.type,
-			color: this.color
-		}, badgeConfig);
+			color: this.color,
+			allowRemove: this.allowRemove
+		}, chipConfig);
 	}
 
 }

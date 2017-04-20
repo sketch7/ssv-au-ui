@@ -5,6 +5,7 @@ import { UiConfig } from "./config.model";
 import { badgeConfig } from "./badge/badge.config";
 import { buttonConfig } from "./button/button.config";
 import { checkboxConfig } from "./checkbox/checkbox.config";
+import { chipConfig } from "./chip/chip.config";
 import { iconConfig } from "./icon/icon.config";
 import { inputConfig } from "./input/input.config";
 import { selectConfig } from "./select/select.config";
@@ -16,6 +17,7 @@ export function configure(aurelia: FrameworkConfiguration, config: UiConfig): Pr
 		"./badge/badge.element",
 		"./button/button.attribute",
 		"./checkbox/checkbox.element",
+		"./chip/chip.element",
 		"./highlight/highlight.value-convetor",
 		"./icon/icon.element",
 		"./input/input.element",
@@ -28,6 +30,7 @@ export function configure(aurelia: FrameworkConfiguration, config: UiConfig): Pr
 	Object.assign(badgeConfig, config.badge);
 	Object.assign(buttonConfig, config.button);
 	Object.assign(checkboxConfig, config.checkbox);
+	Object.assign(chipConfig, config.chip);
 	Object.assign(iconConfig, config.icon);
 	Object.assign(inputConfig, config.input);
 	Object.assign(selectConfig, config.select);

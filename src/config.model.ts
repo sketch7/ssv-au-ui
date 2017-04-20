@@ -1,6 +1,7 @@
 import { BadgeConfig } from "./badge/badge.config";
 import { ButtonConfig } from "./button/button.config";
 import { CheckboxConfig } from "./checkbox/checkbox.config";
+import { ChipConfig } from "./chip/chip.config";
 import { IconConfig } from "./icon/icon.config";
 import { InputConfig } from "./input/input.config";
 import { SelectConfig } from "./select/select.config";
@@ -11,6 +12,7 @@ export interface UiConfig {
 	badge?: Partial<BadgeConfig>;
 	button?: Partial<ButtonConfig>;
 	checkbox?: Partial<CheckboxConfig>;
+	chip?: Partial<ChipConfig>;
 	icon?: Partial<IconConfig>;
 	input?: Partial<InputConfig>;
 	select?: Partial<SelectConfig>;
