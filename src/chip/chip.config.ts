@@ -4,11 +4,11 @@ export interface ChipConfig {
 	type: ChipType;
 	color?: string;
 	allowRemove: boolean;
-	removeIconName: string;
+	removeIcon: string;
 }
 
 export const chipConfig: ChipConfig = {
 	type: chipType.rounded,
 	allowRemove: true,
-	removeIconName: "times-circle"
+	removeIcon: "times-circle"
 };

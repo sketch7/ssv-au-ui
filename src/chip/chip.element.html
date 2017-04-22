@@ -1,3 +1,9 @@
 <template role="chip" class="ssv-chip ${modifiers}">
-	<slot></slot>
+	${text}
+	<ssv-icon if.bind="!disabled && allowRemove"
+					name.bind="removeIcon"
+					class="ssv-chip__remove"
+					size="small"
+					click.delegate="onClose()">
+	</ssv-icon>
 </template>

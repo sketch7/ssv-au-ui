@@ -2,14 +2,36 @@
 @import "../style/mixins";
 @import "../style/variant";
 @import "./chip.mixin";
-
 $ssv-chip-default-color: rgba($ssv-color-grey-500, 0.2) !default;
 $ssv-chip-default-color-contrast: $ssv-color-black !default;
+$ssv-chip-default-clear-color-hover: rgba($ssv-color-black, 0.6) !default;
 
-.ssv-badge {
+.ssv-chip {
 	display: inline-block;
 	color: $ssv-chip-default-color-contrast;
 	background-color: $ssv-chip-default-color;
+	font-size: 0.7rem;
+	padding: 0 12px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	line-height: 32px;
+
+	@include element("remove") {
+		line-height: 1;
+		padding-right: 0;
+		padding-left: 0.2em;
+		color: $ssv-chip-default-color-contrast;
+		vertical-align: middle;
+
+		&:hover {
+			cursor: pointer;
+			color: $ssv-chip-default-clear-color-hover;
+		}
+
+		&.ssv-icon--small {
+			font-size: 1.6em;
+		}
+	}
 
 	// types
 	@include modifier("rounded") {

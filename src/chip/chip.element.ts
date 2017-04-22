@@ -1,4 +1,5 @@
 import * as _ from "lodash";
+import { DOM } from "aurelia-pal";
 import { customElement, bindable } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
 import { LoggerFactory, ILog } from "@ssv/au-core";
@@ -13,14 +14,17 @@ const PREFIX = "ssv-chip";
 @customElement(PREFIX)
 export class ChipElement {
 
-	@bindable color: string;
-	@bindable type: ChipType;
+	@bindable text: string;
 	@bindable src: string;
 	@bindable iconName: string;
+	@bindable color: string;
+	@bindable type: ChipType;
 	@bindable allowRemove: boolean;
 	@bindable modifier: string | undefined;
+	@bindable disabled: boolean | string = false;
 
 	modifiers: string | undefined;
+	removeIcon: string;
 
 	private logger: ILog;
 	private config: ChipConfig;
@@ -33,6 +37,9 @@ export class ChipElement {
 	}
 
 	bind() {
+		this.disabled = attributeUtil.getFlagAsBoolean(this.disabled);
+		attributeUtil.setAsFlag(this.element, "disabled", this.disabled);
+
 		this.setDefaults();
 		this.modifiers = attributeUtil.generateBemStyleModifiers(this.modifier, PREFIX);
 
@@ -45,8 +52,17 @@ export class ChipElement {
 		}
 	}
 
+	disabledChanged(newValue: boolean) {
+		attributeUtil.setAsFlag(this.element, "disabled", newValue);
+	}
+
 	modifierChanged(newValue: string | undefined) {
 		this.modifiers = attributeUtil.generateBemStyleModifiers(newValue, PREFIX);
+	}
+
+	onClose() {
+		const event = DOM.createCustomEvent("close", { bubbles: true, detail: { value: this.text } });
+		this.element.dispatchEvent(event);
 	}
 
 	private validateType(type: string | ChipType) {
@@ -61,6 +77,9 @@ export class ChipElement {
 			color: this.color,
 			allowRemove: this.allowRemove
 		}, chipConfig);
+
+		this.removeIcon = this.config.removeIcon;
+		this.allowRemove = this.config.allowRemove;
 	}
 
 }
