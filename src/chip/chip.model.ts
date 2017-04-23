@@ -13,6 +13,10 @@ export interface ChipItem {
 	text: string;
 	value: string;
 	imgSrc?: string;
-	iconName?: string;
+	imgIcon?: string;
+	imgText?: string;
+	hasImageSrc?: boolean;
+	hasImageIcon?: boolean;
+	hasImageText?: boolean;
 	isRemovable: boolean;
 }

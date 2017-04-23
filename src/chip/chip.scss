@@ -14,23 +14,44 @@ $ssv-chip-default-clear-color-hover: rgba($ssv-color-black, 0.6) !default;
 	@include element("item") {
 		display: flex;
 		justify-content: flex-start;
-		min-width: 200px;
+		// min-width: 200px;
 		color: $ssv-chip-default-color-contrast;
 		background-color: $ssv-chip-default-color;
 		font-size: 0.7rem;
-		padding-left: 12px;
 		margin-right: 5px;
 		margin-bottom: 5px;
 		line-height: 32px;
 		border-radius: 4px;
 
+		.ssv-chips__item-image {
+			color: $ssv-chip-default-color;
+			border-radius: 4px 0 0 4px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 32px;
+			height: 32px;
+
+			img {
+				width: 32px;
+				height: 32px;
+				border-radius: 4px 0 0 4px;
+			}
+		}
+
+		.ssv-chips__item-image--static,
+		.ssv-chips__item-image--static .ssv-icon {
+			background-color: $ssv-chip-default-color-contrast;
+			color: $ssv-color-white;
+		}
+
 		.ssv-chips__item-text {
 			flex: 2 0 auto;
+			padding-left: 6px;
 		}
 
 		.ssv-chips__item-remove-container {
 			padding: 0 6px;
-			// flex: 1;
 			display: flex;
 			justify-content: flex-end;
 			align-items: center;
@@ -48,6 +69,11 @@ $ssv-chip-default-clear-color-hover: rgba($ssv-color-black, 0.6) !default;
 
 	// types
 	@include modifier("rounded") {
+		.ssv-chips__item-image,
+		.ssv-chips__item-image img {
+			border-radius: 100%;
+		}
+
 		.ssv-chips__item {
 			border-radius: 25px;
 		}

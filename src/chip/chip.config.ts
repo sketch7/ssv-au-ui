@@ -8,6 +8,9 @@ export interface ChipConfig {
 	textField: string;
 	valueField: string;
 	isRemovableField: string;
+	imgSrcField: string;
+	imgIconField: string;
+	imgTextField: string;
 }
 
 export const chipConfig: ChipConfig = {
@@ -16,5 +19,8 @@ export const chipConfig: ChipConfig = {
 	removeIcon: "times-circle",
 	textField: "text",
 	valueField: "value",
-	isRemovableField: "allowRemove"
+	isRemovableField: "allowRemove",
+	imgSrcField: "imgSrc",
+	imgIconField: "imgIcon",
+	imgTextField: "imgText"
 };

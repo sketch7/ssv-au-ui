@@ -1,13 +1,22 @@
 <template role="chip" class="ssv-chips ${modifiers}">
 	<div class="ssv-chips__item" repeat.for="item of items">
+		<div class="ssv-chips__item-image ${!item.hasImageSrc ? 'ssv-chips__item-image--static' : ''}"
+			if.bind="item.hasImageSrc || item.hasImageIcon || item.hasImageText">
+			<img if.bind="item.hasImageSrc" src.bind="item.imgSrc" alt.bind="item.text">
+			<ssv-icon if.bind="item.hasImageIcon"
+				name.bind="item.imgIcon"
+				size="small">
+			</ssv-icon>
+			<span if.bind="item.hasImageText">${item.imgText}</span>
+		</div>
 		<span class="ssv-chips__item-text">${item.text}</span>
 		<span class="ssv-chips__item-remove-container">
-		<ssv-icon if.bind="!disabled && item.isRemovable"
-						name.bind="removeIcon"
-						class="ssv-chips__remove-item"
-						size="small"
-						click.delegate="onClose(item)">
-		</ssv-icon>
+			<ssv-icon if.bind="!disabled && item.isRemovable"
+				name.bind="removeIcon"
+				class="ssv-chips__remove-item"
+				size="small"
+				click.delegate="onRemoveItem(item)">
+			</ssv-icon>
 		</span>
 	</div>
 </template>

@@ -75,7 +75,7 @@ export class ChipElement {
 		this.modifiers = attributeUtil.generateBemStyleModifiers(newValue, PREFIX);
 	}
 
-	onClose(item: ChipItem) {
+	onRemoveItem(item: ChipItem) {
 		const selected = this.optionsMap[item.value];
 		this.removeOptionItem(item.value);
 		const event = DOM.createCustomEvent("remove", { bubbles: true, detail: { value: selected } });
@@ -119,8 +119,28 @@ export class ChipElement {
 		return _.map(options, item => ({
 			value: item[this.config.valueField],
 			text: item[this.config.textField],
+			imgSrc: item[this.config.imgSrcField],
+			imgIcon: item[this.config.imgIconField],
+			imgText: item[this.config.imgTextField],
 			isRemovable: this.config.allowRemove && (!_.has(item, this.config.isRemovableField) || item[this.config.isRemovableField])
 		}));
+	}
+
+	private setImages(options: ChipItem[]) {
+		if (!this.isComplexList) {
+			return;
+		}
+
+		for (const item of options) {
+			if (item.imgSrc) {
+				item.hasImageSrc = true;
+			} else if (item.imgIcon) {
+				item.hasImageIcon = true;
+			} else if (item.imgText) {
+				item.hasImageText = true;
+				item.imgText = _.truncate(item.imgText, { length: 3, omission: "" });
+			}
+		}
 	}
 
 	private onOptionsChanged(options: any[]) {
@@ -128,6 +148,7 @@ export class ChipElement {
 		options = options.filter(x => !_.isNil(x));
 		this.isComplexList = _.isObject(options[0]);
 		this.items = this.convertToChipItems(options);
+		this.setImages(this.items);
 
 		_.zipWith(options, this.items, (original: any, internal: ChipItem) => {
 			this.optionsMap[internal.value] = original;
