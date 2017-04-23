@@ -1,22 +1,30 @@
 import * as _ from "lodash";
 import { DOM } from "aurelia-pal";
+import { bindingMode } from "aurelia-binding";
 import { customElement, bindable } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
+import { Dictionary } from "@ssv/core";
 import { LoggerFactory, ILog } from "@ssv/au-core";
 
 import { attributeUtil } from "../core/index";
-import { ChipType, supportedChipTypes } from "./chip.model";
+import { ChipType, supportedChipTypes, ChipItem } from "./chip.model";
 import { chipConfig, ChipConfig } from "./chip.config";
 
-const PREFIX = "ssv-chip";
+const PREFIX = "ssv-chips";
 
 @autoinject()
 @customElement(PREFIX)
 export class ChipElement {
 
-	@bindable text: string;
+	@bindable({
+		defaultBindingMode: bindingMode.twoWay
+	}) options: any[] = [];
+	@bindable textField: string;
+	@bindable valueField: string;
+	@bindable isRemovableField: boolean;
 	@bindable src: string;
 	@bindable iconName: string;
+
 	@bindable color: string;
 	@bindable type: ChipType;
 	@bindable allowRemove: boolean;
@@ -25,9 +33,12 @@ export class ChipElement {
 
 	modifiers: string | undefined;
 	removeIcon: string;
+	items: ChipItem[] = [];
 
 	private logger: ILog;
 	private config: ChipConfig;
+	private isComplexList: boolean;
+	private optionsMap: Dictionary<object> = {};
 
 	constructor(
 		private element: Element,
@@ -52,6 +63,10 @@ export class ChipElement {
 		}
 	}
 
+	optionsChanged(options: any[]) {
+		this.onOptionsChanged(options);
+	}
+
 	disabledChanged(newValue: boolean) {
 		attributeUtil.setAsFlag(this.element, "disabled", newValue);
 	}
@@ -60,8 +75,10 @@ export class ChipElement {
 		this.modifiers = attributeUtil.generateBemStyleModifiers(newValue, PREFIX);
 	}
 
-	onClose() {
-		const event = DOM.createCustomEvent("close", { bubbles: true, detail: { value: this.text } });
+	onClose(item: ChipItem) {
+		const selected = this.optionsMap[item.value];
+		this.removeOptionItem(item.value);
+		const event = DOM.createCustomEvent("remove", { bubbles: true, detail: { value: selected } });
 		this.element.dispatchEvent(event);
 	}
 
@@ -71,15 +88,66 @@ export class ChipElement {
 		}
 	}
 
+	private removeOptionItem(optionValue: string) {
+		if (this.isComplexList) {
+			this.options = _.filter(this.options, (x: object & { [key: string]: any }) => x[this.config.valueField] !== optionValue);
+			return;
+		}
+
+		this.options = _.filter(this.options, x => x !== optionValue);
+	}
+
+	private convertToChipItems(options: any[]): ChipItem[] {
+		if (_.isEmpty(options)) {
+			return [];
+		}
+
+		return this.isComplexList
+			? this.convertObjectToChipItems(options)
+			: this.convertSimpleToChipItems(options);
+	}
+
+	private convertSimpleToChipItems(options: (string | boolean | number)[]): ChipItem[] {
+		return _.map<string | boolean | number, ChipItem>(options, item => ({
+			value: item.toString(),
+			text: item.toString(),
+			isRemovable: this.config.allowRemove
+		}));
+	}
+
+	private convertObjectToChipItems(options: any[]): ChipItem[] {
+		return _.map(options, item => ({
+			value: item[this.config.valueField],
+			text: item[this.config.textField],
+			isRemovable: this.config.allowRemove && (!_.has(item, this.config.isRemovableField) || item[this.config.isRemovableField])
+		}));
+	}
+
+	private onOptionsChanged(options: any[]) {
+		options = options || [];
+		options = options.filter(x => !_.isNil(x));
+		this.isComplexList = _.isObject(options[0]);
+		this.items = this.convertToChipItems(options);
+
+		_.zipWith(options, this.items, (original: any, internal: ChipItem) => {
+			this.optionsMap[internal.value] = original;
+		});
+	}
+
 	private setDefaults(): void {
 		this.config = _.defaults<ChipConfig>({
 			type: this.type,
 			color: this.color,
-			allowRemove: this.allowRemove
+			allowRemove: this.allowRemove,
+			textField: this.textField,
+			valueField: this.valueField,
+			isRemovableField: this.isRemovableField,
 		}, chipConfig);
 
 		this.removeIcon = this.config.removeIcon;
 		this.allowRemove = this.config.allowRemove;
+
+		this.onOptionsChanged(this.options);
 	}
 
 }

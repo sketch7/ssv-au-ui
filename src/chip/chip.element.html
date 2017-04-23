@@ -1,9 +1,13 @@
-<template role="chip" class="ssv-chip ${modifiers}">
-	${text}
-	<ssv-icon if.bind="!disabled && allowRemove"
-					name.bind="removeIcon"
-					class="ssv-chip__remove"
-					size="small"
-					click.delegate="onClose()">
-	</ssv-icon>
+<template role="chip" class="ssv-chips ${modifiers}">
+	<div class="ssv-chips__item" repeat.for="item of items">
+		<span class="ssv-chips__item-text">${item.text}</span>
+		<span class="ssv-chips__item-remove-container">
+		<ssv-icon if.bind="!disabled && item.isRemovable"
+						name.bind="removeIcon"
+						class="ssv-chips__remove-item"
+						size="small"
+						click.delegate="onClose(item)">
+		</ssv-icon>
+		</span>
+	</div>
 </template>

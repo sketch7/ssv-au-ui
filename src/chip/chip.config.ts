@@ -5,10 +5,16 @@ export interface ChipConfig {
 	color?: string;
 	allowRemove: boolean;
 	removeIcon: string;
+	textField: string;
+	valueField: string;
+	isRemovableField: string;
 }
 
 export const chipConfig: ChipConfig = {
 	type: chipType.rounded,
 	allowRemove: true,
-	removeIcon: "times-circle"
+	removeIcon: "times-circle",
+	textField: "text",
+	valueField: "value",
+	isRemovableField: "allowRemove"
 };

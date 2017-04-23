@@ -8,3 +8,11 @@ export const chipType = {
 };
 
 export const supportedChipTypes: string[] = _.values<string>(chipType);
+
+export interface ChipItem {
+	text: string;
+	value: string;
+	imgSrc?: string;
+	iconName?: string;
+	isRemovable: boolean;
+}
