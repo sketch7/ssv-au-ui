@@ -1,6 +1,6 @@
 @import "../style/vars";
 @import "../style/mixins";
-@import "./icon.variant";
+@import "../style/variant";
 @import "./icon.mixin";
 $ssv-icon-default-color: $ssv-color-black !default;
 $ssv-icon-default-size-xsmall: 1em !default;
@@ -15,30 +15,30 @@ $ssv-icon-default-size-xxlarge: 20em !default;
 
 	// variants
 	@include modifier("primary") {
-		@include ssv-icon-variant($ssv-icon-primary-variant);
+		@include ssv-icon-variant($ssv-primary-variant);
 	}
 
 	@include modifier("accent") {
-		@include ssv-icon-variant($ssv-icon-accent-variant);
+		@include ssv-icon-variant($ssv-accent-variant);
 	}
 
 	@include modifier("success") {
-		@include ssv-icon-variant($ssv-icon-success-variant);
+		@include ssv-icon-variant($ssv-success-variant);
 	}
 
 	@include modifier("danger") {
-		@include ssv-icon-variant($ssv-icon-danger-variant);
+		@include ssv-icon-variant($ssv-danger-variant);
 	}
 
 	@include modifier("warn") {
-		@include ssv-icon-variant($ssv-icon-warn-variant);
+		@include ssv-icon-variant($ssv-warn-variant);
 	}
 
 	@include modifier("info") {
-		@include ssv-icon-variant($ssv-icon-info-variant);
+		@include ssv-icon-variant($ssv-info-variant);
 	}
 
-	// variants
+	// sizes
 	@include modifier("xsmall") {
 		font-size: $ssv-icon-default-size-xsmall;
 	}

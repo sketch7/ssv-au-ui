@@ -1,6 +1,6 @@
 @import "../style/vars";
 @import "../style/mixins";
-@import "./checkbox.variant";
+@import "../style/variant";
 @import "./checkbox.mixin";
 
 .ssv-checkbox {
@@ -104,22 +104,26 @@
 
 	// variants
 	@include modifier("primary") {
-		@include ssv-checkbox-variant($ssv-checkbox-primary-variant);
+		@include ssv-checkbox-variant($ssv-primary-variant);
 	}
 
 	@include modifier("accent") {
-		@include ssv-checkbox-variant($ssv-checkbox-accent-variant);
+		@include ssv-checkbox-variant($ssv-accent-variant);
 	}
 
 	@include modifier("danger") {
-		@include ssv-checkbox-variant($ssv-checkbox-danger-variant);
+		@include ssv-checkbox-variant($ssv-danger-variant);
 	}
 
 	@include modifier("warn") {
-		@include ssv-checkbox-variant($ssv-checkbox-warn-variant);
+		@include ssv-checkbox-variant($ssv-warn-variant);
 	}
 
 	@include modifier("success") {
-		@include ssv-checkbox-variant($ssv-checkbox-success-variant);
+		@include ssv-checkbox-variant($ssv-success-variant);
+	}
+
+	@include modifier("info") {
+		@include ssv-checkbox-variant($ssv-info-variant);
 	}
 }
