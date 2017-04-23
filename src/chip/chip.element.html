@@ -12,9 +12,9 @@
 		<span class="ssv-chips__item-text">${item.text}</span>
 		<span class="ssv-chips__item-remove-container">
 			<ssv-icon if.bind="!disabled && item.isRemovable"
+				size="xsmall"
 				name.bind="removeIcon"
 				class="ssv-chips__remove-item"
-				size="small"
 				click.delegate="onRemoveItem(item)">
 			</ssv-icon>
 		</span>

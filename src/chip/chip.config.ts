@@ -16,7 +16,7 @@ export interface ChipConfig {
 export const chipConfig: ChipConfig = {
 	type: chipType.rounded,
 	allowRemove: true,
-	removeIcon: "times-circle",
+	removeIcon: "times",
 	textField: "text",
 	valueField: "value",
 	isRemovableField: "allowRemove",

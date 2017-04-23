@@ -3,7 +3,8 @@
 @import "../style/variant";
 @import "./icon.mixin";
 $ssv-icon-default-color: $ssv-color-black !default;
-$ssv-icon-default-size-xsmall: 1em !default;
+$ssv-icon-default-size-xxsmall: 1em !default;
+$ssv-icon-default-size-xsmall: 1.5em !default;
 $ssv-icon-default-size-small: 2em !default;
 $ssv-icon-default-size-medium: 4em !default;
 $ssv-icon-default-size-large: 7em !default;
@@ -39,6 +40,10 @@ $ssv-icon-default-size-xxlarge: 20em !default;
 	}
 
 	// sizes
+	@include modifier("xxsmall") {
+		font-size: $ssv-icon-default-size-xxsmall;
+	}
+
 	@include modifier("xsmall") {
 		font-size: $ssv-icon-default-size-xsmall;
 	}
