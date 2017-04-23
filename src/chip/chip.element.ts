@@ -21,7 +21,7 @@ export class ChipElement {
 	}) options: any[] = [];
 	@bindable textField: string;
 	@bindable valueField: string;
-	@bindable isRemovableField: boolean;
+	@bindable removeField: string;
 	@bindable src: string;
 	@bindable iconName: string;
 
@@ -48,9 +48,7 @@ export class ChipElement {
 	}
 
 	bind() {
-		this.disabled = attributeUtil.getFlagAsBoolean(this.disabled);
-		attributeUtil.setAsFlag(this.element, "disabled", this.disabled);
-
+		this.presetBooleanTypes();
 		this.setDefaults();
 		this.modifiers = attributeUtil.generateBemStyleModifiers(this.modifier, PREFIX);
 
@@ -122,7 +120,7 @@ export class ChipElement {
 			imgSrc: item[this.config.imgSrcField],
 			imgIcon: item[this.config.imgIconField],
 			imgText: item[this.config.imgTextField],
-			isRemovable: this.config.allowRemove && (!_.has(item, this.config.isRemovableField) || item[this.config.isRemovableField])
+			isRemovable: this.config.allowRemove && (!_.has(item, this.config.removeField) || item[this.config.removeField])
 		}));
 	}
 
@@ -162,7 +160,7 @@ export class ChipElement {
 			allowRemove: this.allowRemove,
 			textField: this.textField,
 			valueField: this.valueField,
-			isRemovableField: this.isRemovableField,
+			removeField: this.removeField,
 		}, chipConfig);
 
 		this.removeIcon = this.config.removeIcon;
@@ -171,4 +169,13 @@ export class ChipElement {
 		this.onOptionsChanged(this.options);
 	}
 
+	private presetBooleanTypes() {
+		this.disabled = attributeUtil.getFlagAsBoolean(this.disabled);
+		attributeUtil.setAsFlag(this.element, "disabled", this.disabled);
+
+		if (this.allowRemove) {
+			this.allowRemove = attributeUtil.getFlagAsBoolean(this.allowRemove);
+		}
+
+	}
 }

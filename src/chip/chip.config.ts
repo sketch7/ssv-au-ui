@@ -7,7 +7,7 @@ export interface ChipConfig {
 	removeIcon: string;
 	textField: string;
 	valueField: string;
-	isRemovableField: string;
+	removeField: string;
 	imgSrcField: string;
 	imgIconField: string;
 	imgTextField: string;
@@ -19,7 +19,7 @@ export const chipConfig: ChipConfig = {
 	removeIcon: "times",
 	textField: "text",
 	valueField: "value",
-	isRemovableField: "allowRemove",
+	removeField: "allowRemove",
 	imgSrcField: "imgSrc",
 	imgIconField: "imgIcon",
 	imgTextField: "imgText"
