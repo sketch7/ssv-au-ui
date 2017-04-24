@@ -48,6 +48,10 @@ $ssv-chip-default-clear-color-hover: rgba($ssv-color-black, 0.6) !default;
 		.ssv-chips__item-text {
 			flex: 2 0 auto;
 			padding-left: 6px;
+
+			@include modifier("no-image") {
+				padding-left: 12px;
+			}
 		}
 
 		.ssv-chips__item-remove-container {

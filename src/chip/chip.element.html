@@ -9,7 +9,8 @@
 			</ssv-icon>
 			<span if.bind="item.hasImageText">${item.imgText}</span>
 		</div>
-		<span class="ssv-chips__item-text">${item.text}</span>
+		<span class="ssv-chips__item-text
+		${!(item.hasImageSrc || item.hasImageIcon || item.hasImageText) ? 'ssv-chips__item-text--no-image' : ''}">${item.text}</span>
 		<span class="ssv-chips__item-remove-container">
 			<ssv-icon if.bind="!disabled && item.isRemovable"
 				size="xsmall"
