@@ -1,6 +1,6 @@
 @import "../style/mixins";
 
-@mixin ssv-chip-variant($options: ()) {
+@mixin ssv-chips-variant($options: ()) {
 	$background-color: map-get($options, color);
 	$color: map-get($options, color-contrast);
 

@@ -1,4 +1,4 @@
-<template role="chip" class="ssv-chips ${modifiers}">
+<template role="chips" class="ssv-chips ${modifiers}">
 	<div class="ssv-chips__item" repeat.for="item of items">
 		<div class="ssv-chips__item-image ${!item.hasImageSrc ? 'ssv-chips__item-image--static' : ''}"
 			if.bind="item.hasImageSrc || item.hasImageIcon || item.hasImageText">

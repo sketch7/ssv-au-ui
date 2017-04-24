@@ -1,7 +1,7 @@
 import { BadgeConfig } from "./badge/badge.config";
 import { ButtonConfig } from "./button/button.config";
 import { CheckboxConfig } from "./checkbox/checkbox.config";
-import { ChipConfig } from "./chip/chip.config";
+import { ChipConfig } from "./chips/chips.config";
 import { IconConfig } from "./icon/icon.config";
 import { InputConfig } from "./input/input.config";
 import { SelectConfig } from "./select/select.config";

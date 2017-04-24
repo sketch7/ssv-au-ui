@@ -1,4 +1,4 @@
-import { chipType, ChipType } from "./chip.model";
+import { chipType, ChipType } from "./chips.model";
 
 export interface ChipConfig {
 	type: ChipType;

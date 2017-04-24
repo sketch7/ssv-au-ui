@@ -7,8 +7,8 @@ import { Dictionary } from "@ssv/core";
 import { LoggerFactory, ILog } from "@ssv/au-core";
 
 import { attributeUtil } from "../core/index";
-import { ChipType, supportedChipTypes, ChipItem } from "./chip.model";
-import { chipConfig, ChipConfig } from "./chip.config";
+import { ChipType, supportedChipTypes, ChipItem } from "./chips.model";
+import { chipConfig, ChipConfig } from "./chips.config";
 
 const PREFIX = "ssv-chips";
 
