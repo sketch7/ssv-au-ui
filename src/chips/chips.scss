@@ -5,6 +5,8 @@
 $ssv-chip-default-color: rgba($ssv-color-grey-500, 0.2) !default;
 $ssv-chip-default-color-contrast: $ssv-color-black !default;
 $ssv-chip-default-clear-color-hover: rgba($ssv-color-black, 0.6) !default;
+$ssv-chips-disabled-primary-color: rgba($ssv-color-black, 0.12) !default;
+$ssv-chips-disabled-secondary-color: rgba($ssv-color-black, 0.26) !default;
 
 .ssv-chips {
 	display: flex;
@@ -67,6 +69,25 @@ $ssv-chip-default-clear-color-hover: rgba($ssv-color-black, 0.6) !default;
 		&:hover {
 			cursor: pointer;
 			color: $ssv-chip-default-clear-color-hover;
+		}
+	}
+
+	&[disabled] {
+		cursor: default;
+
+		.ssv-chips__item,
+		.ssv-chips__item-image--static {
+			color: $ssv-chips-disabled-secondary-color;
+			background-color: $ssv-chips-disabled-primary-color;
+		}
+
+		.ssv-chips__item-image img {
+			filter: grayscale(100%);
+		}
+
+		.ssv-chips__item-image--static .ssv-icon {
+			color: $ssv-chips-disabled-secondary-color;
+			background-color: transparent;
 		}
 	}
 
