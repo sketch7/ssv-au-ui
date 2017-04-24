@@ -15,9 +15,9 @@ Options which can be configured globally.
 todo
 
 ## todo
-- rename folder structure
-- disabled styling
-- keyboard events + focus
+- rename folder structure - done
+- disabled styling - done
+- keyboard events + focus - done
 - tagging ?
 - update readme 
 - update global readme 

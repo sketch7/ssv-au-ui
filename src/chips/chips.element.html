@@ -1,5 +1,7 @@
-<template role="chips" class="ssv-chips ${modifiers}">
-	<div class="ssv-chips__item" repeat.for="item of items">
+<template role="chips" class="ssv-chips ${modifiers}" tabindex="${disabled ? -1 : 0}">
+	<div repeat.for="item of items"
+	class="ssv-chips__item ${item.value === focusValue ? 'ssv-chips__item--focused' : ''}"
+	click.delegate="setFocus(item.value)">
 		<div class="ssv-chips__item-image ${!item.hasImageSrc ? 'ssv-chips__item-image--static' : ''}"
 			if.bind="item.hasImageSrc || item.hasImageIcon || item.hasImageText">
 			<img if.bind="item.hasImageSrc" src.bind="item.imgSrc" alt.bind="item.text">
@@ -16,7 +18,7 @@
 				size="xsmall"
 				name.bind="removeIcon"
 				class="ssv-chips__remove-item"
-				click.delegate="onRemoveItem(item)">
+				click.delegate="onRemoveItem($event, item)">
 			</ssv-icon>
 		</span>
 	</div>

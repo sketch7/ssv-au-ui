@@ -3,7 +3,7 @@ import { DOM } from "aurelia-pal";
 import { bindingMode } from "aurelia-binding";
 import { customElement, bindable } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
-import { Dictionary } from "@ssv/core";
+import { Dictionary, KeyCode } from "@ssv/core";
 import { LoggerFactory, ILog } from "@ssv/au-core";
 
 import { attributeUtil } from "../core/index";
@@ -34,6 +34,7 @@ export class ChipElement {
 	modifiers: string | undefined;
 	removeIcon: string;
 	items: ChipItem[] = [];
+	focusValue = "";
 
 	private logger: ILog;
 	private config: ChipConfig;
@@ -61,6 +62,14 @@ export class ChipElement {
 		}
 	}
 
+	attached() {
+		this.element.addEventListener("keydown", this.onFocusedKeyPress.bind(this));
+	}
+
+	detached() {
+		this.element.removeEventListener("keydown", this.onFocusedKeyPress);
+	}
+
 	optionsChanged(options: any[]) {
 		this.onOptionsChanged(options);
 	}
@@ -73,11 +82,71 @@ export class ChipElement {
 		this.modifiers = attributeUtil.generateBemStyleModifiers(newValue, PREFIX);
 	}
 
-	onRemoveItem(item: ChipItem) {
-		const selected = this.optionsMap[item.value];
+	onRemoveItem(e: MouseEvent, item: ChipItem) {
+		e.stopPropagation();
+		if (this.disabled) {
+			return;
+		}
 		this.removeOptionItem(item.value);
-		const event = DOM.createCustomEvent("remove", { bubbles: true, detail: { value: selected } });
-		this.element.dispatchEvent(event);
+	}
+
+	setFocus(value: string) {
+		this.focusValue = value;
+	}
+
+	private setFocusValue(position?: (KeyCode.LeftArrow | KeyCode.RightArrow | KeyCode.Delete)) {
+		if (_.isEmpty(this.items)) {
+			return;
+		}
+		if (!position) {
+			this.focusValue = this.items[0].value;
+			return;
+		}
+		if (position) {
+			let index = _.findIndex(this.items, x => x.value === this.focusValue);
+
+			if (position === KeyCode.LeftArrow && index > 0) {
+				this.focusValue = this.items[--index].value;
+			} else if (position === KeyCode.RightArrow && index + 1 < this.items.length) {
+				this.focusValue = this.items[++index].value;
+			} else if (position === KeyCode.Delete) {
+				if (index + 1 < this.items.length) {
+					this.focusValue = this.items[++index].value;
+				} else if (index > 0) {
+					this.focusValue = this.items[--index].value;
+				} else {
+					this.focusValue = "";
+				}
+			}
+			return;
+		}
+	}
+
+	private onFocusedKeyPress(e: KeyboardEvent) {
+		switch (e.keyCode) {
+			case KeyCode.Tab:
+			case KeyCode.Escape:
+				this.focusValue = "";
+				break;
+			case KeyCode.LeftArrow: {
+				this.setFocusValue(KeyCode.LeftArrow);
+				e.preventDefault();
+				break;
+			}
+			case KeyCode.RightArrow: {
+				this.setFocusValue(KeyCode.RightArrow);
+				e.preventDefault();
+				break;
+			}
+			case KeyCode.Backspace:
+			case KeyCode.Delete:
+				const item = _.find(this.items, x => x.value === this.focusValue);
+				if (item && item.isRemovable) {
+					this.removeOptionItem(this.focusValue);
+					e.preventDefault();
+				}
+				break;
+		}
 	}
 
 	private validateType(type: string | ChipType) {
@@ -87,6 +156,14 @@ export class ChipElement {
 	}
 
 	private removeOptionItem(optionValue: string) {
+		const selected = this.optionsMap[optionValue];
+		this.removeItem(optionValue);
+		this.setFocusValue(KeyCode.Delete);
+		const event = DOM.createCustomEvent("remove", { bubbles: true, detail: { value: selected } });
+		this.element.dispatchEvent(event);
+	}
+
+	private removeItem(optionValue: string) {
 		if (this.isComplexList) {
 			this.options = _.filter(this.options, (x: object & { [key: string]: any }) => x[this.config.valueField] !== optionValue);
 			return;
