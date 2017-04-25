@@ -100,7 +100,7 @@ Import fonts
 | checkbox         |                             Preview | [README][checkbox]|              - |
 | snackbar         |                             Preview | [README][snackbar]|              - |
 | select           |                             Preview | [README][select]  |              - |
-| chips            |                         Not Started |                   |              - |
+| chips            |                             Preview | [README][chips]   |              - |
 | datepicker       |                         Not Started |                   |              - |
 | switch           |                         Not Started |                   |              - |
 | radio            |                         Not Started |                   |              - |
@@ -110,6 +110,9 @@ Import fonts
 | tabs             |                         Not Started |                   |              - |
 | progress-bar     |                         Not Started |                   |              - |
 | progress-spinner |                         Not Started |                   |              - |
+| tooltip          |                         Not Started |                   |              - |
+| card             |                         Not Started |                   |              - |
+| button toggle    |                         Not Started |                   |              - |
 
 [input]: ./src/input/README.md
 [button]: ./src/button/README.md
@@ -119,6 +122,7 @@ Import fonts
 [checkbox]: ./src/checkbox/README.md
 [snackbar]: ./src/snackbar/README.md
 [select]: ./src/select/README.md
+[chips]: ./src/chips/README.md
 
 ## Value Converters
 
