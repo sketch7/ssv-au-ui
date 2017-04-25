@@ -4,6 +4,3 @@ machine:
 compile:
   override:
     - npm run build
-notify:
-  webhooks:
-    - url: https://hooks.slack.com/services/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
