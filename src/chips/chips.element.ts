@@ -34,7 +34,7 @@ export class ChipElement {
 	modifiers: string | undefined;
 	removeIcon: string;
 	items: ChipItem[] = [];
-	focusValue = "";
+	focusValue: string | undefined = undefined;
 
 	private logger: ILog;
 	private config: ChipConfig;
@@ -140,6 +140,9 @@ export class ChipElement {
 			}
 			case KeyCode.Backspace:
 			case KeyCode.Delete:
+				if (!this.focusValue) {
+					break;
+				}
 				const item = _.find(this.items, x => x.value === this.focusValue);
 				if (item && item.isRemovable) {
 					this.removeOptionItem(this.focusValue);
