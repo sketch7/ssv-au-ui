@@ -7,7 +7,7 @@ import { Dictionary, KeyCode } from "@ssv/core";
 import { LoggerFactory, ILog } from "@ssv/au-core";
 
 import { attributeUtil } from "../core/index";
-import { ChipType, supportedChipTypes, ChipItem } from "./chips.model";
+import { ChipType, supportedChipTypes, ChipItem, FillStyle } from "./chips.model";
 import { chipConfig, ChipConfig } from "./chips.config";
 
 const PREFIX = "ssv-chips";
@@ -22,9 +22,14 @@ export class ChipElement {
 	@bindable textField: string;
 	@bindable valueField: string;
 	@bindable removeField: string;
+	@bindable iconImageField: string;
+	@bindable iconNameField: string;
+	@bindable iconTextField: string;
 	@bindable src: string;
 	@bindable iconName: string;
 
+	@bindable fillStyle: FillStyle;
+	@bindable focusStyle: FillStyle;
 	@bindable color: string;
 	@bindable type: ChipType;
 	@bindable allowRemove: boolean;
@@ -56,6 +61,11 @@ export class ChipElement {
 		const type = this.config.type.toLowerCase();
 		this.validateType(type);
 		this.element.classList.add(`${PREFIX}--${type}`);
+
+		const fillStyle = this.config.fillStyle.toLowerCase();
+		this.element.classList.add(`${PREFIX}--fill-${fillStyle}`);
+		const focusStyle = this.config.focusStyle.toLowerCase();
+		this.element.classList.add(`${PREFIX}--focus-${focusStyle}`);
 
 		if (this.config.color) {
 			this.element.classList.add(`${PREFIX}--${this.config.color.toLowerCase()}`);
@@ -197,9 +207,9 @@ export class ChipElement {
 		return _.map(options, item => ({
 			value: item[this.config.valueField],
 			text: item[this.config.textField],
-			imgSrc: item[this.config.imgSrcField],
-			imgIcon: item[this.config.imgIconField],
-			imgText: item[this.config.imgTextField],
+			iconImage: item[this.config.iconImageField],
+			iconName: item[this.config.iconNameField],
+			iconText: item[this.config.iconTextField],
 			isRemovable: this.config.allowRemove && (!_.has(item, this.config.removeField) || item[this.config.removeField])
 		}));
 	}
@@ -210,13 +220,13 @@ export class ChipElement {
 		}
 
 		for (const item of options) {
-			if (item.imgSrc) {
-				item.hasImageSrc = true;
-			} else if (item.imgIcon) {
-				item.hasImageIcon = true;
-			} else if (item.imgText) {
-				item.hasImageText = true;
-				item.imgText = _.truncate(item.imgText, { length: 3, omission: "" });
+			if (item.iconImage) {
+				item.hasIconImage = true;
+			} else if (item.iconName) {
+				item.hasIconName = true;
+			} else if (item.iconText) {
+				item.hasIconText = true;
+				item.iconText = _.truncate(item.iconText, { length: 3, omission: "" });
 			}
 		}
 	}
@@ -241,6 +251,11 @@ export class ChipElement {
 			textField: this.textField,
 			valueField: this.valueField,
 			removeField: this.removeField,
+			iconImageField: this.iconImageField,
+			iconNameField: this.iconNameField,
+			iconTextField: this.iconTextField,
+			fillStyle: this.fillStyle,
+			focusStyle: this.focusStyle,
 		}, chipConfig);
 
 		this.removeIcon = this.config.removeIcon;

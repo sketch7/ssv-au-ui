@@ -2,17 +2,17 @@
 	<div repeat.for="item of items"
 	class="ssv-chips__item ${item.value === focusValue ? 'ssv-chips__item--focused' : ''}"
 	click.delegate="setFocus(item.value)">
-		<div class="ssv-chips__item-image ${!item.hasImageSrc ? 'ssv-chips__item-image--static' : ''}"
-			if.bind="item.hasImageSrc || item.hasImageIcon || item.hasImageText">
-			<img if.bind="item.hasImageSrc" src.bind="item.imgSrc" alt.bind="item.text">
-			<ssv-icon if.bind="item.hasImageIcon"
-				name.bind="item.imgIcon"
+		<div class="ssv-chips__item-image ${!item.hasIconImage ? 'ssv-chips__item-image--static' : ''}"
+			if.bind="item.hasIconImage || item.hasIconName || item.hasIconText">
+			<img if.bind="item.hasIconImage" src.bind="item.iconImage" alt.bind="item.text">
+			<ssv-icon if.bind="item.hasIconName"
+				name.bind="item.iconName"
 				size="xsmall">
 			</ssv-icon>
-			<span if.bind="item.hasImageText">${item.imgText}</span>
+			<span if.bind="item.hasIconText">${item.iconText}</span>
 		</div>
 		<span class="ssv-chips__item-text
-		${!(item.hasImageSrc || item.hasImageIcon || item.hasImageText) ? 'ssv-chips__item-text--no-image' : ''}">${item.text}</span>
+		${!(item.hasIconImage || item.hasIconName || item.hasIconText) ? 'ssv-chips__item-text--no-image' : ''}">${item.text}</span>
 		<span class="ssv-chips__item-remove-container">
 			<ssv-icon if.bind="!disabled && item.isRemovable"
 				size="xsmall"

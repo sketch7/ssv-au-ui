@@ -1,4 +1,4 @@
-import { chipType, ChipType } from "./chips.model";
+import { chipType, ChipType, fillStyle, FillStyle } from "./chips.model";
 
 export interface ChipConfig {
 	type: ChipType;
@@ -8,9 +8,11 @@ export interface ChipConfig {
 	textField: string;
 	valueField: string;
 	removeField: string;
-	imgSrcField: string;
-	imgIconField: string;
-	imgTextField: string;
+	iconImageField: string;
+	iconNameField: string;
+	iconTextField: string;
+	fillStyle: FillStyle;
+	focusStyle: FillStyle;
 }
 
 export const chipConfig: ChipConfig = {
@@ -20,7 +22,9 @@ export const chipConfig: ChipConfig = {
 	textField: "text",
 	valueField: "value",
 	removeField: "allowRemove",
-	imgSrcField: "imgSrc",
-	imgIconField: "imgIcon",
-	imgTextField: "imgText"
+	iconImageField: "iconImage",
+	iconNameField: "iconName",
+	iconTextField: "iconText",
+	fillStyle: fillStyle.color,
+	focusStyle: fillStyle.color
 };
