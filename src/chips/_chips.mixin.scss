@@ -3,10 +3,52 @@
 @mixin ssv-chips-variant($options: ()) {
 	$background-color: map-get($options, color);
 	$color: map-get($options, color-contrast);
+	$focus: lighten($background-color, 20%);
+	$focused-greyscale: rgba($ssv-color-black, 0.2) !default;
 
-	.ssv-chips__item-image--static,
-	.ssv-chips__item-image--static .ssv-icon {
-		background-color: $background-color;
-		color: $color;
+	&.ssv-chips {
+		.ssv-chips__item-image--static,
+		.ssv-chips__item-image--static .ssv-icon {
+			background-color: $background-color;
+			color: $color;
+		}
+
+		@include modifier("fill-greyscale") {
+			&.ssv-chips--focus-color {
+				.ssv-chips__item--focused {
+					background-color: $background-color;
+					color: $color;
+				}
+			}
+		}
+
+		@include modifier("fill-color") {
+			.ssv-chips__item {
+				background-color: $background-color;
+				color: $color;
+
+				.ssv-chips__remove-item {
+					color: $color;
+				}
+			}
+
+			&.ssv-chips--focus-color {
+				.ssv-chips__item--focused {
+					background-color: $focus;
+					color: $color;
+				}
+			}
+
+			&.ssv-chips--focus-greyscale {
+				.ssv-chips__item--focused {
+					background-color: $focused-greyscale;
+					color: $ssv-color-black;
+
+					.ssv-chips__remove-item {
+						color: $ssv-color-black;
+					}
+				}
+			}
+		}
 	}
 }

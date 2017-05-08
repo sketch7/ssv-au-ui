@@ -8,6 +8,7 @@ $ssv-chips-default-clear-color-focused: rgba($ssv-color-black, 0.2) !default;
 $ssv-chips-default-clear-color-hover: rgba($ssv-color-black, 0.6) !default;
 $ssv-chips-disabled-primary-color: rgba($ssv-color-black, 0.12) !default;
 $ssv-chips-disabled-secondary-color: rgba($ssv-color-black, 0.26) !default;
+$focus: lighten($ssv-chips-default-color-contrast, 20%);
 
 .ssv-chips {
 	display: flex;
@@ -27,6 +28,7 @@ $ssv-chips-disabled-secondary-color: rgba($ssv-color-black, 0.26) !default;
 		margin-bottom: 5px;
 		line-height: 32px;
 		border-radius: 4px;
+		cursor: pointer;
 
 		.ssv-chips__item-image {
 			color: $ssv-chips-default-color;
@@ -73,10 +75,49 @@ $ssv-chips-disabled-secondary-color: rgba($ssv-color-black, 0.26) !default;
 
 	@include element("remove-item") {
 		color: $ssv-chips-default-color-contrast;
+		background-color: transparent;
 
 		&:hover {
 			cursor: pointer;
 			color: $ssv-chips-default-clear-color-hover;
+		}
+	}
+
+	@include modifier("fill-greyscale") {
+		&.ssv-chips--focus-color {
+			.ssv-chips__item--focused {
+				background-color: $ssv-chips-default-color-contrast;
+				color: $ssv-color-white;
+
+				.ssv-chips__remove-item {
+					color: $ssv-color-white;
+				}
+			}
+		}
+	}
+
+	@include modifier("fill-color") {
+		.ssv-chips__item {
+			background-color: $ssv-chips-default-color-contrast;
+			color: $ssv-color-white;
+
+			.ssv-chips__remove-item {
+				color: $ssv-color-white;
+			}
+		}
+
+		&.ssv-chips--focus-color {
+			.ssv-chips__item--focused {
+				background-color: $focus;
+				color: $ssv-color-white;
+			}
+		}
+
+		&.ssv-chips--focus-greyscale {
+			.ssv-chips__item--focused {
+				background-color: $ssv-chips-default-clear-color-focused;
+				color: $ssv-color-black;
+			}
 		}
 	}
 
