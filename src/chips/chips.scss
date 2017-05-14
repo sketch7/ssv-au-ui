@@ -126,19 +126,20 @@ $focus: lighten($ssv-chips-default-color-contrast, 20%);
 	}
 
 	&[disabled] {
-		cursor: default;
-
 		.ssv-chips__item,
 		.ssv-chips__item-image--static {
+			cursor: default;
 			color: $ssv-chips-disabled-secondary-color;
 			background-color: $ssv-chips-disabled-primary-color;
 		}
 
 		.ssv-chips__item-image img {
+			cursor: default;
 			filter: grayscale(100%);
 		}
 
 		.ssv-chips__item-image--static .ssv-icon {
+			cursor: default;
 			color: $ssv-chips-disabled-secondary-color;
 			background-color: transparent;
 		}

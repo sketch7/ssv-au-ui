@@ -3,7 +3,7 @@
 @mixin ssv-chips-variant($options: ()) {
 	$background-color: map-get($options, color);
 	$color: map-get($options, color-contrast);
-	$focus: lighten($background-color, 20%);
+	$focus: map-get($options, focus-color);
 	$focused-greyscale: rgba($ssv-color-black, 0.2) !default;
 
 	&.ssv-chips {
@@ -14,6 +14,12 @@
 		}
 
 		@include modifier("fill-none") {
+			.ssv-chips__item {
+				.ssv-chips__remove-item {
+					color: $ssv-color-black;
+				}
+			}
+
 			&.ssv-chips--focus-filled {
 				.ssv-chips__item--focused {
 					background-color: $focus;
