@@ -13,16 +13,16 @@
 			color: $color;
 		}
 
-		@include modifier("fill-greyscale") {
-			&.ssv-chips--focus-color {
+		@include modifier("fill-none") {
+			&.ssv-chips--focus-filled {
 				.ssv-chips__item--focused {
-					background-color: $background-color;
+					background-color: $focus;
 					color: $color;
 				}
 			}
 		}
 
-		@include modifier("fill-color") {
+		@include modifier("fill-filled") {
 			.ssv-chips__item {
 				background-color: $background-color;
 				color: $color;
@@ -32,14 +32,14 @@
 				}
 			}
 
-			&.ssv-chips--focus-color {
+			&.ssv-chips--focus-filled {
 				.ssv-chips__item--focused {
 					background-color: $focus;
 					color: $color;
 				}
 			}
 
-			&.ssv-chips--focus-greyscale {
+			&.ssv-chips--focus-none {
 				.ssv-chips__item--focused {
 					background-color: $focused-greyscale;
 					color: $ssv-color-black;

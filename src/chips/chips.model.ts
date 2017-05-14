@@ -1,7 +1,7 @@
 import * as _ from "lodash";
 
 export type ChipType = "label" | "rounded";
-export type FillStyle = "greyscale" | "color";
+export type FillStyle = "none" | "filled";
 
 export const chipType = {
 	label: "label" as ChipType,
@@ -9,8 +9,8 @@ export const chipType = {
 };
 
 export const fillStyle = {
-	greyscale: "greyscale" as FillStyle,
-	color: "color" as FillStyle
+	none: "none" as FillStyle,
+	filled: "filled" as FillStyle
 };
 
 export const supportedChipTypes: string[] = _.values<string>(chipType);

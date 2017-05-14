@@ -25,6 +25,6 @@ export const chipConfig: ChipConfig = {
 	iconImageField: "iconImage",
 	iconNameField: "iconName",
 	iconTextField: "iconText",
-	fillStyle: fillStyle.color,
-	focusStyle: fillStyle.color
+	fillStyle: fillStyle.filled,
+	focusStyle: fillStyle.filled
 };

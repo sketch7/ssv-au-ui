@@ -83,10 +83,10 @@ $focus: lighten($ssv-chips-default-color-contrast, 20%);
 		}
 	}
 
-	@include modifier("fill-greyscale") {
-		&.ssv-chips--focus-color {
+	@include modifier("fill-none") {
+		&.ssv-chips--focus-filled {
 			.ssv-chips__item--focused {
-				background-color: $ssv-chips-default-color-contrast;
+				background-color: $focus;
 				color: $ssv-color-white;
 
 				.ssv-chips__remove-item {
@@ -96,7 +96,7 @@ $focus: lighten($ssv-chips-default-color-contrast, 20%);
 		}
 	}
 
-	@include modifier("fill-color") {
+	@include modifier("fill-filled") {
 		.ssv-chips__item {
 			background-color: $ssv-chips-default-color-contrast;
 			color: $ssv-color-white;
@@ -106,17 +106,21 @@ $focus: lighten($ssv-chips-default-color-contrast, 20%);
 			}
 		}
 
-		&.ssv-chips--focus-color {
+		&.ssv-chips--focus-filled {
 			.ssv-chips__item--focused {
 				background-color: $focus;
 				color: $ssv-color-white;
 			}
 		}
 
-		&.ssv-chips--focus-greyscale {
+		&.ssv-chips--focus-none {
 			.ssv-chips__item--focused {
 				background-color: $ssv-chips-default-clear-color-focused;
 				color: $ssv-color-black;
+
+				.ssv-chips__remove-item {
+					color: $ssv-color-black;
+				}
 			}
 		}
 	}
