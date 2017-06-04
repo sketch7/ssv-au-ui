@@ -2,9 +2,9 @@
 	<div repeat.for="item of items"
 	class="ssv-chips__item ${item.value === focusValue ? 'ssv-chips__item--focused' : ''}"
 	click.delegate="setFocus(item.value)">
-		<div class="ssv-chips__item-image ${!item.hasIconImage ? 'ssv-chips__item-image--static' : ''}"
+		<div class="ssv-chips__item-image-container ${!item.hasIconImage ? 'ssv-chips__item-image-container--static' : ''}"
 			if.bind="item.hasIconImage || item.hasIconName || item.hasIconText">
-			<img if.bind="item.hasIconImage" src.bind="item.iconImage" alt.bind="item.text">
+			<img if.bind="item.hasIconImage" src.bind="item.iconImage" alt.bind="item.text" class="ssv-chips__item-image">
 			<ssv-icon if.bind="item.hasIconName"
 				name.bind="item.iconName"
 				size="xsmall">

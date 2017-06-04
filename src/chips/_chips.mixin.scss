@@ -7,8 +7,8 @@
 	$focused-greyscale: rgba($ssv-color-black, 0.2) !default;
 
 	&.ssv-chips {
-		.ssv-chips__item-image--static,
-		.ssv-chips__item-image--static .ssv-icon {
+		.ssv-chips__item-image-container--static,
+		.ssv-chips__item-image-container--static .ssv-icon {
 			background-color: $background-color;
 			color: $color;
 		}

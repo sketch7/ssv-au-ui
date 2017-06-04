@@ -30,7 +30,7 @@ $focus: lighten($ssv-chips-default-color-contrast, 20%);
 		border-radius: 4px;
 		cursor: pointer;
 
-		.ssv-chips__item-image {
+		.ssv-chips__item-image-container {
 			color: $ssv-chips-default-color;
 			border-radius: 4px 0 0 4px;
 			display: flex;
@@ -46,8 +46,8 @@ $focus: lighten($ssv-chips-default-color-contrast, 20%);
 			}
 		}
 
-		.ssv-chips__item-image--static,
-		.ssv-chips__item-image--static .ssv-icon {
+		.ssv-chips__item-image-container--static,
+		.ssv-chips__item-image-container--static .ssv-icon {
 			background-color: $ssv-chips-default-color-contrast;
 			color: $ssv-color-white;
 		}
@@ -127,18 +127,18 @@ $focus: lighten($ssv-chips-default-color-contrast, 20%);
 
 	&[disabled] {
 		.ssv-chips__item,
-		.ssv-chips__item-image--static {
+		.ssv-chips__item-image-container--static {
 			cursor: default;
 			color: $ssv-chips-disabled-secondary-color;
 			background-color: $ssv-chips-disabled-primary-color;
 		}
 
-		.ssv-chips__item-image img {
+		.ssv-chips__item-image {
 			cursor: default;
 			filter: grayscale(100%);
 		}
 
-		.ssv-chips__item-image--static .ssv-icon {
+		.ssv-chips__item-image-container--static .ssv-icon {
 			cursor: default;
 			color: $ssv-chips-disabled-secondary-color;
 			background-color: transparent;
@@ -147,8 +147,8 @@ $focus: lighten($ssv-chips-default-color-contrast, 20%);
 
 	// types
 	@include modifier("rounded") {
-		.ssv-chips__item-image,
-		.ssv-chips__item-image img {
+		.ssv-chips__item-image-container,
+		.ssv-chips__item-image {
 			border-radius: 100%;
 		}
 
