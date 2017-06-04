@@ -1,6 +1,6 @@
 <template role="chips" class="ssv-chips ${modifiers}" tabindex="${disabled ? -1 : 0}">
 	<div repeat.for="item of items"
-	class="ssv-chips__item ${item.value === focusValue ? 'ssv-chips__item--focused' : ''}"
+	class="ssv-chips__item ${item.value === focusValue ? 'ssv-chips__item--focused' : ''} ${item.hasIconImage ? 'ssv-chips__item---not-static' : ''}"
 	click.delegate="setFocus(item.value)">
 		<div class="ssv-chips__item-image-container ${!item.hasIconImage ? 'ssv-chips__item-image-container--static' : ''}"
 			if.bind="item.hasIconImage || item.hasIconName || item.hasIconText">
