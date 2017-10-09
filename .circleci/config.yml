@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: /app
     docker:
-      - image: node:8.6.0-browsers
+      - image: circleci/node:latest-browsers
     steps:
       - run:
           name: Print environment versions
