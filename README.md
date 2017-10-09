@@ -132,9 +132,9 @@ Import fonts
 ### Setup Machine for Development
 Install/setup the following:
 
-- NodeJS v7+
+- NodeJS v8+
 - Visual Studio Code or similar code editor
-- TypeScript 2.2+
+- TypeScript 2.5+
 - Git + SourceTree, SmartGit or similar (optional)
 - Ensure to install **global NPM modules** using the following:
 
