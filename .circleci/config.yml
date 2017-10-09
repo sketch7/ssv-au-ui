@@ -1,0 +1,24 @@
+version: 2
+jobs:
+  build:
+    working_directory: /app
+    docker:
+      - image: node:8.6.0
+    steps:
+      - run:
+          name: Print environment versions
+          command: |
+            NPM_V=$(npm -v)
+            echo npm version':' $NPM_V
+      - checkout
+      - run:
+          name: Package Install
+          command: |
+            npm i
+            npm i gulp -g
+      - run:
+          name: build
+          command: npm run build -- --rel
+      - run:
+          name: test
+          command: npm test

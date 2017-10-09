@@ -3,6 +3,7 @@ jspm_packages
 node_modules
 .idea
 .vscode
+.circleci
 npm-debug.log
 *.tgz
 
@@ -15,7 +16,6 @@ test
 .editorconfig
 .gitignore
 .npmignore
-circle.yml
 gulpfile.js
 jsconfig.json
 karma-test-shim.js
