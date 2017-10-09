@@ -1,6 +1,6 @@
 const ssvTools = require("@ssv/tools");
 const gulp = require("gulp");
-const jest = require('jest-cli');
+const jest = require("jest-cli");
 const runSeq = require("run-sequence");
 
 const args = require("../args");
