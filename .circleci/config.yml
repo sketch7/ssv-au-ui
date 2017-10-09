@@ -14,7 +14,6 @@ jobs:
           name: Package Install
           command: |
             npm i
-            npm i gulp -g
       - run:
           name: build
           command: npm run build -- --rel
