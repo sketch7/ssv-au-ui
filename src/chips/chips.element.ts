@@ -25,8 +25,6 @@ export class ChipElement {
 	@bindable iconImageField: string;
 	@bindable iconNameField: string;
 	@bindable iconTextField: string;
-	@bindable src: string;
-	@bindable iconName: string;
 
 	@bindable fillStyle: FillStyle;
 	@bindable focusStyle: FillStyle;
