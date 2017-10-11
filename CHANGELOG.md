@@ -1,3 +1,13 @@
+<a name="0.7.1"></a>
+## [0.7.1](https://github.com/sketch7/ssv-au-ui/compare/0.7.0...0.7.1) (2017-10-11)
+
+
+### Bug Fixes
+
+* **waves:** now is type value merged with global config ([7385fa5](https://github.com/sketch7/ssv-au-ui/commit/7385fa5))
+
+
+
 <a name="0.7.0"></a>
 # [0.7.0](https://github.com/sketch7/ssv-au-ui/compare/0.6.0...v0.7.0) (2017-04-09)
 
