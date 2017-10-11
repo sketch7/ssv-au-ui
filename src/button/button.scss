@@ -1,6 +1,6 @@
 @import "../style/vars";
 @import "../style/mixins";
-@import "./button.variant";
+@import "../style/variant";
 @import "./button.mixin";
 $ssv-button-min-width: 64px !default;
 $ssv-button-height: 36px !default;
@@ -123,22 +123,26 @@ $ssv-button-disabled-secondary-color: rgba($ssv-color-black, 0.26) !default;
 
 	// variants
 	@include modifier("primary") {
-		@include ssv-button-variant($ssv-button-primary-variant);
+		@include ssv-button-variant($ssv-primary-variant);
 	}
 
 	@include modifier("accent") {
-		@include ssv-button-variant($ssv-button-accent-variant);
+		@include ssv-button-variant($ssv-accent-variant);
 	}
 
 	@include modifier("danger") {
-		@include ssv-button-variant($ssv-button-danger-variant);
+		@include ssv-button-variant($ssv-danger-variant);
 	}
 
 	@include modifier("warn") {
-		@include ssv-button-variant($ssv-button-warn-variant);
+		@include ssv-button-variant($ssv-warn-variant);
 	}
 
 	@include modifier("success") {
-		@include ssv-button-variant($ssv-button-success-variant);
+		@include ssv-button-variant($ssv-success-variant);
+	}
+
+	@include modifier("info") {
+		@include ssv-button-variant($ssv-info-variant);
 	}
 }

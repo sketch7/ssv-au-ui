@@ -1,0 +1,67 @@
+@import "../style/vars";
+
+// primary
+$ssv-primary-variant: () !default;
+$ssv-primary-variant-defaults: (
+	color: $ssv-primary-color,
+	color-contrast: $ssv-primary-color-contrast,
+	bg-color: $ssv-color-white,
+	ripple-color: rgba($ssv-primary-color-contrast, 0.2),
+	highlight-color: $ssv-primary-color
+);
+$ssv-primary-variant: map-merge($ssv-primary-variant-defaults, $ssv-primary-variant);
+
+// accent
+$ssv-accent-variant: () !default;
+$ssv-accent-variant-defaults: (
+	color: $ssv-accent-color,
+	color-contrast: $ssv-accent-color-contrast,
+	bg-color: $ssv-color-white,
+	ripple-color: rgba($ssv-color-black, 0.4),
+	highlight-color: $ssv-accent-color
+);
+$ssv-accent-variant: map-merge($ssv-accent-variant-defaults, $ssv-accent-variant);
+
+// danger
+$ssv-danger-variant: () !default;
+$ssv-danger-variant-defaults: (
+	color: $ssv-danger-color,
+	color-contrast: $ssv-danger-color-contrast,
+	bg-color: $ssv-color-white,
+	ripple-color: rgba($ssv-danger-color-contrast, 0.2),
+	highlight-color: $ssv-danger-color
+);
+$ssv-danger-variant: map-merge($ssv-danger-variant-defaults, $ssv-danger-variant);
+
+// warn
+$ssv-warn-variant: () !default;
+$ssv-warn-variant-defaults: (
+	color: $ssv-warn-color,
+	color-contrast: $ssv-warn-color-contrast,
+	bg-color: $ssv-color-white,
+	ripple-color: rgba($ssv-warn-color-contrast, 0.2),
+	highlight-color: $ssv-warn-color-highlight
+);
+$ssv-warn-variant: map-merge($ssv-warn-variant-defaults, $ssv-warn-variant);
+
+// success
+$ssv-success-variant: () !default;
+$ssv-success-variant-defaults: (
+	color: $ssv-success-color,
+	color-contrast: $ssv-success-color-contrast,
+	bg-color: $ssv-color-white,
+	ripple-color: rgba($ssv-success-color-contrast, 0.2),
+	highlight-color: $ssv-success-color
+);
+$ssv-success-variant: map-merge($ssv-success-variant-defaults, $ssv-success-variant);
+
+// info
+$ssv-info-variant: () !default;
+$ssv-info-variant-defaults: (
+	color: $ssv-info-color,
+	color-contrast: $ssv-info-color-contrast,
+	bg-color: $ssv-color-white,
+	ripple-color: rgba($ssv-info-color-contrast, 0.2),
+	highlight-color: $ssv-info-color
+);
+$ssv-info-variant: map-merge($ssv-info-variant-defaults, $ssv-info-variant);

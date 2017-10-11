@@ -31,20 +31,18 @@ Inputs are the basic input component.
 
 | Name        | Type        | Default | Required | Description                                                                                                              |
 |-------------|-------------|---------|----------|--------------------------------------------------------------------------------------------------------------------------|
-| label       | string      |         | no       | Label text to display.                                                                                                   |
-| value       | string      |         | yes      | Value of the input to be bound.                                                                                          |
-| placeholder | string      |         | no       | Placeholder text to show when input is empty.                                                                            |
-| color       | string      | -       | no       | Color variant. Can be `primary`, `accent`, `danger`, `warn`, `success` or any other custom.                              |
-| type        | `InputType` | `text`  | no       | Html input type.                                                                                                         |
-| disabled    | boolean     | false   | no       | Determines whether input is disabled or not.                                                                             |
-| help        | string      |         | no       | Help label which can be used as a hint.                                                                                  |
-| modifier    | string      | -       | no       | CssClass modifiers which will be generated in BEM style e.g. `awesome super` => `ssv-button--awesome ssv-button--super`. |
+| label       | `string`    |         | no       | Label text to display.                                                                                                   |
+| value       | `string`    |         | yes      | Value of the input to be bound.                                                                                          |
+| placeholder | `string`    |         | no       | Placeholder text to show when input is empty.                                                                            |
+| color       | `string`    | -       | no       | Color variant. Can be `primary`, `accent`, `danger`, `warn`, `success` or any other custom.                              |
+| type        | `InputType` | `text`  | no       | Html input type. Can be `text`, `password`, `number` or `email`.                                                         |
+| disabled    | `boolean`   | `false` | no       | Determines whether input is disabled or not.                                                                             |
+| help        | `string`    |         | no       | Help label which can be used as a hint.                                                                                  |
+| modifier    | `string`    | -       | no       | CssClass modifiers which will be generated in BEM style e.g. `awesome super` => `ssv-button--awesome ssv-button--super`. |
 
 ## Global Configuration
 Options which can be configured globally.
 
-| Name          | Type           | Default |
-|---------------|----------------|---------|
-| type          | `CheckboxType` | minimal |
-| color         | string         | -       |
-| labelPosition | before | after | after   |
+| Name  | Type        | Default | Description                     |
+|-------|-------------|---------|---------------------------------|
+| color | `string`    | -       | Refer to attribute description. |

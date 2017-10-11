@@ -25,7 +25,7 @@ export class WavesAttribute {
 
 	attached() {
 		this.setDefaults();
-		attach(this.element, this.type);
+		attach(this.element, this.config.type);
 	}
 
 	typeChanged(newValue: string, previousValue: string) {

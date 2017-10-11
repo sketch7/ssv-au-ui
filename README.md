@@ -1,15 +1,13 @@
 [projectUri]: https://github.com/sketch7/ssv-au-ui
 [projectGit]: https://github.com/sketch7/ssv-au-ui.git
-[changeLog]: ./doc/CHANGELOG.md
+[changeLog]: ./CHANGELOG.md
 
-[contribWiki]: ./doc/CONTRIBUTION.md
-[releaseWorkflowWiki]: ./doc/RELEASE-WORKFLOW.md
+[releaseWorkflowWiki]: ./docs/RELEASE-WORKFLOW.md
 
 [npm]: https://www.npmjs.com
 
 # ssv-au-ui
-[![Build status](https://ci.appveyor.com/api/projects/status/2e0an5hvxtfs08mf?svg=true)](https://ci.appveyor.com/project/chiko/ssv-au-ui)
-[![Build status](https://ci.appveyor.com/api/projects/status/2e0an5hvxtfs08mf/branch/master?svg=true)](https://ci.appveyor.com/project/chiko/ssv-au-ui/branch/master)
+[![CircleCI](https://circleci.com/gh/sketch7/ssv-au-ui.svg?style=shield)](https://circleci.com/gh/sketch7/ssv-au-ui)
 [![bitHound Overall Score](https://www.bithound.io/github/sketch7/ssv-au-ui/badges/score.svg)](https://www.bithound.io/github/sketch7/ssv-au-ui)
 [![npm version](https://badge.fury.io/js/%40ssv%2Fau-ui.svg)](https://badge.fury.io/js/%40ssv%2Fau-ui)
 
@@ -17,11 +15,9 @@ UI components library for Aurelia by Sketch7.
 
 *NOTE: This project is under development and is not intended for general production use yet.*
 
-In order to contribute please read the [Contribution guidelines][contribWiki].
-
 **Quick links**
 
-[Change logs][changeLog] | [Project Repository][projectUri] | [Contribution guidelines][contribWiki]
+[Change logs][changeLog] | [Project Repository][projectUri]
 
 ## Installation
 
@@ -100,9 +96,10 @@ Import fonts
 | checkbox         |                             Preview | [README][checkbox]|              - |
 | snackbar         |                             Preview | [README][snackbar]|              - |
 | select           |                             Preview | [README][select]  |              - |
+| chips            |                         Not Started |                   |              - |
+| datepicker       |                         Not Started |                   |              - |
 | switch           |                         Not Started |                   |              - |
 | radio            |                         Not Started |                   |              - |
-| datepicker       |                         Not Started |                   |              - |
 | alert            |                         Not Started |                   |              - |
 | modal            |                         Not Started |                   |              - |
 | collection       |                         Not Started |                   |              - |
@@ -132,9 +129,9 @@ Import fonts
 ### Setup Machine for Development
 Install/setup the following:
 
-- NodeJS v7+
+- NodeJS v8+
 - Visual Studio Code or similar code editor
-- TypeScript 2.2+
+- TypeScript 2.5+
 - Git + SourceTree, SmartGit or similar (optional)
 - Ensure to install **global NPM modules** using the following:
 
@@ -202,3 +199,6 @@ npm run tdd
 gulp prepare-release --bump major|minor|patch|prerelease (default: patch)
 ```
 Check out the [release workflow guide][releaseWorkflowWiki] in order to guide you creating a release and publishing it.
+
+### Library Size
+Will be adding library file sizes once it will be completed.

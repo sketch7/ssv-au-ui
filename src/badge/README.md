@@ -18,14 +18,14 @@ A Badge, with optional background colors.
 
 | Name              | Type              | Default | Required | Description                                                                                                              |
 |-------------------|-------------------|---------|----------|--------------------------------------------------------------------------------------------------------------------------|
-| color             | string            | -       | no       | Color variant. Can be `primary`, `accent`, `danger`, `warn`, `success`, `info` or any other custom.                      |
-| type              | `BadgeType`       | label   | no       | Button type style. Can be `label` or `rounded`.                                                                          |
-| modifier          | string            | -       | no       | CssClass modifiers which will be generated in BEM style e.g. `awesome super` => `ssv-badge--awesome ssv-badge--super`.   |
+| type              | `BadgeType`       | `label` | no       | Button type style. Can be `label` or `rounded`.                                                                          |
+| color             | `string`          | -       | no       | Color variant. Can be `primary`, `accent`, `danger`, `warn`, `success`, `info` or any other custom.                      |
+| modifier          | `string`          | -       | no       | CssClass modifiers which will be generated in BEM style e.g. `awesome super` => `ssv-badge--awesome ssv-badge--super`.   |
 
 ## Global Configuration
 Options which can be configured globally.
 
-| Name          | Type              | Default |
-|---------------|-------------------|---------|
-| type          | `BadgeType`       | label   |
-| color         | string            |         |
+| Name  | Type        | Default | Description                     |
+|-------|-------------|---------|---------------------------------|
+| type  | `BadgeType` | `label` | Refer to attribute description. |
+| color | `string`    | -       | Refer to attribute description. |

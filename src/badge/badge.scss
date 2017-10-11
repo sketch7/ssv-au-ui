@@ -1,6 +1,6 @@
 @import "../style/vars";
 @import "../style/mixins";
-@import "./badge.variant";
+@import "../style/variant";
 @import "./badge.mixin";
 
 $ssv-badge-font-size: 11px !default;
@@ -34,21 +34,21 @@ $ssv-badge-rounded-radius: 25px !default;
 
 	// variants
 	@include modifier("primary") {
-		@include ssv-badge-variant($ssv-badge-primary-variant);
+		@include ssv-badge-variant($ssv-primary-variant);
 	}
 	@include modifier("accent") {
-		@include ssv-badge-variant($ssv-badge-accent-variant);
+		@include ssv-badge-variant($ssv-accent-variant);
 	}
 	@include modifier("success") {
-		@include ssv-badge-variant($ssv-badge-success-variant);
+		@include ssv-badge-variant($ssv-success-variant);
 	}
 	@include modifier("danger") {
-		@include ssv-badge-variant($ssv-badge-danger-variant);
+		@include ssv-badge-variant($ssv-danger-variant);
 	}
 	@include modifier("warn") {
-		@include ssv-badge-variant($ssv-badge-warn-variant);
+		@include ssv-badge-variant($ssv-warn-variant);
 	}
 	@include modifier("info") {
-		@include ssv-badge-variant($ssv-badge-info-variant);
+		@include ssv-badge-variant($ssv-info-variant);
 	}
 }

@@ -304,7 +304,7 @@ export class SelectElement {
 		if (!params) {
 			this.focusValue = _.isEmpty(this.selectedItems)
 				? this.flattenedFilteredGroupOptions[0].value
-				: _.last(this.selectedItems).value;
+				: _.last(this.selectedItems)!.value;
 			return;
 		}
 		if (params.position) {

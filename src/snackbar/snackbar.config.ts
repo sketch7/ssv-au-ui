@@ -1,9 +1,9 @@
 import { ButtonType, buttonType } from "../button/index";
 
 export interface SnackbarConfig {
-	actionColor?: string;
-	actionType?: ButtonType;
-	duration?: number;
+	actionColor: string;
+	actionType: ButtonType;
+	duration: number;
 }
 
 export const snackbarConfig: SnackbarConfig = {

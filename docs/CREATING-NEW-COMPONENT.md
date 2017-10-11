@@ -7,6 +7,8 @@
  - add globalResource within `config.ts`
  - export from `index.ts`
  - add import for scss within `components.scss`
+ - squash merge commit
+    - message should be: 'feat(badge): implemented `ssv-badge` component'
 
 
 ## Dojo

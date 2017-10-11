@@ -1,5 +1,5 @@
 # Waves
-Enhance's the elements `<div>`, `<button>`, `img`, etc... to do waves on click.
+Enhances the elements `<div>`, `<button>`, `img`, etc... to do waves on click.
 
 ## Usage
 
@@ -13,6 +13,15 @@ Enhance's the elements `<div>`, `<button>`, `img`, etc... to do waves on click.
 
 ### Attributes
 
-| Name             | Type   | Default | Required | Description                                  |
-|------------------|--------|---------|----------|----------------------------------------------|
-| type *(primary)* | string | -       | no       | Ripple type to use (can be styled with css). |
+| Name             | Type     | Default | Required | Description                                  |
+|------------------|----------|---------|----------|----------------------------------------------|
+| type *(primary)* | `string` | -       | no       | Ripple type to use (can be styled with css). |
+
+## Global Configuration
+Options which can be configured globally.
+
+| Name     | Type     | Default | Description                           |
+|----------|----------|---------|---------------------------------------|
+| type     | `string` | -       | Refer to attribute description.       |
+| duration | `number` | -       | Animation duration in milliseconds.   |
+| delay    | `string` | -       | Delay animation in milliseconds.      |
