@@ -1,9 +1,8 @@
 [projectUri]: https://github.com/sketch7/ssv-au-ui
 [projectGit]: https://github.com/sketch7/ssv-au-ui.git
-[changeLog]: ./doc/CHANGELOG.md
+[changeLog]: ./CHANGELOG.md
 
-[contribWiki]: ./doc/CONTRIBUTION.md
-[releaseWorkflowWiki]: ./doc/RELEASE-WORKFLOW.md
+[releaseWorkflowWiki]: ./docs/RELEASE-WORKFLOW.md
 
 [npm]: https://www.npmjs.com
 
@@ -16,11 +15,9 @@ UI components library for Aurelia by Sketch7.
 
 *NOTE: This project is under development and is not intended for general production use yet.*
 
-In order to contribute please read the [Contribution guidelines][contribWiki].
-
 **Quick links**
 
-[Change logs][changeLog] | [Project Repository][projectUri] | [Contribution guidelines][contribWiki]
+[Change logs][changeLog] | [Project Repository][projectUri]
 
 ## Installation
 
