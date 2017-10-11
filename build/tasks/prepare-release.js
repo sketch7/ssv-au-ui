@@ -24,12 +24,12 @@ gulp.task("bump-version", () => {
 });
 
 gulp.task("changelog", () => {
-	return gulp.src(`$./CHANGELOG.md`, {
+	return gulp.src("./CHANGELOG.md", {
 		buffer: false
 	})
 		.pipe(conventionalChangelog({
 			preset: "angular",
 			releaseCount: 0
 		}))
-		.pipe(gulp.dest(`.`));
+		.pipe(gulp.dest("."));
 });

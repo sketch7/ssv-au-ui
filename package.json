@@ -1,6 +1,6 @@
 {
   "name": "@ssv/au-ui",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "UI components library for Aurelia by Sketch7",
   "keywords": [
     "sketch7",
@@ -19,7 +19,7 @@
     "lint": "gulp lint",
     "build": "gulp build",
     "bundle": "gulp bundle:ts",
-    "ssv-publish": "gulp ssv-publish"
+    "prepare-release": "gulp prepare-release"
   },
   "author": "Stephen Lautier <stephen.lautier@outlook.com>, Clayton Lautier <clayton.lautier@outlook.com>",
   "license": "MIT",
