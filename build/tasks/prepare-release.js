@@ -28,8 +28,7 @@ gulp.task("changelog", () => {
 		buffer: false
 	})
 		.pipe(conventionalChangelog({
-			preset: "angular",
-			releaseCount: 0
+			preset: "angular"
 		}))
 		.pipe(gulp.dest("."));
 });
