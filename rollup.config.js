@@ -1,9 +1,14 @@
-export default {
-	input: "./dist/es2015/index.js",
+const fs = require("fs");
+const pkg = JSON.parse(fs.readFileSync("./package.json", "utf-8"));
+
+const name = pkg.name.replace("@", "").replace(/(\/|\.)/g, "-");
+
+module.exports = {
+	input: pkg.module,
 	output: {
-		file: "./dist/bundles/ssv-au-ui.umd.js",
+		file: pkg.main,
 		format: "umd",
-		name: "ssv.au.ui"
+		name
 	},
 	external: id => id.indexOf("node_modules") > -1,
 	onwarn
