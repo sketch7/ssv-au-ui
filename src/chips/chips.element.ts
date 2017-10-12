@@ -1,12 +1,13 @@
 import * as _ from "lodash";
 import { DOM } from "aurelia-pal";
 import { bindingMode } from "aurelia-binding";
+import { Subscription } from "aurelia-event-aggregator";
 import { customElement, bindable } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
 import { Dictionary, KeyCode } from "@ssv/core";
 import { LoggerFactory, ILog } from "@ssv/au-core";
 
-import { attributeUtil } from "../core/index";
+import { attributeUtil, ElementFocusedController } from "../core/index";
 import { ChipType, supportedChipTypes, ChipItem, FillStyle } from "./chips.model";
 import { chipConfig, ChipConfig } from "./chips.config";
 
@@ -43,12 +44,15 @@ export class ChipElement {
 	private config: ChipConfig;
 	private isComplexList: boolean;
 	private optionsMap: Dictionary<object> = {};
+	private focusedController: ElementFocusedController;
+	private focus$$: Subscription;
 
 	constructor(
 		private element: Element,
 		loggerFactory: LoggerFactory,
 	) {
 		this.logger = loggerFactory.get("chipElement");
+		this.focusedController = new ElementFocusedController(PREFIX, element);
 	}
 
 	bind() {
@@ -71,10 +75,13 @@ export class ChipElement {
 	}
 
 	attached() {
+		this.focusedController.init();
+		this.focus$$ = this.focusedController.onBlur(() => this.setFocus());
 		this.element.addEventListener("keydown", this.onFocusedKeyPress.bind(this));
 	}
 
 	detached() {
+		this.focus$$.dispose();
 		this.element.removeEventListener("keydown", this.onFocusedKeyPress);
 	}
 
@@ -98,7 +105,7 @@ export class ChipElement {
 		this.removeOptionItem(item.value);
 	}
 
-	setFocus(value: string) {
+	setFocus(value = "") {
 		this.focusValue = value;
 	}
 

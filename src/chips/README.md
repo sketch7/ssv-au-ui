@@ -40,7 +40,3 @@ Options which can be configured globally.
 | iconTextField  | `string`    | `"iconText"`    | Refer to attribute description.             |
 | fillStyle      | `FillStyle` | `"filled"`      | Refer to attribute description.             |
 | focusStyle     | `FillStyle` | `"filled"`      | Refer to attribute description.             |
-
-
-## Issue
-- On deselect a chip, we need to remove focus.
