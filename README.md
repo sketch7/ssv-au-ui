@@ -141,7 +141,7 @@ Install/setup the following:
 
 
 ```bash
-npm install -g git gulp yarn karma-cli
+npm install -g git gulp yarn
 ```
 
 
