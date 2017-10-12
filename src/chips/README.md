@@ -3,7 +3,34 @@ Chips, with optional background colors.
 
 ## Usage
 
-todo
+```html
+<!-- simple -->
+<ssv-chips options.bind="options"></ssv-chips>
+
+<!-- Specify all custom field properties -->
+<ssv-chips 
+    options.bind="heroes"
+    text-field="name"
+    value-field="id"
+    remove-field="isDeletable"
+    icon-image-field="profileImage"
+    icon-name-field="logo"
+    icon-text-field="alias">
+</ssv-chips>
+
+<!-- handling remove event -->
+<ssv-chips 
+    options.bind="options" 
+    remove.delegate="onRemove($event)">
+</ssv-chips>
+```
+```ts
+onRemove(event: CustomEvent) {
+	console.log("onRemove :: item has been removed", {
+		value: event.detail.value,
+		event: event
+});
+```
 
 ### Attributes
 | Name           | Type        | Default         | Required | Description                                                                                                              |
