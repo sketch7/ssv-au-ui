@@ -1,3 +1,13 @@
+<a name="0.7.2"></a>
+## [0.7.2](https://github.com/sketch7/ssv-au-ui/compare/0.7.0...0.7.2) (2017-10-14)
+
+
+### Bug Fixes
+
+* **webpack:** wrap `globalResources` in `PLATFORM.moduleName` ([676a7d1](https://github.com/sketch7/ssv-au-ui/commit/676a7d1))
+
+
+
 <a name="0.7.1"></a>
 ## [0.7.1](https://github.com/sketch7/ssv-au-ui/compare/0.7.0...0.7.1) (2017-10-11)
 
