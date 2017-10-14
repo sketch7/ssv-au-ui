@@ -1,4 +1,4 @@
-import { FrameworkConfiguration } from "aurelia-framework";
+import { FrameworkConfiguration, PLATFORM } from "aurelia-framework";
 import { init as initWaves } from "node-waves";
 
 import { UiConfig } from "./config.model";
@@ -13,16 +13,16 @@ import { wavesConfig } from "./waves/waves.config";
 
 export function configure(aurelia: FrameworkConfiguration, config: UiConfig): Promise<void> {
 	aurelia.globalResources([
-		"./badge/badge.element",
-		"./button/button.attribute",
-		"./checkbox/checkbox.element",
-		"./highlight/highlight.value-convetor",
-		"./icon/icon.element",
-		"./input/input.element",
-		"./select/select.element",
-		"./snackbar/snackbar-host.element",
-		"./snackbar/simple-snackbar.element",
-		"./waves/waves.attribute",
+		PLATFORM.moduleName("./badge/badge.element"),
+		PLATFORM.moduleName("./button/button.attribute"),
+		PLATFORM.moduleName("./checkbox/checkbox.element"),
+		PLATFORM.moduleName("./highlight/highlight.value-convetor"),
+		PLATFORM.moduleName("./icon/icon.element"),
+		PLATFORM.moduleName("./input/input.element"),
+		PLATFORM.moduleName("./select/select.element"),
+		PLATFORM.moduleName("./snackbar/snackbar-host.element"),
+		PLATFORM.moduleName("./snackbar/simple-snackbar.element"),
+		PLATFORM.moduleName("./waves/waves.attribute"),
 	]);
 
 	Object.assign(badgeConfig, config.badge);
