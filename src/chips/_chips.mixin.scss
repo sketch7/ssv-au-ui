@@ -1,0 +1,63 @@
+@import "../style/mixins";
+
+@mixin ssv-chips-variant($options: ()) {
+	$background-color: map-get($options, color);
+	$color: map-get($options, color-contrast);
+	$focus: map-get($options, focus-color);
+	$text-color: $ssv-color-black !default;
+	$filled-focus-none-color: rgba($ssv-color-black, 0.2) !default;
+
+	&.ssv-chips {
+		.ssv-chips__item-image-container--static {
+			&,
+			.ssv-icon {
+				background-color: $background-color;
+				color: $color;
+			}
+		}
+
+		@include modifier("fill-none") {
+			.ssv-chips__item {
+				.ssv-chips__remove-item {
+					color: $text-color;
+				}
+			}
+
+			&.ssv-chips--focus-filled {
+				.ssv-chips__item--focused {
+					background-color: $focus;
+					color: $color;
+				}
+			}
+		}
+
+		@include modifier("fill-filled") {
+			.ssv-chips__item {
+				background-color: $background-color;
+				color: $color;
+
+				.ssv-chips__remove-item {
+					color: $color;
+				}
+			}
+
+			&.ssv-chips--focus-filled {
+				.ssv-chips__item--focused {
+					background-color: $focus;
+					color: $color;
+				}
+			}
+
+			&.ssv-chips--focus-none {
+				.ssv-chips__item--focused {
+					background-color: $filled-focus-none-color;
+					color: $text-color;
+
+					.ssv-chips__remove-item {
+						color: $text-color;
+					}
+				}
+			}
+		}
+	}
+}

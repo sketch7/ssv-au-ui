@@ -4,7 +4,7 @@ import { autoinject } from "aurelia-dependency-injection";
 import { LoggerFactory, ILog } from "@ssv/au-core";
 
 import { attributeUtil } from "../core/index";
-import { badgeType, BadgeType, supportedBadgeTypes } from "./badge.model";
+import { BadgeType, supportedBadgeTypes } from "./badge.model";
 import { badgeConfig, BadgeConfig } from "./badge.config";
 
 const PREFIX = "ssv-badge";
@@ -14,7 +14,7 @@ const PREFIX = "ssv-badge";
 export class BadgeElement {
 
 	@bindable color: string;
-	@bindable type: BadgeType = badgeType.label;
+	@bindable type: BadgeType;
 	@bindable modifier: string | undefined;
 
 	modifiers: string | undefined;

@@ -53,9 +53,9 @@ onChange(event: CustomEvent) {
 | selected           | `any` or `any[]` | -                        | yes      | Currently selected options.                                                                                              |
 | type               | `SelectType`     | `single`                 | no       | Can be `single` or `multi`. This will allow single or multi selection.                                                   |
 | placeholder        | `string`         | -                        | no       | Placeholder text to show when input is empty.                                                                            |
-| text-field         | `string`         | `"text"`                 | no       | Text property name, which will be used as a select display text.                                                         |
-| value-field        | `string`         | `"value"`                | no       | Value property name, which will be used as a select value.                                                               |
-| groupby            | `string`         | -                        | no       | Groupby property name, which will be used to group the options with.                                                     |
+| text-field         | `string`         | `"text"`                 | no       | Text property name to be used as the select display text.                                                                |
+| value-field        | `string`         | `"value"`                | no       | Value property name to be used as the select value.                                                                      |
+| groupby            | `string`         | -                        | no       | Groupby property name to be used to group options with.                                                                  |
 | max-selections     | `number`         | -                        | no       | Multi select - numbers of allowed options selected at once.                                                              |
 | selected-class     | `string`         | `"selected"`             | no       | CssClass to be used for selected items.                                                                                  |
 | auto-close         | `boolean`        | `true`                   | no       | Determines whether after selecting an item it will close or not.                                                         |
