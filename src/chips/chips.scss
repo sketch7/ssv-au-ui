@@ -1,0 +1,187 @@
+@import "../style/vars";
+@import "../style/mixins";
+@import "../style/variant";
+@import "./chips.mixin";
+$ssv-chips-default-color: rgba($ssv-color-grey-500, 0.2) !default;
+$ssv-chips-default-color-contrast: $ssv-color-black !default;
+$ssv-chips-default-clear-color-focused: rgba($ssv-color-black, 0.2) !default;
+$ssv-chips-default-clear-color-hover: rgba($ssv-color-black, 0.6) !default;
+$ssv-chips-disabled-primary-color: rgba($ssv-color-black, 0.12) !default;
+$ssv-chips-disabled-secondary-color: rgba($ssv-color-black, 0.26) !default;
+$ssv-chips-default-text-color: $ssv-color-white !default;
+$ssv-chips-default-text-color-contrast: $ssv-color-black !default;
+$focus: lighten($ssv-chips-default-color-contrast, 20%);
+
+.ssv-chips {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	border: none;
+	outline: none;
+	border-radius: 0;
+
+	@include element("item") {
+		display: flex;
+		justify-content: flex-start;
+		color: $ssv-chips-default-color-contrast;
+		background-color: $ssv-chips-default-color;
+		font-size: 0.7rem;
+		margin-right: 5px;
+		margin-bottom: 5px;
+		line-height: 32px;
+		border-radius: 4px;
+		cursor: pointer;
+
+		&.ssv-chips__item---not-static {
+			border-radius: 6px 4px 4px 6px;
+		}
+
+		.ssv-chips__item-image-container {
+			color: $ssv-chips-default-color;
+			border-radius: 4px 0 0 4px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 32px;
+			height: 32px;
+
+			.ssv-chips__item-image {
+				width: 32px;
+				height: 32px;
+				border-radius: 4px 0 0 4px;
+			}
+		}
+
+		.ssv-chips__item-image-container--static {
+			&,
+			.ssv-icon {
+				background-color: $ssv-chips-default-color-contrast;
+				color: $ssv-chips-default-text-color;
+			}
+		}
+
+		.ssv-chips__item-text {
+			flex: 2 0 auto;
+			padding-left: 6px;
+
+			@include modifier("no-image") {
+				padding-left: 12px;
+			}
+		}
+
+		.ssv-chips__item-remove-container {
+			padding: 0 6px;
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+		}
+
+		@include modifier("focused") {
+			background-color: $ssv-chips-default-clear-color-focused;
+		}
+	}
+
+	@include element("remove-item") {
+		color: $ssv-chips-default-color-contrast;
+		background-color: transparent;
+
+		&:hover {
+			cursor: pointer;
+			color: $ssv-chips-default-clear-color-hover;
+		}
+	}
+
+	@include modifier("fill-none") {
+		&.ssv-chips--focus-filled {
+			.ssv-chips__item--focused {
+				background-color: $focus;
+				color: $ssv-chips-default-text-color;
+
+				.ssv-chips__remove-item {
+					color: $ssv-chips-default-text-color;
+				}
+			}
+		}
+	}
+
+	@include modifier("fill-filled") {
+		.ssv-chips__item {
+			background-color: $ssv-chips-default-color-contrast;
+			color: $ssv-chips-default-text-color;
+
+			.ssv-chips__remove-item {
+				color: $ssv-chips-default-text-color;
+			}
+		}
+
+		&.ssv-chips--focus-filled {
+			.ssv-chips__item--focused {
+				background-color: $focus;
+				color: $ssv-chips-default-text-color;
+			}
+		}
+
+		&.ssv-chips--focus-none {
+			.ssv-chips__item--focused {
+				background-color: $ssv-chips-default-clear-color-focused;
+				color: $ssv-chips-default-text-color-contrast;
+
+				.ssv-chips__remove-item {
+					color: $ssv-chips-default-text-color-contrast;
+				}
+			}
+		}
+	}
+
+	&[disabled] {
+		.ssv-chips__item,
+		.ssv-chips__item-image-container--static {
+			cursor: default;
+			color: $ssv-chips-disabled-secondary-color;
+			background-color: $ssv-chips-disabled-primary-color;
+		}
+
+		.ssv-chips__item-image {
+			cursor: default;
+			filter: grayscale(100%);
+		}
+
+		.ssv-chips__item-image-container--static .ssv-icon {
+			cursor: default;
+			color: $ssv-chips-disabled-secondary-color;
+			background-color: transparent;
+		}
+	}
+
+	// types
+	@include modifier("rounded") {
+		.ssv-chips__item-image-container,
+		.ssv-chips__item-image {
+			border-radius: 100%;
+		}
+
+		.ssv-chips__item {
+			border-radius: 25px;
+		}
+	}
+
+	// variants
+	@include modifier("primary") {
+		@include ssv-chips-variant($ssv-primary-variant);
+	}
+	@include modifier("accent") {
+		@include ssv-chips-variant($ssv-accent-variant);
+	}
+	@include modifier("success") {
+		@include ssv-chips-variant($ssv-success-variant);
+	}
+	@include modifier("danger") {
+		@include ssv-chips-variant($ssv-danger-variant);
+	}
+	@include modifier("warn") {
+		@include ssv-chips-variant($ssv-warn-variant);
+	}
+	@include modifier("info") {
+		@include ssv-chips-variant($ssv-info-variant);
+	}
+}

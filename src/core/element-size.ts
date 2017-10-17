@@ -1,7 +1,8 @@
 import * as _ from "lodash";
-export type ElementSize = "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
+export type ElementSize = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 
 export const elementSize = {
+	xxsmall: "xxsmall" as ElementSize,
 	xsmall: "xsmall" as ElementSize,
 	small: "small" as ElementSize,
 	medium: "medium" as ElementSize,

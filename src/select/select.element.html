@@ -7,6 +7,7 @@
 			<span class="ssv-select__label ${labelModifierClass}" repeat.for="item of selectedItems">
 				${item.text}
 				<ssv-icon if.bind="!disabled && type === 'multi' && selectedItems && selectedItems.length > 0"
+					size="xxsmall"
 					name.bind="clearIcon"
 					class="ssv-select__clear"
 					click.delegate="onDeselect($event, item)">
@@ -16,11 +17,13 @@
 
 		<div class="ssv-select__icon-container">
 			<ssv-icon if.bind="!disabled && allowClear && filterBy || !disabled && selectedItems && selectedItems.length > 0"
+				size="xxsmall"
 				name.bind="clearIcon"
 				class="ssv-select__clear"
 				click.delegate="onClear($event)">
 			</ssv-icon>
-			<ssv-icon class="ssv-select__arrow"
+			<ssv-icon size="xxsmall"
+				class="ssv-select__arrow"
 				name.bind="isOpen ? arrowUpIcon : arrowDownIcon">
 			</ssv-icon>
 		</div>

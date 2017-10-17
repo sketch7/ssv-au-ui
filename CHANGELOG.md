@@ -1,3 +1,13 @@
+<a name="0.8.0"></a>
+# [0.8.0](https://github.com/sketch7/ssv-au-ui/compare/0.7.0...0.8.0) (2017-10-12)
+
+
+### Features
+
+* **chip:** implemented `ssv-chip` component ([fbfa78c](https://github.com/sketch7/ssv-au-ui/commit/fbfa78c))
+* **icon:** add `xxsmall` size ([1f61f21](https://github.com/sketch7/ssv-au-ui/commit/1f61f21))
+
+
 <a name="0.7.2"></a>
 ## [0.7.2](https://github.com/sketch7/ssv-au-ui/compare/0.7.0...0.7.2) (2017-10-14)
 

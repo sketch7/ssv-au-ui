@@ -48,7 +48,7 @@ export class SelectElement {
 	clearIcon: string;
 	filterBy: string;
 	filteredGroupOptions: SelectGroup[] = [];
-	focusValue: string;
+	focusValue: string | undefined = undefined;
 
 	@computedFrom("isOpen", "selectedItems")
 	get isActive(): boolean {
