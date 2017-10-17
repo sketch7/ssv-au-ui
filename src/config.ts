@@ -17,7 +17,7 @@ export function configure(aurelia: FrameworkConfiguration, config: UiConfig): Pr
 		PLATFORM.moduleName("./badge/badge.element"),
 		PLATFORM.moduleName("./button/button.attribute"),
 		PLATFORM.moduleName("./checkbox/checkbox.element"),
-    		PLATFORM.moduleName("./chips/chips.element"),
+		PLATFORM.moduleName("./chips/chips.element"),
 		PLATFORM.moduleName("./highlight/highlight.value-convetor"),
 		PLATFORM.moduleName("./icon/icon.element"),
 		PLATFORM.moduleName("./input/input.element"),
