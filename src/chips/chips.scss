@@ -8,6 +8,8 @@ $ssv-chips-default-clear-color-focused: rgba($ssv-color-black, 0.2) !default;
 $ssv-chips-default-clear-color-hover: rgba($ssv-color-black, 0.6) !default;
 $ssv-chips-disabled-primary-color: rgba($ssv-color-black, 0.12) !default;
 $ssv-chips-disabled-secondary-color: rgba($ssv-color-black, 0.26) !default;
+$ssv-chips-default-text-color: $ssv-color-white !default;
+$ssv-chips-default-text-color-contrast: $ssv-color-black !default;
 $focus: lighten($ssv-chips-default-color-contrast, 20%);
 
 .ssv-chips {
@@ -50,10 +52,12 @@ $focus: lighten($ssv-chips-default-color-contrast, 20%);
 			}
 		}
 
-		.ssv-chips__item-image-container--static,
-		.ssv-chips__item-image-container--static .ssv-icon {
-			background-color: $ssv-chips-default-color-contrast;
-			color: $ssv-color-white;
+		.ssv-chips__item-image-container--static {
+			&,
+			.ssv-icon {
+				background-color: $ssv-chips-default-color-contrast;
+				color: $ssv-chips-default-text-color;
+			}
 		}
 
 		.ssv-chips__item-text {
@@ -91,10 +95,10 @@ $focus: lighten($ssv-chips-default-color-contrast, 20%);
 		&.ssv-chips--focus-filled {
 			.ssv-chips__item--focused {
 				background-color: $focus;
-				color: $ssv-color-white;
+				color: $ssv-chips-default-text-color;
 
 				.ssv-chips__remove-item {
-					color: $ssv-color-white;
+					color: $ssv-chips-default-text-color;
 				}
 			}
 		}
@@ -103,27 +107,27 @@ $focus: lighten($ssv-chips-default-color-contrast, 20%);
 	@include modifier("fill-filled") {
 		.ssv-chips__item {
 			background-color: $ssv-chips-default-color-contrast;
-			color: $ssv-color-white;
+			color: $ssv-chips-default-text-color;
 
 			.ssv-chips__remove-item {
-				color: $ssv-color-white;
+				color: $ssv-chips-default-text-color;
 			}
 		}
 
 		&.ssv-chips--focus-filled {
 			.ssv-chips__item--focused {
 				background-color: $focus;
-				color: $ssv-color-white;
+				color: $ssv-chips-default-text-color;
 			}
 		}
 
 		&.ssv-chips--focus-none {
 			.ssv-chips__item--focused {
 				background-color: $ssv-chips-default-clear-color-focused;
-				color: $ssv-color-black;
+				color: $ssv-chips-default-text-color-contrast;
 
 				.ssv-chips__remove-item {
-					color: $ssv-color-black;
+					color: $ssv-chips-default-text-color-contrast;
 				}
 			}
 		}
