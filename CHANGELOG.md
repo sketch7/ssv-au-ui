@@ -4,8 +4,8 @@
 
 ### Features
 
-* **chip:** initial structure for `ssv-chip` component ([fbfa78c](https://github.com/sketch7/ssv-au-ui/commit/fbfa78c))
-* **icon:** add xxsmall size ([1f61f21](https://github.com/sketch7/ssv-au-ui/commit/1f61f21))
+* **chip:** implemented `ssv-chip` component ([fbfa78c](https://github.com/sketch7/ssv-au-ui/commit/fbfa78c))
+* **icon:** add `xxsmall` size ([1f61f21](https://github.com/sketch7/ssv-au-ui/commit/1f61f21))
 
 
 <a name="0.7.2"></a>
