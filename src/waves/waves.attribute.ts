@@ -1,4 +1,4 @@
-import * as _ from "lodash";
+import _ from "lodash";
 import { customAttribute, bindable } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
 import { attach } from "node-waves";
@@ -15,10 +15,10 @@ export class WavesAttribute {
 		primaryProperty: true,
 	}) type: string | undefined;
 
-	private config: WavesConfig;
+	private config!: WavesConfig;
 
 	constructor(
-		private element: Element,
+		private element: HTMLElement, // todo: test!!!! previous value was: Element
 	) {
 		this.element.classList.add(PREFIX);
 	}
@@ -36,7 +36,7 @@ export class WavesAttribute {
 	}
 
 	private setDefaults(): void {
-		this.config = _.defaults<WavesConfig>({
+		this.config = _.defaults({
 			type: this.type,
 		}, wavesConfig);
 	}

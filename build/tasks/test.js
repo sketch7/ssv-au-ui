@@ -1,16 +1,10 @@
 const ssvTools = require("@ssv/tools");
 const gulp = require("gulp");
 const jest = require("jest-cli");
-const runSeq = require("run-sequence");
 
 const args = require("../args");
 
-gulp.task("test", cb => {
-	return runSeq(
-		"compile:test",
-		"jest",
-		cb);
-});
+gulp.task("test", () => gulp.series("compile:test",	"jest"));
 
 gulp.task("jest", cb => jest.runCLI({
 	config: {

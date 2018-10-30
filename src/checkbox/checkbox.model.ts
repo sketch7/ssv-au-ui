@@ -1,4 +1,4 @@
-import * as _ from "lodash";
+import _ from "lodash";
 export type LabelPositionType = "before" | "after";
 
 export const labelPositionType = {

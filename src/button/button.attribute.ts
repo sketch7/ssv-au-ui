@@ -1,4 +1,4 @@
-import * as _ from "lodash";
+import _ from "lodash";
 import { LoggerFactory, ILog } from "@ssv/au-core";
 import { customAttribute, bindable } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
@@ -16,19 +16,19 @@ export class ButtonAttribute {
 
 	@bindable({
 		primaryProperty: true
-	}) color: string;
-	@bindable type: ButtonType;
-	@bindable size: ElementSize;
-	@bindable disableRipple: boolean;
-	@bindable rippleType: string;
+	}) color: string | undefined;
+	@bindable type: ButtonType | undefined;
+	@bindable size: ElementSize | undefined;
+	@bindable disableRipple: boolean | undefined;
+	@bindable rippleType: string | undefined;
 
 	private logger: ILog;
-	private config: ButtonConfig;
+	private config!: ButtonConfig;
 	private focusedController: ElementFocusedController;
 
 	constructor(
 		loggerFactory: LoggerFactory,
-		private element: Element,
+		private element: HTMLElement, // todo: test!!!! previous value was: Element
 	) {
 		this.logger = loggerFactory.get("buttonAttribute");
 		this.element.classList.add(PREFIX);
@@ -72,7 +72,7 @@ export class ButtonAttribute {
 	}
 
 	private setDefaults(): void {
-		this.config = _.defaults<ButtonConfig>({
+		this.config = _.defaults({
 			type: this.type,
 			disableRipple: this.disableRipple,
 			rippleType: this.rippleType,

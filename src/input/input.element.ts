@@ -1,5 +1,4 @@
-import * as _ from "lodash";
-import { LoggerFactory, ILog } from "@ssv/au-core";
+import _ from "lodash";
 import { customElement, bindable } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
 import { bindingMode, computedFrom } from "aurelia-binding";
@@ -17,10 +16,10 @@ export class InputElement {
 
 	@bindable({
 		defaultBindingMode: bindingMode.twoWay
-	}) value: string;
-	@bindable label: string;
+	}) value: string | undefined;
+	@bindable label: string | undefined;
 	@bindable disabled: boolean | string = false;
-	@bindable color: string;
+	@bindable color: string | undefined;
 	@bindable type: InputType = inputType.text;
 	@bindable placeholder: string | undefined;
 	@bindable help: string | undefined;
@@ -35,15 +34,15 @@ export class InputElement {
 		return !!this.value || !!this.placeholder || this.isFocused;
 	}
 
-	private input: HTMLInputElement;
-	private config: InputConfig;
-	private logger: ILog;
+	private input!: HTMLInputElement;
+	private config!: InputConfig;
+
+	private _onInputFocus = this.onInputFocus.bind(this);
+	private _onInputBlur = this.onInputBlur.bind(this);
 
 	constructor(
-		loggerFactory: LoggerFactory,
 		private element: Element,
 	) {
-		this.logger = loggerFactory.get("inputElement");
 		this.controlId = `${PREFIX}-${InputElement.id++}`;
 	}
 
@@ -59,13 +58,13 @@ export class InputElement {
 	}
 
 	attached() {
-		this.input.addEventListener("focus", this.onInputFocus.bind(this));
-		this.input.addEventListener("blur", this.onInputBlur.bind(this));
+		this.input.addEventListener("focus", this._onInputFocus);
+		this.input.addEventListener("blur", this._onInputBlur);
 	}
 
 	detached() {
-		this.input.removeEventListener("focus", this.onInputFocus);
-		this.input.removeEventListener("blur", this.onInputBlur);
+		this.input.removeEventListener("focus", this._onInputFocus);
+		this.input.removeEventListener("blur", this._onInputBlur);
 	}
 
 	disabledChanged(newValue: boolean) {
@@ -89,7 +88,7 @@ export class InputElement {
 	}
 
 	private setDefaults(): void {
-		this.config = _.defaults<InputConfig>({
+		this.config = _.defaults({
 			color: this.color,
 		}, inputConfig);
 	}

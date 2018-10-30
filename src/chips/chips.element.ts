@@ -1,4 +1,4 @@
-import * as _ from "lodash";
+import _ from "lodash";
 import { DOM } from "aurelia-pal";
 import { bindingMode } from "aurelia-binding";
 import { Subscription } from "aurelia-event-aggregator";
@@ -20,32 +20,34 @@ export class ChipElement {
 	@bindable({
 		defaultBindingMode: bindingMode.twoWay
 	}) options: any[] = [];
-	@bindable textField: string;
-	@bindable valueField: string;
-	@bindable removeField: string;
-	@bindable iconImageField: string;
-	@bindable iconNameField: string;
-	@bindable iconTextField: string;
+	@bindable textField: string | undefined;
+	@bindable valueField: string | undefined;
+	@bindable removeField: string | undefined;
+	@bindable iconImageField: string | undefined;
+	@bindable iconNameField: string | undefined;
+	@bindable iconTextField: string | undefined;
 
-	@bindable fillStyle: FillStyle;
-	@bindable focusStyle: FillStyle;
-	@bindable color: string;
-	@bindable type: ChipType;
-	@bindable allowRemove: boolean;
+	@bindable fillStyle: FillStyle | undefined;
+	@bindable focusStyle: FillStyle | undefined;
+	@bindable color: string | undefined;
+	@bindable type: ChipType | undefined;
+	@bindable allowRemove: boolean | undefined;
 	@bindable modifier: string | undefined;
 	@bindable disabled: boolean | string = false;
 
 	modifiers: string | undefined;
-	removeIcon: string;
+	removeIcon: string | undefined;
 	items: ChipItem[] = [];
 	focusValue: string | undefined = undefined;
 
 	private logger: ILog;
-	private config: ChipConfig;
-	private isComplexList: boolean;
+	private config!: ChipConfig;
+	private isComplexList!: boolean;
 	private optionsMap: Dictionary<object> = {};
 	private focusedController: ElementFocusedController;
-	private focus$$: Subscription;
+	private focus$$!: Subscription;
+
+	private _onFocusedKeyPress = this.onFocusedKeyPress.bind(this);
 
 	constructor(
 		private element: Element,
@@ -77,12 +79,12 @@ export class ChipElement {
 	attached() {
 		this.focusedController.init();
 		this.focus$$ = this.focusedController.onBlur(() => this.setFocus());
-		this.element.addEventListener("keydown", this.onFocusedKeyPress.bind(this));
+		this.element.addEventListener("keydown", this._onFocusedKeyPress);
 	}
 
 	detached() {
 		this.focus$$.dispose();
-		this.element.removeEventListener("keydown", this.onFocusedKeyPress);
+		this.element.removeEventListener("keydown", this._onFocusedKeyPress);
 	}
 
 	optionsChanged(options: any[]) {
@@ -249,7 +251,7 @@ export class ChipElement {
 	}
 
 	private setDefaults(): void {
-		this.config = _.defaults<ChipConfig>({
+		this.config = _.defaults({
 			type: this.type,
 			color: this.color,
 			allowRemove: this.allowRemove,

@@ -1,4 +1,4 @@
-import * as _ from "lodash";
+import _ from "lodash";
 import { customElement, bindable } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
 import { LoggerFactory, ILog } from "@ssv/au-core";
@@ -13,14 +13,14 @@ const PREFIX = "ssv-badge";
 @customElement(PREFIX)
 export class BadgeElement {
 
-	@bindable color: string;
-	@bindable type: BadgeType;
+	@bindable color: string | undefined;
+	@bindable type: BadgeType | undefined;
 	@bindable modifier: string | undefined;
 
 	modifiers: string | undefined;
 
 	private logger: ILog;
-	private config: BadgeConfig;
+	private config!: BadgeConfig;
 
 	constructor(
 		private element: Element,
@@ -53,7 +53,7 @@ export class BadgeElement {
 	}
 
 	private setDefaults(): void {
-		this.config = _.defaults<BadgeConfig>({
+		this.config = _.defaults({
 			type: this.type,
 			color: this.color
 		}, badgeConfig);

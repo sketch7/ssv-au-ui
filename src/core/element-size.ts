@@ -1,4 +1,4 @@
-import * as _ from "lodash";
+import _ from "lodash";
 export type ElementSize = "xxsmall" | "xsmall" | "small" | "medium" | "large" | "xlarge" | "xxlarge";
 
 export const elementSize = {

@@ -21,8 +21,8 @@ export class SnackbarRef {
 	private eventAggregator = new EventAggregator();
 
 	constructor(
-		public readonly message: string,
-		public readonly action?: string,
+		readonly message: string,
+		readonly action?: string,
 		opts?: SnackbarOptions,
 	) {
 		this.onAction(this.dismiss.bind(this));

@@ -8,7 +8,6 @@
 
 # ssv-au-ui
 [![CircleCI](https://circleci.com/gh/sketch7/ssv-au-ui.svg?style=shield)](https://circleci.com/gh/sketch7/ssv-au-ui)
-[![bitHound Overall Score](https://www.bithound.io/github/sketch7/ssv-au-ui/badges/score.svg)](https://www.bithound.io/github/sketch7/ssv-au-ui)
 [![npm version](https://badge.fury.io/js/%40ssv%2Fau-ui.svg)](https://badge.fury.io/js/%40ssv%2Fau-ui)
 
 UI components library for Aurelia by Sketch7.
@@ -133,9 +132,9 @@ Import fonts
 ### Setup Machine for Development
 Install/setup the following:
 
-- NodeJS v8+
+- NodeJS v10+
 - Visual Studio Code or similar code editor
-- TypeScript 2.5+
+- TypeScript 3.1+
 - Git + SourceTree, SmartGit or similar (optional)
 - Ensure to install **global NPM modules** using the following:
 

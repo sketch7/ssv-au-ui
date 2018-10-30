@@ -1,4 +1,4 @@
-import * as _ from "lodash";
+import _ from "lodash";
 import { customElement, bindable } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
 import { LoggerFactory, ILog } from "@ssv/au-core";
@@ -13,17 +13,17 @@ const ELEMENT_PREFIX = "ssv-icon";
 @customElement(ELEMENT_PREFIX)
 export class IconElement {
 
-	@bindable prefix: string;
-	@bindable name: string;
-	@bindable color: string;
-	@bindable size: ElementSize;
+	@bindable prefix: string | undefined;
+	@bindable name!: string;
+	@bindable color: string | undefined;
+	@bindable size: ElementSize | undefined;
 	@bindable modifier: string | undefined;
 	@bindable defaultClass: string | undefined;
 
 	modifiers: string | undefined;
 
 	private logger: ILog;
-	private config: IconConfig;
+	private config!: IconConfig;
 
 	constructor(
 		private element: Element,
@@ -70,7 +70,7 @@ export class IconElement {
 	}
 
 	private setDefaults(): void {
-		this.config = _.defaults<IconConfig>({
+		this.config = _.defaults({
 			prefix: this.prefix,
 			color: this.color,
 			size: this.size,
