@@ -1,7 +1,6 @@
 import { customElement, ComponentDetached } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
 import { Disposable } from "aurelia-binding";
-import { LoggerFactory, ILog } from "@ssv/au-core";
 
 import { SnackbarRef } from "./snackbar-ref";
 import { SnackbarService } from "./snackbar.service";
@@ -12,16 +11,13 @@ const PREFIX = "ssv-snackbar-host";
 @customElement(PREFIX)
 export class SnackbarHostElement implements ComponentDetached {
 
-	activeItem: SnackbarRef | null;
+	activeItem: SnackbarRef| null | undefined;
 
-	private logger: ILog;
-	private activeItem$$: Disposable;
+	private activeItem$$!: Disposable;
 
 	constructor(
-		loggerFactory: LoggerFactory,
 		private snackbar: SnackbarService,
 	) {
-		this.logger = loggerFactory.get("snackbarHostElement");
 	}
 
 	bind() {

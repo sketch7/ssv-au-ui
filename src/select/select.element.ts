@@ -1,4 +1,4 @@
-import * as _ from "lodash";
+import _ from "lodash";
 import { DOM } from "aurelia-pal";
 import { computedFrom, bindingMode, BindingEngine } from "aurelia-binding";
 import { customElement, bindable } from "aurelia-templating";
@@ -18,35 +18,35 @@ const PREFIX = "ssv-select";
 export class SelectElement {
 	static id = 0;
 
-	@bindable color: string;
-	@bindable placeholder: string;
+	@bindable color: string | undefined;
+	@bindable placeholder: string | undefined;
 	@bindable selectedClass: string | undefined;
-	@bindable autoClose: boolean;
-	@bindable allowClear: boolean;
-	@bindable allowFiltering: boolean;
-	@bindable type: SelectType;
+	@bindable autoClose: boolean | undefined;
+	@bindable allowClear: boolean | undefined;
+	@bindable allowFiltering: boolean | undefined;
+	@bindable type: SelectType | undefined;
 	@bindable modifier: string | undefined;
 	@bindable disabled: boolean | string = false;
-	@bindable filterPlaceholder: string;
-	@bindable noOptions: string;
+	@bindable filterPlaceholder: string | undefined;
+	@bindable noOptions: string | undefined;
 	@bindable maxSelections = 0;
 
 	@bindable({
 		defaultBindingMode: bindingMode.twoWay
 	}) selected: any | undefined;
 	@bindable options: any[] = [];
-	@bindable textField: string;
-	@bindable valueField: string;
+	@bindable textField: string | undefined;
+	@bindable valueField: string | undefined;
 	@bindable groupby: string | undefined;
 
 	controlId: string;
 	modifiers: string | undefined;
 	labelModifierClass: string | undefined;
 	isOpen = false;
-	arrowUpIcon: string;
-	arrowDownIcon: string;
-	clearIcon: string;
-	filterBy: string;
+	arrowUpIcon: string | undefined;
+	arrowDownIcon: string | undefined;
+	clearIcon: string | undefined;
+	filterBy: string | undefined;
 	filteredGroupOptions: SelectGroup[] = [];
 	focusValue: string | undefined = undefined;
 
@@ -56,16 +56,19 @@ export class SelectElement {
 	}
 
 	private logger: ILog;
-	private config: SelectConfig;
-	private items: SelectItem[];
+	private config!: SelectConfig;
+	private items!: SelectItem[];
 	private selectedItems: SelectItem[] = [];
-	private flattenedFilteredGroupOptions: SelectItem[];
+	private flattenedFilteredGroupOptions!: SelectItem[];
 	private optionsMap: Dictionary<object> = {};
-	private isComplexList: boolean;
+	private isComplexList!: boolean;
 
 	private focusedController: ElementFocusedController;
-	private focus$$: Subscription;
+	private focus$$!: Subscription;
 	private input$$: Subscription;
+
+	private _onBodyClick = this.onBodyClick.bind(this);
+	private _onFocusedKeyPress = this.onFocusedKeyPress.bind(this);
 
 	constructor(
 		private element: Element,
@@ -102,16 +105,16 @@ export class SelectElement {
 	attached() {
 		this.focusedController.init();
 		this.focus$$ = this.focusedController.onFocus(() => this.toggle());
-		this.element.addEventListener("keydown", this.onFocusedKeyPress.bind(this));
-		DOM.addEventListener("click", this.onBodyClick.bind(this), true);
+		this.element.addEventListener("keydown", this._onFocusedKeyPress);
+		DOM.addEventListener("click", this._onBodyClick, true);
 	}
 
 	detached() {
 		this.focusedController.destroy();
 		this.focus$$.dispose();
 		this.input$$.dispose();
-		this.element.removeEventListener("keydown", this.onFocusedKeyPress);
-		DOM.removeEventListener("click", this.onBodyClick, true);
+		this.element.removeEventListener("keydown", this._onFocusedKeyPress);
+		DOM.removeEventListener("click", this._onBodyClick, true);
 	}
 
 	selectedChanged(value: any) {
@@ -388,7 +391,7 @@ export class SelectElement {
 			options: values
 		}));
 
-		this.flattenedFilteredGroupOptions = _.flatMap<SelectItem>(this.filteredGroupOptions, item => item.options);
+		this.flattenedFilteredGroupOptions = _.flatMap(this.filteredGroupOptions, item => item.options);
 	}
 
 	private cleanseSelectedItems() {
@@ -430,7 +433,7 @@ export class SelectElement {
 	}
 
 	private setDefaults(): void {
-		this.config = _.defaults<SelectConfig>({
+		this.config = _.defaults({
 			type: this.type,
 			color: this.color,
 			autoClose: this.autoClose,

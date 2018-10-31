@@ -1,7 +1,7 @@
 import { autoinject } from "aurelia-dependency-injection";
 import { BindingEngine } from "aurelia-binding";
 import { Subscription } from "aurelia-event-aggregator";
-import { ILog, LoggerFactory, PropertyObserver } from "@ssv/au-core";
+import { PropertyObserver } from "@ssv/au-core";
 
 import { SnackbarRef, SnackbarOptions } from "./snackbar-ref";
 
@@ -12,17 +12,14 @@ import { SnackbarRef, SnackbarOptions } from "./snackbar-ref";
 export class SnackbarService {
 
 	/** Current activated `SnackbarRef`. */
-	activeItem: SnackbarRef | null;
+	activeItem: SnackbarRef | null | undefined;
 	activeItem$: PropertyObserver<SnackbarRef | null>;
 
 	private items: SnackbarRef[] = [];
-	private logger: ILog;
 
 	constructor(
-		loggerFactory: LoggerFactory,
 		private bindingEngine: BindingEngine,
 	) {
-		this.logger = loggerFactory.get("snackbarService");
 		this.activeItem$ = this.bindingEngine.propertyObserver(this, "activeItem");
 	}
 

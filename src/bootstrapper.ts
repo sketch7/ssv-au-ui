@@ -1,18 +1,18 @@
 import { autoinject } from "aurelia-dependency-injection";
-import { ILog, LoggerFactory } from "@ssv/au-core";
+// import { ILog, LoggerFactory } from "@ssv/au-core";
 
 import { SnackbarHostService } from "./snackbar/index";
 
 @autoinject()
 export class UiBootstrapper {
 
-	private logger: ILog;
+	// private logger: ILog;
 
 	constructor(
-		loggerFactory: LoggerFactory,
+		// loggerFactory: LoggerFactory,
 		private snackbarHost: SnackbarHostService
 	) {
-		this.logger = loggerFactory.get("uiBootstrapper");
+		// this.logger = loggerFactory.get("uiBootstrapper");
 	}
 
 	/** Initialize services such as snackbar host. */

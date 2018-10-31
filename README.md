@@ -8,7 +8,6 @@
 
 # ssv-au-ui
 [![CircleCI](https://circleci.com/gh/sketch7/ssv-au-ui.svg?style=shield)](https://circleci.com/gh/sketch7/ssv-au-ui)
-[![bitHound Overall Score](https://www.bithound.io/github/sketch7/ssv-au-ui/badges/score.svg)](https://www.bithound.io/github/sketch7/ssv-au-ui)
 [![npm version](https://badge.fury.io/js/%40ssv%2Fau-ui.svg)](https://badge.fury.io/js/%40ssv%2Fau-ui)
 
 UI components library for Aurelia by Sketch7.
@@ -34,13 +33,14 @@ npm install normalize-scss node-waves @ssv/core @ssv/au-core aurelia-dependency-
 Register `au-ui` plugin with optional global configuration and bootstrap.
 
 ```ts
+import { PLATFORM } from "aurelia-pal";
 import { UiConfig, UiBootstrapper, buttonType } from "@ssv/au-ui";
 
 const uiConfig: UiConfig = {
     button: { type: buttonType.raised }
 };
 // register plugin with aurelia + configure
-aurelia.use.plugin("@ssv/au-ui", uiConfig);
+aurelia.use.plugin(PLATFORM.moduleName("@ssv/au-ui"), uiConfig);
 
 aurelia.start().then(() => {
     // invoke bootstrapper to initialize
@@ -133,9 +133,9 @@ Import fonts
 ### Setup Machine for Development
 Install/setup the following:
 
-- NodeJS v8+
+- NodeJS v10+
 - Visual Studio Code or similar code editor
-- TypeScript 2.5+
+- TypeScript 3.1+
 - Git + SourceTree, SmartGit or similar (optional)
 - Ensure to install **global NPM modules** using the following:
 

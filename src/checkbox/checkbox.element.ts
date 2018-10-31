@@ -1,4 +1,4 @@
-import * as _ from "lodash";
+import _ from "lodash";
 import { KeyCode } from "@ssv/core";
 import { LoggerFactory, ILog } from "@ssv/au-core";
 import { customElement, bindable } from "aurelia-templating";
@@ -23,11 +23,11 @@ export class CheckboxElement {
 
 	@bindable({
 		defaultBindingMode: bindingMode.twoWay
-	}) checked: boolean | string | null;
-	@bindable label: string;
-	@bindable labelPosition: LabelPositionType;
-	@bindable color: string;
-	@bindable type: CheckboxType;
+	}) checked: boolean | string | null | undefined;
+	@bindable label: string | undefined;
+	@bindable labelPosition: LabelPositionType | undefined;
+	@bindable color: string | undefined;
+	@bindable type: CheckboxType | undefined;
 	@bindable disabled: boolean | string = false;
 	@bindable indeterminate = false;
 	@bindable modifier: string | undefined;
@@ -40,8 +40,11 @@ export class CheckboxElement {
 	}
 
 	private logger: ILog;
-	private config: CheckboxConfig;
+	private config!: CheckboxConfig;
 	private focusedController: ElementFocusedController;
+
+	private _onClick = this.onClick.bind(this);
+	private _onFocusedKeyPress = this.onFocusedKeyPress.bind(this);
 
 	constructor(
 		loggerFactory: LoggerFactory,
@@ -75,14 +78,14 @@ export class CheckboxElement {
 
 	attached() {
 		this.focusedController.init();
-		this.element.addEventListener("click", this.onClick.bind(this));
-		this.element.addEventListener("keypress", this.onFocusedKeyPress.bind(this));
+		this.element.addEventListener("click", this._onClick);
+		this.element.addEventListener("keypress", this._onFocusedKeyPress);
 	}
 
 	detached() {
 		this.focusedController.destroy();
-		this.element.removeEventListener("click", this.onClick);
-		this.element.removeEventListener("keypress", this.onFocusedKeyPress);
+		this.element.removeEventListener("click", this._onClick);
+		this.element.removeEventListener("keypress", this._onFocusedKeyPress);
 	}
 
 	disabledChanged(newValue: boolean) {
@@ -97,7 +100,7 @@ export class CheckboxElement {
 		attributeUtil.changeBemModifier(PREFIX, newValue.toLowerCase(), previousValue, this.element);
 	}
 
-	private getCheckedState(checked: boolean | string | null, indeterminate: boolean) {
+	private getCheckedState(checked: boolean | string | null | undefined, indeterminate: boolean) {
 		if (!indeterminate) {
 			return attributeUtil.getFlagAsBoolean(checked);
 		}
@@ -136,7 +139,7 @@ export class CheckboxElement {
 	}
 
 	private setDefaults(): void {
-		this.config = _.defaults<CheckboxConfig>({
+		this.config = _.defaults({
 			type: this.type,
 			color: this.color,
 			labelPosition: this.labelPosition,

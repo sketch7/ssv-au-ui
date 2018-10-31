@@ -1,6 +1,5 @@
 import { customElement, bindable, Animator, ComponentAttached, ComponentDetached } from "aurelia-templating";
 import { autoinject } from "aurelia-dependency-injection";
-import { LoggerFactory, ILog } from "@ssv/au-core";
 
 import { SnackbarRef } from "./snackbar-ref";
 import { snackbarConfig } from "./snackbar.config";
@@ -12,23 +11,20 @@ const ACTIVE_CLASS = `${PREFIX}--active`;
 @customElement(PREFIX)
 export class SimpleSnackbarElement implements ComponentAttached, ComponentDetached {
 
-	@bindable snackbarRef: SnackbarRef;
+	@bindable snackbarRef!: SnackbarRef;
 
-	label: string;
+	label: string | undefined;
 	action: string | undefined;
 	actionColor = snackbarConfig.actionColor;
 	actionType = snackbarConfig.actionType;
 
-	private logger: ILog;
 	private timeoutToken: number | undefined;
 	private isAttached = false;
 
 	constructor(
-		loggerFactory: LoggerFactory,
 		private element: Element,
 		private animator: Animator
 	) {
-		this.logger = loggerFactory.get("simpleSnackbarElement");
 	}
 
 	attached() {

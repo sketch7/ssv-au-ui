@@ -15,6 +15,10 @@ export class ElementFocusedController {
 
 	private eventAggregator = new EventAggregator();
 
+	private _onBlurred = this.onBlurred.bind(this);
+	private _onFocused = this.onFocused.bind(this);
+	private _onMouseDown = this.onMouseDown.bind(this);
+
 	constructor(
 		prefix: string,
 		private element: Element
@@ -23,15 +27,15 @@ export class ElementFocusedController {
 	}
 
 	init() {
-		this.element.addEventListener("mousedown", this.onMouseDown.bind(this));
-		this.element.addEventListener("focus", this.onFocused.bind(this));
-		this.element.addEventListener("blur", this.onBlurred.bind(this));
+		this.element.addEventListener("blur", this._onBlurred);
+		this.element.addEventListener("focus", this._onFocused);
+		this.element.addEventListener("mousedown", this._onMouseDown);
 	}
 
 	destroy() {
-		this.element.removeEventListener("mousedown", this.onMouseDown);
-		this.element.removeEventListener("focus", this.onFocused);
-		this.element.removeEventListener("blur", this.onBlurred);
+		this.element.removeEventListener("blur", this._onBlurred);
+		this.element.removeEventListener("focus", this._onFocused);
+		this.element.removeEventListener("mousedown", this._onMouseDown);
 	}
 
 	/**
