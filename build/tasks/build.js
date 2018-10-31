@@ -22,11 +22,11 @@ gulp.task("copy-dist", () => {
 
 gulp.task("build", args.isRelease
 	? gulp.series(
-		gulp.parallel("lint", "compile:ts"),
+		gulp.parallel("lint", "compile:ts", "compile:html", "compile:styles"),
 		"copy-dist",
 		"bundle:ts"
 	)
-	: gulp.series("lint", "compile:ts:dev")
+	: gulp.parallel("lint", "compile:ts", "compile:html", "compile:styles")
 )
 
 gulp.task("rebuild", args.isRelease
@@ -44,3 +44,18 @@ function compileTs(target) {
 		continueOnError: args.continueOnError
 	});
 }
+function compileHtml(target) {
+	return gulp.src(config.src.html)
+		.pipe(gulp.dest(`${config.output.dist}/${target}`))
+}
+ssvTools.registerGulpMultiTargetBuilds({
+	taskName: "html",
+	action: compileHtml,
+	config: config
+});
+
+gulp.series("compile:styles", "compile:styles:dev");
+gulp.series("compile:styles", () => {
+	return gulp.src(config.src.styles)
+		.pipe(gulp.dest(config.output.sass));
+});
